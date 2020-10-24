@@ -22,7 +22,10 @@ namespace dotNet5781_00_2382_5685
             string name = Console.ReadLine();
             Console.WriteLine("{0}, welcome to my first console application", name);
         }
-        static partial void Welcome5685();
+        static partial void Welcome5685()
+        {
+
+        }
         
     }
 }
