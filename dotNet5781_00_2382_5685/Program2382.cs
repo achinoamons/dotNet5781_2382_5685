@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_00_2382_5685
 {
-   partial class Program2382
+   partial class Program
     {
         static void Main(string[] args)
 
         {
+            
             Welcome2382();
             Welcome5685();
             Console.ReadKey();
@@ -23,7 +24,6 @@ namespace dotNet5781_00_2382_5685
             Console.WriteLine("{0}, welcome to my first console application", name);
         }
         static partial void Welcome5685();
-        
-        
+          
     }
 }
