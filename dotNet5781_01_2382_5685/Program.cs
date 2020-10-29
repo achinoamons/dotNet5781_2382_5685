@@ -14,7 +14,8 @@ namespace dotNet5781_01_2382_5685
     {
         enum Options
         {Add,Choose,FuelOrCare,Show,Bye};
-        static public bool CheckForAdd( List<Bus> L1 , string num,int D, ref DateTime date)
+       static Random r = new Random(DateTime.Now.Millisecond);
+        public static bool CheckForAdd( List<Bus> L1 , string num,int D, ref DateTime date)
         {
             //int counter = 0;
             bool isEmpty = !L1.Any();
@@ -42,6 +43,30 @@ namespace dotNet5781_01_2382_5685
 
 
         }
+       public static bool Checkforchoose(List<Bus> L1, string num, ref Random r)
+        {
+            bool isEmpty = !L1.Any();
+
+            bool b = false;
+            if (!isEmpty)
+            {
+                foreach (Bus bus in L1)
+                {
+                    if (bus.ProNumBus == num)//check if there is already a bus like this
+                    {
+                        b = true;
+
+                        
+
+                    }
+                }
+            }
+            else
+                Console.WriteLine("The bus does not exist in the system");
+
+
+
+        }
         static void Main(string[] args)
         {
             Options o;
@@ -56,7 +81,7 @@ namespace dotNet5781_01_2382_5685
                         string num = Console.ReadLine();//מס רישוי
                         DateTime date;//תאריך תחילת פעילות
                         string s = Console.ReadLine();
-                        int D = s.Length;
+                        int D = num.Length;
                          bool b= DateTime.TryParse(s, out  date);//קיבלתי מהמשתמש קלט סטרינג והמרתי
                         if (b)
                         {
@@ -70,16 +95,18 @@ namespace dotNet5781_01_2382_5685
                         }
                         else
                             Console.WriteLine("Error.insert again");
-
-
-
+                    }
+                    break;
+                case Options.Choose:
+                    {
+                        Console.WriteLine("please enter Licensing number");
+                        string num = Console.ReadLine();//מס רישוי
+                        
 
 
 
 
                     }
-                    break;
-                case Options.Choose:
                     break;
                 case Options.FuelOrCare:
                     break;

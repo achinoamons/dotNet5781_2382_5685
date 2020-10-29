@@ -14,8 +14,9 @@ namespace dotNet5781_01_2382_5685
          string NumBus;
         DateTime StartDate;//Date of commencement of activity  Of the means of transport
         DateTime LastDate;//the last date of taking care of the bus
-         double Kilometrath;
-         double Fuel;
+        double Kilometrath;
+        double Fuel;
+        double KilometrathAfterTipul;
         public string ProNumBus//the property of NumBus
         {
             set
@@ -46,14 +47,12 @@ namespace dotNet5781_01_2382_5685
             { Fuel = value; }
             get { return Fuel; }
         }
-
-      /* public Bus(string N="",double K=0, double F=0)
+        public double ProKilometrathAfterTipul//the property of Fuel
         {
-             NumBus=N;
-           // StartDate = S;
-           // LastDate = L;
-             Kilometrath = K; 
-             Fuel=F;
-        }*/
+            set
+            { KilometrathAfterTipul = value; }
+            get { return KilometrathAfterTipul; }
+        }
+
     }
 }
