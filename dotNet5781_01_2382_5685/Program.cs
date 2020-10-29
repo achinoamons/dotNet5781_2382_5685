@@ -56,9 +56,13 @@ namespace dotNet5781_01_2382_5685
                     {
                         b = true;
                         DateTime currentDate = DateTime.Now;
+                        //רק אם לא עברה שנה או מקסימום שנה מהטיפול הקודם
                         if ((bus.ProLastDate.Year==currentDate.Year)||((bus.ProLastDate.Year + 1 == currentDate.Year) && (12-bus.ProLastDate.Month+ currentDate.Month<=12 )))
                         {
-
+                            double g;
+                            bool b = Double.TryParse(r, out double g);
+                            if (bus.ProKilometrathAfterTipul + r <= 20000)
+                                return true;
                         }
                         
 
