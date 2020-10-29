@@ -17,6 +17,7 @@ namespace dotNet5781_01_2382_5685
         double Kilometrath;
         double Fuel;
         double KilometrathAfterTipul;
+        int p;
         public string ProNumBus//the property of NumBus
         {
             set
