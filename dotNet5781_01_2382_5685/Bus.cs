@@ -16,37 +16,44 @@ namespace dotNet5781_01_2382_5685
         DateTime LastDate;//the last date of taking care of the bus
          double Kilometrath;
          double Fuel;
-        public string N//the property of NumBus
+        public string ProNumBus//the property of NumBus
         {
             set
             { NumBus = value; }
             get { return NumBus;}
         }
-        public DateTime S//the property of StartDate
+        public DateTime ProStartDate//the property of StartDate
         {
             set
             { StartDate = value; }
             get { return StartDate; }
         }
-        public DateTime L//the property of LastDate
+        public DateTime ProLastDate//the property of LastDate
         {
             set
             { LastDate = value; }
             get { return LastDate; }
         }
-        public double K//the property of Kilometrath
+        public double ProKilometrath//the property of Kilometrath
         {
             set
             { Kilometrath = value; }
             get { return Kilometrath; }
         }
-        public double F//the property of Fuel
+        public double ProFuel//the property of Fuel
         {
             set
             { Fuel = value; }
             get { return Fuel; }
         }
 
-
+      /* public Bus(string N="",double K=0, double F=0)
+        {
+             NumBus=N;
+           // StartDate = S;
+           // LastDate = L;
+             Kilometrath = K; 
+             Fuel=F;
+        }*/
     }
 }
