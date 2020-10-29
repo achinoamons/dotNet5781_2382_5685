@@ -12,8 +12,8 @@ namespace dotNet5781_01_2382_5685
     class Bus
     {
          string NumBus;
-         string StartDate;//Date of commencement of activity  Of the means of transport
-         string LastDate;//the last date of taking care of the bus
+        DateTime StartDate;//Date of commencement of activity  Of the means of transport
+        DateTime LastDate;//the last date of taking care of the bus
          double Kilometrath;
          double Fuel;
         public string N//the property of NumBus
@@ -22,13 +22,13 @@ namespace dotNet5781_01_2382_5685
             { NumBus = value; }
             get { return NumBus;}
         }
-        public string S//the property of StartDate
+        public DateTime S//the property of StartDate
         {
             set
             { StartDate = value; }
             get { return StartDate; }
         }
-        public string L//the property of LastDate
+        public DateTime L//the property of LastDate
         {
             set
             { LastDate = value; }
