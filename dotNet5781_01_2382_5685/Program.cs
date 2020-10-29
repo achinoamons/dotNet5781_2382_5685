@@ -55,7 +55,11 @@ namespace dotNet5781_01_2382_5685
                     if (bus.ProNumBus == num)//check if there is already a bus like this
                     {
                         b = true;
+                        DateTime currentDate = DateTime.Now;
+                        if ((bus.ProLastDate.Year==currentDate.Year)||((bus.ProLastDate.Year + 1 == currentDate.Year) && (bus.ProLastDate.Month+11 <= currentDate.Month )))
+                        {
 
+                        }
                         
 
                     }
