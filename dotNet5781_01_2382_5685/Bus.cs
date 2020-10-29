@@ -20,7 +20,7 @@ namespace dotNet5781_01_2382_5685
         {
             set
             { NumBus = value; }
-            get { return NumBus; }    
+            get { return NumBus;}
         }
         public string S//the property of StartDate
         {
