@@ -13,7 +13,7 @@ namespace dotNet5781_01_2382_5685
     class Program
     {
         enum Options
-        {Exit,Add,Choose,FuelOrCare,Show,Bye};
+        {Add,Choose,FuelOrCare,Show,Bye};
        static Random r = new Random(DateTime.Now.Millisecond);
         public static bool CheckForAdd( List<Bus> L1 , string num,int D, ref DateTime date)
         {
@@ -92,18 +92,18 @@ namespace dotNet5781_01_2382_5685
         {
             List<Bus> L1 = new List<Bus>();
             Console.WriteLine("Please enter one of the following options:");
-            Console.WriteLine("0-Exit");
-            Console.WriteLine("1-Add a bus to the list of buses in the company");
-            Console.WriteLine("2-Choosing a bus for travel");
-            Console.WriteLine("3-Performing refueling or handling of a bus");
-            Console.WriteLine("4-Show the mileage since the last treatment for all vehicles in the compan");
-            Console.WriteLine("5-say bye-bye");
+           // Console.WriteLine("0-Exit");
+            Console.WriteLine("0-Add a bus to the list of buses in the company");
+            Console.WriteLine("1-Choosing a bus for travel");
+            Console.WriteLine("2-Performing refueling or handling of a bus");
+            Console.WriteLine("3-Show the mileage since the last treatment for all vehicles in the compan");
+            Console.WriteLine("4-finish");
             Console.WriteLine("insert your choise please");
             Options o;
             o = (Options)int.Parse(Console.ReadLine());
             // o = (Options)Console.Read();
 
-            while (o!=Options.Exit)
+            do
             {
                 switch (o)
                 {
@@ -155,6 +155,7 @@ namespace dotNet5781_01_2382_5685
                 Console.WriteLine("insert your choise please");
                 o = (Options)int.Parse(Console.ReadLine());
             }
+            while (o != Options.Bye);
             Console.ReadKey();
 
         }
