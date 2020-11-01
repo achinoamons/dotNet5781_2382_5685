@@ -43,36 +43,49 @@ namespace dotNet5781_01_2382_5685
 
 
         }
-       public static bool Checkforchoose(List<Bus> L1, string num, ref Random r)
+       public static void Checkforchoose(List<Bus> L1, string num)
         {
             bool isEmpty = !L1.Any();
 
-            bool b = false;
+           // bool b = false;
             if (!isEmpty)
             {
                 foreach (Bus bus in L1)
                 {
                     if (bus.ProNumBus == num)//check if there is already a bus like this
                     {
-                        b = true;
                         DateTime currentDate = DateTime.Now;
                         //רק אם לא עברה שנה או מקסימום שנה מהטיפול הקודם
-                        if ((bus.ProLastDate.Year==currentDate.Year)||((bus.ProLastDate.Year + 1 == currentDate.Year) && (12-bus.ProLastDate.Month+ currentDate.Month<=12 )))
+                        if ((bus.ProLastDate.Year == currentDate.Year) || ((bus.ProLastDate.Year + 1 == currentDate.Year) && (12 - bus.ProLastDate.Month + currentDate.Month <= 12)))
                         {
-                            double g;
-                            bool b = Double.TryParse(r, out double g);
-                            if (bus.ProKilometrathAfterTipul + r <= 20000)
-                                return true;
-                        }
-                        
+                            double g = r.NextDouble(); //מגרילים מס רנדומלי עם המרה לדאבל
+                                                       //bool b = Double.TryParse(r, out double g);
+                            if (bus.ProKilometrathAfterTipul + g <= 20000)
+                            {
+                                bus.ProKilometrath += g;
+                                bus.ProKilometrathAfterTipul +=g;//uptade the relevant fields
 
+                            }
+                            else
+                                Console.WriteLine("The bus cannot make the trip");
+
+                        }
+                        else
+                            Console.WriteLine("The bus cannot make the trip");
+
+                        break;
                     }
+                    else
+                        Console.WriteLine("The bus does not exist in the system");
+
                 }
             }
+
             else
+            {
                 Console.WriteLine("The bus does not exist in the system");
-
-
+                //return false;
+            }
 
         }
         static void Main(string[] args)
@@ -109,7 +122,7 @@ namespace dotNet5781_01_2382_5685
                     {
                         Console.WriteLine("please enter Licensing number");
                         string num = Console.ReadLine();//מס רישוי
-                        
+                        Program.Checkforchoose(L1, num);
 
 
 
