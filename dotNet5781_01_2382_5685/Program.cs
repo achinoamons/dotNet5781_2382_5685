@@ -88,6 +88,36 @@ namespace dotNet5781_01_2382_5685
             }
 
         }
+        public static void  CheckforFuelOrCare(List<Bus> L1, string num,char opshein)
+        {
+            bool isEmpty = !L1.Any();
+            if (!isEmpty)
+            {
+                foreach (Bus bus in L1)
+                {
+                    if (bus.ProNumBus == num)//check if there is already a bus like this
+                    {
+                        if (opshein == 1)//if is delek
+                        {
+                            bus.ProFuel += 1200;//update the fuel more a 1200
+                            Console.WriteLine("The bus got fuel successfully");
+                            return;
+                        }
+                        else
+                        {
+                            DateTime currentDate = DateTime.Now;
+                            bus.ProLastDate = currentDate;//updet tha last day that was tipul
+                            Console.WriteLine("he bus was handled successfully");
+                            return;
+                        }
+                    }
+                }
+                Console.WriteLine("The bus does not exist in the system");//if the bus is not exist
+
+            }
+
+            Console.WriteLine("The bus does not exist in the system");//if the bus is not exist
+        }
         static void Main(string[] args)
         {
             List<Bus> L1 = new List<Bus>();
@@ -142,6 +172,15 @@ namespace dotNet5781_01_2382_5685
                         Console.WriteLine("please enter Licensing number");
                         string mis = Console.ReadLine();//מס רישוי
                         Console.WriteLine("Tap 1 if you want to refuel 0 if you want to take care of the bus");//הקש 1 לתדלק ו 0 לטפל
+                        string opshein= Console.ReadLine();//מה המשתמש הקיש 1 או 0
+                        char n;
+                        char.TryParse(opshein, out n);
+                        if (n!=1 && n!=0)
+                            Console.WriteLine("ERROR.Please press 0 for treatment or 1 to refuel");
+                        else
+                        {
+                            Program.CheckforFuelOrCare(L1, mis, n);
+                        }
                         break;
 
                     case Options.Show:
