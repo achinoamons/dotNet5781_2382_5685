@@ -13,7 +13,7 @@ namespace dotNet5781_01_2382_5685
     class Program
     {
         enum Options
-        {Add,Choose,FuelOrCare,Show,Bye};
+        {Exit,Add,Choose,FuelOrCare,Show,Bye};
        static Random r = new Random(DateTime.Now.Millisecond);
         public static bool CheckForAdd( List<Bus> L1 , string num,int D, ref DateTime date)
         {
@@ -90,69 +90,75 @@ namespace dotNet5781_01_2382_5685
         }
         static void Main(string[] args)
         {
-
+            List<Bus> L1 = new List<Bus>();
             Console.WriteLine("Please enter one of the following options:");
-            Console.WriteLine("0-Add a bus to the list of buses in the company");
-            Console.WriteLine("1-Choosing a bus for travel");
-            Console.WriteLine("2-Performing refueling or handling of a bus");
-            Console.WriteLine("3-Show the mileage since the last treatment for all vehicles in the compan");
-            Console.WriteLine("4-finish");
+            Console.WriteLine("0-Exit");
+            Console.WriteLine("1-Add a bus to the list of buses in the company");
+            Console.WriteLine("2-Choosing a bus for travel");
+            Console.WriteLine("3-Performing refueling or handling of a bus");
+            Console.WriteLine("4-Show the mileage since the last treatment for all vehicles in the compan");
+            Console.WriteLine("5-say bye-bye");
+            Console.WriteLine("insert your choise please");
             Options o;
-            o = (Options)Console.Read();
-            List<Bus>L1=new List<Bus>();
+            o = (Options)int.Parse(Console.ReadLine());
+            // o = (Options)Console.Read();
 
-
-            switch (o)
+            while (o!=Options.Exit)
             {
-                case Options.Add:
-                    { 
-
-                    Console.WriteLine("please enter Licensing number and date of commencement of activity");
-                    string num = Console.ReadLine();//מס רישוי
-                    DateTime date;//תאריך תחילת פעילות
-                    string s = Console.ReadLine();
-                    int D = num.Length;
-                    bool b = DateTime.TryParse(s, out date);//קיבלתי מהמשתמש קלט סטרינג והמרתי
-                    if (b)
-                    {
-                        if (Program.CheckForAdd(L1, num, D, ref date))
+                switch (o)
+                {
+                    case Options.Add:
+                        Console.WriteLine("please enter Licensing number and date of commencement of activity");
+                        string num = Console.ReadLine();//מס רישוי
+                        DateTime date;//תאריך תחילת פעילות
+                        string s = Console.ReadLine();
+                        int D = num.Length;
+                        bool b = DateTime.TryParse(s, out date);//קיבלתי מהמשתמש קלט סטרינג והמרתי
+                        if (b)
                         {
-                            Bus B = new Bus();
-                            B.ProNumBus = s;
-                            B.ProStartDate = date;
+                            if (Program.CheckForAdd(L1, num, D, ref date))
+                            {
+                                Bus B = new Bus();
+                                B.ProNumBus = s;
+                                B.ProStartDate = date;
+                            }
+
                         }
+                        else
+                            Console.WriteLine("Error.insert again");
 
-                    }
-                    else
-                        Console.WriteLine("Error.insert again");
+                        break;
 
-                    break;
-            }
-                case Options.Choose:
-                    {
+                    case Options.Choose:
+
                         Console.WriteLine("please enter Licensing number");
                         string number = Console.ReadLine();//מס רישוי
                         Program.Checkforchoose(L1, number);
 
                         break;
-                    }
-                case Options.FuelOrCare:
-                    {
+
+                    case Options.FuelOrCare:
+
                         Console.WriteLine("please enter Licensing number");
                         string mis = Console.ReadLine();//מס רישוי
                         Console.WriteLine("Tap 1 if you want to refuel 0 if you want to take care of the bus");//הקש 1 לתדלק ו 0 לטפל
                         break;
-                    }
-                case Options.Show:
-                    break;
-                case Options.Bye:
-                    Console.WriteLine("bye bye");
-                    break;
-                default:
-                    break;
+
+                    case Options.Show:
+                        break;
+                    case Options.Bye:
+                        Console.WriteLine("bye bye");
+                        break;
+                    default:
+                        break;
+                }
+                Console.WriteLine("insert your choise please");
+                o = (Options)int.Parse(Console.ReadLine());
             }
-            Console.WriteLine();
             Console.ReadKey();
+
         }
+       
     }
+    
 }
