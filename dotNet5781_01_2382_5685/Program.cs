@@ -32,7 +32,7 @@ namespace dotNet5781_01_2382_5685
                 }
             }
             
-             if ((date.Year < 2018 && D == 7) || (date.Year > 2018 && D == 8))
+             if ((date.Year < 2018 && D == 7) || (date.Year >= 2018 && D == 8))
                 {
                     return true;
                 }
@@ -58,8 +58,8 @@ namespace dotNet5781_01_2382_5685
                         //רק אם לא עברה שנה או מקסימום שנה מהטיפול הקודם
                         if ((bus.ProLastDate.Year == currentDate.Year) || ((bus.ProLastDate.Year + 1 == currentDate.Year) && (12 - bus.ProLastDate.Month + currentDate.Month <= 12)))
                         {
-                            double g = r.NextDouble(); //מגרילים מס רנדומלי עם המרה לדאבל
-                                                       //bool b = Double.TryParse(r, out double g);
+                            //double g = r.NextDouble(); //מגרילים מס רנדומלי עם המרה לדאבל
+                            double g = r.Next(1200);                       
                             if (bus.ProKilometrathAfterTipul + g <= 20000)
                             {
                                 bus.ProKilometrath += g;
@@ -108,8 +108,9 @@ namespace dotNet5781_01_2382_5685
                 switch (o)
                 {
                     case Options.Add:
-                        Console.WriteLine("please enter Licensing number and date of commencement of activity");
+                        Console.WriteLine("please enter Licensing number");
                         string num = Console.ReadLine();//מס רישוי
+                        Console.WriteLine("Please enter date of commencement of activity");
                         DateTime date;//תאריך תחילת פעילות
                         string s = Console.ReadLine();
                         int D = num.Length;
@@ -119,8 +120,12 @@ namespace dotNet5781_01_2382_5685
                             if (Program.CheckForAdd(L1, num, D, ref date))
                             {
                                 Bus B = new Bus();
+                               
                                 B.ProNumBus = s;
                                 B.ProStartDate = date;
+                                L1.Add(B);
+                                Console.WriteLine("succeed");
+
                             }
 
                         }
