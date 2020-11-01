@@ -25,9 +25,11 @@ namespace dotNet5781_01_2382_5685
                 {
                     if (bus.ProNumBus == num)//check if there is already a bus like this
                     {
+                        Console.WriteLine("the bus is already exist-insert again");
                         return false;
 
                     }
+                   
 
                 }
             }
@@ -38,7 +40,8 @@ namespace dotNet5781_01_2382_5685
                 }
             
             else
-                return false;
+                Console.WriteLine("wrong input-try again");
+            return false;
 
 
 
@@ -59,12 +62,13 @@ namespace dotNet5781_01_2382_5685
                         if ((bus.ProLastDate.Year == currentDate.Year) || ((bus.ProLastDate.Year + 1 == currentDate.Year) && (12 - bus.ProLastDate.Month + currentDate.Month <= 12)))
                         {
                             //double g = r.NextDouble(); //מגרילים מס רנדומלי עם המרה לדאבל
-                            double g = r.Next(1200);                       
+                            double g = r.Next(1200); 
+                            
                             if (bus.ProKilometrathAfterTipul + g <= 20000)
                             {
                                 bus.ProKilometrath += g;
                                 bus.ProKilometrathAfterTipul +=g;//uptade the relevant fields
-
+                                Console.WriteLine("success-uptading the relevant fields");
                             }
                             else
                                 Console.WriteLine("The bus cannot make the trip");
@@ -88,7 +92,7 @@ namespace dotNet5781_01_2382_5685
             }
 
         }
-        public static void  CheckforFuelOrCare(List<Bus> L1, string num,char opshein)
+        public static void  CheckforFuelOrCare(List<Bus> L1, string num,int n)
         {
             bool isEmpty = !L1.Any();
             if (!isEmpty)
@@ -97,7 +101,7 @@ namespace dotNet5781_01_2382_5685
                 {
                     if (bus.ProNumBus == num)//check if there is already a bus like this
                     {
-                        if (opshein == 1)//if is delek
+                        if (n == 1)//if is delek
                         {
                             bus.ProFuel += 1200;//update the fuel more a 1200
                             Console.WriteLine("The bus got fuel successfully");
@@ -107,12 +111,13 @@ namespace dotNet5781_01_2382_5685
                         {
                             DateTime currentDate = DateTime.Now;
                             bus.ProLastDate = currentDate;//updet tha last day that was tipul
-                            Console.WriteLine("he bus was handled successfully");
+                            bus.ProKilometrathAfterTipul = 0;
+                            Console.WriteLine("The bus was handled successfully");
                             return;
                         }
                     }
                 }
-                Console.WriteLine("The bus does not exist in the system");//if the bus is not exist
+                //Console.WriteLine("The bus does not exist in the system");//if the bus is not exist
 
             }
 
@@ -151,8 +156,9 @@ namespace dotNet5781_01_2382_5685
                             {
                                 Bus B = new Bus();
                                
-                                B.ProNumBus = s;
+                                B.ProNumBus = num;
                                 B.ProStartDate = date;
+                                B.ProLastDate = date;//לעדכן שתאריך טיפול אחרון זה תאריך תחילת פעילות
                                 L1.Add(B);
                                 Console.WriteLine("succeed");
 
@@ -176,16 +182,22 @@ namespace dotNet5781_01_2382_5685
 
                         Console.WriteLine("please enter Licensing number");
                         string mis = Console.ReadLine();//מס רישוי
-                        Console.WriteLine("Tap 1 if you want to refuel 0 if you want to take care of the bus");//הקש 1 לתדלק ו 0 לטפל
-                        string opshein= Console.ReadLine();//מה המשתמש הקיש 1 או 0
-                        char n;
-                        char.TryParse(opshein, out n);
-                        if (n!=1 && n!=0)
-                            Console.WriteLine("ERROR.Please press 0 for treatment or 1 to refuel");
-                        else
+                        Console.WriteLine("Press 1 if you want to refuel or 0 if you want to take care of the bus");//הקש 1 לתדלק ו 0 לטפל
+                        string option= Console.ReadLine();//מה המשתמש הקיש 1 או 0
+                        int n;
+                        bool d = int.TryParse(option, out n);
+
+                        if (d)
                         {
-                            Program.CheckforFuelOrCare(L1, mis, n);
+                            if (n == 1 || n == 0)
+                                Program.CheckforFuelOrCare(L1, mis, n);
+                           
+                            else
+                            {
+                                Console.WriteLine("ERROR.Please press 0 for treatment or 1 to refuel");
+                            }
                         }
+                        
                         break;
 
                     case Options.Show:
