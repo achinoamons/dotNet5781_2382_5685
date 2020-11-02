@@ -34,8 +34,8 @@ namespace dotNet5781_01_2382_5685
                 }
             }
             
-             if ((date.Year < 2018 && D == 7) || (date.Year >= 2018 && D == 8))
-                {
+             if ((date.Year < 2018 && D == 7) || (date.Year >= 2018 && D == 8))//Input integrity checker
+            {
                     return true;
                 }
             
@@ -58,15 +58,15 @@ namespace dotNet5781_01_2382_5685
                     if (bus.ProNumBus == num)//check if there is already a bus like this
                     {
                         DateTime currentDate = DateTime.Now;
-                        //רק אם לא עברה שנה או מקסימום שנה מהטיפול הקודם
+                        //// Only if less than a year has passed since the previous treatment
                         if ((bus.ProLastDate.Year == currentDate.Year) || ((bus.ProLastDate.Year + 1 == currentDate.Year) && (12 - bus.ProLastDate.Month + currentDate.Month <= 12)))
                         {
-                            //double g = r.NextDouble(); //מגרילים מס רנדומלי עם המרה לדאבל
+                            
                             double g = r.Next(1200); 
                             
                             if (bus.ProKilometrathAfterTipul + g <= 20000)
                             {
-                                bus.ProKilometrath += g;
+                                bus.ProKilometrath += g;//
                                 bus.ProKilometrathAfterTipul +=g;//uptade the relevant fields
                                 Console.WriteLine("success-uptading the relevant fields");
                             }
@@ -75,7 +75,7 @@ namespace dotNet5781_01_2382_5685
 
                         }
                         else
-                            Console.WriteLine("The bus cannot make the trip");
+                            Console.WriteLine("The bus cannot make the trip");//because more than a year has pass since the last treatment
 
                         break;
                     }
@@ -150,7 +150,7 @@ namespace dotNet5781_01_2382_5685
         {
             List<Bus> L1 = new List<Bus>();
             Console.WriteLine("Please enter one of the following options:");
-           // Console.WriteLine("0-Exit");
+ 
             Console.WriteLine("0-Add a bus to the list of buses in the company");
             Console.WriteLine("1-Choosing a bus for travel");
             Console.WriteLine("2-Performing refueling or handling of a bus");
@@ -159,7 +159,7 @@ namespace dotNet5781_01_2382_5685
             Console.WriteLine("insert your choise please");
             Options o;
             o = (Options)int.Parse(Console.ReadLine());
-            // o = (Options)Console.Read();
+            
 
             do
             {
@@ -167,13 +167,13 @@ namespace dotNet5781_01_2382_5685
                 {
                     case Options.Add:
                         Console.WriteLine("please enter Licensing number");
-                        string num = Console.ReadLine();//מס רישוי
+                        string num = Console.ReadLine();//num of registration
                         Console.WriteLine("Please enter date of commencement of activity");
-                        DateTime date;//תאריך תחילת פעילות
+                        DateTime date;//Activity start date
                         string s = Console.ReadLine();
                        // DateTime date = DateTime.Parse(Console.ReadLine());
                         int D = num.Length;
-                        bool b = DateTime.TryParse(s, out date);//קיבלתי מהמשתמש קלט סטרינג והמרתי
+                        bool b = DateTime.TryParse(s, out date);//I received string input from the user and converted
                         if (b)
                         {
                             if (Program.CheckForAdd(L1, num, D, ref date))
@@ -182,7 +182,7 @@ namespace dotNet5781_01_2382_5685
                                
                                 B.ProNumBus = num;
                                 B.ProStartDate = date;
-                                B.ProLastDate = date;//לעדכן שתאריך טיפול אחרון זה תאריך תחילת פעילות
+                                B.ProLastDate = date;//Update that last treatment date is the start date of activity
                                 L1.Add(B);
                                 Console.WriteLine("succeed");
 
@@ -197,7 +197,7 @@ namespace dotNet5781_01_2382_5685
                     case Options.Choose:
 
                         Console.WriteLine("please enter Licensing number");
-                        string number = Console.ReadLine();//מס רישוי
+                        string number = Console.ReadLine();//num of registration
                         Program.Checkforchoose(L1, number);
 
                         break;
@@ -205,24 +205,25 @@ namespace dotNet5781_01_2382_5685
                     case Options.FuelOrCare:
 
                         Console.WriteLine("please enter Licensing number");
-                        string mis = Console.ReadLine();//מס רישוי
-                        Console.WriteLine("Press 1 if you want to refuel or 0 if you want to take care of the bus");//הקש 1 לתדלק ו 0 לטפל
-                        string option= Console.ReadLine();//מה המשתמש הקיש 1 או 0
+                        string mis = Console.ReadLine();//num of registration
+                        Console.WriteLine("Press 1 if you want to refuel or 0 if you want to take care of the bus");
+                        string option= Console.ReadLine();//press 0 or 1
                         int n;
                         bool d = int.TryParse(option, out n);
                         
                         if (d)
                         {  
                             
-                            if (n == 1 || n == 0)
+                            if (n!=0 && n!=1)
                             {
-                                Program.CheckforFuelOrCare(L1, mis, n);
+                                Console.WriteLine("ERROR");
+                               
                                 
                             }
                             else
-                            { 
-                                    Console.WriteLine("ERROR");
-                             
+                            {
+
+                                Program.CheckforFuelOrCare(L1, mis, n);
                             }
                         }
                         
