@@ -16,7 +16,7 @@ namespace dotNet5781_01_2382_5685
         DateTime LastDate;//the last date of taking care of the bus
         double Kilometrath;
         double Fuel;
-        double KilometrathAfterTipul;//כמה קילומטר אחרי הטיפול
+        double KilometrathAfterTipul;//km after treatment
 
         public string ProNumBus//the property of NumBus
         {
