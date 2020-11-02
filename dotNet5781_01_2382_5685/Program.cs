@@ -123,6 +123,29 @@ namespace dotNet5781_01_2382_5685
 
             Console.WriteLine("The bus does not exist in the system");//if the bus is not exist
         }
+        public static void HelpForShow(List<Bus> L1)
+        {
+            bool isEmpty = !L1.Any();
+            if (!isEmpty)
+            {
+                foreach (Bus bus in L1)//Presentation of the km since the last treatment for all vehicles in the company.
+                {
+                    Console.Write("Registration Number:");
+                    if (bus.ProStartDate.Year<2018)//print 7 digits
+                    {
+
+                        Console.WriteLine("{0}-{1}-{2}" ,bus.ProNumBus.Substring(0, 2), bus.ProNumBus.Substring(2, 3), bus.ProNumBus.Substring(5, 2));
+                    }
+                    else//print 8 digits
+                    {
+                        Console.WriteLine("{0}-{1}-{2}", bus.ProNumBus.Substring(0, 3), bus.ProNumBus.Substring(3, 2), bus.ProNumBus.Substring(5, 3));
+                        
+                    }
+                    Console.WriteLine("Km since last treatment:{0}",bus.ProKilometrathAfterTipul);
+
+                }
+            }
+        }
         static void Main(string[] args)
         {
             List<Bus> L1 = new List<Bus>();
@@ -148,6 +171,7 @@ namespace dotNet5781_01_2382_5685
                         Console.WriteLine("Please enter date of commencement of activity");
                         DateTime date;//תאריך תחילת פעילות
                         string s = Console.ReadLine();
+                       // DateTime date = DateTime.Parse(Console.ReadLine());
                         int D = num.Length;
                         bool b = DateTime.TryParse(s, out date);//קיבלתי מהמשתמש קלט סטרינג והמרתי
                         if (b)
@@ -186,21 +210,27 @@ namespace dotNet5781_01_2382_5685
                         string option= Console.ReadLine();//מה המשתמש הקיש 1 או 0
                         int n;
                         bool d = int.TryParse(option, out n);
-
+                        
                         if (d)
-                        {
+                        {  
+                            
                             if (n == 1 || n == 0)
-                                Program.CheckforFuelOrCare(L1, mis, n);
-                           
-                            else
                             {
-                                Console.WriteLine("ERROR.Please press 0 for treatment or 1 to refuel");
+                                Program.CheckforFuelOrCare(L1, mis, n);
+                                
+                            }
+                            else
+                            { 
+                                    Console.WriteLine("ERROR");
+                             
                             }
                         }
                         
                         break;
 
                     case Options.Show:
+                        Program.HelpForShow(L1);
+                        
                         break;
                     case Options.Bye:
                         Console.WriteLine("bye bye");
