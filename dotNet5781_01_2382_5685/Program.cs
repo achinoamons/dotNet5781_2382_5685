@@ -123,7 +123,7 @@ namespace dotNet5781_01_2382_5685
 
             Console.WriteLine("The bus does not exist in the system");//if the bus is not exist
         }
-        public static void HelpForShow(List<Bus> L1)
+        public static void checkForShow(List<Bus> L1)
         {
             bool isEmpty = !L1.Any();
             if (!isEmpty)
@@ -229,7 +229,7 @@ namespace dotNet5781_01_2382_5685
                         break;
 
                     case Options.Show:
-                        Program.HelpForShow(L1);
+                        Program.checkForShow(L1);
                         
                         break;
                     case Options.Bye:
