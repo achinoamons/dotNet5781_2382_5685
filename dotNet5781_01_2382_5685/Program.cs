@@ -50,7 +50,6 @@ namespace dotNet5781_01_2382_5685
         {
             bool isEmpty = !L1.Any();
 
-           // bool b = false;
             if (!isEmpty)
             {
                 foreach (Bus bus in L1)
