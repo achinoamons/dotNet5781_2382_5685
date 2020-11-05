@@ -10,7 +10,7 @@ namespace dotNet5781_02_2382_5685
     class BusLine
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
-        string busLine;
+        string busLine;//
         public string ProBusLine { get => busLine; set => busLine = value; }
         BusLineStation FirstStation;//the first station of the busline
         public BusLineStation ProFirstStation//property of the first station

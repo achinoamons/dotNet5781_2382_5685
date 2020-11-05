@@ -8,18 +8,50 @@ namespace dotNet5781_02_2382_5685
 {
     class BusStation
     {
-        string busStationKey;//kode of station
-        public string ProbusStationKey
+        string busStationKey;
+        //kode of station
+        List<BusStation> L1 = new List<BusStation>();
+        public  string ProbusStationKey
         {
             set
             {
+                bool isEmpty = !L1.Any();
+               
+                if (!isEmpty)
+                {
+                    foreach (BusStation busstation in L1)
+                    {
+                        if (busstation.busStationKey ==value )//check if there is already a bus like this
+                        {
+                            Console.WriteLine("the busstation is already exist-insert again");//גם פה זריקת חריגה
+                            break;
 
-                if (busStationKey.Length <= 6 || (int.Parse(busStationKey) >= 0))//check input validity
+                        }
+                    }
+                    //if its not exist
+                    
+                    if (busStationKey.Length <= 6 && (int.Parse(busStationKey)>= 0))//check input validity
+                    {
+                        busStationKey = value;
+                        L1.Add(this);//add to the list 
+                    }
+                    else//בהמשך כשנלמד חריגות-במקום זה נזרוק חריגה
+                        Console.WriteLine("Error!Station code must be positive and have a maximum of 6 digits");
+
+
+
+                }
+                else
+                    if (busStationKey.Length <= 6 && (int.Parse(busStationKey) >= 0))//check input validity
                 {
                     busStationKey = value;
+                    L1.Add(this);//add to the list of station
                 }
                 else//בהמשך כשנלמד חריגות-במקום זה נזרוק חריגה
                     Console.WriteLine("Error!Station code must be positive and have a maximum of 6 digits");
+
+
+
             }
             get
             {
