@@ -53,7 +53,7 @@ namespace dotNet5781_02_2382_5685
             
             {
                 string s = "Bus Station Code:" + busStationKey + "Latitude: " + Latitude + deg + "N" + "Longitude: " + Latitude + deg + "E";
-               
+
                 return s;
             } 
         }
