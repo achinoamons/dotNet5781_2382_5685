@@ -34,18 +34,17 @@ namespace dotNet5781_02_2382_5685
         public double ProLatitude { get => Latitude; set => Latitude = r.NextDouble() * (31 - 33.3) + 31; }
         double Longitude;
         public double ProLongitude { get => Longitude; set => Longitude = r.NextDouble() * (34.3 - 35.5) + 34.3; }
-
-       
-
         string busStationAdress;
+        public string ProBusStationAdress { get => busStationAdress; set => busStationAdress = value; }
 
-       /* public BusStation()//constractor
+        public BusStation()//constractor
           {
             //Lottery of real numbers according to the longitude and latitude of the State of Israel
             Latitude = r.NextDouble() * (31 - 33.3) + 31;
             Longitude = r.NextDouble() * (34.3 - 35.5) + 34.3;
+            busStationAdress = "";
 
-          }*/
+          }
         public override string ToString()//overriding tostring of object
 
         {
