@@ -54,31 +54,33 @@ namespace dotNet5781_02_2382_5685
             }
             get
             {
+                Areas a;
+                a= (Areas)int.Parse(area);
                 string ch = "";
-                switch (int.Parse(area))//returning the field according to its name
+                switch (a)//returning the field according to its name
                 {
-                    case 1:
+                    case Areas.General:
                         ch = "General";
                         break;
-                    case 2:
+                    case Areas.North:
                         ch = "North";
                         break;
-                    case 3:
+                    case Areas.South:
                         ch = "South";
                         break;
-                    case 4:
+                    case Areas.East:
                         ch = "East";
                         break;
-                    case 5:
+                    case Areas.West:
                         ch = "West";
                         break;
-                    case 6:
+                    case Areas.Center:
                         ch = "Center";
                         break;
-                    case 7:
+                    case Areas.LowLand:
                         ch = "LowLand";
                         break;
-                    case 8:
+                    case Areas.Jerusalem:
                         ch = "Jerusalem";
                         break;
 
