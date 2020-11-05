@@ -8,9 +8,10 @@ namespace dotNet5781_02_2382_5685
 {
         class BusLineStation:BusStation 
         {
-
+       
             double DistanceLastStation;//Distance from previous station
             TimeSpan TimeLastStation;//Time from previous station
+        
 
             public double ProDistanceLastStation
             {
