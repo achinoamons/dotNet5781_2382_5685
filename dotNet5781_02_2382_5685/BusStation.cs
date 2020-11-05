@@ -8,7 +8,7 @@ namespace dotNet5781_02_2382_5685
 {
     class BusStation
     {
-        string busStationKey;
+        string busStationKey;//kode of station
         public string ProbusStationKey
         {
             set
@@ -18,7 +18,7 @@ namespace dotNet5781_02_2382_5685
                 {
                     busStationKey = value;
                 }
-                else
+                else//בהמשך כשנלמד חריגות-במקום זה נזרוק חריגה
                     Console.WriteLine("Error!Station code must be positive and have a maximum of 6 digits");
             }
             get
