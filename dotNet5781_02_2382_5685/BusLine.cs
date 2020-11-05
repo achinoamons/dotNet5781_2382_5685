@@ -11,8 +11,10 @@ namespace dotNet5781_02_2382_5685
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
         string busLine;
-        public string ProBusLine { get => busLine; set => busLine = value; }
+        BusLineStation LastStation;//the last station of the busline
         BusLineStation FirstStation;//the first station of the busline
+        string area;
+        public string ProBusLine { get => busLine; set => busLine = value; 
         public BusLineStation ProFirstStation//property of the first station
         {
             set
@@ -37,15 +39,12 @@ namespace dotNet5781_02_2382_5685
                 return LastStation;
             }
         }
-
-
-        BusLineStation LastStation;//the last station of the busline
         BusLine()
         {
             Stations.Add(FirstStation);
             Stations.Add(LastStation);
         }
-        string area;
+       
         public string ProArea
          {
             set
@@ -66,21 +65,8 @@ namespace dotNet5781_02_2382_5685
                     case 3:
                         ch = "South";
                         break;
-                    case 4:
-                        ch = "East";
-                        break;
-                    case 5:
-                        ch = "West";
-                        break;
-                    case 6:
-                        ch = "Center";
-                        break;
-                    case 7:
-                        ch = "LowLand";
-                        break;
-                    case 8:
-                        ch = "Jerusalem";
-                        break;
+
+
 
 
                     default:
