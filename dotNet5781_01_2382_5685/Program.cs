@@ -172,7 +172,9 @@ namespace dotNet5781_01_2382_5685
                         string s = Console.ReadLine();
                        // DateTime date = DateTime.Parse(Console.ReadLine());
                         int D = num.Length;
-                        bool b = DateTime.TryParse(s, out date);//I received string input from the user and converted
+                        //bool b = DateTime.TryParse(s, out date);//I received string input from the user and converted
+                        System.Globalization.CultureInfo hebrew = new System.Globalization.CultureInfo("he-IL");
+                        bool b = DateTime.TryParseExact(s, "dd/MM/yyyy", hebrew, System.Globalization.DateTimeStyles.None, out date);
                         if (b)
                         {
                             if (Program.CheckForAdd(L1, num, D, ref date))
