@@ -23,7 +23,7 @@ namespace dotNet5781_02_2382_5685
 
                 }
             }
-            public TimeSpan ProTimeLadtStation
+            public TimeSpan ProTimeLastStation
             {
                 get { return TimeLastStation; }
                 set// random a time ,this the time frome the last station
