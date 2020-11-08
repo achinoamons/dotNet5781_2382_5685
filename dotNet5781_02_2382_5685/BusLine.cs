@@ -56,17 +56,36 @@ namespace dotNet5781_02_2382_5685
             }
             get
             {
+                Areas a;
+                a = (Areas)int.Parse(area);
                 string ch = "";
-                switch (int.Parse(area))//returning the field according to its name
+                switch (a)//returning the field according to its name
                 {
-                    case 1:
+                    case Areas.General:
                         ch = "General";
                         break;
-                    case 2:
+                    
+                    case Areas.North:
                         ch = "North";
                         break;
-                    case 3:
+                   
+                    case Areas.South:
                         ch = "South";
+                        break;
+                    case Areas.East:
+                        ch = "East";
+                        break;
+                    case Areas.West:
+                        ch = "West";
+                        break;
+                    case Areas.Center:
+                        ch = "Center";
+                        break;
+                    case Areas.LowLand:
+                        ch = "LowLand";
+                        break;
+                    case Areas.Jerusalem:
+                        ch = "Jerusalem";
                         break;
                     default:
                         break;
@@ -165,7 +184,119 @@ namespace dotNet5781_02_2382_5685
 
             }
         }
-        public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Returns a new Autos subline
+
+        public double DistanceBetween2Stations(BusLineStation s1, BusLineStation s2)
+        {
+            double d = 0;
+
+            bool isEmpty = !Stations.Any();//if the station us not empty
+            if (!isEmpty)
+            {
+                bool flag = false;
+                //למצוא דרך לרשום נכון את בי וסי לראות אם קיימים
+                bool b = Stations.Find(s1);//to check if it exist
+                bool c = Stations.Find(s2);
+                if (b && c)
+                {
+                    if (Stations.IndexOf(s1) > Stations.IndexOf(s2))//s1 is the second station
+                    {
+                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
+                        {
+                            if (busLineStation.ProbusStationKey == s1.ProbusStationKey)//if i find s1
+                            { flag = true; }
+                            if (flag)
+                            {
+                                while (busLineStation.ProbusStationKey != s2.ProbusStationKey)//כל עוד לא הגעתי למחרוזת השניה
+                                { d += busLineStation.ProDistanceLastStation; }
+                                break;
+                            }
+
+
+                        }
+                        return d;
+                    }
+
+                    else if (Stations.IndexOf(s1) <= Stations.IndexOf(s2))//s2 is second station or equal
+                    {
+                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
+                        {
+                            if (busLineStation.ProbusStationKey == s2.ProbusStationKey)
+                            {//if i find s2
+                                flag = true;
+                            }
+                            if (flag)
+                            {
+                                while (busLineStation.ProbusStationKey != s1.ProbusStationKey)
+                                { d += busLineStation.ProDistanceLastStation; }
+                                break;
+                            }
+
+                        }
+                        return d;
+                    }
+                }
+                //אלס-זרוק חריגה שאחד מהתחנות או שניהם בכלל לא נמצאים
+            }
+            //אלס---זרוק חריגה שהרשימה בכלל ריקה
+
+        }
+        public TimeSpan TimeBetween2Stations(BusLineStation s1, BusLineStation s2)
+        {
+            TimeSpan t = new TimeSpan(00, 00, 00);//i strat in time 0
+
+            bool isEmpty = !Stations.Any();//if the station us not empty
+            if (!isEmpty)
+            {
+                bool flag = false;
+                //למצוא דרך לרשום נכון את בי וסי לראות אם קיימים
+                bool b = Stations.Find(s1);//to check if it exist
+                bool c = Stations.Find(s2);
+                if (b && c)
+                {
+                    if (Stations.IndexOf(s1) > Stations.IndexOf(s2))//s1 is the second station
+                    {
+                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
+                        {
+                            if (busLineStation.ProbusStationKey == s1.ProbusStationKey)//if i find s1
+                            { flag = true; }
+                            if (flag)
+                            {
+                                while (busLineStation.ProbusStationKey != s2.ProbusStationKey)//כל עוד לא הגעתי למחרוזת השניה
+                                { t += busLineStation.ProTimeLastStation; }
+                                break;
+                            }
+
+
+                        }
+                        return t;
+                    }
+                    else if (Stations.IndexOf(s1) <= Stations.IndexOf(s2))//s2 is second station or equal
+                    {
+                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
+                        {
+                            if (busLineStation.ProbusStationKey == s2.ProbusStationKey)
+                            {//if i find s2
+                                flag = true;
+                            }
+                            if (flag)
+                            {
+                                while (busLineStation.ProbusStationKey != s1.ProbusStationKey)
+                                { t += busLineStation.ProTimeLastStation; }
+                                break;
+                            }
+
+                        }
+                        return t;
+                    }
+                }
+                //אלס-זרוק חריגה שאחד מהתחנות או שניהם בכלל לא נמצאים
+            }
+            //אלס---זרוק חריגה שהרשימה בכלל ריקה
+
+        }
+    
+
+public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Returns a new Autos subline
         {
 
                 int index1 = -1, index2 = -1;

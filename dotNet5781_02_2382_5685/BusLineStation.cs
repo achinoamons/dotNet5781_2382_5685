@@ -18,7 +18,7 @@ namespace dotNet5781_02_2382_5685
                 get { return DistanceLastStation; }
                 set //random a number ,this the distance frome the last station
                 {
-                    Random r = new Random();
+                   Random r = new Random();
                     DistanceLastStation = r.Next(500);
 
                 }
