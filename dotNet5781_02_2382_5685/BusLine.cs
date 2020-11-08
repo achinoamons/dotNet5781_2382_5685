@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,10 +68,6 @@ namespace dotNet5781_02_2382_5685
                     case 3:
                         ch = "South";
                         break;
-
-
-
-
                     default:
                         break;
                 }
@@ -115,10 +113,15 @@ namespace dotNet5781_02_2382_5685
             }
             return false;
         }
-        public void AddStation(BusLineStation station,BusLineStation afterstation)//add a new station after spesific station
+        // מה קורה במידה וזה התחנה הרששונה שרוצים להוסיף
+        public void AddStation(BusLineStation station, BusLineStation afterstation)//add a new station after spesific station
         {
             bool isEmpty = !Stations.Any();//if the station us not empty
-            if (!isEmpty)
+            if (isEmpty && afterstation == null)//if the station is the first station
+            {
+                Stations.Add(station);
+            }
+            else
             {
                 bool b = false;
                 int counter = 0;
@@ -127,22 +130,82 @@ namespace dotNet5781_02_2382_5685
                     if (busLineStation.ProbusStationKey == afterstation.ProbusStationKey)//if we found the afterstation
                     {
                         Stations.Insert(counter, station);//insert the new station
-                        b= true;
+                        b = true;
                     }
+                    else
+                        counter++;
                     if (b == true)
                         break;
-                }
 
+                }
             }
-            //תזרוק חריגה שהתחנה אחריה רצינו להוסיף את התחנה אינה קיימת אן שכל הרשימה ריקה
+
 
         }
+        public void DeletStation(string numstation)//delet station 
+        {
+            bool isEmpty = !Stations.Any();
+            if (isEmpty)
+            {
+                //תזרוק חריגה שאין שום תחנה והרשימה ריקה אז אין את מי למחוק
+            }
+            else
+            {
+                int counter = 0;
+                foreach (BusLineStation busLineStation in Stations)//cheke if the station is exist
+                {
+                    if (busLineStation.ProbusStationKey == numstation)
+                    {
+                        Stations.RemoveAt(counter);//delet the station
+                        break;
+                    }
+                    counter++;
+                }
+                //לזרוק חריגה שהוא לא מצא תחנה בשם הזה
+
+            }
+        }
+        public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Returns a new Autos subline
+        {
+
+                int index1 = -1, index2 = -1;
+                for (int i = 0; i < Stations.Count; i++)//loking for the first station
+                {
+                    if (Stations[i].ProbusStationKey == station1.ProbusStationKey)
+                        index1 = i;
+                }
+                if (index1 == -1)//if the first station is not exsist
+                {
+                    //תזרוק שגיאה לא קיימת התחנה הראשונה
+                }
+                for (int i = 0; i < Stations.Count; i++)//loking for the second station
+                {
+                    if (Stations[i].ProbusStationKey == station2.ProbusStationKey)
+                        index2 = i;
+                }
+                if (index2 == -1)//if the second station is not exsist
+                {
+                    //תזרוק שגיאה לא קיימת התחנה השניה
+                }
+                int min = 0, max = 0;
+                min = Math.Min(index1, index2);
+                max = Math.Max(index1, index2);
+                BusLine newbus = new BusLine();
+                for (int i = min,  j=0 ; i <= max; i++,j++)
+                {
+                    newbus.Stations[j] = Stations[i];//copy the sub line to the new bus
+                }
+                return newbus;
+           
+            }
     }
 }
 
-  
-            
-  
+
+
+
+
+
 
 
 
