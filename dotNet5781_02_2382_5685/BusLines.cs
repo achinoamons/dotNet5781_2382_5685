@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_2382_5685
 {
-    class Program
+    class BusLines
     {
-        static void Main(string[] args)
-        {
-        
-        }
+        List<BusLine> list = new List<BusLine>();
     }
 }

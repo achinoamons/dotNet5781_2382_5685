@@ -118,7 +118,7 @@ namespace dotNet5781_02_2382_5685
             }
             return s;
         }
-        public bool CheckStation(string numstation)
+        public bool CheckStation(int numstation)
         {
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (!isEmpty)
@@ -136,10 +136,14 @@ namespace dotNet5781_02_2382_5685
         public void AddStation(BusLineStation station, BusLineStation afterstation)//add a new station after spesific station
         {
             bool isEmpty = !Stations.Any();//if the station us not empty
-            if (isEmpty && afterstation == null)//if the station is the first station
+            if (isEmpty )//if the list is empty
             {
-                Stations.Add(station);
+                Stations.Add(station);//לעדכן שדה מוצא ושדה יעד
             }
+            if (afterstation == null)//if the station is the first station
+            {
+                Stations.Insert(0, station);
+            }//אפשר גם ללכת שהוספה תמיד לסוף
             else
             {
                 bool b = false;
@@ -161,7 +165,7 @@ namespace dotNet5781_02_2382_5685
 
 
         }
-        public void DeletStation(string numstation)//delet station 
+        public void DeletStation(int numstation)//delet station //גם פה לפי מה שאפרת אמרה-לעדכן שדה יעד ומוצא בהתאם
         {
             bool isEmpty = !Stations.Any();
             if (isEmpty)
@@ -192,48 +196,42 @@ namespace dotNet5781_02_2382_5685
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (!isEmpty)
             {
-                bool flag = false;
-                //למצוא דרך לרשום נכון את בי וסי לראות אם קיימים
-                bool b = Stations.Find(s1);//to check if it exist
-                bool c = Stations.Find(s2);
-                if (b && c)
+
+                // BusLineStation bs1 = Stations.Find ( item => item.ProbusStationKey == s1.ProbusStationKey);//check if s1 exist
+                // BusLineStation bs2 = Stations.Find(item => item.ProbusStationKey == s2.ProbusStationKey);//check if s2 exist
+
+                //bool b = Stations.Find(s1);//to check if it exist
+                //bool c = Stations.Find(s2);
+                bool c = false, b = false;
+                 for (int i = 0; i < Stations.Count; i++)//loking for the first station
+                 {
+                     if (Stations[i].ProbusStationKey == s1.ProbusStationKey)
+                         b = true;
+                     break;
+
+                 }
+                 for (int i = 0; i < Stations.Count; i++)//loking for the second station
+                 {
+                     if (Stations[i].ProbusStationKey == s2.ProbusStationKey)
+                         c= true;
+                     break;
+
+                 }
+                if (b && c)//if they both exist
                 {
-                    if (Stations.IndexOf(s1) > Stations.IndexOf(s2))//s1 is the second station
+                    if (s1.ProbusStationKey == s2.ProbusStationKey)//if its the same station
+                        return 0;
+                    int min = 0, max = 0;
+                    min = Math.Min(Stations.IndexOf(s1), Stations.IndexOf(s2));
+                    max = Math.Max(Stations.IndexOf(s1), Stations.IndexOf(s2));
+                    BusLine newbus = new BusLine();
+                    for (int i = max; i <min; i--)
                     {
-                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
-                        {
-                            if (busLineStation.ProbusStationKey == s1.ProbusStationKey)//if i find s1
-                            { flag = true; }
-                            if (flag)
-                            {
-                                while (busLineStation.ProbusStationKey != s2.ProbusStationKey)//כל עוד לא הגעתי למחרוזת השניה
-                                { d += busLineStation.ProDistanceLastStation; }
-                                break;
-                            }
-
-
-                        }
-                        return d;
+                        d += Stations[i].ProDistanceLastStation;
                     }
-
-                    else if (Stations.IndexOf(s1) <= Stations.IndexOf(s2))//s2 is second station or equal
-                    {
-                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
-                        {
-                            if (busLineStation.ProbusStationKey == s2.ProbusStationKey)
-                            {//if i find s2
-                                flag = true;
-                            }
-                            if (flag)
-                            {
-                                while (busLineStation.ProbusStationKey != s1.ProbusStationKey)
-                                { d += busLineStation.ProDistanceLastStation; }
-                                break;
-                            }
-
-                        }
+                     
                         return d;
-                    }
+                    
                 }
                 //אלס-זרוק חריגה שאחד מהתחנות או שניהם בכלל לא נמצאים
             }
@@ -247,47 +245,41 @@ namespace dotNet5781_02_2382_5685
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (!isEmpty)
             {
-                bool flag = false;
+                
                 //למצוא דרך לרשום נכון את בי וסי לראות אם קיימים
-                bool b = Stations.Find(s1);//to check if it exist
-                bool c = Stations.Find(s2);
-                if (b && c)
+                // bool b = Stations.Find(s1);//to check if it exist
+                // bool c = Stations.Find(s2);
+                bool b = false, c = false;
+                for (int i = 0; i < Stations.Count; i++)//loking for the first station
                 {
-                    if (Stations.IndexOf(s1) > Stations.IndexOf(s2))//s1 is the second station
-                    {
-                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
-                        {
-                            if (busLineStation.ProbusStationKey == s1.ProbusStationKey)//if i find s1
-                            { flag = true; }
-                            if (flag)
-                            {
-                                while (busLineStation.ProbusStationKey != s2.ProbusStationKey)//כל עוד לא הגעתי למחרוזת השניה
-                                { t += busLineStation.ProTimeLastStation; }
-                                break;
-                            }
+                    if (Stations[i].ProbusStationKey == s1.ProbusStationKey)
+                        b = true;
+                    break;
 
+                }
+                for (int i = 0; i < Stations.Count; i++)//loking for the second station
+                {
+                    if (Stations[i].ProbusStationKey == s2.ProbusStationKey)
+                        c = true;
+                    break;
 
-                        }
+                }
+                if (b && c)
+
+                {
+                    if (s1.ProbusStationKey == s2.ProbusStationKey)//if its the same station
                         return t;
-                    }
-                    else if (Stations.IndexOf(s1) <= Stations.IndexOf(s2))//s2 is second station or equal
+                    int min = 0, max = 0;
+                    min = Math.Min(Stations.IndexOf(s1), Stations.IndexOf(s2));
+                    max = Math.Max(Stations.IndexOf(s1), Stations.IndexOf(s2));
+                    BusLine newbus = new BusLine();
+                    for (int i = max; i < min; i--)
                     {
-                        foreach (BusLineStation busLineStation in Enumerable.Reverse(Stations))//
-                        {
-                            if (busLineStation.ProbusStationKey == s2.ProbusStationKey)
-                            {//if i find s2
-                                flag = true;
-                            }
-                            if (flag)
-                            {
-                                while (busLineStation.ProbusStationKey != s1.ProbusStationKey)
-                                { t += busLineStation.ProTimeLastStation; }
-                                break;
-                            }
-
-                        }
-                        return t;
+                        t += Stations[i].ProTimeLastStation;
                     }
+
+                    return t;
+                    
                 }
                 //אלס-זרוק חריגה שאחד מהתחנות או שניהם בכלל לא נמצאים
             }
@@ -316,7 +308,8 @@ public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Retur
                 }
                 if (index2 == -1)//if the second station is not exsist
                 {
-                    //תזרוק שגיאה לא קיימת התחנה השניה
+               
+                //תזרוק שגיאה לא קיימת התחנה השניה
                 }
                 int min = 0, max = 0;
                 min = Math.Min(index1, index2);
