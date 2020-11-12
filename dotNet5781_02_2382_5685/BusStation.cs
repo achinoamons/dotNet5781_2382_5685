@@ -9,7 +9,7 @@ namespace dotNet5781_02_2382_5685
     class BusStation
     {
         static int code = 0;//check that the key would be uniqe
-        int busStationKey;//kode of physical  station
+        int busStationKey = 0;//kode of physical  station
 
 
         public  int ProbusStationKey
@@ -38,7 +38,7 @@ namespace dotNet5781_02_2382_5685
         public BusStation()//constractor
           {
             //Lottery of real numbers according to the longitude and latitude of the State of Israel
-            if (busStationKey < 999999)//check input validity
+            if (code < 999999)//check input validity
             {
                 busStationKey = ++code;
 

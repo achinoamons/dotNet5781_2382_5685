@@ -43,7 +43,7 @@ namespace dotNet5781_02_2382_5685
             set
             {
                 FirstStation = value;
-                Stations.Add(FirstStation);
+                Stations.Insert(0,FirstStation);
             }
             get
             {
@@ -62,11 +62,7 @@ namespace dotNet5781_02_2382_5685
                 return LastStation;
             }
         }
-        BusLine()
-        {
-            Stations.Add(FirstStation);
-            Stations.Add(LastStation);
-        }
+      
 
         public string ProArea
         {
@@ -114,6 +110,26 @@ namespace dotNet5781_02_2382_5685
 
 
             }
+        }
+        public List<BusLineStation> ProStations
+        {
+            get { return Stations; }
+        }
+        BusLine() { }
+         public BusLine(int num, BusLineStation last, BusLineStation first, string a)
+        {
+            if (num <= 0)
+                throw new BusException("Error!number of line cannot be negative or 0");
+            else
+            {
+                numLine = num;
+            }
+            FirstStation = first;
+            Stations.Insert(0, FirstStation); ;
+            LastStation = last;
+            Stations.Add(LastStation);
+            area = a;
+
         }
         public override string ToString()//overriding tostring of object
         {
@@ -163,7 +179,7 @@ namespace dotNet5781_02_2382_5685
             else
             {
                 bool b = false;
-               
+
                 foreach (BusLineStation busLineStation in Stations)//cheke if the afterstation is exist
                 {
 
@@ -172,27 +188,28 @@ namespace dotNet5781_02_2382_5685
                         throw new BusException(" Error! This station already exist");
                     }
                 }
-                for(int i=0;i<Stations.Count;i++)//finding the suitable place for the station
+                for (int i = 0; i < Stations.Count; i++)//finding the suitable place for the station
                 {
 
-                    if (Stations[i].ProbusStationKey < station.ProbusStationKey&& Stations[i+1].ProbusStationKey> station.ProbusStationKey)//finding suitable place
+                    if (Stations[i].ProbusStationKey < station.ProbusStationKey && Stations[i + 1].ProbusStationKey > station.ProbusStationKey)//finding suitable place
                     {
 
                         Stations.Insert(i + 1, station);//adding
                         //updating the relevant fields
-                        double dis = DistanceBetween2Stations(Stations[i], Stations[i+1]);
-                        Stations[i+1].ProDistanceLastStation = dis;//updating the distance field of the station that i add;
-                        Stations[i + 2].ProDistanceLastStation -= dis;
-                        TimeSpan t = new TimeSpan(0, 0, 0);
-                        t = TimeBetween2Stations(Stations[i], Stations[i + 1]);
-                        Stations[i + 1].ProTimeLastStation = t;//updating the TIME field of the station that i add;
-                        Stations[i + 2].ProTimeLastStation -= t;
+                        double dis1 = DistanceBetween2Stations(Stations[i], Stations[i + 1]);
+                        Stations[i + 1].ProDistanceLastStation = dis1;//updating the distance field of the station that i add;
+                        double dis2 = DistanceBetween2Stations(Stations[i + 1], Stations[i + 2]);//updating the distance field of the after station that i add;
+                        Stations[i + 2].ProDistanceLastStation = dis2;
+                        TimeSpan t1 = new TimeSpan(0, 0, 0);
+                        TimeSpan t2 = new TimeSpan(0, 0, 0);
+                        t1 = TimeBetween2Stations(Stations[i], Stations[i + 1]);
+                        Stations[i + 1].ProTimeLastStation = t1;//updating the TIME field of the station that i add;
+                        t2 = TimeBetween2Stations(Stations[i + 1], Stations[i + 2]);//updating the TIME field of the after station that i add;
+                        Stations[i + 2].ProTimeLastStation = t2;
                         break;
 
                     }
                 }
-
-
 
             }
         }

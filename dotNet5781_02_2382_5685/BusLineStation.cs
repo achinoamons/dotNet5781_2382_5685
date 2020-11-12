@@ -11,7 +11,7 @@ namespace dotNet5781_02_2382_5685
             double DistanceLastStation;//Distance from previous station
             TimeSpan TimeLastStation;//Time from previous station//-לפי נוסחת מרחק-צריך להיות קשור למרחקקקקקק-לפי מהירות ממוצעת
             int kamesh=90;//A field we set for kilometer per hour is a fixed value for all intercity lines
-        BusLineStation()
+       public  BusLineStation()
         {
             Random r = new Random();
             DistanceLastStation = r.Next(500);
