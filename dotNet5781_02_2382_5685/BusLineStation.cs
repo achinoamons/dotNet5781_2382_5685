@@ -12,7 +12,7 @@ namespace dotNet5781_02_2382_5685
 
             double DistanceLastStation;//Distance from previous station
             TimeSpan TimeLastStation;//Time from previous station//-לפי נוסחת מרחק-צריך להיות קשור למרחקקקקקק-לפי מהירות ממוצעת
-          
+            int kamesh;//A field we set for kilometer per hour is a fixed value for all intercity lines
 
         public double ProDistanceLastStation
             {
@@ -24,14 +24,22 @@ namespace dotNet5781_02_2382_5685
 
                 }
             }
+        public int ProKamesh
+        {
+            get{ return 90; }
+        }
             public TimeSpan ProTimeLastStation
             {
-                get { return TimeLastStation; }//לא להגריל זמן---לתקן
-                set// random a time ,this the time frome the last station
+                get { return TimeLastStation; }
+                set
                 {
-                    Random r = new Random();//לפתוח קונסט אינט שהוא קמ ממוצע לשה ואז לפי נוסחת מהירות כפול זמן=דרך
-                    TimeSpan time = new TimeSpan(לפה את מכניסה )/*, r.Next(0)*/);
-                    TimeLastStation = time;
+                TimeSpan time = new TimeSpan();
+                double dis= ProDistanceLastStation;
+                double kam = ProKamesh;
+                double div = (dis / kam);
+
+                time =
+                 TimeLastStation = time;
                 }
             }
 

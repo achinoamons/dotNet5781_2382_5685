@@ -132,18 +132,19 @@ namespace dotNet5781_02_2382_5685
             }
             return false;
         }
-        // מה קורה במידה וזה התחנה הרששונה שרוצים להוסיף
         public void AddStation(BusLineStation station, BusLineStation afterstation)//add a new station after spesific station
         {
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (isEmpty )//if the list is empty
             {
-                Stations.Add(station);//לעדכן שדה מוצא ושדה יעד
+                Stations.Add(station);//
+                ProFirstStation=ProLastStation= station;//update the first and last stations
             }
             if (afterstation == null)//if the station is the first station
             {
                 Stations.Insert(0, station);
-            }//אפשר גם ללכת שהוספה תמיד לסוף
+                ProFirstStation = station;//update the first station
+            }
             else
             {
                 bool b = false;
@@ -152,6 +153,8 @@ namespace dotNet5781_02_2382_5685
                 {
                     if (busLineStation.ProbusStationKey == afterstation.ProbusStationKey)//if we found the afterstation
                     {
+                        if (station == ProLastStation)//if the  station is the last
+                            ProLastStation = station; //update the last station
                         Stations.Insert(counter, station);//insert the new station
                         b = true;
                     }
@@ -165,12 +168,12 @@ namespace dotNet5781_02_2382_5685
 
 
         }
-        public void DeletStation(int numstation)//delet station //גם פה לפי מה שאפרת אמרה-לעדכן שדה יעד ומוצא בהתאם
+        public void DeletStation(int numstation)//delet station 
         {
             bool isEmpty = !Stations.Any();
             if (isEmpty)
             {
-                //תזרוק חריגה שאין שום תחנה והרשימה ריקה אז אין את מי למחוק
+                throw new BusException("Error!, The list is empty ");
             }
             else
             {
@@ -180,11 +183,15 @@ namespace dotNet5781_02_2382_5685
                     if (busLineStation.ProbusStationKey == numstation)
                     {
                         Stations.RemoveAt(counter);//delet the station
+                        if (numstation == ProFirstStation.ProbusStationKey)//if the delete station is the first
+                            ProFirstStation.ProbusStationKey = numstation;
+                        if (numstation == ProLastStation.ProbusStationKey)//if the delete station is the last
+                            ProLastStation.ProbusStationKey = numstation;
                         break;
                     }
                     counter++;
                 }
-                //לזרוק חריגה שהוא לא מצא תחנה בשם הזה
+                throw new BusException(" Error! This station does not exist");
 
             }
         }
@@ -299,7 +306,7 @@ public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Retur
                 }
                 if (index1 == -1)//if the first station is not exsist
                 {
-                    //תזרוק שגיאה לא קיימת התחנה הראשונה
+                throw new BusException("ERROR! the first station is not exist");
                 }
                 for (int i = 0; i < Stations.Count; i++)//loking for the second station
                 {
@@ -308,9 +315,9 @@ public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Retur
                 }
                 if (index2 == -1)//if the second station is not exsist
                 {
-               
-                //תזרוק שגיאה לא קיימת התחנה השניה
-                }
+
+                throw new BusException("ERROR! the second station is not exist");
+            }
                 int min = 0, max = 0;
                 min = Math.Min(index1, index2);
                 max = Math.Max(index1, index2);
