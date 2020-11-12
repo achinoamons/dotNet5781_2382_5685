@@ -78,7 +78,7 @@ namespace dotNet5781_02_2382_5685
                         
 
                     case Options.Deletion:
-                        Console.WriteLine("Press 0 for adding a new bus line and 1 for adding a station to a bus line");
+                        Console.WriteLine("Press 0 for deleting a new bus line and 1 for deleting a station from a bus line");
                         string op = Console.ReadLine();//press 0 or 1
                         int g;
                         bool e = int.TryParse(op, out g);
@@ -127,6 +127,27 @@ namespace dotNet5781_02_2382_5685
                         }
                         break;
                     case Options.Search:
+                        Console.WriteLine("Press 0 for Lines passing through the station according to station number 1 Printing the options for travel between 2 stations");
+                        string opt= Console.ReadLine();//press 0 or 1
+                        int s;
+                        bool f = int.TryParse(opt, out s);
+                        if(f)//Lines passing through the station according to station number
+                        {
+                            Console.WriteLine("enter the number of the station");
+                            int number = int.Parse(Console.ReadLine());
+                            try {
+                                List < BusLine > l= new List<BusLine>();
+                                l=list.LineList(number); 
+                            }
+                            catch (BusException b) { Console.WriteLine(b.Message); }
+                            catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
+
+                        }
+                        else//the second option
+                        {
+
+                        }
+                        break;
 
                     case Options.Printing:
 
