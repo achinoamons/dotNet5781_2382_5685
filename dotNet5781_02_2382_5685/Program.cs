@@ -124,7 +124,29 @@ namespace dotNet5781_02_2382_5685
                         }
                         else//Deleting a station from a bus line route
                         {
-
+                            Console.WriteLine("Please enter the number of the line that less than 4 digits");
+                            string numline = Console.ReadLine();
+                            int num = int.Parse(numline);
+                            Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
+                            string numfirststation = Console.ReadLine();
+                            Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
+                            string numlaststation = Console.ReadLine();
+                            BusLineStation firststation = new BusLineStation();
+                            firststation.ProbusStationKey = int.Parse(numfirststation);
+                            BusLineStation laststation = new BusLineStation();
+                            laststation.ProbusStationKey = int.Parse(numlaststation);
+                            BusLine busline = new BusLine(num, firststation, laststation);
+                            bool b = list.searchLine(busline);
+                            if(b)//if the line exist-delete the station
+                            {
+                                Console.WriteLine("enter the number of the station that you want to delete");
+                                int st = int.Parse(Console.ReadLine());
+                                BusLineStation bu = new BusLineStation();
+                                bu.ProbusStationKey = st;//apdating the field of stationkey according to input
+                                busline.DeletStation(bu);//deleting the station
+                            }
+                            else
+                                Console.WriteLine("there is no line like this so its impossible to delete the station");
                         }
                         break;
                     case Options.Search:
