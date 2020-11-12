@@ -92,6 +92,19 @@ namespace dotNet5781_02_2382_5685
             list.Sort();
             return list;
         }
+       public bool searchLine(BusLine l)
+        {
+            foreach (BusLine busline in list)
+            {
+                //if the num of line and the path is  equel--it a sign that there is already a line like this
+                if (busline.ProNumLine == l.ProNumLine && busline.ProFirstStation == l.ProFirstStation && busline.ProLastStation == l.ProLastStation)
+                {
+
+                    return true;
+                }
+            }
+            return false;
+        }
 
     }
 }
