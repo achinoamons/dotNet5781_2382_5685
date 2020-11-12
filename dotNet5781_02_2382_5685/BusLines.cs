@@ -11,7 +11,7 @@ namespace dotNet5781_02_2382_5685
     /// a class that describe list of bus lines
     /// </summary>
     /// 
-    //לשאול את אפרת אם הדרך שבה הבדלנו בין תחנה עם קו זהה הלוך חזור מספיקה 
+    // 
     class BusLines: IEnumerable
     {
         List<BusLine> list = new List<BusLine>();//list of all the buslines

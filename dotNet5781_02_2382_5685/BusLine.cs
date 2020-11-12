@@ -140,43 +140,51 @@ namespace dotNet5781_02_2382_5685
             }
             return false;
         }
-        public void AddStation(BusLineStation station, BusLineStation afterstation)//add a new station after spesific station
+        public void AddStation(BusLineStation station)//add a new station after spesific station
         {
             bool isEmpty = !Stations.Any();//if the station us not empty
-            if (isEmpty )//if the list is empty
+            if (isEmpty)//if the list is empty
             {
                 Stations.Add(station);//
-                ProFirstStation=ProLastStation= station;//update the first and last stations
-            }
-            if (afterstation == null)//if the station is the first station
-            {
-                Stations.Insert(0, station);
-                ProFirstStation = station;//update the first station
+                ProFirstStation = ProLastStation = station;//update the first and last stations
             }
             else
             {
                 bool b = false;
-                int counter = 0;
+               
                 foreach (BusLineStation busLineStation in Stations)//cheke if the afterstation is exist
                 {
-                    if (busLineStation.ProbusStationKey == afterstation.ProbusStationKey)//if we found the afterstation
+
+                    if (busLineStation.ProbusStationKey == station.ProbusStationKey)//if the station already exist
                     {
-                        if (station == ProLastStation)//if the  station is the last
-                            ProLastStation = station; //update the last station
-                        Stations.Insert(counter, station);//insert the new station
-                        b = true;
+                        throw new BusException(" Error! This station already exist");
                     }
-                    else
-                        counter++;
-                    if (b == true)
+                }
+                for(int i=0;i<Stations.Count;i++)//finding the suitable place for the station
+                {
+
+                    if (Stations[i].ProbusStationKey < station.ProbusStationKey&& Stations[i+1].ProbusStationKey> station.ProbusStationKey)//finding suitable place
+                    {
+
+                        Stations.Insert(i + 1, station);//adding
+                        //updating the relevant fields
+                        double dis = DistanceBetween2Stations(Stations[i], Stations[i+1]);
+                        Stations[i+1].ProDistanceLastStation = dis;//updating the distance field of the station that i add;
+                        Stations[i + 2].ProDistanceLastStation -= dis;
+                        TimeSpan t = new TimeSpan(0, 0, 0);
+                        t = TimeBetween2Stations(Stations[i], Stations[i + 1]);
+                        Stations[i + 1].ProTimeLastStation = t;//updating the TIME field of the station that i add;
+                        Stations[i + 2].ProTimeLastStation -= t;
                         break;
 
+                    }
                 }
+
+
+
             }
-
-
         }
-        public void DeletStation(int numstation)//delet station 
+        public void DeletStation(BusLineStation numstation)//delet station 
         {
             bool isEmpty = !Stations.Any();
             if (isEmpty)
@@ -188,14 +196,34 @@ namespace dotNet5781_02_2382_5685
                 int counter = 0;
                 foreach (BusLineStation busLineStation in Stations)//cheke if the station is exist
                 {
-                    if (busLineStation.ProbusStationKey == numstation)
+                    if (busLineStation.ProbusStationKey == numstation.ProbusStationKey)
                     {
-                        Stations.RemoveAt(counter);//delet the station
-                        if (numstation == ProFirstStation.ProbusStationKey)//if the delete station is the first
-                            ProFirstStation.ProbusStationKey = numstation;
-                        if (numstation == ProLastStation.ProbusStationKey)//if the delete station is the last
-                            ProLastStation.ProbusStationKey = numstation;
-                        break;
+                        if (numstation.ProbusStationKey==ProFirstStation.ProbusStationKey)//if we want to delete the first station
+                        {
+                            //updating the relevant fields
+                            Stations[1].ProDistanceLastStation = 0;
+                            TimeSpan t = new TimeSpan(0, 0, 0);
+                            Stations[1].ProTimeLastStation = t;
+                            ProFirstStation = Stations[1];//update the first station field
+                           Stations.RemoveAt(0);//delet the station
+                            break;
+                        }
+                        if (numstation.ProbusStationKey == ProLastStation.ProbusStationKey)//if the delete station is the last
+                        {
+                            int g = Stations.Count;
+                            ProLastStation = Stations[g-2];//because the index begin from 0
+                            Stations.RemoveAt(g-1);
+                            break;
+                        }
+                        else//deleting another station
+                        {
+                            //update the relevant fields
+                            Stations[counter + 1].ProDistanceLastStation += Stations[counter].ProDistanceLastStation;
+                            Stations[counter + 1].ProTimeLastStation += Stations[counter].ProTimeLastStation;
+                            Stations.RemoveAt(counter);
+                            break;
+                        }
+                        
                     }
                     counter++;
                 }
