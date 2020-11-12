@@ -17,6 +17,8 @@ namespace dotNet5781_02_2382_5685
         BusLineStation LastStation;//the last station of the busline
         BusLineStation FirstStation;//the first station of the busline
         string area;
+        BusLine(int num, BusLineStation last, BusLineStation first)
+
         public int ProNumLine
         { 
             get => numLine;
