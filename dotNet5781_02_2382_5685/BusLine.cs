@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_2382_5685
 {
-    enum Areas { General = 1, North, South, East, West, Center, LowLand, Jerusalem };//we decided to to interurban bus lines
+    enum Areas { General , North, South, East, West, Center, LowLand, Jerusalem };//we decided to to interurban bus lines
     class BusLine: IComparable
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
@@ -113,12 +113,13 @@ namespace dotNet5781_02_2382_5685
         }
         public List<BusLineStation> ProStations
         {
+            set { Stations = value; }
             get { return Stations; }
         }
         BusLine() { }
-         public BusLine(int num, BusLineStation last, BusLineStation first, string a)
+         public BusLine(int num, BusLineStation first, BusLineStation last)
         {
-            if (num <= 0)
+            if (num <= 0||num>999)
                 throw new BusException("Error!number of line cannot be negative or 0");
             else
             {
@@ -128,7 +129,22 @@ namespace dotNet5781_02_2382_5685
             Stations.Insert(0, FirstStation); ;
             LastStation = last;
             Stations.Add(LastStation);
-            area = a;
+            //area = a;
+            Random r = new Random();
+            int help=r.Next(8);
+            switch(help)
+            {
+                case 0: { area = "General";break; }
+                case 1: { area = "North"; break; }
+                case 2: { area = "South"; break; }
+                case 3: { area = "East"; break; }
+                case 4: { area = "West"; break; }
+                case 5: { area = "Center"; break; }
+                case 6: { area = "LowLand"; break; }
+                case 7: { area = "Jerusalem"; break; }
+                 
+            }
+
 
         }
         public override string ToString()//overriding tostring of object

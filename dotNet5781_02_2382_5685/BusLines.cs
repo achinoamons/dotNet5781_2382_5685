@@ -53,7 +53,7 @@ namespace dotNet5781_02_2382_5685
             { throw new BusException("Error!the line that you wanted to delete  is not exist!"); }
 
         }
-        public BusLine this[int index]//this is the indexer of this class
+       public BusLine this[int index]//this is the indexer of this class
         {
             get
             {
