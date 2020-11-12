@@ -17,6 +17,18 @@ namespace dotNet5781_02_2382_5685
         BusLineStation LastStation;//the last station of the busline
         BusLineStation FirstStation;//the first station of the busline
         string area;
+        TimeSpan totaltraveltime;
+        public  TimeSpan Prototaltraveltime//property of the general time
+        {
+            set
+            {
+                totaltraveltime = TimeBetween2Stations(FirstStation, LastStation);
+            }
+            get
+            {
+                return totaltraveltime;
+            }
+        }
         public int ProNumLine
         { 
             get => numLine;
@@ -296,15 +308,19 @@ namespace dotNet5781_02_2382_5685
                 for (int i = 0; i < Stations.Count; i++)//loking for the first station
                 {
                     if (Stations[i].ProbusStationKey == s1.ProbusStationKey)
+                    {
                         b = true;
-                    break;
+                        break;
+                    }
 
                 }
                 for (int i = 0; i < Stations.Count; i++)//loking for the second station
                 {
                     if (Stations[i].ProbusStationKey == s2.ProbusStationKey)
+                    {
                         c = true;
-                    break;
+                        break;
+                    }
 
                 }
                 if (b && c)
@@ -380,6 +396,7 @@ public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Retur
             else return 0;
 
         }
+        
 
     }
 }
