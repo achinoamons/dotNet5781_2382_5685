@@ -73,6 +73,11 @@ namespace dotNet5781_02_2382_5685
                             BusLineStation laststation = new BusLineStation();
                             laststation.ProbusStationKey = int.Parse(numlaststation);
                             BusLine busline = new BusLine(num, firststation, laststation);
+                        }
+                        if (d)
+                        {
+
+                        }
                             break;
 
                     case Options.Deletion:
