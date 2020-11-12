@@ -13,11 +13,29 @@ namespace dotNet5781_02_2382_5685
     class BusLine: IComparable
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
-        int numLine;//THE NUMBER OF THE LINE
+        static int numLine=1;//THE NUMBER OF THE LINE
         BusLineStation LastStation;//the last station of the busline
         BusLineStation FirstStation;//the first station of the busline
         string area;
         TimeSpan totaltraveltime;
+        public BusLine( int num,BusLineStation first, BusLineStation last )
+        {
+            if (numLine>999 && numLine>0)//check input validity
+            {
+                throw new BusException("Error!line code must be  have a maximum of 3digits ");
+            }
+            else
+            {
+                numLine =++ numLine;
+            }
+            FirstStation = first;
+            Stations.Insert(0, FirstStation); ;
+            LastStation = last;
+            Stations.Add(LastStation);
+
+
+
+        }
         public  TimeSpan Prototaltraveltime//property of the general time
         {
             set
@@ -32,11 +50,11 @@ namespace dotNet5781_02_2382_5685
         public int ProNumLine
         { 
             get => numLine;
-            set {
-                if(value<=0)
-                    throw new BusException("Error!number of line cannot be negative or 0");
-               else
-                numLine = value; }
+            //set {
+            //    if(value<=0)
+            //        throw new BusException("Error!number of line cannot be negative or 0");
+            //   else
+            //    numLine = value; }
         } 
         public BusLineStation ProFirstStation//property of the first station
         {
@@ -72,41 +90,42 @@ namespace dotNet5781_02_2382_5685
             }
             get
             {
-                Areas a;
-                a = (Areas)int.Parse(area);
-                string ch = "";
-                switch (a)//returning the field according to its name
-                {
-                    case Areas.General:
-                        ch = "General";
-                        break;
+                return area;
+                //Areas a;
+                //a = (Areas)int.Parse(area);
+                //string ch = "";
+                //switch (a)//returning the field according to its name
+                //{
+                //    case Areas.General:
+                //        ch = "General";
+                //        break;
                     
-                    case Areas.North:
-                        ch = "North";
-                        break;
+                //    case Areas.North:
+                //        ch = "North";
+                //        break;
                    
-                    case Areas.South:
-                        ch = "South";
-                        break;
-                    case Areas.East:
-                        ch = "East";
-                        break;
-                    case Areas.West:
-                        ch = "West";
-                        break;
-                    case Areas.Center:
-                        ch = "Center";
-                        break;
-                    case Areas.LowLand:
-                        ch = "LowLand";
-                        break;
-                    case Areas.Jerusalem:
-                        ch = "Jerusalem";
-                        break;
-                    default:
-                        break;
-                }
-                return ch;
+                //    case Areas.South:
+                //        ch = "South";
+                //        break;
+                //    case Areas.East:
+                //        ch = "East";
+                //        break;
+                //    case Areas.West:
+                //        ch = "West";
+                //        break;
+                //    case Areas.Center:
+                //        ch = "Center";
+                //        break;
+                //    case Areas.LowLand:
+                //        ch = "LowLand";
+                //        break;
+                //    case Areas.Jerusalem:
+                //        ch = "Jerusalem";
+                //        break;
+                //    default:
+                //        break;
+                //}
+                //return ch;
 
 
             }
@@ -116,21 +135,7 @@ namespace dotNet5781_02_2382_5685
             get { return Stations; }
         }
         BusLine() { }
-         public BusLine(int num, BusLineStation last, BusLineStation first, string a)
-        {
-            if (num <= 0)
-                throw new BusException("Error!number of line cannot be negative or 0");
-            else
-            {
-                numLine = num;
-            }
-            FirstStation = first;
-            Stations.Insert(0, FirstStation); ;
-            LastStation = last;
-            Stations.Add(LastStation);
-            area = a;
 
-        }
         public override string ToString()//overriding tostring of object
         {
             string s = "Line number:" + numLine + "Line area: " + area;//Threading line number and line area
