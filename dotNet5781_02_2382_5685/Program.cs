@@ -77,7 +77,7 @@ namespace dotNet5781_02_2382_5685
                         }
                         if (d)
                         {
-                            Console.WriteLine("Enter the line number for which you want to add a station");
+                            Console.WriteLine("Enter the line number for which you want to add a station");//enter the num line
                             string numline = Console.ReadLine();
                             int num = int.Parse(numline);
                             Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
@@ -88,14 +88,18 @@ namespace dotNet5781_02_2382_5685
                             firststation.ProbusStationKey = int.Parse(numfirststation);
                             BusLineStation laststation = new BusLineStation();
                             BusLine busline = new BusLine(num, firststation, laststation);
-                           if(list.searchLine(busline))
+                            if (list.searchLine(busline)) //if the line is exist
                             {
-                                Console.WriteLine("Enter the station number you want to add");
-
+                                Console.WriteLine("Enter the station number you want to add");//enter the num station
+                                string numstation= Console.ReadLine();
+                                BusLineStation station = new BusLineStation();
+                                station.ProbusStationKey = int.Parse(numstation);
+                                busline.AddStation(station);//add the station
                             }
-
-
-
+                            else//if the line is not exist
+                            {
+                                Console.WriteLine("The bus line does not exist in the system");
+                            }
                         }
                             break;
                         
@@ -152,7 +156,22 @@ namespace dotNet5781_02_2382_5685
                     case Options.Search:
 
                     case Options.Printing:
+                        //0-Press 0 to print all the bus lines in the system
+                        //1-print a list of all the stations and line numbers that pass through them
+                        Console.WriteLine("Press 0 to print all the bus lines in the system and 1 to print a list of all the stations and line numbers that pass through them");
+                        string s = Console.ReadLine();//press 0 or 1
+                        int choice = int.Parse(s);
+                        int t;
+                        bool b = int.TryParse(s, out t);
+                        if (b)//to print all bus lines
+                        {
+                            list.print();
+                        }
+                        if (!b)//
+                        {
 
+                        }
+                        break;
                     case Options.Exit:
 
                     default:

@@ -105,6 +105,13 @@ namespace dotNet5781_02_2382_5685
             }
             return false;
         }
+        public void print()//print all the bus lines
+        {
+            for(int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(list[i].ProNumLine);
+            }
+        }
 
     }
 }
