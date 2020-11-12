@@ -9,15 +9,23 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_2382_5685
 {
-    enum Areas { General = 1, North, South, East, West, Center, LowLand, Jerusalem };
-    class BusLine
+    enum Areas { General = 1, North, South, East, West, Center, LowLand, Jerusalem };//we decided to to interurban bus lines
+    class BusLine: IComparable
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
-        string busLine;
+        int numLine;//THE NUMBER OF THE LINE
         BusLineStation LastStation;//the last station of the busline
         BusLineStation FirstStation;//the first station of the busline
         string area;
-        public string ProBusLine { get => busLine; set => busLine = value; }
+        public int ProNumLine
+        { 
+            get => numLine;
+            set {
+                if(value<=0)
+                    throw new BusException("Error!number of line cannot be negative or 0");
+               else
+                numLine = value; }
+        } 
         public BusLineStation ProFirstStation//property of the first station
         {
             set
@@ -97,7 +105,7 @@ namespace dotNet5781_02_2382_5685
         }
         public override string ToString()//overriding tostring of object
         {
-            string s = "Line number:" + busLine + "Line area: " + area;//Threading line number and line area
+            string s = "Line number:" + numLine + "Line area: " + area;//Threading line number and line area
 
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (!isEmpty)
@@ -240,9 +248,9 @@ namespace dotNet5781_02_2382_5685
                         return d;
                     
                 }
-                //אלס-זרוק חריגה שאחד מהתחנות או שניהם בכלל לא נמצאים
+                throw new BusException("Error!one or more of the stations isn't exist");
             }
-            //אלס---זרוק חריגה שהרשימה בכלל ריקה
+            throw new BusException("Error!the list of stations already empty");
 
         }
         public TimeSpan TimeBetween2Stations(BusLineStation s1, BusLineStation s2)
@@ -288,9 +296,9 @@ namespace dotNet5781_02_2382_5685
                     return t;
                     
                 }
-                //אלס-זרוק חריגה שאחד מהתחנות או שניהם בכלל לא נמצאים
+                throw new BusException("Error!one or more of the stations isn't exist");
             }
-            //אלס---זרוק חריגה שהרשימה בכלל ריקה
+            throw new BusException("Error!the list of stations already empty");
 
         }
     
@@ -329,6 +337,22 @@ public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Retur
                 return newbus;
            
             }
+
+        public int CompareTo(Object obj)//מה רוצים בסעיף 7 
+        {
+            BusLine bus = (BusLine)obj;
+
+            //bus = (BusLine)obj;
+            TimeSpan t = TimeBetween2Stations(this.ProFirstStation,this.ProLastStation);
+            TimeSpan b = TimeBetween2Stations(bus.ProFirstStation, bus.ProLastStation);
+            if (t > b)
+                return 1;
+            if (t < b)
+                return -1;
+            else return 0;
+
+        }
+
     }
 }
 
