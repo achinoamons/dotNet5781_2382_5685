@@ -89,8 +89,32 @@ namespace dotNet5781_02_2382_5685
                         
 
                     case Options.Deletion:
+                        Console.WriteLine("Press 0 for adding a new bus line and 1 for adding a station to a bus line");
+                        string op = Console.ReadLine();//press 0 or 1
+                        int g;
+                        bool e = int.TryParse(op, out g);
+                   
+                        if(e)//if you press 1-delete a bus line
+                        {
+                            Console.WriteLine("Please enter the number of the line that less than 4 digits");
+                            string numline = Console.ReadLine();
+                            int num = int.Parse(numline);
+                            Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
+                            string numfirststation = Console.ReadLine();
+                            Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
+                            string numlaststation = Console.ReadLine();
+                            BusLineStation firststation = new BusLineStation();
+                            firststation.ProbusStationKey = int.Parse(numfirststation);
+                            BusLineStation laststation = new BusLineStation();
+                            laststation.ProbusStationKey = int.Parse(numlaststation);
+                            BusLine busline = new BusLine(num, firststation, laststation);
+                            list.DeleteLine(busline);
+                        }
+                        else//Deleting a station from a bus line route
+                        {
 
-
+                        }
+                        break;
                     case Options.Search:
 
                     case Options.Printing:
