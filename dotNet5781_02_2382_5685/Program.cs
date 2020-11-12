@@ -79,11 +79,23 @@ namespace dotNet5781_02_2382_5685
                         {
                             Console.WriteLine("Enter the line number for which you want to add a station");
                             string numline = Console.ReadLine();
-                            //לבדוק שהקו קיים 
-                            Console.WriteLine("Enter the station number you want to add");
-                            string numstation = Console.ReadLine();
+                            int num = int.Parse(numline);
+                            Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
+                            string numfirststation = Console.ReadLine();
+                            Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
+                            string numlaststation = Console.ReadLine();
+                            BusLineStation firststation = new BusLineStation();
+                            firststation.ProbusStationKey = int.Parse(numfirststation);
+                            BusLineStation laststation = new BusLineStation();
+                            BusLine busline = new BusLine(num, firststation, laststation);
+                           if(list.searchLine(busline))
+                            {
+                                Console.WriteLine("Enter the station number you want to add");
 
-                            
+                            }
+
+
+
                         }
                             break;
                         
