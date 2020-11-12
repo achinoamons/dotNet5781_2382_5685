@@ -34,7 +34,7 @@ namespace dotNet5781_02_2382_5685
         public double ProLongitude { get => Longitude; set => Longitude = r.NextDouble() * (34.3 - 35.5) + 34.3; }
         string busStationAdress;
         public string ProBusStationAdress { get => busStationAdress; set => busStationAdress = value; }
-
+       // public BusStation() { }
         public BusStation()//constractor
           {
             //Lottery of real numbers according to the longitude and latitude of the State of Israel

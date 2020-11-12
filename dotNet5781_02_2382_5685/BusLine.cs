@@ -9,33 +9,15 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_2382_5685
 {
-    enum Areas { General = 1, North, South, East, West, Center, LowLand, Jerusalem };//we decided to to interurban bus lines
+    enum Areas { General , North, South, East, West, Center, LowLand, Jerusalem };//we decided to to interurban bus lines
     class BusLine: IComparable
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
-        static int numLine=1;//THE NUMBER OF THE LINE
+        int numLine;//THE NUMBER OF THE LINE
         BusLineStation LastStation;//the last station of the busline
         BusLineStation FirstStation;//the first station of the busline
         string area;
         TimeSpan totaltraveltime;
-        public BusLine( int num,BusLineStation first, BusLineStation last )
-        {
-            if (numLine>999 && numLine>0)//check input validity
-            {
-                throw new BusException("Error!line code must be  have a maximum of 3digits ");
-            }
-            else
-            {
-                numLine =++ numLine;
-            }
-            FirstStation = first;
-            Stations.Insert(0, FirstStation); ;
-            LastStation = last;
-            Stations.Add(LastStation);
-
-
-
-        }
         public  TimeSpan Prototaltraveltime//property of the general time
         {
             set
@@ -50,11 +32,11 @@ namespace dotNet5781_02_2382_5685
         public int ProNumLine
         { 
             get => numLine;
-            //set {
-            //    if(value<=0)
-            //        throw new BusException("Error!number of line cannot be negative or 0");
-            //   else
-            //    numLine = value; }
+            set {
+                if(value<=0)
+                    throw new BusException("Error!number of line cannot be negative or 0");
+               else
+                numLine = value; }
         } 
         public BusLineStation ProFirstStation//property of the first station
         {
@@ -90,52 +72,79 @@ namespace dotNet5781_02_2382_5685
             }
             get
             {
-                return area;
-                //Areas a;
-                //a = (Areas)int.Parse(area);
-                //string ch = "";
-                //switch (a)//returning the field according to its name
-                //{
-                //    case Areas.General:
-                //        ch = "General";
-                //        break;
+                Areas a;
+                a = (Areas)int.Parse(area);
+                string ch = "";
+                switch (a)//returning the field according to its name
+                {
+                    case Areas.General:
+                        ch = "General";
+                        break;
                     
-                //    case Areas.North:
-                //        ch = "North";
-                //        break;
+                    case Areas.North:
+                        ch = "North";
+                        break;
                    
-                //    case Areas.South:
-                //        ch = "South";
-                //        break;
-                //    case Areas.East:
-                //        ch = "East";
-                //        break;
-                //    case Areas.West:
-                //        ch = "West";
-                //        break;
-                //    case Areas.Center:
-                //        ch = "Center";
-                //        break;
-                //    case Areas.LowLand:
-                //        ch = "LowLand";
-                //        break;
-                //    case Areas.Jerusalem:
-                //        ch = "Jerusalem";
-                //        break;
-                //    default:
-                //        break;
-                //}
-                //return ch;
-
-
+                    case Areas.South:
+                        ch = "South";
+                        break;
+                    case Areas.East:
+                        ch = "East";
+                        break;
+                    case Areas.West:
+                        ch = "West";
+                        break;
+                    case Areas.Center:
+                        ch = "Center";
+                        break;
+                    case Areas.LowLand:
+                        ch = "LowLand";
+                        break;
+                    case Areas.Jerusalem:
+                        ch = "Jerusalem";
+                        break;
+                    default:
+                        break;
+                }
+                return ch;
             }
         }
         public List<BusLineStation> ProStations
         {
+            set { Stations = value; }
             get { return Stations; }
         }
         BusLine() { }
+         public BusLine(int num, BusLineStation first, BusLineStation last)
+        {
+            if (num <= 0||num>999)
+                throw new BusException("Error!number of line cannot be negative or 0");
+            else
+            {
+                numLine = num;
+            }
+            FirstStation = first;
+            Stations.Insert(0, FirstStation); ;
+            LastStation = last;
+            Stations.Add(LastStation);
+            //area = a;
+            Random r = new Random();
+            int help=r.Next(8);
+            switch(help)
+            {
+                case 0: { area = "General";break; }
+                case 1: { area = "North"; break; }
+                case 2: { area = "South"; break; }
+                case 3: { area = "East"; break; }
+                case 4: { area = "West"; break; }
+                case 5: { area = "Center"; break; }
+                case 6: { area = "LowLand"; break; }
+                case 7: { area = "Jerusalem"; break; }
+                 
+            }
 
+
+        }
         public override string ToString()//overriding tostring of object
         {
             string s = "Line number:" + numLine + "Line area: " + area;//Threading line number and line area
