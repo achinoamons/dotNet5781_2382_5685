@@ -17,23 +17,41 @@ namespace dotNet5781_02_2382_5685
         BusLineStation LastStation;//the last station of the busline
         BusLineStation FirstStation;//the first station of the busline
         string area;
-        BusLine(int num, BusLineStation last, BusLineStation first)
+        BusLine(int num, BusLineStation last, BusLineStation first, string a)
+        {
+            if (num <= 0) 
+                throw new BusException("Error!number of line cannot be negative or 0");
+            else
+            {
+                numLine = num;
+            }
+            FirstStation = first;
+            Stations.Insert(0, FirstStation); ;
+            LastStation = last;
+            Stations.Add(LastStation);
+            area = a;
+
+        }
+        public List<BusLineStation> ProStations
+        {
+            get { return Stations; }
+        }
 
         public int ProNumLine
         { 
             get => numLine;
             set {
-                if(value<=0)
+                if (value <= 0)
                     throw new BusException("Error!number of line cannot be negative or 0");
-               else
-                numLine = value; }
+                else
+                    numLine = value; }
         } 
         public BusLineStation ProFirstStation//property of the first station
         {
             set
             {
                 FirstStation = value;
-                Stations.Add(FirstStation);
+                Stations.Insert(0,FirstStation);
             }
             get
             {
@@ -170,19 +188,20 @@ namespace dotNet5781_02_2382_5685
 
                         Stations.Insert(i + 1, station);//adding
                         //updating the relevant fields
-                        double dis = DistanceBetween2Stations(Stations[i], Stations[i+1]);
-                        Stations[i+1].ProDistanceLastStation = dis;//updating the distance field of the station that i add;
-                        Stations[i + 2].ProDistanceLastStation -= dis;
-                        TimeSpan t = new TimeSpan(0, 0, 0);
-                        t = TimeBetween2Stations(Stations[i], Stations[i + 1]);
-                        Stations[i + 1].ProTimeLastStation = t;//updating the TIME field of the station that i add;
-                        Stations[i + 2].ProTimeLastStation -= t;
+                        double dis1 = DistanceBetween2Stations(Stations[i], Stations[i+1]);
+                        Stations[i+1].ProDistanceLastStation = dis1;//updating the distance field of the station that i add;
+                        double dis2= DistanceBetween2Stations(Stations[i+1], Stations[i + 2]);//updating the distance field of the after station that i add;
+                        Stations[i + 2].ProDistanceLastStation = dis2;
+                        TimeSpan t1 = new TimeSpan(0, 0, 0);
+                        TimeSpan t2 = new TimeSpan(0, 0, 0);
+                        t1 = TimeBetween2Stations(Stations[i], Stations[i + 1]);
+                        Stations[i + 1].ProTimeLastStation = t1;//updating the TIME field of the station that i add;
+                        t2 = TimeBetween2Stations(Stations[i+1], Stations[i + 2]);//updating the TIME field of the after station that i add;
+                        Stations[i + 2].ProTimeLastStation=t2;
                         break;
 
                     }
                 }
-
-
 
             }
         }

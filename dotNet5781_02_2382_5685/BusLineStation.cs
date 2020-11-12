@@ -11,6 +11,17 @@ namespace dotNet5781_02_2382_5685
             double DistanceLastStation;//Distance from previous station
             TimeSpan TimeLastStation;//Time from previous station//-לפי נוסחת מרחק-צריך להיות קשור למרחקקקקקק-לפי מהירות ממוצעת
             int kamesh=90;//A field we set for kilometer per hour is a fixed value for all intercity lines
+        BusLineStation()
+        {
+            Random r = new Random();
+            DistanceLastStation = r.Next(500);
+            double dis = ProDistanceLastStation;
+            double kam = ProKamesh;
+            double div = (dis / kam);
+            TimeLastStation = TimeSpan.FromMinutes(div);//Initialization of the distance from a previous station according to a road formula
+
+        }
+
 
         public double ProDistanceLastStation
             {
@@ -31,8 +42,7 @@ namespace dotNet5781_02_2382_5685
                 get { return TimeLastStation; }
                 set
                 {
-               
-                double dis= ProDistanceLastStation;
+                double dis = ProDistanceLastStation;
                 double kam = ProKamesh;
                 // long div = (long)(dis / kam);
                 // TimeSpan time = new TimeSpan(div);
@@ -41,8 +51,7 @@ namespace dotNet5781_02_2382_5685
 
 
             }
-            }
-       // קונסטרקטור//
+        }
 
         }
     }
