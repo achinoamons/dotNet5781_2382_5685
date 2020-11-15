@@ -15,6 +15,14 @@ namespace dotNet5781_02_2382_5685
     class BusLines : IEnumerable
     {
         List<BusLine> list = new List<BusLine>();//list of all the buslines
+        public List<BusLine> Prolist
+        {
+            set
+            {
+                list = value;
+            }
+            get { return list; }
+        }
         public IEnumerator GetEnumerator()
         {
             return list.GetEnumerator();
@@ -53,21 +61,24 @@ namespace dotNet5781_02_2382_5685
             { throw new BusException("Error!the line that you wanted to delete  is not exist!"); }
 
         }
-        public BusLine this[int index]//this is the indexer of this class
+        public List<BusLine> this[int index]//this is the indexer of this class
         {
-            get
+            get//We return a list in case of a two-way line with the same number
             {
-                foreach (BusLine busline in list)
-                {
-                    if (busline.ProNumLine == index)
-                    {
-                        return busline;
+                /* foreach (BusLine busline in list)
+                 {
+                     if (busline.ProNumLine == index)
+                     {
+                         return busline;
 
-                    }
-                }
-                throw new BusException("Error!this line is not exist!");
+                     }
+                 }
+                 throw new BusException("Error!this line is not exist!");*/
+                List<BusLine> help = new List<BusLine>();
+                help=list.FindAll(x => x.ProNumLine == index);
+                return help;
             }
-            set { list[index] = value; }
+            //set { list[index] = value; }
         }
         public List<BusLine> LineList(int kode)//Receives a bus station code number and returns the list The lines that pass through this station
         {
