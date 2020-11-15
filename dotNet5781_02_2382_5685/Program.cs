@@ -73,12 +73,12 @@ namespace dotNet5781_02_2382_5685
                             Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
                             string numlaststation = Console.ReadLine();
                             BusLineStation firststation = new BusLineStation();
-                            try {
-                                firststation.ProbusStationKey = int.Parse(numfirststation);
-                                BusLineStation laststation = new BusLineStation();
-                                laststation.ProbusStationKey = int.Parse(numlaststation);
-                                BusLine busline = new BusLine(num, firststation, laststation);
-                                list.AddLine(busline);
+                            firststation.ProbusStationKey = int.Parse(numfirststation);
+                            BusLineStation laststation = new BusLineStation();
+                            laststation.ProbusStationKey = int.Parse(numlaststation);
+                            try { 
+                            BusLine busline = new BusLine(num, firststation, laststation);
+                            list.AddLine(busline);
                             }
                             catch (BusException k) { Console.WriteLine(k.Message); }
                             catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
@@ -93,10 +93,10 @@ namespace dotNet5781_02_2382_5685
                             Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
                             string numlaststation = Console.ReadLine();
                             BusLineStation firststation = new BusLineStation();
-                            try
-                            {
+                          
                                 firststation.ProbusStationKey = int.Parse(numfirststation);
                                 BusLineStation laststation = new BusLineStation();
+                            try { 
                                 BusLine busline = new BusLine(num, firststation, laststation);
                                 if (list.searchLine(busline)) //if the line is exist
                                 {

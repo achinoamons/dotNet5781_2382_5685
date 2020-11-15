@@ -117,5 +117,37 @@ namespace dotNet5781_02_2382_5685
             }
             return false;
         }
+
+        public void PrintLines()//print all the bus lines
+        {
+            if (list.Count != 0)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    Console.WriteLine(list[i].ProNumLine);
+                }
+            }
+            else
+                throw new BusException("Error!there is no lines in the list");
+
+        }
+        public void PrintLinesAndStations()//print all the lines and its stations
+        {
+            if (list.Count != 0)
+            {
+                for (int i = 0; i < list.Count; i++)//print all the lines
+                {
+                    Console.WriteLine("{0}-{1}", list[i].ProNumLine, ":");
+                    for (int j = 0; j < list[i].ProStations.Count; j++)//print all the station
+                    {
+                        Console.WriteLine(list[i].ProStations[j].ProbusStationKey);
+                    }
+
+                }
+            }
+            else
+                throw new BusException("Error!there is no lines in the list");
+
+        }
     }
 }
