@@ -30,15 +30,19 @@ namespace dotNet5781_02_2382_5685
             BusLineStation b = new BusLineStation();
             BusLineStation c = new BusLineStation();
        // 1 2 3 4 ...10
-              list[i] = new BusLine(++d, b, c);
-                for(int j=0;j<i*4;j++)
+              //list[i] = new BusLine(++d, b, c);//שמתי בהערה ושיניתי אינדקסר להחזיר רשימה בלי סט כלומר הולכים לפי 2 השורות החדשות פה
+              BusLine bb= new BusLine(++d, b, c);
+                list.AddLine(bb);
+                for (int j=0;j<i*4;j++)
                 {
-                    List<BusLineStation> help = new List<BusLineStation>();
+                    // List<BusLineStation> help = new List<BusLineStation>();
                     // help[j] = physical[j];
-                    
-                    list[i].ProStations[j] = physical[j];
+
+                    //list[i].ProStations[j] = physical[j];
+                    list.Prolist[i].AddStation(physical[j]);//We approached through the property and added stations to each line
+
                 }
-                // list[i].ProStations = help;
+                 //list[i].ProStations = help;
             }
 
             Console.WriteLine("Please enter one of the following options:");
@@ -126,7 +130,7 @@ namespace dotNet5781_02_2382_5685
                                 Console.WriteLine("there is no line like this so its impossible to delete the station");
                         }
                         break;
-                    case Options.Search:
+                    case Options.Search: 
                         Console.WriteLine("Press 0 for Lines passing through the station according to station number 1 Printing the options for travel between 2 stations");
                         string opt= Console.ReadLine();//press 0 or 1
                         int s;
