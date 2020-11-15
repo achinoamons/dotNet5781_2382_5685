@@ -69,11 +69,15 @@ namespace dotNet5781_02_2382_5685
                             Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
                             string numlaststation = Console.ReadLine();
                             BusLineStation firststation = new BusLineStation();
-                            firststation.ProbusStationKey = int.Parse(numfirststation);
-                            BusLineStation laststation = new BusLineStation();
-                            laststation.ProbusStationKey = int.Parse(numlaststation);
-                            BusLine busline = new BusLine(num, firststation, laststation);
-                            list.AddLine(busline);
+                            try {
+                                firststation.ProbusStationKey = int.Parse(numfirststation);
+                                BusLineStation laststation = new BusLineStation();
+                                laststation.ProbusStationKey = int.Parse(numlaststation);
+                                BusLine busline = new BusLine(num, firststation, laststation);
+                                list.AddLine(busline);
+                            }
+                            catch (BusException k) { Console.WriteLine(k.Message); }
+                            catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
                         }
                         if (d)
                         {
@@ -85,73 +89,82 @@ namespace dotNet5781_02_2382_5685
                             Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
                             string numlaststation = Console.ReadLine();
                             BusLineStation firststation = new BusLineStation();
-                            firststation.ProbusStationKey = int.Parse(numfirststation);
-                            BusLineStation laststation = new BusLineStation();
-                            BusLine busline = new BusLine(num, firststation, laststation);
-                            if (list.searchLine(busline)) //if the line is exist
+                            try
                             {
-                                Console.WriteLine("Enter the station number you want to add");//enter the num station
-                                string numstation= Console.ReadLine();
-                                BusLineStation station = new BusLineStation();
-                                station.ProbusStationKey = int.Parse(numstation);
-                                busline.AddStation(station);//add the station
+                                firststation.ProbusStationKey = int.Parse(numfirststation);
+                                BusLineStation laststation = new BusLineStation();
+                                BusLine busline = new BusLine(num, firststation, laststation);
+                                if (list.searchLine(busline)) //if the line is exist
+                                {
+                                    Console.WriteLine("Enter the station number you want to add");//enter the num station
+                                    string numstation = Console.ReadLine();
+                                    BusLineStation station = new BusLineStation();
+                                    station.ProbusStationKey = int.Parse(numstation);
+                                    busline.AddStation(station);//add the station
+                                }
+                                else//if the line is not exist
+                                {
+                                    Console.WriteLine("The bus line does not exist in the system");
+                                }
                             }
-                            else//if the line is not exist
-                            {
-                                Console.WriteLine("The bus line does not exist in the system");
-                            }
+                            catch (BusException k) { Console.WriteLine(k.Message); }
+                            catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
                         }
-                            break;
-                        
+                        break;
+
 
                     case Options.Deletion:
                         Console.WriteLine("Press 0 for deleting a new bus line and 1 for deleting a station from a bus line");
                         string op = Console.ReadLine();//press 0 or 1
                         int g;
                         bool e = int.TryParse(op, out g);
-                   
-                        if(e)//if you press 1-delete a bus line
+                        try
                         {
-                            Console.WriteLine("Please enter the number of the line that less than 4 digits");
-                            string numline = Console.ReadLine();
-                            int num = int.Parse(numline);
-                            Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
-                            string numfirststation = Console.ReadLine();
-                            Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
-                            string numlaststation = Console.ReadLine();
-                            BusLineStation firststation = new BusLineStation();
-                            firststation.ProbusStationKey = int.Parse(numfirststation);
-                            BusLineStation laststation = new BusLineStation();
-                            laststation.ProbusStationKey = int.Parse(numlaststation);
-                            BusLine busline = new BusLine(num, firststation, laststation);
-                            list.DeleteLine(busline);
-                        }
-                        else//Deleting a station from a bus line route
-                        {
-                            Console.WriteLine("Please enter the number of the line that less than 4 digits");
-                            string numline = Console.ReadLine();
-                            int num = int.Parse(numline);
-                            Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
-                            string numfirststation = Console.ReadLine();
-                            Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
-                            string numlaststation = Console.ReadLine();
-                            BusLineStation firststation = new BusLineStation();
-                            firststation.ProbusStationKey = int.Parse(numfirststation);
-                            BusLineStation laststation = new BusLineStation();
-                            laststation.ProbusStationKey = int.Parse(numlaststation);
-                            BusLine busline = new BusLine(num, firststation, laststation);
-                            bool b = list.searchLine(busline);
-                            if(b)//if the line exist-delete the station
+                            if (e)//if you press 1-delete a bus line
                             {
-                                Console.WriteLine("enter the number of the station that you want to delete");
-                                int st = int.Parse(Console.ReadLine());
-                                BusLineStation bu = new BusLineStation();
-                                bu.ProbusStationKey = st;//apdating the field of stationkey according to input
-                                busline.DeletStation(bu);//deleting the station
+                                Console.WriteLine("Please enter the number of the line that less than 4 digits");
+                                string numline = Console.ReadLine();
+                                int num = int.Parse(numline);
+                                Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
+                                string numfirststation = Console.ReadLine();
+                                Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
+                                string numlaststation = Console.ReadLine();
+                                BusLineStation firststation = new BusLineStation();
+                                firststation.ProbusStationKey = int.Parse(numfirststation);
+                                BusLineStation laststation = new BusLineStation();
+                                laststation.ProbusStationKey = int.Parse(numlaststation);
+                                BusLine busline = new BusLine(num, firststation, laststation);
+                                list.DeleteLine(busline);
                             }
-                            else
-                                Console.WriteLine("there is no line like this so its impossible to delete the station");
+                            else//Deleting a station from a bus line route
+                            {
+                                Console.WriteLine("Please enter the number of the line that less than 4 digits");
+                                string numline = Console.ReadLine();
+                                int num = int.Parse(numline);
+                                Console.WriteLine("Please enter the first station number of the line ");//enter the first  station
+                                string numfirststation = Console.ReadLine();
+                                Console.WriteLine("Please enter the last station number of the line ");//enter the last  station
+                                string numlaststation = Console.ReadLine();
+                                BusLineStation firststation = new BusLineStation();
+                                firststation.ProbusStationKey = int.Parse(numfirststation);
+                                BusLineStation laststation = new BusLineStation();
+                                laststation.ProbusStationKey = int.Parse(numlaststation);
+                                BusLine busline = new BusLine(num, firststation, laststation);
+                                bool y = list.searchLine(busline);
+                                if (y)//if the line exist-delete the station
+                                {
+                                    Console.WriteLine("enter the number of the station that you want to delete");
+                                    int st = int.Parse(Console.ReadLine());
+                                    BusLineStation bu = new BusLineStation();
+                                    bu.ProbusStationKey = st;//apdating the field of stationkey according to input
+                                    busline.DeletStation(bu);//deleting the station
+                                }
+                                else
+                                    Console.WriteLine("there is no line like this so its impossible to delete the station");
+                            }
                         }
+                        catch (BusException k) { Console.WriteLine(k.Message); }
+                        catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
                         break;
                     case Options.Search:
                         Console.WriteLine("Press 0 for Lines passing through the station according to station number 1 Printing the options for travel between 2 stations");
@@ -166,12 +179,13 @@ namespace dotNet5781_02_2382_5685
                                 List < BusLine > l= new List<BusLine>();
                                 l=list.LineList(number); 
                             }
-                            catch (BusException b) { Console.WriteLine(b.Message); }
+                            catch (BusException k) { Console.WriteLine(k.Message); }
                             catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
 
                         }
                         else//the second option
                         {
+                            
 
                         }
                         break;
@@ -180,17 +194,27 @@ namespace dotNet5781_02_2382_5685
                         //0-Press 0 to print all the bus lines in the system
                         //1-print a list of all the stations and line numbers that pass through them
                         Console.WriteLine("Press 0 to print all the bus lines in the system and 1 to print a list of all the stations and line numbers that pass through them");
-                        string s = Console.ReadLine();//press 0 or 1
-                        int choice = int.Parse(s);
+                        string help = Console.ReadLine();//press 0 or 1
+                        int choice = int.Parse(help);
                         int t;
-                        bool b = int.TryParse(s, out t);
-                        if (b)//to print all bus lines
+                        bool b = int.TryParse(help, out t);
+                        if (b)//print all bus lines
                         {
-                            list.print();
+                            try
+                            {
+                                list.PrintLines();
+                            }
+                            catch (BusException k) { Console.WriteLine(k.Message); }
+                            catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
                         }
-                        if (!b)//
+                        if (!b)//print a list of all the stations and line numbers that pass through them
                         {
-
+                            try
+                            {
+                                list.PrintLinesAndStations();
+                            }
+                            catch (BusException k) { Console.WriteLine(k.Message); }
+                            catch (Exception ex) { Console.WriteLine(ex.Message); }//If there are any unexpected anomalies
                         }
                         break;
                     case Options.Exit:
