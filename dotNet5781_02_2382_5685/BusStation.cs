@@ -9,7 +9,7 @@ namespace dotNet5781_02_2382_5685
     class BusStation
     {
         static int code = 0;//check that the key would be uniqe
-        int busStationKey = 0;//kode of physical  station
+        int busStationKey;//kode of physical  station
 
 
         public  int ProbusStationKey
@@ -25,9 +25,9 @@ namespace dotNet5781_02_2382_5685
             }
         }
 
-       
 
-        Random r;
+
+        Random r = new Random();
         double Latitude;
         public double ProLatitude { get => Latitude; set => Latitude = r.NextDouble() * (31 - 33.3) + 31; }
         double Longitude;
@@ -57,7 +57,7 @@ namespace dotNet5781_02_2382_5685
             string deg = "°";
             
             {
-                string s = "Bus Station Code:" + busStationKey + "Latitude: " + Latitude + deg + "N" + "Longitude: " + Latitude + deg + "E";
+                string s = "Bus Station Code: " + busStationKey + " Latitude: " + Latitude + deg + "N " + "Longitude: " + Latitude + deg + "E";
 
                 return s;
             } 

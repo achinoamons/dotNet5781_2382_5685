@@ -13,9 +13,9 @@ namespace dotNet5781_02_2382_5685
             int kamesh=90;//A field we set for kilometer per hour is a fixed value for all intercity lines
        public  BusLineStation()
         {
-           /* Random r = new Random();
+            Random r = new Random();
             DistanceLastStation = r.Next(500);
-            double dis = ProDistanceLastStation;
+           /* double dis = ProDistanceLastStation;
             double kam = ProKamesh;
             double div = (dis / kam);
             TimeLastStation = TimeSpan.FromHours(div);*///Initialization of the distance from a previous station according to a road formula
@@ -28,8 +28,9 @@ namespace dotNet5781_02_2382_5685
                 get { return DistanceLastStation; }
                 set //random a number ,this the distance frome the last station
                 {
-                   Random r = new Random();
-                    DistanceLastStation = r.Next(500);
+                //Random r = new Random();
+                // DistanceLastStation = r.Next(500);
+                DistanceLastStation = value;
 
                 }
             }

@@ -27,13 +27,13 @@ namespace dotNet5781_02_2382_5685
         {
             return list.GetEnumerator();
         }
-        public void AddLine(BusLine l)//add a line to the bus lines list
+        public void AddLine(BusLine l,int i)//add a line to the bus lines list
         {
 
             foreach (BusLine busline in list)
             {
-                //if the num of line and the path is  equel--it a sign that there is already a line like this
-                if (busline.ProNumLine == l.ProNumLine && busline.ProFirstStation == l.ProFirstStation && busline.ProLastStation == l.ProLastStation)
+                //if the num of line and the Direction is  equel--it a sign that there is already a line like this
+                if (busline.ProNumLine == l.ProNumLine && i==l.ProbackOrForth)
                 {
                     throw new BusException("Error!this line is already exist-you cannot add it again!");
                 }
@@ -42,23 +42,21 @@ namespace dotNet5781_02_2382_5685
             list.Add(l); //add the line to the end of the list
 
         }
-        public void DeleteLine(BusLine l)//delete a line from the bus lines list
+        public void DeleteLine(BusLine l,int i)//delete a line from the bus lines list
         {
-            bool flag = false;
+            
             foreach (BusLine busline in list)
             {
                 // //if the num of line and the path is  equel--it a sign that the is exist and you can delete it
-                if (busline.ProNumLine == l.ProNumLine && busline.ProFirstStation == l.ProFirstStation && busline.ProLastStation == l.ProLastStation)
+                if (busline.ProNumLine == l.ProNumLine&&i==l.ProbackOrForth)
                 {
-                    list.Remove(l);
-                    flag = true;
-                    break;
-
+                    list.Remove(busline);
+                    return;
                 }
             }
             //if the line is not exist
-            if (flag == false)
-            { throw new BusException("Error!the line that you wanted to delete  is not exist!"); }
+           
+             throw new BusException("Error!the line that you wanted to delete  is not exist!"); 
 
         }
         public List<BusLine> this[int index]//this is the indexer of this class
@@ -104,12 +102,12 @@ namespace dotNet5781_02_2382_5685
             list.Sort();
             return list;
         }
-        public bool searchLine(BusLine l)
+        public bool searchLine(BusLine l,int i)
         {
             foreach (BusLine busline in list)
             {
-                //if the num of line and the path is  equel--it a sign that there is already a line like this
-                if (busline.ProNumLine == l.ProNumLine && busline.ProFirstStation == l.ProFirstStation && busline.ProLastStation == l.ProLastStation)
+                //if the num of line and the direction is  equel--it a sign that there is already a line like this
+                if (busline.ProNumLine == l.ProNumLine &&i==l.ProbackOrForth)
                 {
 
                     return true;
@@ -118,31 +116,16 @@ namespace dotNet5781_02_2382_5685
             return false;
         }
 
+        
+        
         public void PrintLines()//print all the bus lines
         {
             if (list.Count != 0)
             {
+                Console.WriteLine("the list of lines is:");
                 for (int i = 0; i < list.Count; i++)
                 {
-                    Console.WriteLine(list[i].ProNumLine);
-                }
-            }
-            else
-                throw new BusException("Error!there is no lines in the list");
-
-        }
-        public void PrintLinesAndStations()//print all the lines and its stations
-        {
-            if (list.Count != 0)
-            {
-                for (int i = 0; i < list.Count; i++)//print all the lines
-                {
-                    Console.WriteLine("{0}-{1}", list[i].ProNumLine, ":");
-                    for (int j = 0; j < list[i].ProStations.Count; j++)//print all the station
-                    {
-                        Console.WriteLine(list[i].ProStations[j].ProbusStationKey);
-                    }
-
+                    Console.WriteLine(list[i]);
                 }
             }
             else

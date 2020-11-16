@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_2382_5685
 {
     enum Areas { General , North, South, East, West, Center, LowLand, Jerusalem };//we decided to to interurban bus lines
-    class BusLine: IComparable
+    class BusLine : IComparable
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
         int numLine;//THE NUMBER OF THE LINE
@@ -18,6 +18,28 @@ namespace dotNet5781_02_2382_5685
         BusLineStation FirstStation;//the first station of the busline
         string area;
         TimeSpan totaltraveltime;
+        int backOrForth;//שדה במקרה של קו כפול שמציין אם הקו הוא הלוך או חזור
+        public int ProbackOrForth//
+          {
+            set
+            {
+
+                if(value==0||value==1)
+                {
+                    backOrForth = value;
+
+                }
+                else
+                    throw new BusException("Error!number must be 0 or 1");
+            }
+            get
+            {
+                return backOrForth;
+            }
+          }
+
+
+
         public  TimeSpan Prototaltraveltime//property of the general time
         {
             set
@@ -115,7 +137,7 @@ namespace dotNet5781_02_2382_5685
             get { return Stations; }
         }
         BusLine() { }
-         public BusLine(int num, BusLineStation first, BusLineStation last)
+         public BusLine(int num/*, BusLineStation first, BusLineStation last*/,int choise)
         {
             if (num <= 0||num>999)
                 throw new BusException("Error!number of line cannot be negative or 0");
@@ -123,11 +145,19 @@ namespace dotNet5781_02_2382_5685
             {
                 numLine = num;
             }
-            FirstStation = first;
-            Stations.Insert(0, FirstStation); ;
-            LastStation = last;
-            Stations.Add(LastStation);
+            // FirstStation = first;
+            // Stations.Insert(0, FirstStation); ;
+            //LastStation = last;
+            //  Stations.Add(LastStation);
             //area = a;
+            if (choise == 0 || choise == 1)
+            {
+                backOrForth = choise;
+
+            }
+            else
+                throw new BusException("Error!number must be 0 or 1");
+           
             Random r = new Random();
             int help=r.Next(8);
             switch(help)
@@ -147,19 +177,21 @@ namespace dotNet5781_02_2382_5685
         }
         public override string ToString()//overriding tostring of object
         {
-            string s = "Line number:" + numLine + "Line area: " + area;//Threading line number and line area
+            string s = "Line number: " + numLine +" " +"Line area: " + area;//Threading line number and line area
 
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (!isEmpty)
             {
                 s += "The route of the line:";
-                string str = "";
-                foreach (BusLineStation busLineStation in Stations)//Threading all the routes
+                 string str = "";
+                for (int i = 0; i < this.ProStations.Count; i++)//Threading all the routes
                 {
-                    str += busLineStation.ProbusStationKey;
+                    str +=this. ProStations[i].ProbusStationKey;
                     str += ",";
                 }
                 s += str;
+
+              
                 return s;
             }
             else//if the station is empty
@@ -185,16 +217,16 @@ namespace dotNet5781_02_2382_5685
         public void AddStation(BusLineStation station)//add a new station after spesific station
         {
             bool isEmpty = !Stations.Any();//if the station us not empty
-            if (isEmpty)//if the list is empty
+            if (isEmpty)//if the list is empty-add to start
             {
                 Stations.Add(station);//
-                ProFirstStation = ProLastStation = station;//update the first and last stations
+                ProFirstStation =ProLastStation=station;//update the first and last stations
             }
             else
             {
                 bool b = false;
 
-                foreach (BusLineStation busLineStation in Stations)//cheke if the afterstation is exist
+                foreach (BusLineStation busLineStation in Stations)//
                 {
 
                     if (busLineStation.ProbusStationKey == station.ProbusStationKey)//if the station already exist
@@ -202,7 +234,13 @@ namespace dotNet5781_02_2382_5685
                         throw new BusException(" Error! This station already exist");
                     }
                 }
-                for (int i = 0; i < Stations.Count; i++)//finding the suitable place for the station
+                //if i want to add to the end
+                if(Stations[Stations.Count - 1].ProbusStationKey<station.ProbusStationKey)//add to the end
+                {
+                    ProLastStation = station;
+                    Stations.Add(station);
+                }
+                for (int i = 0; i < Stations.Count-1; i++)//finding the suitable place for the station
                 {
 
                     if (Stations[i].ProbusStationKey < station.ProbusStationKey && Stations[i + 1].ProbusStationKey > station.ProbusStationKey)//finding suitable place
@@ -222,8 +260,12 @@ namespace dotNet5781_02_2382_5685
                         Stations[i + 2].ProTimeLastStation = t2;
                         break;
 
-                    }
+                    }//אנחנו חייבות לטפל בחריגה מגבולות הרשימה
+                 
+                   
                 }
+                
+               
 
             }
         }
