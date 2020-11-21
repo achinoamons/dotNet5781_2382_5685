@@ -11,7 +11,7 @@ namespace dotNet5781_02_2382_5685
     /// a class that describe list of bus lines
     /// </summary>
     /// 
-    //We decided that a single-valued identifier for a line is a number + departure station + destination station 
+    //We decided that a single-valued identifier for a line is a number + the direction of the line(back or forth)
     class BusLines : IEnumerable
     {
         List<BusLine> list = new List<BusLine>();//list of all the buslines
@@ -33,7 +33,7 @@ namespace dotNet5781_02_2382_5685
             foreach (BusLine busline in list)
             {
                 //if the num of line and the Direction is  equel--it a sign that there is already a line like this
-                if (busline.ProNumLine == l.ProNumLine && i==l.ProbackOrForth)
+                if (busline.ProNumLine == l.ProNumLine && busline.ProbackOrForth==l.ProbackOrForth)
                 {
                     throw new BusException("Error!this line is already exist-you cannot add it again!");
                 }
@@ -48,7 +48,7 @@ namespace dotNet5781_02_2382_5685
             foreach (BusLine busline in list)
             {
                 // //if the num of line and the path is  equel--it a sign that the is exist and you can delete it
-                if (busline.ProNumLine == l.ProNumLine&&i==l.ProbackOrForth)
+                if (busline.ProNumLine == l.ProNumLine&&busline.ProbackOrForth==l.ProbackOrForth)
                 {
                     list.Remove(busline);
                     return;
@@ -99,8 +99,9 @@ namespace dotNet5781_02_2382_5685
         }
         public List<BusLine> SortAccordingTime()
         {
-            list.Sort();
-            return list;
+            List <BusLine> tmp = list;
+            tmp.Sort();
+            return tmp;
         }
         public bool searchLine(BusLine l,int i)
         {

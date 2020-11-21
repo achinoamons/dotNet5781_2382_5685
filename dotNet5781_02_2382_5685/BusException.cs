@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
+/// <summary>
+/// a class that throws exeptions according to our program
+/// </summary>
 namespace dotNet5781_02_2382_5685
 {
     [Serializable]
+    
     class BusException:Exception
     {
       

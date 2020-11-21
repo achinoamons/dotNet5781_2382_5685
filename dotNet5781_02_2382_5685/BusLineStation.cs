@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace dotNet5781_02_2382_5685
-{
+{/// <summary>
+/// a class that describes bus station that connected to a bus line
+/// </summary>
         class BusLineStation:BusStation 
         {       
             double DistanceLastStation;//Distance from previous station
@@ -15,10 +17,10 @@ namespace dotNet5781_02_2382_5685
         {
             Random r = new Random();
             DistanceLastStation = r.Next(500);
-           /* double dis = ProDistanceLastStation;
+            double dis = ProDistanceLastStation;
             double kam = ProKamesh;
             double div = (dis / kam);
-            TimeLastStation = TimeSpan.FromHours(div);*///Initialization of the distance from a previous station according to a road formula
+            TimeLastStation = TimeSpan.FromMinutes(div);///Initialization of the distance from a previous station according to a road formula
 
         }
 

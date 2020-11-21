@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace dotNet5781_02_2382_5685
-{
+{/// <summary>
+/// a class that describes a physical bus station
+/// </summary>
     class BusStation
     {
         static int code = 0;//check that the key would be uniqe

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_2382_5685
 {
     enum Areas { General , North, South, East, West, Center, LowLand, Jerusalem };//we decided to to interurban bus lines
+    /// <summary>
+    /// a class that describes bus line
+    /// </summary>
     class BusLine : IComparable
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
@@ -18,7 +21,7 @@ namespace dotNet5781_02_2382_5685
         BusLineStation FirstStation;//the first station of the busline
         string area;
         TimeSpan totaltraveltime;
-        int backOrForth;//שדה במקרה של קו כפול שמציין אם הקו הוא הלוך או חזור
+        int backOrForth;//a field that mark if the line is 1 way or 2 way(in case of same number line)
         public int ProbackOrForth//
           {
             set
@@ -145,9 +148,9 @@ namespace dotNet5781_02_2382_5685
             {
                 numLine = num;
             }
-            // FirstStation = first;
+             //FirstStation = null;
             // Stations.Insert(0, FirstStation); ;
-            //LastStation = last;
+           // LastStation = null;
             //  Stations.Add(LastStation);
             //area = a;
             if (choise == 0 || choise == 1)
@@ -196,7 +199,7 @@ namespace dotNet5781_02_2382_5685
             }
             else//if the station is empty
             {
-                s += "There is no route to the line";
+                s += " There is no route to the line";
             }
             return s;
         }
@@ -216,7 +219,7 @@ namespace dotNet5781_02_2382_5685
         }
         public void AddStation(BusLineStation station)//add a new station after spesific station
         {
-            bool isEmpty = !Stations.Any();//if the station us not empty
+            bool isEmpty = !Stations.Any();//if the list of station us not empty
             if (isEmpty)//if the list is empty-add to start
             {
                 Stations.Add(station);//
@@ -224,7 +227,7 @@ namespace dotNet5781_02_2382_5685
             }
             else
             {
-                bool b = false;
+                //bool b = false;
 
                 foreach (BusLineStation busLineStation in Stations)//
                 {
@@ -235,10 +238,19 @@ namespace dotNet5781_02_2382_5685
                     }
                 }
                 //if i want to add to the end
-                if(Stations[Stations.Count - 1].ProbusStationKey<station.ProbusStationKey)//add to the end
+                if (Stations[0].ProbusStationKey > station.ProbusStationKey)//add to the start
                 {
-                    ProLastStation = station;
+                   // Stations.Insert(0,station);
+                    this.ProFirstStation = station;
+
+                    return;
+                }
+                if (Stations[Stations.Count - 1].ProbusStationKey<station.ProbusStationKey)//add to the end
+                {
                     Stations.Add(station);
+                    //this.ProLastStation = station;
+                   
+                    return;
                 }
                 for (int i = 0; i < Stations.Count-1; i++)//finding the suitable place for the station
                 {
@@ -258,9 +270,9 @@ namespace dotNet5781_02_2382_5685
                         Stations[i + 1].ProTimeLastStation = t1;//updating the TIME field of the station that i add;
                         t2 = TimeBetween2Stations(Stations[i + 1], Stations[i + 2]);//updating the TIME field of the after station that i add;
                         Stations[i + 2].ProTimeLastStation = t2;
-                        break;
+                        return;
 
-                    }//אנחנו חייבות לטפל בחריגה מגבולות הרשימה
+                    }
                  
                    
                 }
@@ -276,73 +288,92 @@ namespace dotNet5781_02_2382_5685
             {
                 throw new BusException("Error!, The list is empty ");
             }
-            else
-            {
-                int counter = 0;
-                foreach (BusLineStation busLineStation in Stations)//cheke if the station is exist
-                {
-                    if (busLineStation.ProbusStationKey == numstation.ProbusStationKey)
-                    {
-                        if (numstation.ProbusStationKey==ProFirstStation.ProbusStationKey)//if we want to delete the first station
-                        {
-                            //updating the relevant fields
-                            Stations[1].ProDistanceLastStation = 0;
-                            TimeSpan t = new TimeSpan(0, 0, 0);
-                            Stations[1].ProTimeLastStation = t;
-                            ProFirstStation = Stations[1];//update the first station field
-                           Stations.RemoveAt(0);//delet the station
-                            break;
-                        }
-                        if (numstation.ProbusStationKey == ProLastStation.ProbusStationKey)//if the delete station is the last
-                        {
-                            int g = Stations.Count;
-                            ProLastStation = Stations[g-2];//because the index begin from 0
-                            Stations.RemoveAt(g-1);
-                            break;
-                        }
-                        else//deleting another station
-                        {
-                            //update the relevant fields
-                            Stations[counter + 1].ProDistanceLastStation += Stations[counter].ProDistanceLastStation;
-                            Stations[counter + 1].ProTimeLastStation += Stations[counter].ProTimeLastStation;
-                            Stations.RemoveAt(counter);
-                            break;
-                        }
-                        
-                    }
-                    counter++;
-                }
-                throw new BusException(" Error! This station does not exist");
 
+
+            int counter = 0;
+             foreach (BusLineStation busLineStation in Stations)//check if the station is exist
+             {
+                 if (busLineStation.ProbusStationKey == numstation.ProbusStationKey)
+                 {
+                   if (numstation.ProbusStationKey==this.Stations[0].ProbusStationKey)//if we want to delete the first station
+                   {
+                       //updating the relevant fields
+                       Stations[1].ProDistanceLastStation = 0;
+                       TimeSpan t = new TimeSpan(0, 0, 0);
+                       Stations[1].ProTimeLastStation = t;
+                       ProFirstStation = Stations[1];//update the first station field
+                      Stations.RemoveAt(0);//delet the station
+                        return;
+                   }
+                   if (numstation.ProbusStationKey == this.Stations[Stations.Count-1].ProbusStationKey)//if the delete station is the last
+                   {
+                       int g = Stations.Count;
+                       ProLastStation = Stations[g-2];//because the index begin from 0
+                       Stations.RemoveAt(g-1);
+                        return;
+                   }
+                
+
+                 else//if (Stations.Contains(counter + 1)) //update the relevant fields of the next station---if exist 
+                 {
+                     Stations[counter + 1].ProDistanceLastStation += Stations[counter].ProDistanceLastStation;
+                     Stations[counter + 1].ProTimeLastStation += Stations[counter].ProTimeLastStation;
+
+                     Stations.RemoveAt(counter);//remove the station
+                        return;
+                 }
+                     }
+             counter++;
+         }
+         throw new BusException(" Error! This station does not exist");
+           /* foreach (BusLineStation busLineStation in Stations)//check if the station is exist
+            {
+                if (busLineStation.ProbusStationKey == numstation.ProbusStationKey)
+                {
+                    this.Stations.Remove(numstation);
+
+                    return;
+
+                }
             }
+            throw new BusException(" Error! This station does not exist");*/
         }
 
-        public double DistanceBetween2Stations(BusLineStation s1, BusLineStation s2)
+
+
+
+            public double DistanceBetween2Stations(BusLineStation s1, BusLineStation s2)
         {
             double d = 0;
 
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (!isEmpty)
             {
-
+                int g = 0, l = 0;
                 // BusLineStation bs1 = Stations.Find ( item => item.ProbusStationKey == s1.ProbusStationKey);//check if s1 exist
                 // BusLineStation bs2 = Stations.Find(item => item.ProbusStationKey == s2.ProbusStationKey);//check if s2 exist
 
                 //bool b = Stations.Find(s1);//to check if it exist
                 //bool c = Stations.Find(s2);
                 bool c = false, b = false;
-                 for (int i = 0; i < Stations.Count; i++)//loking for the first station
+                 for (int i = 0; i < Stations.Count; i++)//looking for the first station
                  {
-                     if (Stations[i].ProbusStationKey == s1.ProbusStationKey)
-                         b = true;
-                     break;
+                    if (Stations[i].ProbusStationKey == s1.ProbusStationKey)
+                    {
+                        l = i;
+                        b = true;
+                        break;
+                    }
 
                  }
-                 for (int i = 0; i < Stations.Count; i++)//loking for the second station
+                 for (int i = 0; i < Stations.Count; i++)//looking for the second station
                  {
-                     if (Stations[i].ProbusStationKey == s2.ProbusStationKey)
-                         c= true;
-                     break;
+                    if (Stations[i].ProbusStationKey == s2.ProbusStationKey)
+                    {
+                        c = true;
+                        break;
+                        g = i;
+                    }
 
                  }
                 if (b && c)//if they both exist
@@ -350,8 +381,10 @@ namespace dotNet5781_02_2382_5685
                     if (s1.ProbusStationKey == s2.ProbusStationKey)//if its the same station
                         return 0;
                     int min = 0, max = 0;
-                    min = Math.Min(Stations.IndexOf(s1), Stations.IndexOf(s2));
-                    max = Math.Max(Stations.IndexOf(s1), Stations.IndexOf(s2));
+                    // min = Math.Min(Stations.IndexOf(s1), Stations.IndexOf(s2));
+                    // max = Math.Max(Stations.IndexOf(s1), Stations.IndexOf(s2));
+                    min = Math.Min(g, l);
+                    max = Math.Max(g, l);
                     BusLine newbus = new BusLine();
                     for (int i = max; i <min; i--)
                     {
@@ -373,40 +406,44 @@ namespace dotNet5781_02_2382_5685
             bool isEmpty = !Stations.Any();//if the station us not empty
             if (!isEmpty)
             {
+                int g=0,l=0;
                 
-                //למצוא דרך לרשום נכון את בי וסי לראות אם קיימים
-                // bool b = Stations.Find(s1);//to check if it exist
-                // bool c = Stations.Find(s2);
                 bool b = false, c = false;
-                for (int i = 0; i < Stations.Count; i++)//loking for the first station
+                for (int i = 0; i < Stations.Count; i++)//looking for the first station
                 {
+                    
                     if (Stations[i].ProbusStationKey == s1.ProbusStationKey)
                     {
+                        l = i;
                         b = true;
                         break;
                     }
 
                 }
-                for (int i = 0; i < Stations.Count; i++)//loking for the second station
+                for (int i = 0; i < Stations.Count; i++)//looking for the second station
                 {
+                    
                     if (Stations[i].ProbusStationKey == s2.ProbusStationKey)
                     {
+                        g = i;
                         c = true;
                         break;
                     }
 
                 }
-                if (b && c)
+                if (b && c)//if the stations both exist
 
                 {
                     if (s1.ProbusStationKey == s2.ProbusStationKey)//if its the same station
                         return t;
                     int min = 0, max = 0;
-                    min = Math.Min(Stations.IndexOf(s1), Stations.IndexOf(s2));
-                    max = Math.Max(Stations.IndexOf(s1), Stations.IndexOf(s2));
-                    BusLine newbus = new BusLine();
-                    for (int i = max; i < min; i--)
+                    min = Math.Min(g,l);
+                    //  max = Math.Max(Stations.IndexOf, Stations.IndexOf(s2));
+                    max = Math.Max(g, l);
+                   // BusLine newbus = new BusLine();
+                    for (int i = max; i > min; i--)
                     {
+                        //t.Add(Stations[i].ProTimeLastStation);
                         t += Stations[i].ProTimeLastStation;
                     }
 
@@ -415,7 +452,7 @@ namespace dotNet5781_02_2382_5685
                 }
                 throw new BusException("Error!one or more of the stations isn't exist");
             }
-            throw new BusException("Error!the list of stations already empty");
+            throw new BusException("Error!the list of stations is empty");
 
         }
     
@@ -447,32 +484,33 @@ public BusLine SubLine (BusLineStation station1, BusLineStation station2)//Retur
                 min = Math.Min(index1, index2);
                 max = Math.Max(index1, index2);
                 BusLine newbus = new BusLine();
-                for (int i = min,  j=0 ; i <= max; i++,j++)
+                for (int i = min,  m=0 ; i <= max; i++,m++)
                 {
-                    newbus.Stations[j] = Stations[i];//copy the sub line to the new bus
+                    newbus.ProStations.Add( Stations[i]);//copy the sub line to the new bus
                 }
                 return newbus;
            
             }
 
-        public int CompareTo(Object obj)//מה רוצים בסעיף 7 
+        public int CompareTo(Object obj)//7 
         {
             BusLine bus = (BusLine)obj;
-
-            //bus = (BusLine)obj;
-            TimeSpan t = TimeBetween2Stations(this.ProFirstStation,this.ProLastStation);
-            TimeSpan b = TimeBetween2Stations(bus.ProFirstStation, bus.ProLastStation);
-            if (t > b)
-                return 1;
-            if (t < b)
-                return -1;
-            else return 0;
+            /* TimeSpan t = TimeBetween2Stations(this.ProFirstStation,this.ProLastStation);
+              TimeSpan b = TimeBetween2Stations(bus.ProFirstStation, bus.ProLastStation);
+              if (t > b)
+                  return 1;
+              if (t < b)
+                  return -1;
+              else return 0;*/
+            return Prototaltraveltime.CompareTo(bus.Prototaltraveltime);
+           
 
         }
         
-
     }
-}
+ }
+
+
 
 
 
