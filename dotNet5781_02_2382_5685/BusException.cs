@@ -12,7 +12,7 @@ namespace dotNet5781_02_2382_5685
 {
     [Serializable]
     
-    class BusException:Exception
+  public  class BusException:Exception
     {
       
             public BusException() : base() { }

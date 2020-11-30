@@ -8,7 +8,7 @@ namespace dotNet5781_02_2382_5685
 {/// <summary>
 /// a class that describes bus station that connected to a bus line
 /// </summary>
-        class BusLineStation:BusStation 
+    public  class BusLineStation:BusStation 
         {       
             double DistanceLastStation;//Distance from previous station
             TimeSpan TimeLastStation;//Time from previous station//-לפי נוסחת מרחק-צריך להיות קשור למרחקקקקקק-לפי מהירות ממוצעת

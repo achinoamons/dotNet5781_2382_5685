@@ -12,7 +12,7 @@ namespace dotNet5781_02_2382_5685
     /// </summary>
     /// 
     //We decided that a single-valued identifier for a line is a number + the direction of the line(back or forth)
-    class BusLines : IEnumerable
+  public  class BusLines : IEnumerable
     {
         List<BusLine> list = new List<BusLine>();//list of all the buslines
         public List<BusLine> Prolist

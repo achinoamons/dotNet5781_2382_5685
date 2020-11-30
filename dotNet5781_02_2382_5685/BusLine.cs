@@ -13,7 +13,7 @@ namespace dotNet5781_02_2382_5685
     /// <summary>
     /// a class that describes bus line
     /// </summary>
-    class BusLine : IComparable
+  public  class BusLine : IComparable
     {
         List<BusLineStation> Stations = new List<BusLineStation>();
         int numLine;//THE NUMBER OF THE LINE
@@ -97,50 +97,56 @@ namespace dotNet5781_02_2382_5685
             }
             get
             {
-                Areas a;
-                a = (Areas)int.Parse(area);
-                string ch = "";
-                switch (a)//returning the field according to its name
-                {
-                    case Areas.General:
-                        ch = "General";
-                        break;
-                    
-                    case Areas.North:
-                        ch = "North";
-                        break;
-                   
-                    case Areas.South:
-                        ch = "South";
-                        break;
-                    case Areas.East:
-                        ch = "East";
-                        break;
-                    case Areas.West:
-                        ch = "West";
-                        break;
-                    case Areas.Center:
-                        ch = "Center";
-                        break;
-                    case Areas.LowLand:
-                        ch = "LowLand";
-                        break;
-                    case Areas.Jerusalem:
-                        ch = "Jerusalem";
-                        break;
-                    default:
-                        break;
-                }
-                return ch;
+                /* Areas a;
+                 a = (Areas)int.Parse(area);
+                 string ch = "";
+                 switch (a)//returning the field according to its name
+                 {
+                     case Areas.General:
+                         ch = "General";
+                         break;
+
+                     case Areas.North:
+                         ch = "North";
+                         break;
+
+                     case Areas.South:
+                         ch = "South";
+                         break;
+                     case Areas.East:
+                         ch = "East";
+                         break;
+                     case Areas.West:
+                         ch = "West";
+                         break;
+                     case Areas.Center:
+                         ch = "Center";
+                         break;
+                     case Areas.LowLand:
+                         ch = "LowLand";
+                         break;
+                     case Areas.Jerusalem:
+                         ch = "Jerusalem";
+                         break;
+                     default:
+                         break;
+                 }
+                 return ch;*/
+                return area;
             }
-        }
+                
+
+            }
+        
         public List<BusLineStation> ProStations
         {
             set { Stations = value; }
             get { return Stations; }
         }
+        
         BusLine() { }
-         public BusLine(int num/*, BusLineStation first, BusLineStation last*/,int choise)
+       static Random r = new Random(DateTime.Now.Millisecond);
+        public BusLine(int num/*, BusLineStation first, BusLineStation last*/,int choise)
         {
             if (num <= 0||num>999)
                 throw new BusException("Error!number of line cannot be negative or 0");
@@ -161,7 +167,7 @@ namespace dotNet5781_02_2382_5685
             else
                 throw new BusException("Error!number must be 0 or 1");
            
-            Random r = new Random();
+           //Random r = new Random(DateTime.Now.Millisecond);
             int help=r.Next(8);
             switch(help)
             {
