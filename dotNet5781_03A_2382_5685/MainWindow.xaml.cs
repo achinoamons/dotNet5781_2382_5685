@@ -32,7 +32,7 @@ namespace dotNet5781_03A_2382_5685
 
         {
             List<BusLineStation> physical = new List<BusLineStation>();
-            //physical.Capacity = 44;
+            
             for (int i = 0; i < 40; i++)
             {
 
