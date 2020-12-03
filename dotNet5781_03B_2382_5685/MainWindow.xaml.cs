@@ -67,7 +67,7 @@ namespace dotNet5781_03B_2382_5685
             //taking care of other demands
 
             //L1[0].ProLastDate = DateTime.Now.Day;
-            L1[1].ProKilometrathAfterTipul = 1180;//ITS A SIGN THAT ITS NEED FUAL
+           
             L1[2].ProFuel = 10;//ITS A SIGN THAT ITS NEED FUAL
             L1[3].ProFuel=20;//its a sign that its need tipul
             L1[4].ProKilometrathAfterTipul = 1850;//its a sign that its need tipul
