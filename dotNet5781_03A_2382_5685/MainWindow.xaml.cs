@@ -16,16 +16,18 @@ using dotNet5781_02_2382_5685;
 
 namespace dotNet5781_03A_2382_5685
 {
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+       // static Random r = new Random(DateTime.Now.Millisecond);
         BusLines busLines = new BusLines();
         private BusLine currentDisplayBusLine;
-        
 
-public MainWindow()
+       
+        public MainWindow()
 
 
         {
@@ -36,17 +38,11 @@ public MainWindow()
 
                 BusLineStation bb = new BusLineStation();
                 physical.Add(bb);//initialiation of 40 physical busstations
-            }
-            //עד פה שינינו---גזרנו
-
-
-
+            }  
             Random r = new Random();
             for (int i = 1; i < 11; i++)//initialitation of 10 lines
                 {
-                    //לזכור לטפל בבעיה של תחנה ראשונה ואחרונה
                     
-
                     //  BusLine bb = new BusLine(i, 0);
                     int n = r.Next(1, 1000);
                     BusLine bb = new BusLine(n, 0);//randomaly give number for the line
@@ -72,7 +68,7 @@ public MainWindow()
             currentDisplayBusLine = busLines[index].First();
             UpGrid.DataContext = currentDisplayBusLine;
             lbBusLineStations.DataContext = currentDisplayBusLine.ProStations;
-            // tbArea.Text = string.Format("{0}", currentDisplayBusLine.ProArea);
+           
             tbArea.Text = currentDisplayBusLine.ProArea;
 
         }

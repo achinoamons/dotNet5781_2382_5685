@@ -15,6 +15,7 @@ namespace dotNet5781_02_2382_5685
     /// </summary>
   public  class BusLine : IComparable
     {
+        //לזכור לטפל בבעיה של תחנה ראשונה ואחרונה
         List<BusLineStation> Stations = new List<BusLineStation>();
         int numLine;//THE NUMBER OF THE LINE
         BusLineStation LastStation;//the last station of the busline

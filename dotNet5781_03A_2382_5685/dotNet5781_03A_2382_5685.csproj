@@ -127,5 +127,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WhatsApp Image 2020-11-30 at 14.46.40.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WhatsApp Image 2020-11-30 at 14.52.13.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WhatsApp Image 2020-11-30 at 14.53.55.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
