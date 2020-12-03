@@ -43,7 +43,7 @@ namespace dotNet5781_03A_2382_5685
             for (int i = 1; i < 11; i++)//initialitation of 10 lines
                 {
                     
-                    //  BusLine bb = new BusLine(i, 0);
+                    
                     int n = r.Next(1, 1000);
                     BusLine bb = new BusLine(n, 0);//randomaly give number for the line
                     busLines.AddLine(bb, 0);//we decided to initiate the lines only for one way-in the program we will add 2 ways line
