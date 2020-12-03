@@ -94,37 +94,44 @@ namespace dotNet5781_03B_2382_5685
             {
                 foreach (Bus bus in L1)
                 {
-                    if (bus.ProNumBus == num)//check if there is already a bus like this
+                    if (bus.ProNumBus == num)//check if there is  a bus like this
                     {
-                        DateTime currentDate = DateTime.Now;
-                        //// Only if less than a year has passed since the previous treatment
-                        if ((bus.ProLastDate.Year == currentDate.Year) || ((bus.ProLastDate.Year + 1 == currentDate.Year) && (12 - bus.ProLastDate.Month + currentDate.Month <= 12)))
+                       // DateTime currentDate = DateTime.Now;
+                        ////  if more than a year has passed since the previous treatment
+                     
+                        double g = r.Next(1200);
+                        if ((bus.ProKilometrathAfterTipul)+g>=20000||(DateTime.Now-bus.ProLastDate).TotalDays>=365)
                         {
+                            Console.WriteLine("The bus cannot make the trip");
+                            return;
 
-                            double g = r.Next(1200);
-
-                            if (bus.ProKilometrathAfterTipul + g <= 20000)
-                            {
-                                bus.ProKilometrath += g;//
-                                bus.ProKilometrathAfterTipul += g;//uptade the relevant fields
-                                Console.WriteLine("success-uptading the relevant fields");
-                            }
-                            else
-                                Console.WriteLine("The bus cannot make the trip");
-
+                            
                         }
-                        else
-                            Console.WriteLine("The bus cannot make the trip");//because more than a year has pass since the last treatment
-
-                        break;
+                        if(bus.ProFuel-g<0)//if i dont have enoufh fual for the travel
+                        {
+                            Console.WriteLine("The bus cannot make the trip");
+                            return;
+                        }
+                        else//if he can take the travel
+                        {
+                            //uptade the relevant fields
+                            bus.ProKilometrath += g;//
+                            bus.ProKilometrathAfterTipul += g;
+                            bus.ProFuel -= g;
+                            Console.WriteLine("success-uptading the relevant fields");
+                        }
+                        
                     }
-                    else
-                        Console.WriteLine("The bus does not exist in the system");
+                    
+                       
 
                 }
+                Console.WriteLine("The bus does not exist in the system");//if i didnt fint
+                return;
+
             }
 
-            else
+            else//if  list is empty
             {
                 Console.WriteLine("The bus does not exist in the system");
                 //return false;

@@ -55,22 +55,31 @@ namespace dotNet5781_03B_2382_5685
 
                 if (Bus.AddBus(L1, s, s.Length, ref d))//if its ok to add
                 {
-                    Bus B = new Bus();
+                    Bus B = new Bus() //quick initoalization
+                    {  ProNumBus = s,
+                        ProStartDate = d,
+                        ProLastDate = d,
+                        
+                        ProFuel=r.Next(0,1201),//// we decided that full tank of fual is 1200
+                        ProKilometrath =r.Next(0,100000),//the max kilometrath that a bus can have
+                        ProKilometrathAfterTipul=r.Next(0,20000)//the max kmaftertipul that a bus can have
+                    };
 
-                    B.ProNumBus = s;
-                    B.ProStartDate = d;
-                    B.ProLastDate = d;//Update that last treatment date is the start date of activity
+                   
+                   
+                   //Update that last treatment date is the start date of activity
                     L1.Add(B);
                     //Console.WriteLine("succeed");
                 }//אם תהיה בעיה---לטפל בזה---לגבי רנדומליזציה---
             }
             //taking care of other demands
 
-            //L1[0].ProLastDate = DateTime.Now.Day;
-           
+            
+            L1[0].ProLastDate = DateTime.Today.AddYears(-1);//At least one bus will be after the next treatment date
+            L1[1].ProLastDate = DateTime.Today.AddYears(-2);//At least one bus will be after the next treatment date
             L1[2].ProFuel = 10;//ITS A SIGN THAT ITS NEED FUAL
-            L1[3].ProFuel=20;//its a sign that its need tipul
-            L1[4].ProKilometrathAfterTipul = 1850;//its a sign that its need tipul
+            L1[3].ProFuel=20;//ITS A SIGN THAT ITS NEED FUAL
+            L1[4].ProKilometrathAfterTipul = 18950;//its a sign that its need tipul
 
 
 
