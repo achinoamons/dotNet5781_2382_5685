@@ -117,14 +117,21 @@ namespace dotNet5781_03B_2382_5685
 
         private void Button_Click(object sender, RoutedEventArgs e)//go to a ride
         {
-
-           var t=((sender as Button).DataContext as Bus);
-           //MessageBox.Show(t.ToString());//check if its realy a bus
-           //Bus bb= (sender as Button).DataContext as Bus;
             
+           var t=((sender as Button).DataContext as Bus);
+            if (t.ProStat != Status.readyForTravel)//if its during another thread
+            {
+                 MessageBox.Show("the bus is during anothe process");
+                return;
+            }
+            //MessageBox.Show(t.ToString());//check if its realy a bus
+            //Bus bb= (sender as Button).DataContext as Bus;
+            else
+            {
                 StartDriving start = new StartDriving(t);
                 start.ShowDialog();
                 lbBuses.Items.Refresh();
+            }
             
         }
        
@@ -137,12 +144,22 @@ namespace dotNet5781_03B_2382_5685
 
         }
 
-        private void lbBuses_SelectionChanged(object sender, SelectionChangedEventArgs e)//להציג פרטי אוטובוס
+        
+
+        private void lbBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)//להציג פרטי אוטובוס
         {
-            var t = lbBuses.SelectedItem  as Bus;
-            BusManagemenet manage = new BusManagemenet(t);//send the bus to the new window
-            manage.ShowDialog();
-            lbBuses.Items.Refresh();
+            var t = lbBuses.SelectedItem as Bus;
+            if (t.ProStat != Status.readyForTravel)//if its during another proccess
+            {
+                MessageBox.Show("the bus is during anothe process");
+                return;
+            }
+            else
+            {
+                BusManagemenet manage = new BusManagemenet(t);//send the bus to the new window
+                manage.ShowDialog();
+                lbBuses.Items.Refresh();
+            }
         }
     }
     }

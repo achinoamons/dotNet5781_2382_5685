@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_2382_5685"
         mc:Ignorable="d"
-        Title="StartDriving" Height="328.012" Width="401.506">
+        Title="StartDriving" Height="286.138" Width="333.461">
     <Grid>
-        <Label Content="Enter driving distance" HorizontalAlignment="Left" Margin="135,102,0,0" VerticalAlignment="Top"/>
-        <Label Content="Enter to confirm" HorizontalAlignment="Left" Margin="139,133,0,0" VerticalAlignment="Top" Height="27" Width="120"/>
-        <TextBox x:Name="tbdistance" PreviewTextInput="NumberValidationTextBox" Text=""  HorizontalAlignment="Left" Height="23" Margin="139,165,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" KeyDown="tbdistance_KeyDown" Width="120" />
-        <ProgressBar x:Name="progbar" HorizontalAlignment="Left" Height="19" Margin="115,213,0,0" VerticalAlignment="Top" Width="145"/>
+        <Label Content="Enter driving distance" HorizontalAlignment="Left" Margin="97,86,0,0" VerticalAlignment="Top"/>
+        <Label Content=" Press enter to confirm" HorizontalAlignment="Left" Margin="101,117,0,0" VerticalAlignment="Top" Height="27" Width="120"/>
+        <TextBox x:Name="tbdistance" PreviewTextInput="NumberValidationTextBox" Text=""  HorizontalAlignment="Left" Height="23" Margin="101,149,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" KeyDown="tbdistance_KeyDown" Width="120" />
+
 
 
 

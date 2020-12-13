@@ -102,8 +102,8 @@ namespace dotNet5781_03B_2382_5685
             {
                 return false;
             }
-            if (ProHelpBus.ProStat != Status.readyForTravel)
-                return false;
+            //if (ProHelpBus.ProStat != Status.readyForTravel)
+                //return false;
             else
                 return true;
         }

@@ -20,6 +20,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
@@ -34,8 +35,8 @@
                   Text="{Binding Path=ProKilometrath}" Width="50"/>
                 <ProgressBar x:Name="progress" Grid.Column="5"
                    Value="{Binding MyPropertyTime, UpdateSourceTrigger=PropertyChanged}"  Width="150" Maximum="100"/>
-                
-                
+                <TextBox Grid.Column="6"
+                  Text="{Binding MyPropertyForRemainSecond, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible" Width="50"/>
             </Grid>
 
         </DataTemplate>
@@ -44,7 +45,7 @@
 
 
     <Grid>
-        <ListBox ItemsSource="{Binding}"  ItemTemplate="{StaticResource BusTemplate}" x:Name="lbBuses" HorizontalAlignment="Left" Height="271" Margin="49,45,0,0" VerticalAlignment="Top" Width="691" SelectionChanged="lbBuses_SelectionChanged" />
+        <ListBox ItemsSource="{Binding}"  ItemTemplate="{StaticResource BusTemplate}" x:Name="lbBuses" HorizontalAlignment="Left" Height="271" Margin="49,45,0,0" VerticalAlignment="Top" Width="691" MouseDoubleClick="lbBuses_MouseDoubleClick" />
         <Button x:Name="btadd" Content="Add Bus" HorizontalAlignment="Left" Margin="70,351,0,0" VerticalAlignment="Top" Width="107" Height="43" Click="btadd_Click"/>
 
     </Grid>

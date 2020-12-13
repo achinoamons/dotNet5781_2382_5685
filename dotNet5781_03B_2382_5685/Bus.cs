@@ -31,6 +31,22 @@ namespace dotNet5781_03B_2382_5685
             DependencyProperty.Register("MyPropertyTime", typeof(double), typeof(Bus), new PropertyMetadata(null));
 
 
+        //dependecy property that show how much time remain in seconds
+
+
+        public int MyPropertyForRemainSecond
+        {
+            get { return (int)GetValue(MyPropertyForRemainSecondProperty); }
+            set { SetValue(MyPropertyForRemainSecondProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyPropertyForRemainSecond.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyPropertyForRemainSecondProperty =
+            DependencyProperty.Register("MyPropertyForRemainSecond", typeof(int), typeof(Bus), new PropertyMetadata(null));
+
+
+
+
         Status stat;
         string NumBus;
         DateTime StartDate;//Date of commencement of activity  Of the means of transport
@@ -210,7 +226,7 @@ namespace dotNet5781_03B_2382_5685
            
             Bus current = e.UserState as Bus;
             current.MyPropertyTime = i;
-            
+            current.MyPropertyForRemainSecond = 12 - i;
             
         }
 
@@ -220,17 +236,18 @@ namespace dotNet5781_03B_2382_5685
             System.Windows.MessageBox.Show("the bus" + this.PNumBus + " finish refuelling");
           
             this.MyPropertyTime = 0;
+            this.MyPropertyForRemainSecond = 0;
 
         }
 
         private void Inrefull_DoWork(object sender, DoWorkEventArgs e)
         {
             e.Result = e.Argument;
-            for (int i = 0; i <= 12; i++)//השהייה לשעתיים
+            for (int i =0; i <12; i++)//השהייה לשעתיים
             {
                 Thread.Sleep(1000);
-                int f = (int)(i * 100 / (12));
-                inrefull.ReportProgress(f, e.Argument);//דיווח על השינוי
+               // int f = (int)(i * 100 / (12));
+                inrefull.ReportProgress(i, e.Argument);//דיווח על השינוי
             }
         }
         public void Refull()
@@ -253,7 +270,7 @@ namespace dotNet5781_03B_2382_5685
                     }
                 }
                 else
-                    System.Windows.MessageBox.Show("the bus is during anothe thread");
+                    System.Windows.MessageBox.Show("the bus is during anothe process");
 
             
        
