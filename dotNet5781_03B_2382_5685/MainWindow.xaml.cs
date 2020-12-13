@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace dotNet5781_03B_2382_5685
 {
@@ -21,10 +23,14 @@ namespace dotNet5781_03B_2382_5685
     public partial class MainWindow : Window
     {
         static Random r = new Random(DateTime.Now.Millisecond);
+        BackgroundWorker inrefull;
+
 
         public MainWindow()
         {
-            List<Bus> L1 = new List<Bus>();
+            InitializeComponent();
+            DataContext = HelpBusList.L1;
+           
             DateTime d;
             for (int i = 0; i < 10; i++)
             {
@@ -40,7 +46,7 @@ namespace dotNet5781_03B_2382_5685
                 {
                     d = new DateTime(r.Next(31), r.Next(13), r.Next(2022));
                 }*/
-                d = new DateTime(r.Next(31), r.Next(13), r.Next(1970, 2022));//random for date
+                d = new DateTime(r.Next(1995, 2022), r.Next(1,13), r.Next(1,31));//random for date
                 if (d.Year < 2018)
                 {
                     int num = r.Next(1000000, 10000000);
@@ -53,38 +59,91 @@ namespace dotNet5781_03B_2382_5685
                     s = num.ToString();
                 }
 
-                if (Bus.AddBus(L1, s, s.Length, ref d))//if its ok to add
+                if (Bus.AddBus(HelpBusList.L1, s, s.Length, ref d))//if its ok to add
                 {
                     Bus B = new Bus() //quick initoalization
-                    {  ProNumBus = s,
+                    {
+                        ProNumBus = s,
                         ProStartDate = d,
                         ProLastDate = d,
-                        
-                        ProFuel=r.Next(0,1201),//// we decided that full tank of fual is 1200
-                        ProKilometrath =r.Next(0,100000),//the max kilometrath that a bus can have
-                        ProKilometrathAfterTipul=r.Next(0,20000)//the max kmaftertipul that a bus can have
+
+                        ProFuel = r.Next(0, 1201),//// we decided that full tank of fual is 1200
+                        ProKilometrath = r.Next(0, 100000),//the max kilometrath that a bus can have
+                        ProKilometrathAfterTipul = r.Next(0, 20000),//the max kmaftertipul that a bus can have
+
+
                     };
 
-                   
-                   
-                   //Update that last treatment date is the start date of activity
-                    L1.Add(B);
+
+
+                    //Update that last treatment date is the start date of activity
+                    HelpBusList.L1.Add(B);
                     //Console.WriteLine("succeed");
                 }//אם תהיה בעיה---לטפל בזה---לגבי רנדומליזציה---
             }
             //taking care of other demands
 
+
+            HelpBusList.L1[0].ProLastDate = DateTime.Today.AddYears(-1);//At least one bus will be after the next treatment date
+            HelpBusList.L1[1].ProLastDate = DateTime.Today.AddYears(-2);//At least one bus will be after the next treatment date
+            HelpBusList.L1[2].ProFuel = 10;//ITS A SIGN THAT ITS NEED FUAL
+            HelpBusList.L1[3].ProFuel = 20;//ITS A SIGN THAT ITS NEED FUAL
+            HelpBusList.L1[4].ProKilometrathAfterTipul = 18950;//its a sign that its need tipul
+            foreach (Bus bus in HelpBusList.L1)//check for each bus if can take a travel
+            {
+                //if (bus.canTravel() == true)
+                //{
+                //    bus.ProStat = Status.readyForTravel;//the bus can take the travel
+                //}
+                bus.ProStat = Status.readyForTravel;
+
+
+            }
+
+
+
+
+           
+        }
+
+        private void btadd_Click(object sender, RoutedEventArgs e)//add a bus to the list bus
+        {
             
-            L1[0].ProLastDate = DateTime.Today.AddYears(-1);//At least one bus will be after the next treatment date
-            L1[1].ProLastDate = DateTime.Today.AddYears(-2);//At least one bus will be after the next treatment date
-            L1[2].ProFuel = 10;//ITS A SIGN THAT ITS NEED FUAL
-            L1[3].ProFuel=20;//ITS A SIGN THAT ITS NEED FUAL
-            L1[4].ProKilometrathAfterTipul = 18950;//its a sign that its need tipul
+            AddBus second = new AddBus();
+            second.ShowDialog();
+                  
+        }
+        
 
+        private void Button_Click(object sender, RoutedEventArgs e)//go to a ride
+        {
 
+           var t=((sender as Button).DataContext as Bus);
+           //MessageBox.Show(t.ToString());//check if its realy a bus
+           //Bus bb= (sender as Button).DataContext as Bus;
+            
+                StartDriving start = new StartDriving(t);
+                start.ShowDialog();
+                lbBuses.Items.Refresh();
+            
+        }
+       
+        private void Button_Click_1(object sender, RoutedEventArgs e)//refuel
+        {
+            var t = ((sender as Button).DataContext as Bus);
+           // MessageBox.Show(t.ToString());//check if its realy a bus
+            t.Refull();//a function that Refuuling a buss
+            lbBuses.Items.Refresh();
 
+        }
 
-            InitializeComponent();
+        private void lbBuses_SelectionChanged(object sender, SelectionChangedEventArgs e)//להציג פרטי אוטובוס
+        {
+            var t = lbBuses.SelectedItem  as Bus;
+            BusManagemenet manage = new BusManagemenet(t);//send the bus to the new window
+            manage.ShowDialog();
+            lbBuses.Items.Refresh();
         }
     }
-}
+    }
+
