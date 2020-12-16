@@ -44,7 +44,7 @@ namespace dotNet5781_03B_2382_5685
             current.MyPropertyForRemainSecond = (144 - i);
             string str =(144-i).ToString();
             tbpercentclock.Text =str;
-           tbpercentclock.Visibility=Visible;
+           //tbpercentclock.Visibility=Visible;
         }
 
         private void EditBus_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
