@@ -44,7 +44,7 @@ namespace dotNet5781_03B_2382_5685
             current.MyPropertyForRemainSecond = (144 - i);
             string str =(144-i).ToString();
             tbpercentclock.Text =str;
-           tbpercentclock.Visibility=Visible;
+            tbpercentclock.Visibility = Visibility.Visible;
         }
 
         private void EditBus_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -54,7 +54,7 @@ namespace dotNet5781_03B_2382_5685
             MessageBox.Show("the bus" + current.PNumBus + " finish treatment");
             current.MyPropertyTime = 0;
             current.MyPropertyForRemainSecond = 0;
-            //tbpercentclock.Visibility=Hidden;
+            tbpercentclock.Visibility=Visibility.Hidden;
         }
 
         private void EditBus_DoWork(object sender, DoWorkEventArgs e)

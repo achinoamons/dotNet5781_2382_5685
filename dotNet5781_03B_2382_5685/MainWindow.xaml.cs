@@ -20,6 +20,10 @@ namespace dotNet5781_03B_2382_5685
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    // הערות לבודקת:
+    //כשמוסיפים אוטובוס אז הארוע שגורם לזה להתבצע בסוף 
+    //לאחר מילוי הפרטים להוספה-הוא איקס על החלון
+    //בנוסף כששלחנו אוטובוס לטיפול הוא גם מתדלק אם צריך ולכן שולח גם הודעה בהתאם גם לגבי התדלוק
     public partial class MainWindow : Window
     {
         static Random r = new Random(DateTime.Now.Millisecond);
@@ -46,7 +50,7 @@ namespace dotNet5781_03B_2382_5685
                 {
                     d = new DateTime(r.Next(31), r.Next(13), r.Next(2022));
                 }*/
-                d = new DateTime(r.Next(1995, 2022), r.Next(1,13), r.Next(1,31));//random for date
+                d = new DateTime(r.Next(1995, 2022), r.Next(1,13), r.Next(1,29));//random for date
                 if (d.Year < 2018)
                 {
                     int num = r.Next(1000000, 10000000);
