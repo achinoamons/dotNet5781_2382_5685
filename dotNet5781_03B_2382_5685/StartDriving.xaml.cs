@@ -23,7 +23,7 @@ namespace dotNet5781_03B_2382_5685
     public partial class StartDriving : Window
     {
         private Bus helpbus;
-        public Bus ProHelpBus
+        public Bus ProHelpBus//public property for the bus
         {
             get
             {
@@ -62,7 +62,7 @@ namespace dotNet5781_03B_2382_5685
         private void WentTravel_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int i = e.ProgressPercentage;
-            //עכשיו אני מודיעה לגרפיקה מה לעשות
+            //
              // progbar.Value = i;
             ProHelpBus.MyPropertyTime = i;
               
@@ -110,7 +110,7 @@ namespace dotNet5781_03B_2382_5685
 
 
 
-        private void tbdistance_KeyDown(object sender, KeyEventArgs e)
+        private void tbdistance_KeyDown(object sender, KeyEventArgs e)//the event that cause the process of travelling is pressing enter
         {
 
 
@@ -124,7 +124,7 @@ namespace dotNet5781_03B_2382_5685
                     ProHelpBus.ProKilometrath += d;
                     ProHelpBus.ProKilometrathAfterTipul += d;
                     ProHelpBus.ProFuel -= d;
-                    ProHelpBus.ProStat = Status.duringTravel;//פה צריך להתחיל תהליכון
+                    ProHelpBus.ProStat = Status.duringTravel;//now the process begin
                     this.Close();
                     wentTravel.RunWorkerAsync(d);
 

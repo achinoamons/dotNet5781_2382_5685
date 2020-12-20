@@ -7,9 +7,14 @@
         mc:Ignorable="d"
         Title="StartDriving" Height="286.138" Width="333.461">
     <Grid>
-        <Label Content="Enter driving distance" HorizontalAlignment="Left" Margin="97,86,0,0" VerticalAlignment="Top"/>
-        <Label Content=" Press enter to confirm" HorizontalAlignment="Left" Margin="101,117,0,0" VerticalAlignment="Top" Height="27" Width="120"/>
+        <Label Content="Enter driving distance" HorizontalAlignment="Left" Margin="97,86,0,0" VerticalAlignment="Top" FontFamily="Kristen ITC"/>
+        <Label Content=" Press enter to confirm" HorizontalAlignment="Left" Margin="97,117,0,0" VerticalAlignment="Top" Height="27" Width="174" FontFamily="Kristen ITC"/>
         <TextBox x:Name="tbdistance" PreviewTextInput="NumberValidationTextBox" Text=""  HorizontalAlignment="Left" Height="23" Margin="101,149,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" KeyDown="tbdistance_KeyDown" Width="120" />
+        <Label Content="" HorizontalAlignment="Left" Height="53" Margin="10,192,0,0" VerticalAlignment="Top" Width="305">
+            <Label.Background>
+                <ImageBrush ImageSource="WhatsApp Image 2020-12-16 at 13.13.41.jpeg"/>
+            </Label.Background>
+        </Label>
 
 
 

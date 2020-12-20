@@ -17,6 +17,7 @@ namespace dotNet5781_03B_2382_5685
 {
     /// <summary>
     /// Interaction logic for AddBus.xaml
+    /// add a bus to the list of buses
     /// </summary>
     public partial class AddBus : Window
     {

@@ -18,6 +18,7 @@ namespace dotNet5781_03B_2382_5685
 {
     /// <summary>
     /// Interaction logic for BusManagemenet.xaml
+    /// show details of bus and also options for refuelling or treatment for the bus
     /// </summary>
     public partial class BusManagemenet : Window
     {
@@ -52,7 +53,7 @@ namespace dotNet5781_03B_2382_5685
 
            current.ProStat = Status.readyForTravel;
             MessageBox.Show("the bus" + current.PNumBus + " finish treatment");
-            current.MyPropertyTime = 0;
+            current.MyPropertyTime = 0;//in order to set progress bar to 0
             current.MyPropertyForRemainSecond = 0;
             tbpercentclock.Visibility=Visibility.Hidden;
         }

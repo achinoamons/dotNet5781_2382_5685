@@ -19,7 +19,7 @@ namespace dotNet5781_03B_2382_5685
    public class Bus: DependencyObject
     {
 
-
+        //dependency property that we use in order to update the progress bar
         public double MyPropertyTime
         {
             get { return (double)GetValue(MyPropertyTimeProperty); }
@@ -55,7 +55,7 @@ namespace dotNet5781_03B_2382_5685
         double Fuel;
         double KilometrathAfterTipul;//km after treatment
         BackgroundWorker inrefull;
-        public Status ProStat//the prperty of stat
+        public Status ProStat//the prperty of status
         {
             set { stat = value; }
             get { return stat; }
@@ -68,7 +68,7 @@ namespace dotNet5781_03B_2382_5685
                 return NumBus;
             }
         }
-        public string PNumBus
+        public string PNumBus//return the number of the bus according to the number of digits
         {
             set
             {
@@ -250,7 +250,7 @@ namespace dotNet5781_03B_2382_5685
                 inrefull.ReportProgress(i, e.Argument);//דיווח על השינוי
             }
         }
-        public void Refull()
+        public void Refull()//refuelling a bus
         {
 
             
@@ -266,7 +266,7 @@ namespace dotNet5781_03B_2382_5685
                         double delek = 1200 - this.ProFuel;//checking how much fuel the  bus need
                         this.ProFuel += delek;//updating the fuel tank
                         this.ProStat = Status.InFual;
-                        inrefull.RunWorkerAsync(this);//start thread--פה מתחיל התהליכון
+                        inrefull.RunWorkerAsync(this);//start process
                     }
                 }
                 else
@@ -279,32 +279,8 @@ namespace dotNet5781_03B_2382_5685
        
 
 
-        /*public static string ShowKmSinceLastTreatment(List<Bus> L1)
-        {
-           
-            bool isEmpty = !L1.Any();
-            if (!isEmpty)
-            {
-                foreach (Bus bus in L1)//Presentation of the km since the last treatment for all vehicles in the company.
-                {
-                    //Console.Write("Registration Number:");
-                    if (bus.ProStartDate.Year < 2018)//print 7 digits
-                    {
-
-                       return string.Format ("{0}-{1}-{2}", bus.ProNumBus.Substring(0, 2), bus.ProNumBus.Substring(2, 3), bus.ProNumBus.Substring(5, 2));
-                    }
-                    else//print 8 digits
-                    {
-                        return string.Format("{0}-{1}-{2}", bus.ProNumBus.Substring(0, 3), bus.ProNumBus.Substring(3, 2), bus.ProNumBus.Substring(5, 3));
-
-                    }
-                    //Console.WriteLine("Km since last treatment:{0}", bus.ProKilometrathAfterTipul);
-
-                }
-            }
-            return null;
-        }*/
-        public bool canTravel()
+     
+        public bool canTravel()//a function that check if a bus can travell
         {
             double g = r.Next(1200);
             if ((ProKilometrathAfterTipul) + g >= 20000 || (DateTime.Now - ProLastDate).TotalDays >= 365)

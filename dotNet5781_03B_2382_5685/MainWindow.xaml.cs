@@ -23,7 +23,10 @@ namespace dotNet5781_03B_2382_5685
     // הערות לבודקת:
     //כשמוסיפים אוטובוס אז הארוע שגורם לזה להתבצע בסוף 
     //לאחר מילוי הפרטים להוספה-הוא איקס על החלון
-    //בנוסף כששלחנו אוטובוס לטיפול הוא גם מתדלק אם צריך ולכן שולח גם הודעה בהתאם גם לגבי התדלוק
+   //בנוסף כששלחנו אוטובוס לטיפול הוא גם מתדלק אם צריך ולכן שולח גם הודעה בהתאם גם לגבי התדלוק
+   
+   //בונוסים:אנטר בהכנסת מרחק לנסיעה,חלון שמראה את הזמן שנשאר בשניות הן בחלון הראשי והן בנוכחי,,גרפיקה 
+    
     public partial class MainWindow : Window
     {
         static Random r = new Random(DateTime.Now.Millisecond);
@@ -36,7 +39,7 @@ namespace dotNet5781_03B_2382_5685
             DataContext = HelpBusList.L1;
            
             DateTime d;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)//randomalization for 10 buses
             {
                 string s;
                 /*int num= r.Next(1000000, 99999999);//randomaly number of licence
@@ -119,7 +122,7 @@ namespace dotNet5781_03B_2382_5685
         }
         
 
-        private void Button_Click(object sender, RoutedEventArgs e)//go to a ride
+        private void Button_Click(object sender, RoutedEventArgs e)//go to a travel
         {
             
            var t=((sender as Button).DataContext as Bus);
@@ -150,7 +153,7 @@ namespace dotNet5781_03B_2382_5685
 
         
 
-        private void lbBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)//להציג פרטי אוטובוס
+        private void lbBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)//show bus details
         {
             var t = lbBuses.SelectedItem as Bus;
             if (t.ProStat != Status.readyForTravel)//if its during another proccess
