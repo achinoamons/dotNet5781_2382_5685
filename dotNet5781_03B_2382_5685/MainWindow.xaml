@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_2382_5685"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="BusSystem" Height="450" Width="800" Icon="WhatsApp Image 2020-12-16 at 10.45.50 (2).jpeg" >
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
@@ -24,19 +24,19 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
-                 Text="{Binding Path=PNumBus}" Width="70" />
+                 Text="{Binding Path=PNumBus}" Width="70" FontFamily="Kristen ITC" FontWeight="Bold" />
                 <Button Grid.Column="1"
-                  Content="Start driving" Click="Button_Click" />
+                  Content="Start driving"  Width="80" Click="Button_Click" FontFamily="Kristen ITC" Background="#FFFBD529"/>
                 <Button Grid.Column="2"
-                  Content="Refueling: " Click="Button_Click_1" />
+                  Content="Refueling: "  Width="80" Click="Button_Click_1" FontFamily="Kristen ITC" Background="#FFFFF637"/>
                 <Label Grid.Column="3"
-                  Content="KM:" />
+                  Content="KM:" FontFamily="Kristen ITC" />
                 <TextBox Grid.Column="4"
-                  Text="{Binding Path=ProKilometrath}" Width="50"/>
+                  Text="{Binding Path=ProKilometrath}" Width="50" FontFamily="Kristen ITC"/>
                 <ProgressBar x:Name="progress" Grid.Column="5"
-                   Value="{Binding MyPropertyTime, UpdateSourceTrigger=PropertyChanged}"  Width="150" Maximum="100"/>
+                   Value="{Binding MyPropertyTime, UpdateSourceTrigger=PropertyChanged}"  Width="150" Maximum="100" Background="#FFAFF595"/>
                 <TextBox Grid.Column="6"
-                  Text="{Binding MyPropertyForRemainSecond, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible" Width="50"/>
+                   FontFamily="Kristen ITC" Text="{Binding MyPropertyForRemainSecond, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible" Width="50"/>
             </Grid>
 
         </DataTemplate>
@@ -45,8 +45,21 @@
 
 
     <Grid>
-        <ListBox ItemsSource="{Binding}"  ItemTemplate="{StaticResource BusTemplate}" x:Name="lbBuses" HorizontalAlignment="Left" Height="271" Margin="49,45,0,0" VerticalAlignment="Top" Width="691" MouseDoubleClick="lbBuses_MouseDoubleClick" />
-        <Button x:Name="btadd" Content="Add Bus" HorizontalAlignment="Left" Margin="70,351,0,0" VerticalAlignment="Top" Width="107" Height="43" Click="btadd_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="390*" />
+            <RowDefinition Height="110*"/>
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding}" Grid.Row="0" ItemTemplate="{StaticResource BusTemplate}" x:Name="lbBuses" HorizontalAlignment="Left" Height="271" Margin="49,27,0,0" VerticalAlignment="Top" Width="691" MouseDoubleClick="lbBuses_MouseDoubleClick" />
+        <Button x:Name="btadd" Content="Add Bus"  HorizontalAlignment="Left" Margin="92,22,0,0" VerticalAlignment="Top" Width="107" Height="43" Click="btadd_Click" Background="#FFAAE464" FontWeight="Bold" FontSize="16" FontFamily="Kristen ITC" Grid.Row="1"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="290,2,0,0" VerticalAlignment="Top" Width="368" Height="88" Grid.Row="1">
+            <Label.Background>
+                <ImageBrush ImageSource="WhatsApp Image 2020-12-16 at 11.51.37.jpeg"/>
+            </Label.Background>
+        </Label>
+
+
+
+
 
     </Grid>
 </Window>

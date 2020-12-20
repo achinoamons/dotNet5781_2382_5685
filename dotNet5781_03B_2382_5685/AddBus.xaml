@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_2382_5685"
         mc:Ignorable="d"
-        Title="AddBus" Height="450" Width="509.94" Closed="Window_Closed">
+        Title="AddBus" Height="450" Width="509.94" Closed="Window_Closed" Icon="WhatsApp Image 2020-12-16 at 11.51.37.jpeg">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="WhatsApp Image 2020-12-16 at 12.32.40.jpeg"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="196*"/>
-            <ColumnDefinition Width="55*"/>
+
         </Grid.ColumnDefinitions>
-        <Label Content="Enter bus number(7 or 8 digits)" HorizontalAlignment="Center" Margin="143,94,91,274" VerticalAlignment="Center" Height="51" Width="268" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="tbnumber" HorizontalAlignment="Left" Height="23" Margin="188,150,0,0" TextWrapping="Wrap"  Text="" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="date" HorizontalAlignment="Left" Margin="143,217,0,0" VerticalAlignment="Top" Height="41" Width="211" Text=""/>
+        <Label Content="Enter bus number(7 or 8 digits)" HorizontalAlignment="Center" Margin="104,51,77,331" VerticalAlignment="Center" Height="37" Width="321" FontFamily="Kristen ITC" FontSize="20" Background="#FFFFF8FC" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbnumber" HorizontalAlignment="Center" Height="24" Margin="184,320,198,75" TextWrapping="Wrap"  Text="" VerticalAlignment="Center" Width="120" Background="#FFFFF7FF" FontFamily="Kristen ITC" FontWeight="Bold"/>
+        <DatePicker x:Name="date" HorizontalAlignment="Center" Margin="146,349,145,29" VerticalAlignment="Center" Height="41" Width="211" Text="" FontFamily="Kristen ITC"/>
 
     </Grid>
 </Window>
