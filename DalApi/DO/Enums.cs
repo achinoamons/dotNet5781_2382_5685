@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DL
+namespace DO
 {
-    public class Class1
-    {
-    }
+    public enum Areas {General, North, South, East, West, Center, LowLand, Jerusalem }
 }
+
