@@ -47,10 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DalApi\DLAPI.csproj">
-      <Project>{b3e377aa-2e61-4e9d-b0db-b3d7c7d0fd07}</Project>
-      <Name>DLAPI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DalObject\DLObject.csproj">
       <Project>{60c66f3f-54c4-4b5c-8cc2-9aee04ca28fc}</Project>
       <Name>DLObject</Name>
