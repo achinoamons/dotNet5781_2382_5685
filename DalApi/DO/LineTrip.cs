@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DO
-{
+{/// <summary>
+/// יציאת קו
+/// </summary>
     public class LineTrip
     {
         public int LineTripId { get; set; }

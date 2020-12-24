@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public enum Areas {General, North, South, East, West, Center, LowLand, Jerusalem }
+
+    public enum Areas { General, North, South, East, West, Center, LowLand, Jerusalem }
+    public enum BusStatus { readyForTravel, duringTravel, InFual, InTreatment }
 }
 

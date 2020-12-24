@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// 
+    /// מידע על 2 תחנות עוקבות
+    /// </summary>
     public class AdjacentStations
     {
         public int Station1 { get; set; }

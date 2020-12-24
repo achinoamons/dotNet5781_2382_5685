@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DO
-{
+{/// <summary>
+/// נסיעת משתמש
+/// </summary>
    public class Trip
     {
         public int IdTrip { get; set; }
