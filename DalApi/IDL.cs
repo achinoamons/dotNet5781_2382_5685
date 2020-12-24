@@ -58,7 +58,6 @@ namespace DLAPI
         void UpdateLineTrip(int id, Action<LineTrip> update); //method that knows to updt specific fields in Person
         void DeleteLineTrip(int id);
         #endregion
-
         #region Station
         IEnumerable<Station> GetAllPersons();
         IEnumerable<Station> GetAllStationsBy(Predicate<Station> predicate);
