@@ -10,7 +10,7 @@ namespace DO
 /// </summary>
    public class Trip
     {
-        public int IdTrip { get; set; }//מספר נסיעה של המשתמש
+        public int IdTrip { get; set; }//מספר נסיעה של המשתמש-מזהה יחודי
         public string UserName { get; set; }//שם משתמש
         public int LineId { get; set; }//מזהה קו-מספר הקו
         public int InStation { get; set; }//תחנת עלייה

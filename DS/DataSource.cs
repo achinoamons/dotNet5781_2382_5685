@@ -30,18 +30,18 @@ namespace DS
         static  void InitAllLists()
         {
             //
-            ListLines = new List<Line>();
+            ListLines = new List<Line>();//רשימה של 4 קוים----1-2-3-4
             for (int i = 1; i < 5; i++)
             {
                 Line l = new Line();
-                l.LineID = ++help;
-                l.Code = help * 10;
+                l.LineID = ++help;//מס  יחודי של הקו
+                l.Code = help * 10;//קוד הקו---יותר לאזורים וכאלה.. 
                 l.FirstStation = i;
                 l.LastStation = i * help;
                 ListLines.Add(l);
             }
             //
-            ListStations = new List<Station>();
+            ListStations = new List<Station>();//רשימת תחנות פיזיות----9 תחנות
 
            
             for (int i = 0; i < 9; i++)
@@ -49,8 +49,8 @@ namespace DS
 
                 Station st = new Station();
                 st.CodeStation = help1++;
-                st.Latitude= (int)(r.NextDouble() * (31 - 33.3) + 31);
-                st.Longitude = (int)(r.NextDouble() * (34.3 - 35.5) + 34.3);
+                st.Latitude= (r.NextDouble() * (31 - 33.3) + 31);
+                st.Longitude = (r.NextDouble() * (34.3 - 35.5) + 34.3);
                 ListStations.Add(st);
                 }
             ListStations[0].Name = "Shal st.-Gold st.";
@@ -64,15 +64,15 @@ namespace DS
             ListStations[8].Name = "Hayarkon st. -Hanarkis st.";
 
             //
-            ListLineStations = new List<LineStation>();
-            for (int i = 1; i < 4; i++)
+            ListLineStations = new List<LineStation>();//רשימת תחנות לוגיות
+            for (int i = 1; i < 5; i++)
             {
 
                 LineStation lst = new LineStation();
                 lst.LineId = i;
-                lst.StationCode = ListStations[i-1].CodeStation;//כלןמר לתחנות פיזיות 0 ו4 אין אוטובוס שעובר
-                lst.PrevStationCode = r.Next(1, i - 1);
-                lst.NextStationCode = r.Next(i - 1, 9);//כי עשיתי 9 תחנות פיזיות
+                lst.StationCode = ListStations[i-1].CodeStation;//כלןמר 
+                lst.PrevStationCode = r.Next(1, i+1);
+                lst.NextStationCode = r.Next(i+1 , 10);//כי עשיתי 9 תחנות פיזיות
                 ListLineStations.Add(lst);
             }
 
@@ -81,57 +81,58 @@ namespace DS
             for (int i = 0; i < 4; i++)//5 כי הגדרתי רק 5 קוים
             {
                 LineTrip lt = new LineTrip();
-                lt.LineTripId = help1++;
+                lt.LineTripId = help1++;//בגלל שכבר השתמשנו לאתחולים אחרים-זה מתחיל פה מ10 כי היה פור של 9 לתחנות פיזיות
                 lt.LineId = ListLines[i].LineID;
                 TimeSpan t =(TimeSpan.FromMinutes(r.Next(0, 60)));//תדירות בין 0 ל60
                 lt.Frequency = t;
                 int hours = r.Next(5, 24);
                 int minutes = r.Next(0, 60);
                 TimeSpan tt = new TimeSpan(hours, minutes,0);
-                lt.StartAt = tt;
+                lt.StartAt = tt;//זמן יציאת קו
                 int h = r.Next(0, 3);
                 int m = r.Next(0, 60);
                 TimeSpan ttt = new TimeSpan(h, m, 0);
-                lt.TimeTrip = ttt;
+                lt.TimeTrip = ttt;//משך זמן הנסיעה--שדה שהוספנו
                 lt.FinishAt = tt + ttt;//זמן סיום----זה זמן התחלת נסיעה פלוס זמן הנסיעה
                 ListLineTrips.Add(lt);//הוספה לרשימה
 
             }
             //
             ListTrips = new List<Trip>();
-            for(int i = 1; i < 4; i++)
+            for(int i = 1; i < 5; i++)
             {
                 Trip t = new Trip();
-                t.IdTrip = help1++;//מס הנסיעה של המשתמש
+                t.IdTrip = i;//מס הנסיעה של המשתמש
                 int hours = r.Next(5, 24);
                 int minutes = r.Next(0, 60);
                 TimeSpan tt = new TimeSpan(hours, minutes, 0);
                 t.InAt = tt;///זמן עליה לנסיעה מ5 בבוקר עד 12 בלילה
-                t.InStation = r.Next(1, 10);//באיזה מס תחנה עלה-סהכ יש 9תחנות
-                t.OutStation= r.Next(1, 10);//באיזה מס תחנה ירד-סהכ יש 9תחנות
-                t.LineId = ListLines[i].LineID;//מספר הקו מתוך רשימת הקווים
-                int h = r.Next(0, 3);//זמן נסיעה עד 3 שעות
-                int m = r.Next(0, 60);
+                t.InStation = r.Next(1,i+1);//באיזה מס תחנה עלה-סהכ יש 9תחנות
+                t.OutStation= r.Next(i+1, 10);//באיזה מס תחנה ירד-סהכ יש 9תחנות
+                t.LineId = ListLines[i-1].LineID;//מספר הקו מתוך רשימת הקווים
+                int h = r.Next(0, 3);//זמן נסיעה עד 2 שעות
+                int m = r.Next(1, 60);//פלוס כל הדקות
                 TimeSpan ttt = new TimeSpan(h, m, 0);
                 t.TimeTrip = ttt;//זמן הנסיעה
                 t.OutAt = tt + ttt;//זמן ירידה מהנסיעה זה זמן עליה ועוד זמן הנסיעה 
                 ListTrips.Add(t);
             }
-            ListTrips[1].UserName = "tehila";
-            ListTrips[2].UserName = "sara";
-            ListTrips[3].UserName = "ayala";
+            ListTrips[1].UserName = "Tehila";
+            ListTrips[2].UserName = "Sara";
+            ListTrips[3].UserName = "Ayala";
+            ListTrips[3].UserName = "Achinoam";
             //
-            ListAdjacentStations = new List<AdjacentStations>();
-            for(int i = 0; i < 5; i++)
-            {
+            ListAdjacentStations = new List<AdjacentStations>();//מידע על 2 תחנות עוקבות
+            for(int i = 1; i < 6; i++)
+            {//אם יהיה צורך לעשות תחנות עוקבות להכל---צריך לעשות
                 AdjacentStations a = new AdjacentStations();
-                a.Station1Id = r.Next(1, 10);//מספר תחנה ראשונה -מבין 9 התחנות הקיימות 
-                a.Station2Id= r.Next(1, 10);//מספר תחנה שניה -מבין 9 התחנות הקיימות 
-                int h = r.Next(0, 3);//זמן בין 2 התחנות הוא מקסימום 3 שעות
-                int m = r.Next(0, 60);
-                TimeSpan t = new TimeSpan(h, m, 0);
+                a.Station1Code = r.Next(1, i+1);//מספר תחנה ראשונה -מבין 9 התחנות הקיימות 
+                a.Station2Code= a.Station1Code+1;//מספר תחנה שניה -המס העוקב למס התחנה הראשונה 
+                //int h = r.Next(0, 3);//זמן בין 2 התחנות הוא מקסימום 2 שעות
+                int m = r.Next(0,30);
+                TimeSpan t = new TimeSpan(0, m, 0);//המרחק המקסימלי בין 2 תחנות הוא מקסימום חצי שעה
                 a.Time = t;//זמן בין 2 תחנות 
-                a.Distance = r.Next(500);//מרחק בין תחנות מקסימום 500
+                a.Distance = r.Next(5);// קממרחק בין תחנות מקסימום 5
                 ListAdjacentStations.Add(a);
             }
             //
