@@ -58,5 +58,33 @@ namespace DLAPI
         void UpdateLineTrip(int id, Action<LineTrip> update); //method that knows to updt specific fields in Person
         void DeleteLineTrip(int id);
         #endregion
+
+        #region Station
+        IEnumerable<Station> GetAllPersons();
+        IEnumerable<Station> GetAllStationsBy(Predicate<Station> predicate);
+        Station GetStation(int id);
+        void AddStation(Station station);
+        void UpdateStation(Station station);
+        void UpdateStation(int id, Action<Station> update); //method that knows to updt specific fields in Person
+        void DeleteStation(int id);
+        #endregion
+        #region Trip
+        IEnumerable<Trip> GetAllTrips();
+        IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate);
+        Trip GetTrip(int id);
+        void AddPerson(Trip t);
+        void UpdateTrip(Trip t);
+        void UpdateTrip(int id, Action<Trip> update); //method that knows to updt specific fields in Person
+        void DeleteTrip(int id);
+        #endregion
+        #region User
+        IEnumerable<User> GetAllUsers();
+        IEnumerable<User> GetAllUsersBy(Predicate<User> predicate);
+        User GetUser(int id);
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void UpdateUser(int id, Action<User> update); //method that knows to updt specific fields in Person
+        void DeleteUser(int id);
+        #endregion
     }
 }
