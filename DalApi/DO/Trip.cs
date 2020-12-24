@@ -10,13 +10,14 @@ namespace DO
 /// </summary>
    public class Trip
     {
-        public int IdTrip { get; set; }
-        public string UserName { get; set; }
-        public int LineId { get; set; }
-        public int InStation { get; set; }
-        public TimeSpan InAt { get; set; }
-        public int OutStation { get; set; }
-        public TimeSpan OutAt { get; set; }
+        public int IdTrip { get; set; }//מספר נסיעה של המשתמש
+        public string UserName { get; set; }//שם משתמש
+        public int LineId { get; set; }//מזהה קו-מספר הקו
+        public int InStation { get; set; }//תחנת עלייה
+        public TimeSpan InAt { get; set; }//זמן עליה
+        public TimeSpan TimeTrip { get; set; }//זמן הנסיעה-אני הוספתי 
+        public int OutStation { get; set; }//תחנת ירידה
+        public TimeSpan OutAt { get; set; }//זמן ירידה
 
     }
 }

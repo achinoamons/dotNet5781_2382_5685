@@ -12,12 +12,10 @@ namespace DO
     /// </summary>
     public class AdjacentStations
     {
-        public int Station1 { get; set; }
-        public int CodeStation1 { get; set; }
-        public int CodeStation2 { get; set; }
-        public int Station2 { get; set; }
-        public double Distance { get; set; }
-        public TimeSpan Time { get; set; }
+        public int Station1Id { get; set; }//קוד תחנה ראשונה
+        public int Station2Id { get; set; }//קוד תחנה שנחה
+        public double Distance { get; set; }//מרחק בין תחנות
+        public TimeSpan Time { get; set; }//זמן ממוצע בין התחנות 
 
     }
 }

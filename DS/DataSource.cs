@@ -40,36 +40,6 @@ namespace DS
                 l.LastStation = i * help;
                 ListLines.Add(l);
             }
-
-            /*{
-                new Line
-
-                {
-                     LineID=1,
-                      Code =11,
-                    Area=Areas.Center,
-                    FirstStation =1,
-                     LastStation=2
-                },
-
-                new Line
-                {
-                    LineID=2,
-                      Code =22,
-                    Area=Areas.East,
-                    FirstStation =1,
-                     LastStation=3
-                },
-
-                new Line
-                {
-                   LineID=3,
-                      Code =33,
-                    Area=Areas.Jerusalem,
-                    FirstStation =3,
-                     LastStation=7
-                }
-            };*/
             //
             ListStations = new List<Station>();
 
@@ -127,6 +97,47 @@ namespace DS
                 ListLineTrips.Add(lt);//הוספה לרשימה
 
             }
+            //
+            ListTrips = new List<Trip>();
+            for(int i = 1; i < 4; i++)
+            {
+                Trip t = new Trip();
+                t.IdTrip = help1++;//מס הנסיעה של המשתמש
+                int hours = r.Next(5, 24);
+                int minutes = r.Next(0, 60);
+                TimeSpan tt = new TimeSpan(hours, minutes, 0);
+                t.InAt = tt;///זמן עליה לנסיעה מ5 בבוקר עד 12 בלילה
+                t.InStation = r.Next(1, 10);//באיזה מס תחנה עלה-סהכ יש 9תחנות
+                t.OutStation= r.Next(1, 10);//באיזה מס תחנה ירד-סהכ יש 9תחנות
+                t.LineId = ListLines[i].LineID;//מספר הקו מתוך רשימת הקווים
+                int h = r.Next(0, 3);//זמן נסיעה עד 3 שעות
+                int m = r.Next(0, 60);
+                TimeSpan ttt = new TimeSpan(h, m, 0);
+                t.TimeTrip = ttt;//זמן הנסיעה
+                t.OutAt = tt + ttt;//זמן ירידה מהנסיעה זה זמן עליה ועוד זמן הנסיעה 
+                ListTrips.Add(t);
+            }
+            ListTrips[1].UserName = "tehila";
+            ListTrips[2].UserName = "sara";
+            ListTrips[3].UserName = "ayala";
+            //
+            ListAdjacentStations = new List<AdjacentStations>();
+            for(int i = 0; i < 5; i++)
+            {
+                AdjacentStations a = new AdjacentStations();
+                a.Station1Id = r.Next(1, 10);//מספר תחנה ראשונה -מבין 9 התחנות הקיימות 
+                a.Station2Id= r.Next(1, 10);//מספר תחנה שניה -מבין 9 התחנות הקיימות 
+                int h = r.Next(0, 3);//זמן בין 2 התחנות הוא מקסימום 3 שעות
+                int m = r.Next(0, 60);
+                TimeSpan t = new TimeSpan(h, m, 0);
+                a.Time = t;//זמן בין 2 תחנות 
+                a.Distance = r.Next(500);//מרחק בין תחנות מקסימום 500
+                ListAdjacentStations.Add(a);
+            }
+            //
+
+
+
 
 
 
