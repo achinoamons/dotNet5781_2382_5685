@@ -12,6 +12,12 @@ namespace DS
     {
         //for randomalization initiations
         static Random r = new Random(DateTime.Now.Millisecond);
+        static Random s = new Random();
+        static TimeSpan start = TimeSpan.FromHours(5);
+        static TimeSpan end = TimeSpan.FromHours(12);
+        static int maxminute = (int)((end - start).TotalMinutes);
+        static int minutes = s.Next(maxminute);
+
         static int help = 1;
         static int help1 = 2;
         //
@@ -89,13 +95,23 @@ namespace DS
                 st.Longitude = (int)(r.NextDouble() * (34.3 - 35.5) + 34.3);
                 ListStations.Add(st);
             }
+            //ListTrips = new List<Trip>();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    Trip trip = new Trip();
+            //    trip.IdTrip = help++;
+            //    trip.InAt=start.Add(TimeSpan.FromMinutes(minutes));
+            //    trip.InStation
+
+
+            }
 
 
 
 
 
 
-                
+
 
         }
     }
