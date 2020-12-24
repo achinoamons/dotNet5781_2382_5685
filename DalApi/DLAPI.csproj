@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DO\AdjacentStations.cs" />
+    <Compile Include="DO\Enums.cs" />
+    <Compile Include="DO\Line.cs" />
+    <Compile Include="DO\LineStation.cs" />
+    <Compile Include="DO\Station.cs" />
     <Compile Include="DO\Trip.cs" />
     <Compile Include="DO\LineTrip.cs" />
     <Compile Include="IDL.cs" />
