@@ -11,9 +11,11 @@ namespace DS
 
     {
         //for randomalization initiations
-        static Random r = new Random(DateTime.Now.Millisecond);
-        static int help = 0;
-        static int help1 = 1;
+       public static Random r = new Random(DateTime.Now.Millisecond);
+       public static int staticline = 1;
+       public  static int staticstation = 1000;//code of station is 4 digits
+       public  static int staticlinestation = 1000;
+       public static int help1 = 1;
         //
 
         public static List<Line> ListLines;//
@@ -30,30 +32,32 @@ namespace DS
         static  void InitAllLists()
         {
             //
-            ListLines = new List<Line>();//רשימה של 4 קוים----1-2-3-4
-            for (int i = 1; i < 5; i++)
+            ListLines = new List<Line>();//רשימה של 10 קוים----1-2-3-4
+            for (int i = 1; i <=10; i++)
             {
                 Line l = new Line();
-                l.LineID = ++help;//מס  יחודי של הקו
-                l.Code = help * 10;//קוד הקו---יותר לאזורים וכאלה.. 
+                l.LineID = staticline++;//מס  יחודי של הקו
+                l.Code = staticline * 10;//קוד הקו---יותר לאזורים וכאלה.. 
                 l.FirstStation = i;
-                l.LastStation = i * help;
+                l.LastStation = i * staticline;
                 ListLines.Add(l);
             }
             //
-            ListStations = new List<Station>();//רשימת תחנות פיזיות----9 תחנות
+            ListStations = new List<Station>();//רשימת תחנות פיזיות---50 תחנות
 
            
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 50; i++)
                 {
 
                 Station st = new Station();
-                st.CodeStation = help1++;
+                st.CodeStation = staticstation++;
                 st.Latitude= (r.NextDouble() * (31 - 33.3) + 31);
                 st.Longitude = (r.NextDouble() * (34.3 - 35.5) + 34.3);
+                st.Name = stationnames[i];
                 ListStations.Add(st);
                 }
-            ListStations[0].Name = "Shal st.-Gold st.";
+            
+           /* ListStations[0].Name = "Shal st.-Gold st.";
             ListStations[1].Name = "Shal st.-Havaad Haleumi";
             ListStations[2].Name = "Shahal st.-Heler st.";
             ListStations[3].Name = "Tzomet givat Mordechai-Biat";
@@ -61,16 +65,16 @@ namespace DS
             ListStations[5].Name = "Malcha a";
             ListStations[6].Name = "Agudat Sport Beitar";
             ListStations[7].Name = "Gan Technology";
-            ListStations[8].Name = "Hayarkon st. -Hanarkis st.";
+            ListStations[8].Name = "Hayarkon st. -Hanarkis st.";*/
 
             //
             ListLineStations = new List<LineStation>();//רשימת תחנות לוגיות
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i <= 50; i++)
             {
 
                 LineStation lst = new LineStation();
-                lst.LineId = i;
-                lst.StationCode = ListStations[i-1].CodeStation;//כלןמר 
+                lst.LineId = ListLines[i-1].LineID;
+                lst.StationCode = ListStations[i].CodeStation;//כלןמר 
                 lst.PrevStationCode = r.Next(1, i+1);
                 lst.NextStationCode = r.Next(i+1 , 10);//כי עשיתי 9 תחנות פיזיות
                 ListLineStations.Add(lst);
