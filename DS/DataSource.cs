@@ -33,31 +33,35 @@ namespace DS
         {
             //
             ListLines = new List<Line>();//רשימה של 10 קוים----1-2-3-4
-            for (int i = 1; i <=10; i++)
-            {
+            for (int i = 1; i <11; i++)
+            {//1000---1050
                 Line l = new Line();
                 l.LineID = staticline++;//מס  יחודי של הקו
                 l.Code = staticline * 10;//קוד הקו---יותר לאזורים וכאלה.. 
-                l.FirstStation = i;
-                l.LastStation = i * staticline;
+               //פה אני צריכה ליצור 10 תחנות קו ולהכניס לרשימת תחנות קו--ולפה מכניסה רק ראשון ואחרון
+                
+                l.FirstStation = 1000;
+                if (i <= 5)
+                { l.LastStation = 1000 + i * 10; }//
+                else { l.LastStation = 1000 + i * 5; }//כדי לתת לכל קו 10 תחנות לפחות
                 ListLines.Add(l);
             }
             //
             ListStations = new List<Station>();//רשימת תחנות פיזיות---50 תחנות
-
-           
-            for (int i = 0; i < 50; i++)
+            CreateStations.create50Stations(ListStations);
+            
+           /* for (int i = 0; i < 50; i++)
                 {
 
-                Station st = new Station();
+              Station st = new Station();
                 st.CodeStation = staticstation++;
-                st.Latitude= (r.NextDouble() * (31 - 33.3) + 31);
-                st.Longitude = (r.NextDouble() * (34.3 - 35.5) + 34.3);
-                st.Name = stationnames[i];
+                 st.Latitude= (r.NextDouble() * (31 - 33.3) + 31);
+                 st.Longitude = (r.NextDouble() * (34.3 - 35.5) + 34.3);
+               //  st.Name = stationnames[i];
                 ListStations.Add(st);
                 }
             
-           /* ListStations[0].Name = "Shal st.-Gold st.";
+            ListStations[0].Name = "Shal st.-Gold st.";
             ListStations[1].Name = "Shal st.-Havaad Haleumi";
             ListStations[2].Name = "Shahal st.-Heler st.";
             ListStations[3].Name = "Tzomet givat Mordechai-Biat";
@@ -66,19 +70,20 @@ namespace DS
             ListStations[6].Name = "Agudat Sport Beitar";
             ListStations[7].Name = "Gan Technology";
             ListStations[8].Name = "Hayarkon st. -Hanarkis st.";*/
+              ///////////////////////////////////////////////////////
 
-            //
-            ListLineStations = new List<LineStation>();//רשימת תחנות לוגיות
-            for (int i = 1; i <= 50; i++)
-            {
-
-                LineStation lst = new LineStation();
-                lst.LineId = ListLines[i-1].LineID;
-                lst.StationCode = ListStations[i].CodeStation;//כלןמר 
-                lst.PrevStationCode = r.Next(1, i+1);
-                lst.NextStationCode = r.Next(i+1 , 10);//כי עשיתי 9 תחנות פיזיות
-                ListLineStations.Add(lst);
-            }
+            //העברנו להערה כי הקטע הזה קורה בתוך אתחול של קוים
+            //ListLineStations = new List<LineStation>();//רשימת תחנות לוגיות
+            //for (int i = 1; i <= 50; i++)
+            //{
+                
+            //    LineStation lst = new LineStation();
+            //    lst.LineId = ListLines[i-1].LineID;
+            //    lst.StationCode = ListStations[i].CodeStation;//כלןמר קוד התחנה הפיזית 
+            //    lst.PrevStationCode = r.Next(1, i+1);
+            //    lst.NextStationCode = r.Next(i+1 , 10);//כי עשיתי 9 תחנות פיזיות
+            //    ListLineStations.Add(lst);
+            //}
 
             //
             ListLineTrips = new List<LineTrip>();//יציאת קו
