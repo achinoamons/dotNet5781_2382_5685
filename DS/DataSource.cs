@@ -14,9 +14,10 @@ namespace DS
 
        public static Random r = new Random(DateTime.Now.Millisecond);
        public static int staticline = 1;
-       public  static int staticstation = 1000;//code of station is 4 digits
-       public  static int staticlinestation = 1000;
-       public static int help1 = 1;
+        public static int staticforlinestation = 0;//בשביל מילוי רשימת תחנות קו באמצעות רשימת תחנות פיזיות
+     //  public  static int staticstation = 1000;//code of station is 4 digits
+     // public  static int staticlinestation = 1000;
+        public static int staticforlinetrip = 1;
         //
 
         public static List<Line> ListLines;//
@@ -32,24 +33,45 @@ namespace DS
         }
         static  void InitAllLists()
         {
+           //send it to a function that add the stations for the list
+            CreateStations.create50Stations(ListStations);
+
             //
             ListLines = new List<Line>();//רשימה של 10 קוים----1-2-3-4
             for (int i = 1; i <11; i++)
-            {//1000---1050
-                Line l = new Line();
+            {
+                Line l = new Line();//create line
                 l.LineID = staticline++;//מס  יחודי של הקו
                 l.Code = staticline * 10;//קוד הקו---יותר לאזורים וכאלה.. 
-               //פה אני צריכה ליצור 10 תחנות קו ולהכניס לרשימת תחנות קו--ולפה מכניסה רק ראשון ואחרון
+                                         //פה אני צריכה ליצור 10 תחנות קו ולהכניס לרשימת תחנות קו--ולפה מכניסה רק ראשון ואחרון
+                ListLineStations = new List<LineStation>();//create 10 linestations for the  specific line
                 
-                l.FirstStation = 1000;
-                if (i <= 5)
-                { l.LastStation = 1000 + i * 10; }//
-                else { l.LastStation = 1000 + i * 5; }//כדי לתת לכל קו 10 תחנות לפחות
+                for (int j = 1; i < 11; j++)
+                {
+                    if (j == 1)
+                    {
+                        ListLineStations.Add(new LineStation() { LineId = i, StationCode = ListStations[staticforlinestation].CodeStation, LineStationIndex = j, PrevStationCode = 0, NextStationCode = ListStations[staticforlinestation + 1].CodeStation });//0 because there is no prev station for first station
+                        l.FirstStation = ListStations[staticforlinestation].CodeStation;
+                    }
+                    else if (j == 10)
+                    {
+                        ListLineStations.Add(new LineStation() { LineId = i, StationCode = ListStations[staticforlinestation].CodeStation, LineStationIndex = j, PrevStationCode = ListStations[staticforlinestation - 1].CodeStation, NextStationCode = 0 });//0 because there is no next station for last station
+                        l.LastStation = ListStations[staticforlinestation].CodeStation;
+                    }
+                    else
+                        ListLineStations.Add(new LineStation() { LineId = i, StationCode = ListStations[staticforlinestation].CodeStation, LineStationIndex = j, PrevStationCode = ListStations[staticforlinestation - 1].CodeStation, NextStationCode = ListStations[staticforlinestation + 1].CodeStation });
+
+                    
+                    staticforlinestation++;
+                    if (staticforlinestation == 49)//in case that the physical station end---go to the begining of the list stations
+                        staticforlinestation = 0;
+                }
+                
+                
                 ListLines.Add(l);
             }
             //
-            ListStations = new List<Station>();//רשימת תחנות פיזיות---50 תחנות
-            CreateStations.create50Stations(ListStations);
+            
             
            /* for (int i = 0; i < 50; i++)
                 {
@@ -61,16 +83,7 @@ namespace DS
                //  st.Name = stationnames[i];
                 ListStations.Add(st);
                 }
-            
-            ListStations[0].Name = "Shal st.-Gold st.";
-            ListStations[1].Name = "Shal st.-Havaad Haleumi";
-            ListStations[2].Name = "Shahal st.-Heler st.";
-            ListStations[3].Name = "Tzomet givat Mordechai-Biat";
-            ListStations[4].Name = "Shaarey-Zedek";
-            ListStations[5].Name = "Malcha a";
-            ListStations[6].Name = "Agudat Sport Beitar";
-            ListStations[7].Name = "Gan Technology";
-            ListStations[8].Name = "Hayarkon st. -Hanarkis st.";*/
+           */
               ///////////////////////////////////////////////////////
 
             //העברנו להערה כי הקטע הזה קורה בתוך אתחול של קוים
@@ -88,10 +101,10 @@ namespace DS
 
             //
             ListLineTrips = new List<LineTrip>();//יציאת קו
-            for (int i = 0; i < 4; i++)//5 כי הגדרתי רק 5 קוים
+            for (int i = 0; i < 10; i++)//
             {
                 LineTrip lt = new LineTrip();
-                lt.LineTripId = help1++;//בגלל שכבר השתמשנו לאתחולים אחרים-זה מתחיל פה מ10 כי היה פור של 9 לתחנות פיזיות
+                lt.LineTripId = staticforlinetrip++;
                 lt.LineId = ListLines[i].LineID;
                 TimeSpan t =(TimeSpan.FromMinutes(r.Next(0, 60)));//תדירות בין 0 ל60
                 lt.Frequency = t;
@@ -109,7 +122,7 @@ namespace DS
             }
             //
             ListTrips = new List<Trip>();
-            for(int i = 1; i < 5; i++)
+            for(int i = 1; i < 11; i++)
             {
                 Trip t = new Trip();
                 t.IdTrip = i;//מס הנסיעה של המשתמש
@@ -117,8 +130,10 @@ namespace DS
                 int minutes = r.Next(0, 60);
                 TimeSpan tt = new TimeSpan(hours, minutes, 0);
                 t.InAt = tt;///זמן עליה לנסיעה מ5 בבוקר עד 12 בלילה
-                t.InStation = r.Next(1,i+1);//באיזה מס תחנה עלה-סהכ יש 9תחנות
-                t.OutStation= r.Next(i+1, 10);//באיזה מס תחנה ירד-סהכ יש 9תחנות
+                //t.InStation = r.Next(1,i+1);//באיזה מס תחנה עלה-סהכ יש 9תחנות
+                //t.OutStation= r.Next(i+1, 10);//באיזה מס תחנה ירד-סהכ יש 9תחנות
+                t.InStation = ListLines[i - 1].FirstStation;//we decided that he begins at the first station
+                t.OutStation = ListLines[i - 1].LastStation;//we decided that he ends at the last station
                 t.LineId = ListLines[i-1].LineID;//מספר הקו מתוך רשימת הקווים
                 int h = r.Next(0, 3);//זמן נסיעה עד 2 שעות
                 int m = r.Next(1, 60);//פלוס כל הדקות
@@ -127,18 +142,21 @@ namespace DS
                 t.OutAt = tt + ttt;//זמן ירידה מהנסיעה זה זמן עליה ועוד זמן הנסיעה 
                 ListTrips.Add(t);
             }
-            ListTrips[1].UserName = "Tehila";
-            ListTrips[2].UserName = "Sara";
-            ListTrips[3].UserName = "Ayala";
-            ListTrips[3].UserName = "Achinoam";
+            string[] arr =  { "Tehila","Sara","Ayala","Achinoam","Refael","Yaakov","Mimi","Lea","Chana","Eli" };
+            for (int i = 0; i < 10; i++)
+            {
+                ListTrips[i].UserName = arr[i];
+            }
+            
             //
             ListAdjacentStations = new List<AdjacentStations>();//מידע על 2 תחנות עוקבות
-            for(int i = 1; i < 6; i++)
+            for(int i = 1; i < 11; i++)
             {//אם יהיה צורך לעשות תחנות עוקבות להכל---צריך לעשות
                 AdjacentStations a = new AdjacentStations();
-                a.Station1Code = r.Next(1, i+1);//מספר תחנה ראשונה -מבין 9 התחנות הקיימות 
-                a.Station2Code= a.Station1Code+1;//מספר תחנה שניה -המס העוקב למס התחנה הראשונה 
-                //int h = r.Next(0, 3);//זמן בין 2 התחנות הוא מקסימום 2 שעות
+                //a.Station1Code = r.Next(1, i+1);//מספר תחנה ראשונה -מבין 9 התחנות הקיימות 
+                //a.Station2Code= a.Station1Code+1;//מספר תחנה שניה -המס העוקב למס התחנה הראשונה 
+                a.Station1Code = ListStations[i - 1].CodeStation;
+                a.Station2Code = ListStations[i].CodeStation;
                 int m = r.Next(0,30);
                 TimeSpan t = new TimeSpan(0, m, 0);//המרחק המקסימלי בין 2 תחנות הוא מקסימום חצי שעה
                 a.Time = t;//זמן בין 2 תחנות 
