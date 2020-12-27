@@ -11,6 +11,7 @@ namespace DS
 
     {
         //for randomalization initiations
+
        public static Random r = new Random(DateTime.Now.Millisecond);
        public static int staticline = 1;
        public  static int staticstation = 1000;//code of station is 4 digits
