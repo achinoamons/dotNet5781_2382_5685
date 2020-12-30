@@ -16,6 +16,7 @@ namespace DO
         public int Station2Code { get; set; }//קוד תחנה שניה
         public double Distance { get; set; }//מרחק בין תחנות
         public TimeSpan Time { get; set; }//זמן ממוצע בין התחנות 
+        public override string ToString() => this.ToStringProperty();
 
     }
 }

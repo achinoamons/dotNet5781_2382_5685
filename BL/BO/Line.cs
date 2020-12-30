@@ -13,6 +13,6 @@ namespace BO
         public int Code { get; set; }//קוד ספציפי לדו קו 5 ירושלים וקו 5 ת"א---אז לכל 1 יהיה קוד שונה
         public int FirstStation { get; set; }
         public int LastStation { get; set; }
-
+        public override string ToString() => this.ToStringProperty();
     }
 }

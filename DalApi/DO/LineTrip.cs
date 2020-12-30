@@ -16,6 +16,6 @@ namespace DO
         public TimeSpan StartAt { get; set; }//הגרלה של זמן התחלה
         public TimeSpan TimeTrip { get; set; }//מציין את זמן  הנסיעה----שדה שאנחנו הוספנו
         public TimeSpan FinishAt { get; set; }//זמן סיום לפי משך הנסיעה וזמן התחלה
-
+        public override string ToString() => this.ToStringProperty();
     }
 }

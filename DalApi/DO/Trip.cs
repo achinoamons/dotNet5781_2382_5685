@@ -18,6 +18,6 @@ namespace DO
         public TimeSpan TimeTrip { get; set; }//זמן הנסיעה-אני הוספתי 
         public int OutStation { get; set; }//תחנת ירידה
         public TimeSpan OutAt { get; set; }//זמן ירידה
-
+        public override string ToString() => this.ToStringProperty();
     }
 }

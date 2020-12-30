@@ -19,6 +19,6 @@ namespace BO
         public double DistanceNextStation { get; set; }//מרחק מתחנה הבאה
         public TimeSpan TimePrevStation { get; set; }//זמן מתחנה קודמת
         public TimeSpan TimeNextStation { get; set; }//זמן מתחנה הבאה
-
+        public override string ToString() => this.ToStringProperty();
     }
 }

@@ -13,6 +13,7 @@ namespace DO
         public  Areas Area { get; set; }//אזור שבו הקו פעיל
         public int FirstStation { get; set; }
         public int LastStation { get; set; }
+        public override string ToString() => this.ToStringProperty();
 
     }
 }
