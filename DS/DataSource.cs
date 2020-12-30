@@ -41,7 +41,20 @@ namespace DS
                 Line l = new Line();//create line
                 l.LineID = Configuration.staticline++;//מס  יחודי של הקו---מס רץ---לאזורים וכאלה
                 l.Code = Configuration.staticline * 10;//---אולי הפוך-----לשאול----מס הקו.. 
-                                         //פה אני צריכה ליצור 10 תחנות קו ולהכניס לרשימת תחנות קו--ולפה מכניסה רק ראשון ואחרון
+                int h = r.Next(0,8);
+                switch (h)
+                {
+                    case 0: { l.Area =Areas.General; break; }
+                    case 1:{  l.Area = Areas.North; break; }
+                    case 2: { l.Area = Areas.South; break; }
+                    case 3: { l.Area = Areas.East; break; }
+                    case 4: { l.Area = Areas.West; break; }
+                    case 5: { l.Area = Areas.Center; break; }
+                    case 6: { l.Area =Areas.LowLand; break; }
+                    case 7: { l.Area =Areas.Jerusalem; break; }
+
+                }
+                                      
                 ListLineStations = new List<LineStation>();//create 10 linestations for the  specific line
                 ListAdjacentStations = new List<AdjacentStations>();//create adjcent stations
                 for (int j = 1; i < 11; j++)

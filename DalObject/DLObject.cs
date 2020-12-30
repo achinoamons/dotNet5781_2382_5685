@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
 using DLAPI;
-using DO;
 using DS;
 
 namespace DL
@@ -23,357 +21,137 @@ namespace DL
 
         //Implement IDL methods, CRUD
         #region Line
-        IEnumerable<Line> GetAllLines()
-        { }
-        IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate) { }
-        Line GetLine(int id) { }
-        void AddLine(Line line) { }
-        void UpdateLine(Line line) { }
-        void UpdateLine(int id, Action<Line> update) { }//method that knows to updt specific fields in Person
-        void DeleteLine(int id) { }
+        public IEnumerable<DO.Line> GetAllLines() 
+        {
+            
+            return from line in DataSource.ListLines
+                   select line.Clone();
+        }
+       public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate) 
+        { 
+           return from line in DataSource.ListLines
+                  where predicate(line)
+                  select line.Clone();
+        }
+        public DO.Line GetLine(int id) 
+        {
+            DO.Line l = DataSource.ListLines.Find(p => p.LineID == id);
+
+            if (l != null)
+                return l.Clone();
+            else
+                throw new DO.BadLineIdException(id, $"bad line id: {id}");
+        }
+        public void AddLine(DO.Line line)
+        {
+            if (DataSource.ListLines.FirstOrDefault(p => p.LineID == line.LineID) != null)
+                throw new DO.BadLineIdException(line.LineID, "Duplicate line ID");
+            DataSource.ListLines.Add(line.Clone());
+            /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
+            {
+                DataSource.ListLines[i].LineID++;//update the line id to be bigger in each one
+            }*/
+            DO.Configuration.staticforline++;//?
+        }
+        public void UpdateLine(DO.Line line) 
+        {
+            DO.Line l = DataSource.ListLines.Find(p => p.LineID == line.LineID);
+
+            if (l != null)
+            {
+                DataSource.ListLines.Remove(l);
+                DataSource.ListLines.Add(line.Clone());
+            }
+            else
+                throw new DO.BadLineIdException(l.LineID, $"bad line id: {l.LineID}");
+        }
+      
+        public void UpdateLine(int id, Action<DO.Line> update) //method that knows to updt specific fields in Line
+        {
+
+        }
+            public void DeleteLine(int id)
+        {
+            DO.Line line = DataSource.ListLines.Find(p => p.LineID == id);
+
+            if (line != null)
+            {
+                int g= line.LineID;
+                DataSource.ListLines.Remove(line);
+                for (int i =g ; i <DataSource.ListLines.Count(); i++)
+                {
+                    DataSource.ListLines[i].LineID--;
+                }
+                
+                
+                
+            }
+            else
+                throw new DO.BadLineIdException(id, $"bad line id: {id}");
+        }
         #endregion
         #region LineStation
-        IEnumerable<LineStation> GetAllLineStations() { }
-        IEnumerable<LineStation> GetAllLineStations(Predicate<LineStation> predicate) { }
-        LineStation GetLineStation(int id) { }
-        void AddLineStation(LineStation linestation) { }
-        void UpdateLineStation(LineStation linestation) { }
-        void UpdateLineStation(int id, Action<LineStation> update) { } //method that knows to updt specific fields in Person
-        void DeleteLineStation(int id) { }
+        public IEnumerable<DO.LineStation> GetAllLineStations() { }
+        public IEnumerable<DO.LineStation> GetAllLineStations(Predicate<DO.LineStation> predicate) { }
+        public DO.LineStation GetLineStation(int id) { }
+        public void AddLineStation(DO.LineStation linestation) { }
+        public void UpdateLineStation(DO.LineStation linestation) { }
+        public void UpdateLineStation(int id, Action<DO.LineStation> update) { } //method that knows to updt specific fields in Person
+        public void DeleteLineStation(int id) { }
         #endregion
         #region AdjacentStations
-        IEnumerable<AdjacentStations> GetAllAdjacentStations() { }
-        IEnumerable<AdjacentStations> GetAllAdjacentStationsby(Predicate<AdjacentStations> predicate) { }
-        LineStation GetAdjacentStations(int id) { }
-        void AddAdjacentStations(AdjacentStations adjacentStations) { }
-        void UpdateAdjacentStations(AdjacentStations adjacentStations) { }
-        void UpdateAdjacentStations(int id, Action<AdjacentStations> update) { }//method that knows to updt specific fields in Person
-        void DeleteAdjacentStations(int id) { }
+        public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations() { }
+        public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsby(Predicate<DO.AdjacentStations> predicate) { }
+        public DO.LineStation GetAdjacentStations(int id) { }
+        public void AddAdjacentStations(DO.AdjacentStations adjacentStations) { }
+        public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations) { }
+        public void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update) { }//method that knows to updt specific fields in Person
+        public void DeleteAdjacentStations(int id) { }
         #endregion
-        #region Bus
-        IEnumerable<Bus> GetAllBuses() { }
-        IEnumerable<Bus> GetAllBusesby(Predicate<Bus> predicate) { }
-        LineStation GetBus(int id) { }
-        void AddBus(Bus bus) { }
-        void UpdateBus(Bus bus) { }
-        void UpdateBus(int id, Action<Bus> update) { }//method that knows to updt specific fields in Person
-        void DeleteBus(int id) { }
-        #endregion
-        #region LineTrip
-        IEnumerable<LineTrip> GetAllLineTripes() { }
-        IEnumerable<LineTrip> GetAllLineTripesby(Predicate<LineTrip> predicate) { }
-        LineStation GetLineTrip(int id) { }
-        void AddLineTrip(LineTrip linetrip) { }
-        void UpdateLineTrip(LineTrip linetrip) { }
-        void UpdateLineTrip(int id, Action<LineTrip> update) { } //method that knows to updt specific fields in Person
-        void DeleteLineTrip(int id) { }
-        #endregion
+       /* #region Bus
+        public IEnumerable<DO.Bus> GetAllBuses() { }
+        public IEnumerable<DO.Bus> GetAllBusesby(Predicate<DO.Bus> predicate) { }
+        public DO.LineStation GetBus(int id) { }
+        public void AddBus(DO.Bus bus) { }
+        public void UpdateBus(DO.Bus bus) { }
+        public void UpdateBus(int id, Action<DO.Bus> update) { }//method that knows to updt specific fields in Person
+        public void DeleteBus(int id) { }
+        #endregion*/
+       /* #region LineTrip
+        public IEnumerable<DO.LineTrip> GetAllLineTripes() { }
+        public IEnumerable<DO.LineTrip> GetAllLineTripesby(Predicate<DO.LineTrip> predicate) { }
+        public DO.LineStation GetLineTrip(int id) { }
+        public void AddLineTrip(DO.LineTrip linetrip) { }
+        public void UpdateLineTrip(DO.LineTrip linetrip) { }
+        public void UpdateLineTrip(int id, Action<DO.LineTrip> update) { } //method that knows to updt specific fields in Person
+        public void DeleteLineTrip(int id) { }
+        #endregion*/
         #region Station
-        IEnumerable<Station> GetAllPersons() { }
-        IEnumerable<Station> GetAllStationsBy(Predicate<Station> predicate) { }
-        Station GetStation(int id) { }
-        void AddStation(Station station) { }
-        void UpdateStation(Station station) { }
-        void UpdateStation(int id, Action<Station> update) { } //method that knows to updt specific fields in Person
-        void DeleteStation(int id) { }
+        public IEnumerable<DO.Station> GetAllPersons() { }
+        public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate) { }
+        public DO.Station GetStation(int id) { }
+        public void AddStation(DO.Station station) { }
+        public void UpdateStation(DO.Station station) { }
+        public void UpdateStation(int id, Action<DO.Station> update) { } //method that knows to updt specific fields in Person
+        public void DeleteStation(int id) { }
         #endregion
-        #region Trip
-        IEnumerable<Trip> GetAllTrips() { }
-        IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate) { }
-        Trip GetTrip(int id) { }
-        void AddPerson(Trip t) { }
-        void UpdateTrip(Trip t) { }
-        void UpdateTrip(int id, Action<Trip> update) { } //method that knows to updt specific fields in Person
-        void DeleteTrip(int id) { }
-        #endregion
-        #region User
-        IEnumerable<User> GetAllUsers() { }
-        IEnumerable<User> GetAllUsersBy(Predicate<User> predicate) { }
-        User GetUser(int id) { }
-        void AddUser(User user) { }
-        void UpdateUser(User user) { }
-        void UpdateUser(int id, Action<User> update) { } //method that knows to updt specific fields in Person
-        void DeleteUser(int id) { }
-
-        IEnumerable<Line> IDL.GetAllLines()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Line> IDL.GetAllLinesBy(Predicate<Line> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        Line IDL.GetLine(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddLine(Line line)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateLine(Line line)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateLine(int id, Action<Line> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteLine(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<LineStation> IDL.GetAllLineStations()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<LineStation> IDL.GetAllLineStations(Predicate<LineStation> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        LineStation IDL.GetLineStation(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddLineStation(LineStation linestation)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateLineStation(LineStation linestation)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateLineStation(int id, Action<LineStation> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteLineStation(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<AdjacentStations> IDL.GetAllAdjacentStations()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<AdjacentStations> IDL.GetAllAdjacentStationsby(Predicate<AdjacentStations> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        LineStation IDL.GetAdjacentStations(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddAdjacentStations(AdjacentStations adjacentStations)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateAdjacentStations(AdjacentStations adjacentStations)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateAdjacentStations(int id, Action<AdjacentStations> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteAdjacentStations(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Bus> IDL.GetAllBuses()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Bus> IDL.GetAllBusesby(Predicate<Bus> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        LineStation IDL.GetBus(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddBus(Bus bus)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateBus(Bus bus)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateBus(int id, Action<Bus> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteBus(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<LineTrip> IDL.GetAllLineTripes()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<LineTrip> IDL.GetAllLineTripesby(Predicate<LineTrip> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        LineStation IDL.GetLineTrip(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddLineTrip(LineTrip linetrip)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateLineTrip(LineTrip linetrip)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateLineTrip(int id, Action<LineTrip> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteLineTrip(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Station> IDL.GetAllPersons()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Station> IDL.GetAllStationsBy(Predicate<Station> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        Station IDL.GetStation(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddStation(Station station)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateStation(Station station)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateStation(int id, Action<Station> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteStation(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Trip> IDL.GetAllTrips()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Trip> IDL.GetAllTripsBy(Predicate<Trip> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        Trip IDL.GetTrip(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddPerson(Trip t)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateTrip(Trip t)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateTrip(int id, Action<Trip> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteTrip(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<User> IDL.GetAllUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<User> IDL.GetAllUsersBy(Predicate<User> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        User IDL.GetUser(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.AddUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.UpdateUser(int id, Action<User> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDL.DeleteUser(int id)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+        /*#region Trip
+        public IEnumerable<DO.Trip> GetAllTrips() { }
+        public IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate) { }
+        public DO.Trip GetTrip(int id) { }
+        public void AddPerson(DO.Trip t) { }
+        public void UpdateTrip(DO.Trip t) { }
+        public void UpdateTrip(int id, Action<DO.Trip> update) { } //method that knows to updt specific fields in Person
+        public void DeleteTrip(int id) { }
+        #endregion*/
+       /* #region User
+        public IEnumerable<DO.User> GetAllUsers() { }
+        public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate) { }
+        public DO.User GetUser(int id) { }
+        public void AddUser(DO.User user) { }
+        public void UpdateUser(DO.User user) { }
+        public void UpdateUser(int id, Action<DO.User> update) { } //method that knows to updt specific fields in Person
+        public void DeleteUser(int id) { }
+        #endregion*/
     }
 }

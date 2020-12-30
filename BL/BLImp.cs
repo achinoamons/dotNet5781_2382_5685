@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLAPI;
-using BO;
+//using BO;
 using DLAPI;
 
 namespace BL
@@ -13,12 +13,12 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
         #region Line
-        public void AddLine(Line line)
+        public void AddLine(BO.Line line)
         {
             throw new NotImplementedException();
         }
 
-        public void AddLineStation(LineStation linestation)
+        public void AddLineStation(BO.LineStation linestation)
         {
             throw new NotImplementedException();
         }
@@ -33,22 +33,22 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Line> GetAllLines()
+        public IEnumerable<BO.Line> GetAllLines()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<LineStation> GetAllLineStations()
+        public IEnumerable<BO.LineStation> GetAllLineStations()
         {
             throw new NotImplementedException();
         }
 
-        public Line GetLine()
+        public BO.Line GetLine()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Line> GetLineBy(Predicate<Line> predicate)
+        public IEnumerable<BO.Line> GetLineBy(Predicate<BO.Line> predicate)
         {
             throw new NotImplementedException();
         }
@@ -72,27 +72,27 @@ namespace BL
             return LineStationDoBoAdapter(dlinestion);
         }
 
-        public IEnumerable<LineStation> GetLineStationBy(Predicate<LineStation> predicate)
+        public IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLine(Line line)
+        public void UpdateLine(BO.Line line)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLine(int id, Action<Line> update)
+        public void UpdateLine(int id, Action<BO.Line> update)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLineStation(LineStation linestation)
+        public void UpdateLineStation(BO.LineStation linestation)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLineStation(int id, Action<LineStation> update)
+        public void UpdateLineStation(int id, Action<BO.LineStation> update)
         {
             throw new NotImplementedException();
         }
