@@ -20,7 +20,7 @@ namespace BLAPI
 
         #region LineStation
         IEnumerable<BO.LineStation> GetAllLineStations();//show all linestations
-        BO.LineStation GetLineStation();//show the linestation--
+        BO.LineStation GetLineStation(int code);//show the linestation--
         IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
         void AddLineStation(BO.LineStation linestation);
         void UpdateLineStation(BO.LineStation linestation);
