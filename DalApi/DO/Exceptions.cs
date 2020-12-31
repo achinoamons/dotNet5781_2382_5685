@@ -11,6 +11,11 @@ namespace DO
     {
         public int ID;
         public BadLineIdException(int id) : base() => ID = id;
+
+        public BadLineIdException(string message) : base(message)
+        {
+        }
+
         public BadLineIdException(int id, string message) :
             base(message) => ID = id;
         public BadLineIdException(int id, string message, Exception innerException) :
@@ -52,20 +57,17 @@ namespace DO
         public override string ToString() => base.ToString() + $", bad codestation: {codestation}";
     }
 
-    /*public class BadPersonIdCourseIDException : Exception
+    public class BadStationException : Exception
     {
-        public int personID;
-        public int courseID;
-        public BadPersonIdCourseIDException(int perID, int crsID) : base() { personID = perID; courseID = crsID; }
-        public BadPersonIdCourseIDException(int perID, int crsID, string message) :
-            base(message)
-        { personID = perID; courseID = crsID; }
-        public BadPersonIdCourseIDException(int perID, int crsID, string message, Exception innerException) :
-            base(message, innerException)
-        { personID = perID; courseID = crsID; }
+        public int codestation;
+        public BadStationException(int code) : base() => codestation = code;
+        public BadStationException(int code, string message) :
+            base(message) => codestation = code;
+        public BadStationException(int code, string message, Exception innerException) :
+            base(message, innerException) => codestation = code;
 
-        public override string ToString() => base.ToString() + $", bad person id: {personID} and course id: {courseID}";
-    }*/
+        public override string ToString() => base.ToString() + $", bad codestation: {codestation}";
+    }
 
 }
 
