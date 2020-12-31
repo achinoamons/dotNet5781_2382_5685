@@ -82,9 +82,7 @@ namespace DL
                 {
                     DataSource.ListLines[i].LineID--;
                 }
-                
-                
-                
+                 
             }
             else
                 throw new DO.BadLineIdException(id, $"bad line id: {id}");
@@ -127,13 +125,67 @@ namespace DL
         public void DeleteLineTrip(int id) { }
         #endregion*/
         #region Station
-        public IEnumerable<DO.Station> GetAllPersons() { }
-        public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate) { }
-        public DO.Station GetStation(int id) { }
-        public void AddStation(DO.Station station) { }
-        public void UpdateStation(DO.Station station) { }
-        public void UpdateStation(int id, Action<DO.Station> update) { } //method that knows to updt specific fields in Person
-        public void DeleteStation(int id) { }
+        public IEnumerable<DO.Station> GetAllStations() 
+        {
+            return from Station in DataSource.ListStations
+                   select Station.Clone();
+
+        }
+        public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
+        {
+            return from Station in DataSource.ListStations
+                   where predicate(Station)
+                   select Station.Clone();
+        }
+        public DO.Station GetStation(int CodeStation)
+        {
+            DO.Station S = DataSource.ListStations.Find(p => p.CodeStation== CodeStation);
+
+            if (S != null)
+                return S.Clone();
+            else
+                throw new DO.BadLineIdException(CodeStation, $"bad Station CodeStation: {CodeStation}");
+        }
+        public void AddStation(DO.Station station)
+        {
+            if (DataSource.ListStations.FirstOrDefault(p => p.CodeStation == station.CodeStation) != null)
+                throw new DO.BadLineIdException(station.CodeStation, "Duplicate station CodeStation");
+            DataSource.ListStations.Add(station.Clone());
+
+          
+        }
+        public void UpdateStation(DO.Station station)
+
+        {
+            DO.Station S = DataSource.ListStations.Find(p => p.CodeStation == station.CodeStation);
+
+            if (S != null)
+            {
+                DataSource.ListStations.Remove(S);
+                DataSource.ListStations.Add(station.Clone());
+            }
+            else
+                throw new DO.BadLineIdException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
+        }
+        public void UpdateStation(int codestation, Action<DO.Station> update) { } //method that knows to updt specific fields in Person
+        public void DeleteStation(int codestation)
+        {
+            DO.Station station = DataSource.ListStations.Find(p => p.CodeStation == codestation);
+
+            if (station != null)
+            {
+                //int g = station.CodeStation;
+                DataSource.ListStations.Remove(station);
+            //    for (int i = g; i < DataSource.ListLines.Count(); i++)
+            //    {
+            //        DataSource.ListLines[i].LineID--;
+            //    }
+
+            }
+            else
+                throw new DO.BadLineIdException(codestation, $"bad station codestation: {codestation}");
+        }
+
         #endregion
         /*#region Trip
         public IEnumerable<DO.Trip> GetAllTrips() { }
@@ -144,14 +196,14 @@ namespace DL
         public void UpdateTrip(int id, Action<DO.Trip> update) { } //method that knows to updt specific fields in Person
         public void DeleteTrip(int id) { }
         #endregion*/
-       /* #region User
-        public IEnumerable<DO.User> GetAllUsers() { }
-        public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate) { }
-        public DO.User GetUser(int id) { }
-        public void AddUser(DO.User user) { }
-        public void UpdateUser(DO.User user) { }
-        public void UpdateUser(int id, Action<DO.User> update) { } //method that knows to updt specific fields in Person
-        public void DeleteUser(int id) { }
-        #endregion*/
+        /* #region User
+         public IEnumerable<DO.User> GetAllUsers() { }
+         public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate) { }
+         public DO.User GetUser(int id) { }
+         public void AddUser(DO.User user) { }
+         public void UpdateUser(DO.User user) { }
+         public void UpdateUser(int id, Action<DO.User> update) { } //method that knows to updt specific fields in Person
+         public void DeleteUser(int id) { }
+         #endregion*/
     }
 }

@@ -59,7 +59,7 @@ namespace DLAPI
         void DeleteLineTrip(int id);
         #endregion
         #region Station
-        IEnumerable<DO.Station> GetAllPersons();
+        IEnumerable<DO.Station> GetAllStations();
         IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate);
         DO.Station GetStation(int id);
         void AddStation(DO.Station station);

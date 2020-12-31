@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DO
 {
     [Serializable]
-    public class BadLineIdException : Exception
+    public class BadLineIdException : Exception//exception for line-id
     {
         public int ID;
         public BadLineIdException(int id) : base() => ID = id;
@@ -17,6 +17,17 @@ namespace DO
             base(message, innerException) => ID = id;
 
         public override string ToString() => base.ToString() + $", bad line id: {ID}";
+    }
+    public class BadStationcodeException : Exception//exception for station-code
+    {
+        public int codestation;
+        public BadStationcodeException(int code) : base() => codestation = code;
+        public BadStationcodeException(int code, string message) :
+            base(message) => codestation = code;
+        public BadStationcodeException(int code, string message, Exception innerException) :
+            base(message, innerException) => codestation = code;
+
+        public override string ToString() => base.ToString() + $", bad station code: {codestation}";
     }
 
     /*public class BadPersonIdCourseIDException : Exception
