@@ -11,6 +11,11 @@ namespace DO
     {
         public int ID;
         public BadLineIdException(int id) : base() => ID = id;
+
+        public BadLineIdException(string message) : base(message)
+        {
+        }
+
         public BadLineIdException(int id, string message) :
             base(message) => ID = id;
         public BadLineIdException(int id, string message, Exception innerException) :

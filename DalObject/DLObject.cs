@@ -44,14 +44,11 @@ namespace DL
         }
         public void AddLine(DO.Line line)
         {
-            if (DataSource.ListLines.FirstOrDefault(p => p.LineID == line.LineID) != null)
-                throw new DO.BadLineIdException(line.LineID, "Duplicate line ID");
+            if (DataSource.ListLines.FirstOrDefault(p => p.FirstStation == line.FirstStation&&p.LastStation==line.LastStation) != null)
+                throw new DO.BadLineIdException( "Duplicate line");
+            line.LineID= DO.Configuration.staticforline++;
             DataSource.ListLines.Add(line.Clone());
-            /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
-            {
-                DataSource.ListLines[i].LineID++;//update the line id to be bigger in each one
-            }*/
-            DO.Configuration.staticforline++;//?
+           
         }
         public void UpdateLine(DO.Line line) 
         {
@@ -111,10 +108,21 @@ namespace DL
             else
                 throw new DO.BadLineStationIdException(id, $"bad linestation line id: {id}");
         }
-        public void AddLineStation(DO.LineStation linestation)
+        public void AddLineStation(DO.LineStation linestation)//אין לנו עדיין תנאי סינון מתאים להוספת תחנת קו--צרך לשאול את המורה אם נכון
         {
-            if (DataSource.ListLineStations.FirstOrDefault(p => p.LineId == linestation.LineId) != null)
-                throw new DO.BadLineStationIdException(linestation.LineId, "Duplicate line ID of line station");
+            bool flag = false;
+            for (int i = 0; i < DataSource.ListLineStations.Count(); i++)//to check if there is a physical station like this
+            {
+                if (DataSource.ListLineStations[i].StationCode == linestation.StationCode)
+                {
+                    flag = true;
+                    break; 
+                }
+            }
+            if(!flag)//if there is no station like this
+                throw new DO.BadLineStationIdException(linestation.StationCode, "there is no station code like this ");
+            if (DataSource.ListLineStations.FirstOrDefault(p => p.StationCode==linestation.StationCode&&p.PrevStationCode==linestation.PrevStationCode&&p.NextStationCode==linestation.NextStationCode&&p.LineStationIndex==linestation.LineStationIndex) != null)
+                throw new DO.BadLineStationIdException(linestation.StationCode, "Duplicate line station ");
             DataSource.ListLineStations.Add(linestation.Clone());
             /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
             {
@@ -211,7 +219,7 @@ namespace DL
                 throw new DO.BadAdjacentStationsException(i, j, $"bad codes: {i},{j} there are no such adjacent stations");
         }
         #endregion
-       /* #region Bus
+        /* #region Bus
         public IEnumerable<DO.Bus> GetAllBuses() { }
         public IEnumerable<DO.Bus> GetAllBusesby(Predicate<DO.Bus> predicate) { }
         public DO.LineStation GetBus(int id) { }
@@ -220,7 +228,7 @@ namespace DL
         public void UpdateBus(int id, Action<DO.Bus> update) { }//method that knows to updt specific fields in Person
         public void DeleteBus(int id) { }
         #endregion*/
-       /* #region LineTrip
+        /* #region LineTrip
         public IEnumerable<DO.LineTrip> GetAllLineTripes() { }
         public IEnumerable<DO.LineTrip> GetAllLineTripesby(Predicate<DO.LineTrip> predicate) { }
         public DO.LineStation GetLineTrip(int id) { }
@@ -247,7 +255,7 @@ namespace DL
         public void UpdateTrip(int id, Action<DO.Trip> update) { } //method that knows to updt specific fields in Person
         public void DeleteTrip(int id) { }
         #endregion*/
-       /* #region User
+        /* #region User
         public IEnumerable<DO.User> GetAllUsers() { }
         public IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate) { }
         public DO.User GetUser(int id) { }

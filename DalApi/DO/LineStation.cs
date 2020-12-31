@@ -12,9 +12,9 @@ namespace DO
     {
         public int LineId { get; set; }//מזהה קו
         public int StationCode { get; set; }//קוד תחנה פיזית
-        public int LineStationIndex { get; set; }//מס תחנה בקו---- כלומר איזה מס תחנה אני בקו
-        public int PrevStationCode { get; set; }
-        public int NextStationCode { get; set; }
+        public int LineStationIndex { get; set;}//מס תחנה בקו---- כלומר איזה מס תחנה אני בקו
+        public int PrevStationCode { get; set;}
+        public int NextStationCode { get; set;}  
         public override string ToString() => this.ToStringProperty();
 
     }
