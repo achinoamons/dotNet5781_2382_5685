@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DO
 {
     [Serializable]
-    public class BadLineIdException : Exception//exception for line-id
+    public class BadLineIdException : Exception
     {
         public int ID;
         public BadLineIdException(int id) : base() => ID = id;
@@ -18,16 +18,27 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad line id: {ID}";
     }
-    public class BadStationcodeException : Exception//exception for station-code
+    public class BadLineStationIdException : Exception
     {
-        public int codestation;
-        public BadStationcodeException(int code) : base() => codestation = code;
-        public BadStationcodeException(int code, string message) :
-            base(message) => codestation = code;
-        public BadStationcodeException(int code, string message, Exception innerException) :
-            base(message, innerException) => codestation = code;
+        public int ID;
+        public BadLineStationIdException(int id) : base() => ID = id;
+        public BadLineStationIdException(int id, string message) :
+            base(message) => ID = id;
+        public BadLineStationIdException(int id, string message, Exception innerException) :
+            base(message, innerException) => ID = id;
 
-        public override string ToString() => base.ToString() + $", bad station code: {codestation}";
+        public override string ToString() => base.ToString() + $", bad linestation  line id: {ID}";
+    }
+    public class BadAdjacentStationsException : Exception
+    {
+        public int c1, c2;
+        public BadAdjacentStationsException(int i,int j) : base() =>c1=i ;
+        public BadAdjacentStationsException(int i,int j, string message) :
+            base(message) => c1 = i;
+        public BadAdjacentStationsException(int i,int j, string message, Exception innerException) :
+            base(message, innerException) => c1 = i;
+
+        public override string ToString() => base.ToString() + $", bad adjacentStations  codestation1: {c1} codestation2: {c2}";
     }
 
     /*public class BadPersonIdCourseIDException : Exception
