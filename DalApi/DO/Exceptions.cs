@@ -40,6 +40,17 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad adjacentStations  codestation1: {c1} codestation2: {c2}";
     }
+    public class BadodeStationException : Exception
+    {
+        public int codestation;
+        public BadodeStationException(int code) : base() => codestation = code;
+        public BadodeStationException(int code, string message) :
+            base(message) => codestation = code;
+        public BadodeStationException(int code, string message, Exception innerException) :
+            base(message, innerException) => codestation = code;
+
+        public override string ToString() => base.ToString() + $", bad codestation: {codestation}";
+    }
 
     /*public class BadPersonIdCourseIDException : Exception
     {
