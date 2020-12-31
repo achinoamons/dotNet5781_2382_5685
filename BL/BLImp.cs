@@ -9,7 +9,7 @@ using DLAPI;
 
 namespace BL
 {
-    class BLImp:IBL
+    class BLImp : IBL
     {
         IDL dl = DLFactory.GetDL();
         #region Line
@@ -63,14 +63,20 @@ namespace BL
         public BO.LineStation GetLineStation(int code)//
         {
             DO.LineStation dlinestion;
+            DO.Station dstation;
             try
             {
                 dlinestion = dl.GetLineStation(code);
-
+                dstation = dl.GetStation(code);
             }
-            catch { }//צריך למלא--עוד לא טיפלנו בחריגות
-            return LineStationDoBoAdapter(dlinestion);
-        }
+            catch (DO.BadLineStationIdException ex)
+            {
+                throw new BO.BadLineStationException("This linestation is not exist ", ex);
+            }
+            BO.LineStation bls = new BO.LineStation();
+            bls=LineStationDoBoAdapter(dlinestion);
+
+    }
 
         public IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate)
         {

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BLAPI\BLFactory.cs" />
     <Compile Include="BLImp.cs" />
+    <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\Line.cs" />
     <Compile Include="BO\LineStation.cs" />
     <Compile Include="BO\Tools.cs" />
