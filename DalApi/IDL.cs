@@ -13,7 +13,7 @@ namespace DLAPI
     // Delete - delete an instance
     public interface IDL
     {
-        #region Line
+       #region Line
         IEnumerable<DO.Line> GetAllLines();
         IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate);
         DO.Line GetLine(int id);
@@ -22,7 +22,7 @@ namespace DLAPI
         void UpdateLine(int id, Action<DO.Line> update); //method that knows to updt specific fields in Person
         void DeleteLine(int id);
         #endregion
-        #region LineStation
+       #region LineStation
         IEnumerable<DO.LineStation> GetAllLineStations();
         IEnumerable<DO.LineStation> GetAllLineStations(Predicate<DO.LineStation> predicate);
         DO.LineStation GetLineStation(int id);
@@ -31,7 +31,7 @@ namespace DLAPI
         void UpdateLineStation(int id, Action<DO.LineStation> update); //method that knows to updt specific fields in Person
         void DeleteLineStation(int id);
         #endregion
-        #region AdjacentStations
+       #region AdjacentStations
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsby(Predicate<DO.AdjacentStations> predicate);
         DO.AdjacentStations GetAdjacentStations(int i,int j);
@@ -58,7 +58,7 @@ namespace DLAPI
         void UpdateLineTrip(int id, Action<DO.LineTrip> update); //method that knows to updt specific fields in Person
         void DeleteLineTrip(int id);
         #endregion*/
-        #region Station
+       #region Station
         IEnumerable<DO.Station> GetAllStations();
         IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate);
         DO.Station GetStation(int id);
@@ -76,7 +76,7 @@ namespace DLAPI
         void UpdateTrip(int id, Action<DO.Trip> update); //method that knows to updt specific fields in Person
         void DeleteTrip(int id);
         #endregion*/
-        /*#region User
+       /*#region User
         IEnumerable<DO.User> GetAllUsers();
         IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate);
         DO.User GetUser(int id);

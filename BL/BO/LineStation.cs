@@ -6,19 +6,24 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class LineStation
+    public class LineStation :Station 
     {
         IEnumerable<BO.Line> ListOfLines;
-        public int CodeStation { get; set; }//מספר תחנה
-        public string Name { get; set; }//שם תחנה
+        public int LineId { get; set; }//מזהה קו
+        public int StationCode { get; set; }//קוד תחנה פיזית
         public int LineStationIndex { get; set; }//מס תחנה בקו---- כלומר איזה מס תחנה אני בקו
+        public int PrevStationCode { get; set; }
+        public int NextStationCode { get; set; }
+        public override string ToString() => this.ToStringProperty();
+
+        
         //שיכלולים
-        public int PrevStationCode { get; set; }//תחנה קודמת
-        public int NextStationCode { get; set; }//תחנה הבאה
+        //public int PrevStationCode { get; set; }//תחנה קודמת
+       // public int NextStationCode { get; set; }//תחנה הבאה
         public double DistancePrevStation { get; set; }//מרחק מתחנה קודמת
         public double DistanceNextStation { get; set; }//מרחק מתחנה הבאה
         public TimeSpan TimePrevStation { get; set; }//זמן מתחנה קודמת
         public TimeSpan TimeNextStation { get; set; }//זמן מתחנה הבאה
-        public override string ToString() => this.ToStringProperty();
+        //public override string ToString() => this.ToStringProperty();*/
     }
 }
