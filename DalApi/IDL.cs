@@ -34,13 +34,13 @@ namespace DLAPI
         #region AdjacentStations
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsby(Predicate<DO.AdjacentStations> predicate);
-        DO.LineStation GetAdjacentStations(int id);
+        DO.AdjacentStations GetAdjacentStations(int i,int j);
         void AddAdjacentStations(DO.AdjacentStations adjacentStations);
         void UpdateAdjacentStations(DO.AdjacentStations adjacentStations);
         void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update); //method that knows to updt specific fields in Person
-        void DeleteAdjacentStations(int id);
+        void DeleteAdjacentStations(int i,int j);
         #endregion
-        #region Bus
+       /* #region Bus
         IEnumerable<DO.Bus> GetAllBuses();
         IEnumerable<DO.Bus> GetAllBusesby(Predicate<DO.Bus> predicate);
         DO.LineStation GetBus(int id);
@@ -48,8 +48,8 @@ namespace DLAPI
         void UpdateBus(DO.Bus bus);
         void UpdateBus(int id, Action<DO.Bus> update); //method that knows to updt specific fields in Person
         void DeleteBus(int id);
-        #endregion
-        #region LineTrip
+        #endregion*/
+       /* #region LineTrip
         IEnumerable<DO.LineTrip> GetAllLineTripes();
         IEnumerable<DO.LineTrip> GetAllLineTripesby(Predicate<DO.LineTrip> predicate);
         DO.LineStation GetLineTrip(int id);
@@ -57,7 +57,7 @@ namespace DLAPI
         void UpdateLineTrip(DO.LineTrip linetrip);
         void UpdateLineTrip(int id, Action<DO.LineTrip> update); //method that knows to updt specific fields in Person
         void DeleteLineTrip(int id);
-        #endregion
+        #endregion*/
         #region Station
         IEnumerable<DO.Station> GetAllPersons();
         IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate);
@@ -67,7 +67,7 @@ namespace DLAPI
         void UpdateStation(int id, Action<DO.Station> update); //method that knows to updt specific fields in Person
         void DeleteStation(int id);
         #endregion
-        #region Trip
+       /* #region Trip
         IEnumerable<DO.Trip> GetAllTrips();
         IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate);
         DO.Trip GetTrip(int id);
@@ -75,8 +75,8 @@ namespace DLAPI
         void UpdateTrip(DO.Trip t);
         void UpdateTrip(int id, Action<DO.Trip> update); //method that knows to updt specific fields in Person
         void DeleteTrip(int id);
-        #endregion
-        #region User
+        #endregion*/
+        /*#region User
         IEnumerable<DO.User> GetAllUsers();
         IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate);
         DO.User GetUser(int id);
@@ -84,6 +84,6 @@ namespace DLAPI
         void UpdateUser(DO.User user);
         void UpdateUser(int id, Action<DO.User> update); //method that knows to updt specific fields in Person
         void DeleteUser(int id);
-        #endregion
+        #endregion*/
     }
 }
