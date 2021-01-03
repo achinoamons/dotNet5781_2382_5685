@@ -8,7 +8,7 @@ namespace BO
 {
     public class LineStation :Station 
     {
-        IEnumerable<BO.Line> ListOfLines;
+       // IEnumerable<BO.Line> ListOfLines;
         public int LineId { get; set; }//מזהה קו
         public int StationCode { get; set; }//קוד תחנה פיזית
         public int LineStationIndex { get; set; }//מס תחנה בקו---- כלומר איזה מס תחנה אני בקו
@@ -17,10 +17,8 @@ namespace BO
         public override string ToString() => this.ToStringProperty();
 
         
-        //שיכלולים
-        //public int PrevStationCode { get; set; }//תחנה קודמת
-       // public int NextStationCode { get; set; }//תחנה הבאה
-        public double DistancePrevStation { get; set; }//מרחק מתחנה קודמת
+       
+        /*public double DistancePrevStation { get; set; }//מרחק מתחנה קודמת
         public double DistanceNextStation { get; set; }//מרחק מתחנה הבאה
         public TimeSpan TimePrevStation { get; set; }//זמן מתחנה קודמת
         public TimeSpan TimeNextStation { get; set; }//זמן מתחנה הבאה

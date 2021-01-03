@@ -24,7 +24,7 @@ namespace DLAPI
         #endregion
        #region LineStation
         IEnumerable<DO.LineStation> GetAllLineStations();
-        IEnumerable<DO.LineStation> GetAllLineStations(Predicate<DO.LineStation> predicate);
+        IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate);
         DO.LineStation GetLineStation(int id);
         void AddLineStation(DO.LineStation linestation);
         void UpdateLineStation(DO.LineStation linestation);

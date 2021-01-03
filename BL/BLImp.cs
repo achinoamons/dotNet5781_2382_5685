@@ -42,7 +42,17 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<BO.Line> GetAllLinesPassByStation(int code)
+        {
+           var v= from ls in dl.GetAllLineStationsBy(p => p.StationCode == code)//
+                                select ls;
+            return from st in v
+                   from line in dl.GetAllLines()
+                   let linebo = line.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
+                   where st.LineId == linebo.LineID
+                   select linebo;
 
+        }
         public BO.Line GetLine()
         {
             throw new NotImplementedException();
@@ -60,14 +70,14 @@ namespace BL
             lsdo.CopyPropertiesTo(lsbo);
             return lsbo;
         }
-        public BO.LineStation GetLineStation(int code)//
+        /*public BO.LineStation GetLineStation(int id)//
         {
             DO.LineStation dlinestion;
-            DO.Station dstation;
+            
             try
             {
-                dlinestion = dl.GetLineStation(code);
-                dstation = dl.GetStation(code);
+                dlinestion = dl.GetLineStation(id);
+                //dstation = dl.GetStation(code);
             }
             catch (DO.BadLineStationIdException ex)
             {
@@ -75,8 +85,19 @@ namespace BL
             }
             BO.LineStation bls = new BO.LineStation();
             bls=LineStationDoBoAdapter(dlinestion);
+            bls.
 
-    }
+    }*/
+        public IEnumerable<BO.LineStation> GetAllLineStationsByLineID(int lineid)
+        {
+            return from ls1 in dl.GetAllLineStationsBy(s2 => s2.LineId == lineid)
+                   select ls1.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
+        }
+        public IEnumerable<BO.LineStation> GetAllLineStationsByStationCode(int code)
+        {
+            return from ls1 in dl.GetAllLineStationsBy(s2 => s2.StationCode == code)
+                   select ls1.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
+        }
 
         public IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate)
         {
@@ -103,5 +124,43 @@ namespace BL
             throw new NotImplementedException();
         }
         #endregion
+        #region Station
+        public IEnumerable<BO.Station> GetAllStations()
+        {
+            return from station in dl.GetAllStations()
+                   let BOstation = station.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
+                   select BOstation;
+
+        }
+       public BO.Station GetStation(int code)
+        {
+            DO.Station dostation;
+            try
+            {
+                dostation = dl.GetStation(code);
+            }
+            catch (DO.BadStationException ex)
+            {
+                throw new BO.BadStationException("station code does not exist ", ex);
+            }
+            
+            BO.Station st = new BO.Station();
+            dostation.CopyPropertiesTo(st);
+            st.ListOfLinesPass = GetAllLinesPassByStation(st.CodeStation);
+            //st.ListOfLinesPass = from ls in dl.GetAllLineStationsBy(p => p.StationCode == st.CodeStation)//list of lines pass
+            //                     let BOline = ls.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
+            //                     select BOline;
+
+            st.ListOfAdjStations= from ls in dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation|| p.Station2Code == st.CodeStation)//list of adjacent stations
+                                  let BOADJ = ls.CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations
+                                  select BOADJ;
+
+
+
+            return st;
+
+        }
+        #endregion
+
     }
 }

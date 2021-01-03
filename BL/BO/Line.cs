@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BO
 {
    public class Line
     {
-        IEnumerable<BO.LineStation> ListOfStations;
-      //  IEnumerable<BO.A> ListOfStations;//לא לשכוח להוסחף לפה ישות של רשימת תחנות צמודות
-
-        public int LineID { get; set; }//קןד מזהה רץ יחודי---ספציפי לדוג קו 5
-        public int Code { get; set; }//קוד ספציפי לדו קו 5 ירושלים וקו 5 ת"א---אז לכל 1 יהיה קוד שונה
+       public  IEnumerable<BO.Station> ListOfStations { get; set; }
+        public int Code { get; set; }//code of the line
+        public int LineID { get; set; }
         public int FirstStation { get; set; }
         public int LastStation { get; set; }
+        public Areas area { get; set; }
         public override string ToString() => this.ToStringProperty();
     }
 }
