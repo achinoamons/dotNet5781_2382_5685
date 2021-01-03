@@ -80,7 +80,19 @@ namespace BL
 
         public IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate)
         {
-            throw new NotImplementedException();
+            BO.LineStation bls =new BO.LineStation()
+            DO.LineStation dlinestion;
+            try
+            {
+                dlinestion = dl.GetLineStationBy(StationCode);
+            }
+            catch (DO.BadLineStationIdException ex)
+            {
+                throw new BO.BadLineStationException("This linestation is not exist ", ex);
+            }
+            BO.LineStation bls = new BO.LineStation();
+            bls = LineStationDoBoAdapter(dlinestion);
+            return bls;
         }
 
         public void UpdateLine(BO.Line line)

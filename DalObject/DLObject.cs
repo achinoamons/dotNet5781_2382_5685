@@ -105,7 +105,13 @@ namespace DL
             else
                 throw new DO.BadLineStationIdException(id, $"bad linestation line id: {id}");
         }
-       
+        public IEnumerable<DO.LineStation> GetLineStationBy(Predicate<DO.LineStation> predicate)
+        {
+            return from linestation in DataSource.ListLineStations
+                   where predicate(linestation)
+                   select linestation.Clone();
+        }
+
         public void AddLineStation(DO.LineStation linestation)//אין לנו עדיין תנאי סינון מתאים להוספת תחנת קו--צרך לשאול את המורה אם נכון
         {
             bool flag = false;
