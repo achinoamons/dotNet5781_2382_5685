@@ -11,6 +11,7 @@ namespace DO
         public static int staticline = 1;
         public static int staticforlinestation = 0;//בשביל מילוי רשימת תחנות קו באמצעות רשימת תחנות פיזיות
         public static int staticforlinetrip = 1;
-        public static int staticforline;
+        public static int staticforadjstations=0;//ךחנות צמודות
+
     }
 }

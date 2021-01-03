@@ -8,10 +8,12 @@ namespace BO
 {
    public  class Station
     {
-         public int CodeStation { get; set; }
+        public IEnumerable<BO.Line> ListOfLinesPass { get; set; }
+        public   IEnumerable<BO.AdjacentStations> ListOfAdjStations { get; set; }//list of adj to her
+        public int CodeStation { get; set; }
         public string Name { get; set; }
-       /* public double Longitude { get; set; }
-        public double Latitude { get; set; }*/
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
         public override string ToString() => this.ToStringProperty();
     }
 }

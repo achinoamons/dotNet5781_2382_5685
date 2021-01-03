@@ -28,6 +28,15 @@ namespace BLAPI
         void DeleteLineStation(int id);
         #endregion
 
+        #region Station
+        IEnumerable<BO.LineStation> GetAllStations();//show all stations
+        BO.Station GetStation(int code);//show the linestation--
+        IEnumerable<BO.LineStation> GetStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
+        void AddStation(BO.LineStation linestation);
+        void UpdateStation(BO.LineStation linestation);
+        void UpdateStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
+        void DeleteStation(int id);
+        #endregion
 
     }
 }

@@ -46,7 +46,7 @@ namespace DL
         {
             if (DataSource.ListLines.FirstOrDefault(p => p.FirstStation == line.FirstStation && p.LastStation == line.LastStation) != null)
                 throw new DO.BadLineIdException("Duplicate line");
-            line.LineID = DO.Configuration.staticforline++;
+            line.LineID = DO.Configuration.staticline++;
             DataSource.ListLines.Add(line.Clone());
         }
         public void UpdateLine(DO.Line line) 
@@ -90,7 +90,7 @@ namespace DL
             return from linest in DataSource.ListLineStations
                    select linest.Clone();
         }
-        public IEnumerable<DO.LineStation> GetAllLineStations(Predicate<DO.LineStation> predicate) 
+        public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate) 
         {
             return from linest in DataSource.ListLineStations
                    where predicate(linest)

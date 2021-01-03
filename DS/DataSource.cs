@@ -149,21 +149,55 @@ namespace DS
             {
                 ListTrips[i].UserName = arr[i];
             }
-            
+
             //
             //ListAdjacentStations = new List<AdjacentStations>();//מידע על 2 תחנות עוקבות
-            //for(int i = 1; i < 11; i++)
-            //{//אם יהיה צורך לעשות תחנות עוקבות להכל---צריך לעשות
+            //int c,b;TimeSpan t;
+            //for(int i = 0; i < 50; i++)
+            //{
             //    AdjacentStations a = new AdjacentStations();
-            //    //a.Station1Code = r.Next(1, i+1);//מספר תחנה ראשונה -מבין 9 התחנות הקיימות 
-            //    //a.Station2Code= a.Station1Code+1;//מספר תחנה שניה -המס העוקב למס התחנה הראשונה 
-            //    a.Station1Code = ListStations[i - 1].CodeStation;
-            //    a.Station2Code = ListStations[i].CodeStation;
-            //    int m = r.Next(0,30);
-            //    TimeSpan t = new TimeSpan(0, m, 0);//המרחק המקסימלי בין 2 תחנות הוא מקסימום חצי שעה
+            //AdjacentStations aa= new AdjacentStations();
+            //     if(i==0)
+            //   { a.Station1Code = ListStations[staticforadjstations].CodeStation;
+            //    a.Station2Code = ListStations[staticforadjstations+1].CodeStation;
+            //    c = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforadjstations].Latitude - ListStations[Configuration.staticforadjstations+1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforadjstations].Longitude - ListStations[Configuration.staticforadjstations + 1].Longitude, 2));
+            //     b = (c * 1.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+            //     t = new TimeSpan((long)b);
             //    a.Time = t;//זמן בין 2 תחנות 
-            //    a.Distance = r.Next(5);// קממרחק בין תחנות מקסימום 5
+            //    a.Distance = b;// קממרחק בין תחנות מקסימום 5
+            //   ListAdjacentStations.Add(a); }
+            // if(i==10)
+            //{
+            // a.Station1Code = ListStations[staticforadjstations].CodeStation;
+            //    a.Station2Code = ListStations[staticforadjstations-1].CodeStation;
+            //    c = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforadjstations].Latitude - ListStations[Configuration.staticforadjstations-1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforadjstations].Longitude - ListStations[Configuration.staticforadjstations -1].Longitude, 2));
+            //     b = (c * 1.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+            //     t = new TimeSpan((long)b);
+            //    a.Time = t;//זמן בין 2 תחנות 
+            //    a.Distance = b;// קממרחק בין תחנות מקסימום 5
+            //   ListAdjacentStations.Add(a);
+            //}
+            //else//כל מקרה אחר---מ2 הכיוונים
+            //{
+            //     a.Station1Code = ListStations[staticforadjstations].CodeStation;
+            //    a.Station2Code = ListStations[staticforadjstations -1].CodeStation;
+            //    c = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforadjstations].Latitude - ListStations[Configuration.staticforadjstations-1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforadjstations].Longitude - ListStations[Configuration.staticforadjstations -1].Longitude, 2));
+            //     b = (c * 1.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+            //     t = new TimeSpan((long)b);
+            //    a.Time = t;//זמן בין 2 תחנות 
+            //    a.Distance = b;//
             //    ListAdjacentStations.Add(a);
+
+            //     aa.Station1Code = ListStations[staticforadjstations].CodeStation;
+            //    aa.Station2Code = ListStations[staticforadjstations +1].CodeStation;
+            //    c = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforadjstations].Latitude - ListStations[Configuration.staticforadjstations+1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforadjstations].Longitude - ListStations[Configuration.staticforadjstations +1].Longitude, 2));
+            //     b = (c * 1.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+            //     t = new TimeSpan((long)b);
+            //    aa.Time = t;//זמן בין 2 תחנות 
+            //    aa.Distance = b;//
+            //    ListAdjacentStations.Add(aa);
+            //}
+            //  
             //}
             ////
 
