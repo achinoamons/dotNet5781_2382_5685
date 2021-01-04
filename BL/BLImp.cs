@@ -151,7 +151,7 @@ namespace BL
             //                     let BOline = ls.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
             //                     select BOline;
 
-            st.ListOfAdjStations= from ls in dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation|| p.Station2Code == st.CodeStation)//list of adjacent stations
+            st.ListOfAdjStations= from ls in dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation)//list of adjacent stations
                                   let BOADJ = ls.CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations
                                   select BOADJ;
 

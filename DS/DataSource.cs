@@ -60,13 +60,13 @@ namespace DS
                 for (int j = 1; i < 11; j++)
                 {
                     double a,b = 0;
-                    TimeSpan t ;
+                    TimeSpan t = new TimeSpan();
                     if (j == 1)
                     {
                         ListLineStations.Add(new LineStation() { LineId = i, StationCode = ListStations[Configuration.staticforlinestation].CodeStation, LineStationIndex = j, PrevStationCode = 0, NextStationCode = ListStations[Configuration.staticforlinestation + 1].CodeStation });//0 because there is no prev station for first station
                         a = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforlinestation].Latitude - ListStations[Configuration.staticforlinestation - 1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation - 1].Longitude, 2));
-                         b = (a * 1.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
-                         t = new TimeSpan((long)b);
+                         b = (a * 0.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+                        t = TimeSpan.FromHours(b);
                         ListAdjacentStations.Add(new AdjacentStations() {Station1Code= ListStations[Configuration.staticforlinestation].CodeStation, Station2Code = ListStations[Configuration.staticforlinestation+1].CodeStation,Distance=a,Time=t });//
                         l.FirstStation = ListStations[Configuration.staticforlinestation].CodeStation;
                     }
@@ -80,8 +80,9 @@ namespace DS
                     {
                         ListLineStations.Add(new LineStation() { LineId = i, StationCode = ListStations[Configuration.staticforlinestation].CodeStation, LineStationIndex = j, PrevStationCode = ListStations[Configuration.staticforlinestation - 1].CodeStation, NextStationCode = ListStations[Configuration.staticforlinestation + 1].CodeStation });
                          a = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforlinestation].Latitude - ListStations[Configuration.staticforlinestation - 1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation - 1].Longitude, 2));
-                         b = (a * 1.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
-                         t = new TimeSpan((long)b);
+                         b = (a * 0.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+                                            //t = new TimeSpan((long)b);
+                        t = TimeSpan.FromHours(b);
                         ListAdjacentStations.Add(new AdjacentStations() { Station1Code = ListStations[Configuration.staticforlinestation].CodeStation, Station2Code = ListStations[Configuration.staticforlinestation + 1].CodeStation, Distance = a, Time = t }) ;//
                         //ListAdjacentStations.Add(new AdjacentStations() { Station1Code = ListStations[Configuration.staticforlinestation - 1].CodeStation, Station2Code = ListStations[Configuration.staticforlinestation].CodeStation });//
                     }
