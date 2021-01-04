@@ -403,7 +403,7 @@ namespace BL
         public void AddAdjacentStations(int code1, int code2)//פונקציה שמוסיפה תחנות עוקבות לרשימה
         {
             BO.AdjacentStations boadjacentStations = new BO.AdjacentStations();
-            IEnumerable<BO.AdjacentStations> bolistadjacentStations = new ();/*IEnumerable<BO.AdjacentStations>();*/
+            IEnumerable<BO.AdjacentStations> bolistadjacentStations =();/*IEnumerable<BO.AdjacentStations>();*/
             bolistadjacentStations = GetAllAdjacentStations();
             boadjacentStations.ToList().Add()
         }
