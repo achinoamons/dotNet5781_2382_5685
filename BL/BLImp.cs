@@ -402,10 +402,7 @@ namespace BL
         }
         public void AddAdjacentStations(int code1, int code2)//פונקציה שמוסיפה תחנות עוקבות לרשימה
         {
-
-
            DO.AdjacentStations doadjacentStations=new DO.AdjacentStations();
-
 
             BO.Station st = new BO.Station();
             dostation.CopyPropertiesTo(st);
