@@ -10,29 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BLAPI;
-using BL;
-
 
 namespace PlGui
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ShowItemsOfSystem.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ShowItemsOfSystem : Window
     {
-        IBL bl = BLFactory.GetBL("1");
-        public MainWindow()
+        public ShowItemsOfSystem()
         {
             InitializeComponent();
-        }
-
-        private void btnGO_Click(object sender, RoutedEventArgs e)
-        {
-            ShowItemsOfSystem show = new ShowItemsOfSystem();
-            show.Show();//open a new window
         }
     }
 }

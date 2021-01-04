@@ -16,4 +16,13 @@ namespace BO
         public double Latitude { get; set; }
         public override string ToString() => this.ToStringProperty();
     }
+
+// a x b c d
+// ax
+//xb
+//ab
+//bc
+//cd
+
+
 }

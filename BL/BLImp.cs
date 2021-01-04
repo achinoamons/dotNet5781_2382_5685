@@ -407,7 +407,7 @@ namespace BL
                 BO.AdjacentStations boadj = new BO.AdjacentStations();
                 boadj.Station1Code = st1.CodeStation;
                 boadj.Station2Code = st2.CodeStation;
-               double distance= Math.Sqrt(Math.Pow(st1.CodeStation[Configuration.staticforlinestation].Latitude - st2.CodeStation[Configuration.staticforlinestation - 1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation - 1].Longitude, 2));
+                double distance = Math.Sqrt(Math.Pow(st1.CodeStation[Configuration.staticforlinestation].Latitude - st2.CodeStation[Configuration.staticforlinestation - 1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation - 1].Longitude, 2));
                 boadj.Distance = distance;
 
 

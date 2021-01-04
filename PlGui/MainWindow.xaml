@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Welcome to our System! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
+      
+        <Button x:Name="btnGO" Content="LOGIN" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+
     </Grid>
 </Window>
