@@ -18,21 +18,36 @@ namespace DS
         //public static int staticforlinetrip = 1;
         //
 
-        public static List<Line> ListLines;//
-        public static List<LineStation> ListLineStations;//
-        public static List<LineTrip> ListLineTrips;//
-        public static List<Station> ListStations;//
-        public static List<Trip> ListTrips;
-        public static List<AdjacentStations> ListAdjacentStations;
+        public static List<Line> ListLines = new List<Line>();
+        public static List<LineStation> ListLineStations = new List<LineStation>();
+        public static List<LineTrip> ListLineTrips = new List<LineTrip>();
+        public static List<Station> ListStations = new List<Station>();
+        public static List<Trip> ListTrips = new List<Trip>();
+        public static List<AdjacentStations> ListAdjacentStations =new List<AdjacentStations>();
 
-        static DataSource()
+         static DataSource()
         {
-            InitAllLists();
+            InitAllLists_temp();
         }
-        static  void InitAllLists()
+        static void InitAllLists_temp()
         {
-           //send it to a function that add the stations for the list
+            //send it to a function that add the stations for the list
+            ListStations = new List<Station>();
+
             CreateStations.create50Stations(ListStations);
+
+        }
+        static void InitAllLists()
+        {
+            //send it to a function that add the stations for the list
+            ListStations = new List<Station>();
+
+            //st.Add(new Station() { CodeStation = 10, Name = "fff", Latitude = 32.1, Longitude = 34.91 });
+
+
+            CreateStations.create50Stations(ListStations);
+
+
 
             //
             ListLines = new List<Line>();//רשימה של 10 קוים----1-2-3-4
@@ -57,7 +72,7 @@ namespace DS
                                       
                 ListLineStations = new List<LineStation>();//create 10 linestations for the  specific line
                 ListAdjacentStations = new List<AdjacentStations>();//create adjcent stations
-                for (int j = 1; i < 11; j++)
+               /* for (int j = 1; i < 11; j++)
                 {
                     double a,b = 0;
                     TimeSpan t = new TimeSpan();
@@ -95,7 +110,7 @@ namespace DS
                 //Distance = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforlinestation].Latitude - ListStations[Configuration.staticforlinestation-1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation-1].Longitude, 2));
                 /////////לא עשינו מרחק וזמן בין 2 תחנות עוקבותתת
 
-                ListLines.Add(l);
+                ListLines.Add(l);*/
             }
             //
            

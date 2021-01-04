@@ -7,8 +7,8 @@
     <ProjectGuid>{B3E377AA-2E61-4E9D-B0DB-B3D7C7D0FD07}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DalApi</RootNamespace>
-    <AssemblyName>DalApi</AssemblyName>
+    <RootNamespace>DLAPI</RootNamespace>
+    <AssemblyName>DLAPI</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

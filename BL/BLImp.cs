@@ -289,6 +289,7 @@ namespace BL
             return from station in dl.GetAllStations()
                    let BOstation = station.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
                    select BOstation;
+            
 
         }
         public BO.Station GetStation(int code)//מחזיר פרטי תחנה בודדת 
@@ -310,7 +311,7 @@ namespace BL
             //                     let BOline = ls.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
             //                     select BOline;
 
-            st.ListOfAdjStations = from ls in dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation || p.Station2Code == st.CodeStation)//list of adjacent stations
+            st.ListOfAdjStations = from ls in dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation /*|| p.Station2Code == st.CodeStation*/)//list of adjacent stations
                                    let BOADJ = ls.CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations
                                    select BOADJ;
             return st;

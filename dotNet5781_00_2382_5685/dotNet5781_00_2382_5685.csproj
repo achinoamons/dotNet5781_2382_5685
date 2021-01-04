@@ -50,5 +50,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DalApi\DLAPI.csproj">
+      <Project>{B3E377AA-2E61-4E9D-B0DB-B3D7C7D0FD07}</Project>
+      <Name>DLAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

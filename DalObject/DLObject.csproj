@@ -7,8 +7,8 @@
     <ProjectGuid>{60C66F3F-54C4-4B5C-8CC2-9AEE04CA28FC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DalObject</RootNamespace>
-    <AssemblyName>DalObject</AssemblyName>
+    <RootNamespace>DLObject</RootNamespace>
+    <AssemblyName>DLObject</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

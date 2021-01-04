@@ -6,16 +6,44 @@
         xmlns:local="clr-namespace:PlGui"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PlGui.LineStations"
         mc:Ignorable="d"
-        Title="LineStations" Height="450" Width="800" >
-   
-    <Grid>
+        Title="LineStations" Height="450" Width="800" Loaded="Window_Loaded" >
+    <Window.Resources>
+        <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
+    </Window.Resources>
 
-        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="26,29,366,190" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+    <Grid DataContext="{StaticResource stationViewSource}">
+
+        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="26,29,366,190" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="stationDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="codeStationColumn" Width="SizeToHeader" Header="Code Station" Binding="{Binding CodeStation}"/>
-                <DataGridTextColumn x:Name="nameColumn" Width="SizeToHeader" Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn x:Name="nameColumn" Width="50*" Header="Name" Binding="{Binding Name}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <DataGrid x:Name="stationDataGrid1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="476,29,48,190" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="codeStationColumn1" Binding="{Binding CodeStation}" Header="Code Station" Width="50*"/>
+                <DataGridTemplateColumn x:Name="listOfAdjStationsColumn" Header="List Of Adj Stations" Width="50*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox>
+                                <ListBoxItem Content="{Binding ListOfAdjStations}"/>
+                            </ListBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="listOfLinesPassColumn" Header="List Of Lines Pass" Width="50*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox>
+                                <ListBoxItem Content="{Binding ListOfLinesPass}"/>
+                            </ListBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="nameColumn1" Binding="{Binding Name}" Header="Name" Width="50*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
 
     </Grid>
 </Window>

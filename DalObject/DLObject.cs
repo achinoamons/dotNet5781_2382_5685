@@ -244,8 +244,10 @@ namespace DL
         #region Station
         public IEnumerable<DO.Station> GetAllStations() 
         {
-            return from Station in DataSource.ListStations
-                   select Station.Clone();
+           
+
+            return from station in DataSource.ListStations
+                   select station.Clone();
 
         }
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)

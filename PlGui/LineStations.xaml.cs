@@ -25,12 +25,29 @@ namespace PlGui
             InitializeComponent();
             bl = bb;
            
-            List<BO.Station> listOfStations = bl.GetAllStations().ToList();
-            stationDataGrid.DataContext = listOfStations;
+            //List<BO.Station> listOfStations = bl.GetAllStations().ToList();
+            stationDataGrid.DataContext = bl.GetAllStations(); // = listOfStations;
 
 
         }
 
-       
+        private void stationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.Station bs = new BO.Station();
+            bs = (stationDataGrid.SelectedItem as BO.Station);
+            if(bs!=null)
+            {
+
+                stationDataGrid1.DataContext = bl.GetStation(bs.CodeStation);
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // stationViewSource.Source = [generic data source]
+        }
     }
 }
