@@ -169,6 +169,7 @@ namespace BL
                 if (!(boline.ListOfStationsPass.Contains(bostation)))//לבדוק שהתחנה לא קיימת ברשימת הקוים 
                 {
                     boline.ListOfStationsPass.ToList().Add(bostation);
+                    boline.ListOfAdjStations.ToList().
                 }
                 else
                 {
