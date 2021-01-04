@@ -24,4 +24,11 @@ namespace BO
             base(message, innerException) => ID = ((DO.BadLineStationIdException)innerException).ID;
         public override string ToString() => base.ToString() + $", bad Station : {ID}";
     }
+    public class BadLineException : Exception//Exception for line 
+    {
+        public int ID;
+        public BadLineException(string message, Exception innerException) :
+            base(message, innerException) => ID = ((DO.BadLineStationIdException)innerException).ID;
+        public override string ToString() => base.ToString() + $", bad Line : {ID}";
+    }
 };

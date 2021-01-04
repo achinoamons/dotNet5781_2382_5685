@@ -9,7 +9,7 @@ namespace BO
 {
    public class Line
     {
-       public  IEnumerable<BO.Station> ListOfStations { get; set; }
+       public  IEnumerable<BO.Station> ListOfStationsPass { get; set; }
         public int Code { get; set; }//code of the line
         public int LineID { get; set; }
         public int FirstStation { get; set; }

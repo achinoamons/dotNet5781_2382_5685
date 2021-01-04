@@ -31,8 +31,11 @@ namespace BLAPI
         #region Station
         IEnumerable<BO.LineStation> GetAllStations();//show all stations
         BO.Station GetStation(int code);//show the linestation--
+        IEnumerable<BO.Station> GetAllStationsPassByLine(int code);//get list of stations for specific line
         IEnumerable<BO.LineStation> GetStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
         void AddStation(BO.LineStation linestation);
+        void AddLineToStation(BO.Station station, BO.Line line);
+        void DeletLinefromStation(BO.Station station, BO.Line line);
         void UpdateStation(BO.LineStation linestation);
         void UpdateStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
         void DeleteStation(int id);
