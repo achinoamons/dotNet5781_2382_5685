@@ -405,31 +405,22 @@ namespace BL
             try
             {
                 BO.AdjacentStations boadj = new BO.AdjacentStations();
+                DO.AdjacentStations doadj = new DO.AdjacentStations();
                 boadj.Station1Code = st1.CodeStation;
                 boadj.Station2Code = st2.CodeStation;
                 double distance = Math.Sqrt(Math.Pow(st1.CodeStation[Configuration.staticforlinestation].Latitude - st2.CodeStation[Configuration.staticforlinestation - 1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation - 1].Longitude, 2));
                 boadj.Distance = distance;
+                double time= (distance * 0.5) / 70;
+                TimeSpan t = new TimeSpan();
+                t = TimeSpan.FromHours(time);
+                boadj.Time = t;
+                boadj.CopyPropertiesTo(doadj);
 
-
-
-                //    //DO.Station dost1 = new DO.Station();
-                //    //DO.Station dost2 = new DO.Station();
-                //    DO.AdjacentStations doadjacentStations = new DO.AdjacentStations();
-                //    doadjacentStations= dl.GetAdjacentStations(st1.CodeStation,st2.CodeStation);
-                //    doadjacentStations.CopyPropertiesTo()
-                //    //dost1.CopyPropertiesTo(st1);
-                //    //dost2.CopyPropertiesTo(st2);
-                //  DO.AdjacentStations doadjacentStations=new DO.AdjacentStations();
-                //  doadjacentStations.Station1Code = st1.CodeStation;
-                //  doadjacentStations.Station2Code = st2.CodeStation;
-                //double a;
-                //a = Math.Sqrt(Math.Pow(ListStations[Configuration.staticforlinestation].Latitude - ListStations[Configuration.staticforlinestation - 1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation - 1].Longitude, 2));
-
-                //    dl.AddAdjacentStations(doadjacentStations);
-                //}
-                //catch (DO.BadStationException ex)
-                //{
-                //    throw new BO.BadStationException("", ex);
+                dl.AddAdjacentStations(doadj);//נקרא לפונק בדו להוסיף אובייקט לרשימת תחנות צמודות
+            }  
+            catch (DO.BadStationException ex)
+            {
+                throw new BO.BadStationException("", ex);
             }
         }
         #endregion
