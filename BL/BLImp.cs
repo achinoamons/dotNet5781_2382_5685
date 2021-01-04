@@ -336,7 +336,7 @@ namespace BL
                     BO.Station bohelpstat = new BO.Station();
                     bohelpstat = boline.ListOfStationsPass.ToList()[i - 1];
                     boline.ListOfStationsPass.ToList().Add(bostation);
-                    AddAdjacentStations(bohelpstat.CodeStation, bostation.CodeStation);//קריאה לפונק שמעדכנת 2 תחנות עוקבות ברשימת התחנות העוקבות 
+                    AddAdjacentStations(bohelpstat, bostation);//קריאה לפונק שמעדכנת 2 תחנות עוקבות ברשימת התחנות העוקבות 
 
                 }
                 else
@@ -408,7 +408,7 @@ namespace BL
                 DO.AdjacentStations doadj = new DO.AdjacentStations();
                 boadj.Station1Code = st1.CodeStation;
                 boadj.Station2Code = st2.CodeStation;
-                double distance = Math.Sqrt(Math.Pow(st1.CodeStation[Configuration.staticforlinestation].Latitude - st2.CodeStation[Configuration.staticforlinestation - 1].Latitude, 2) + Math.Pow(ListStations[Configuration.staticforlinestation].Longitude - ListStations[Configuration.staticforlinestation - 1].Longitude, 2));
+                double distance = Math.Sqrt(Math.Pow(st1.Latitude - st2.Latitude, 2) + Math.Pow(st1.Longitude - st2.Longitude, 2));
                 boadj.Distance = distance;
                 double time= (distance * 0.5) / 70;
                 TimeSpan t = new TimeSpan();

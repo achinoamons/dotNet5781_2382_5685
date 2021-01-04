@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using BLAPI;
+
 namespace PlGui
 {
     /// <summary>
@@ -19,9 +21,30 @@ namespace PlGui
     /// </summary>
     public partial class ShowItemsOfSystem : Window
     {
-        public ShowItemsOfSystem()
+        IBL bl;
+        public ShowItemsOfSystem(IBL bbl)
         {
+           
             InitializeComponent();
+            bl = bbl;
+        }
+
+        private void btnGO_Click(object sender, RoutedEventArgs e)
+        {
+            if (rblines.IsChecked == true)
+            {
+
+            }
+            else if (rbstations.IsChecked == true)
+            {
+            }
+            else//linestations
+            {
+                LineStations ls = new LineStations(bl);
+                ls.Show();
+
+
+            }
         }
     }
 }

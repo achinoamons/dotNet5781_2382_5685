@@ -62,29 +62,30 @@ namespace BLAPI
 
         #region LineStation
         IEnumerable<BO.LineStation> GetAllLineStations();//show all linestations
-        BO.LineStation GetLineStation(int code);//show the linestation--
-        IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
-        void AddLineStation(BO.LineStation linestation);
-        void UpdateLineStation(BO.LineStation linestation);
-        void UpdateLineStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
-        void DeleteLineStation(int id);
+        IEnumerable<BO.Line> GetAllLinesPassByStation(int code);
+       // BO.LineStation GetLineStation(int code);//show the linestation--
+       //// IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
+       // void AddLineStation(BO.LineStation linestation);
+       // void UpdateLineStation(BO.LineStation linestation);
+       // void UpdateLineStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
+       // void DeleteLineStation(int id);
         #endregion
 
         #region Station
-        IEnumerable<BO.LineStation> GetAllStations();//show all stations
+        IEnumerable<BO.Station> GetAllStations();//show all stations
         BO.Station GetStation(int code);//show the linestation--
-        IEnumerable<BO.Station> GetAllStationsPassByLine(int code);//get list of stations for specific line
-        IEnumerable<BO.LineStation> GetStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
-        void AddStation(BO.LineStation linestation);
+       // IEnumerable<BO.Station> GetAllStationsPassByLine(int code);//get list of stations for specific line
+       // IEnumerable<BO.LineStation> GetStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
+       // void AddStation(BO.LineStation linestation);
         void AddLineToStation(BO.Station station, BO.Line line);
         void DeletLinefromStation(BO.Station station, BO.Line line);
-        void UpdateStation(BO.LineStation linestation);
-        void UpdateStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
-        void DeleteStation(int id);
+        //void UpdateStation(BO.LineStation linestation);
+      //  void UpdateStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
+       // void DeleteStation(int id);
         #endregion
         #region AdjacentStations
         IEnumerable<BO.AdjacentStations> GetAllAdjacentStations();//show all AdjacentStations
-        void AddAdjacentStations(int code1,int code2);
+        void AddAdjacentStations(BO.Station c1,BO.Station c2);
 
         #endregion
 

@@ -10,29 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLAPI;
-using BL;
-
-
 namespace PlGui
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LineStations.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LineStations : Window
     {
-        IBL bl = BLFactory.GetBL("1");
-        public MainWindow()
+        IBL bl;
+        public LineStations(IBL bb)
         {
             InitializeComponent();
+            bl = bb;
+           
+            List<BO.Station> listOfStations = bl.GetAllStations().ToList();
+            stationDataGrid.DataContext = listOfStations;
+
+
         }
 
-        private void btnGO_Click(object sender, RoutedEventArgs e)
-        {
-            ShowItemsOfSystem show = new ShowItemsOfSystem(bl);
-            show.Show();//open a new window
-        }
+       
     }
 }
