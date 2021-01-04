@@ -405,7 +405,7 @@ namespace BL
             BO.AdjacentStations boadjacentStations = new BO.AdjacentStations();
             //IEnumerable<BO.AdjacentStations> bolistadjacentStations =();/*IEnumerable<BO.AdjacentStations>();*/
             bolistadjacentStations = GetAllAdjacentStations();
-            boadjacentStations.ToList().Add()
+            boadjacentStations.ToList().Add();
         }
         #endregion
     }
