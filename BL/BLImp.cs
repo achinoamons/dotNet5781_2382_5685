@@ -332,7 +332,12 @@ namespace BL
                 //throw new Exception("station code does not exist");
                 if (!(boline.ListOfStationsPass.Contains(bostation)))//לבדוק שהתחנה לא קיימת ברשימת הקוים 
                 {
+                    int i = boline.ListOfStationsPass.ToList().Count();//num of station in the list
+                    BO.Station bohelpstat = new BO.Station();
+                    bohelpstat = boline.ListOfStationsPass.ToList()[i - 1];
                     boline.ListOfStationsPass.ToList().Add(bostation);
+                    AddAdjacentStations(bohelpstat.CodeStation, bostation.CodeStation);//קריאה לפונק שמעדכנת 2 תחנות עוקבות ברשימת התחנות העוקבות 
+
                 }
                 else
                 {
@@ -364,9 +369,9 @@ namespace BL
                 BO.Line boline = new BO.Line();
                 dostation.CopyPropertiesTo(bostation);
                 doline.CopyPropertiesTo(boline);
-                if ((boline.ListOfStations.Contains(bostation)))//לבדוק שהתחנה  קיימת ברשימת הקוים 
+                if ((boline.ListOfStationsPass.Contains(bostation)))//לבדוק שהתחנה  קיימת ברשימת הקוים 
                 {
-                    boline.ListOfStations.ToList().Remove(bostation);
+                    boline.ListOfStationsPass.ToList().Remove(bostation);
                 }
                 else
                 {
@@ -387,6 +392,21 @@ namespace BL
             }
         }
 
+        #endregion
+        #region AdjacentStations
+         public IEnumerable<BO.AdjacentStations> GetAllAdjacentStations()//מחזיר את רשימת כל התחנות העוקבות 
+        {
+            return from adjacentStations in dl.GetAllAdjacentStations()
+                   let BOadjacentStations = adjacentStations.CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations
+                   select BOadjacentStations;
+        }
+        public void AddAdjacentStations(int code1, int code2)//פונקציה שמוסיפה תחנות עוקבות לרשימה
+        {
+            BO.AdjacentStations boadjacentStations = new BO.AdjacentStations();
+            IEnumerable<BO.AdjacentStations> bolistadjacentStations = new ();/*IEnumerable<BO.AdjacentStations>();*/
+            bolistadjacentStations = GetAllAdjacentStations();
+            boadjacentStations.ToList().Add()
+        }
         #endregion
     }
 
