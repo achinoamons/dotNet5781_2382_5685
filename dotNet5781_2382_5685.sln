@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DalObject\DLObj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS", "DS\DS.csproj", "{0AB2040F-DDC9-46D8-A5EE-6CBB908A3D00}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57781C05-3210-456A-9C90-AAC3E7882285}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19FB3F66-3BD5-4890-B97A-8C193A591DC8}"
 	ProjectSection(SolutionItems) = preProject
 		bin\config.xml = bin\config.xml
 	EndProjectSection
