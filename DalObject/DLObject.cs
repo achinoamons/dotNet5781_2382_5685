@@ -245,7 +245,6 @@ namespace DL
         public IEnumerable<DO.Station> GetAllStations() 
         {
            
-
             return from station in DataSource.ListStations
                    select station.Clone();
 

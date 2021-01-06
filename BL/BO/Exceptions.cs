@@ -20,6 +20,11 @@ namespace BO
     public class BadStationException : Exception//Exception for line station
     {
         public int ID;
+
+        public BadStationException(string message) : base(message)
+        {
+        }
+
         public BadStationException(string message, Exception innerException) :
             base(message, innerException) => ID = ((DO.BadLineStationIdException)innerException).ID;
         public override string ToString() => base.ToString() + $", bad Station : {ID}";

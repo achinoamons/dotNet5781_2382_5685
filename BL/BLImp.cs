@@ -292,9 +292,31 @@ namespace BL
             
 
         }
+        public void AddStation(BO.Station station)
+        {
+            DO.Station dostation = station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
+            try
+            {
+               dl.AddStation(dostation);
+            }
+            catch (DO.BadStationException ex)
+            {
+                throw new BO.BadStationException("this station already exist", ex);
+            }
+        }
+         public void DeleteStation(int id)
+        {
+            IEnumerable<DO.LineStation> LS= dl.GetAllLineStationsBy(p => p.StationCode == id);
+            if (!LS.Any())
+            {
+                throw new BO.BadStationException("you cannot delete the line");
+            }
+            else
+                dl.DeleteStation(id);
+        }
         public BO.Station GetStation(int code)//מחזיר פרטי תחנה בודדת 
         {
-            DO.Station dostation;
+            DO.Station dostation = new DO.Station();
             try
             {
                 dostation = dl.GetStation(code);

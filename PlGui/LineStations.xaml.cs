@@ -20,34 +20,27 @@ namespace PlGui
     public partial class LineStations : Window
     {
         IBL bl;
+         public BO.Station bs = new BO.Station();
         public LineStations(IBL bb)
         {
             InitializeComponent();
             bl = bb;
-           
+
             //List<BO.Station> listOfStations = bl.GetAllStations().ToList();
-            stationDataGrid.DataContext = bl.GetAllStations(); // = listOfStations;
-
-
-        }
-
-        private void stationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            BO.Station bs = new BO.Station();
-            bs = (stationDataGrid.SelectedItem as BO.Station);
-            if(bs!=null)
+            try
             {
-
-                stationDataGrid1.DataContext = bl.GetStation(bs.CodeStation);
+                stationDataGrid.DataContext = bl.GetAllStations(); // = listOfStations;
             }
+            catch (Exception e) { }
         }
+       
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void stationDataGrid_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
         {
-
-            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // stationViewSource.Source = [generic data source]
+            bs = (stationDataGrid.SelectedItem as BO.Station);
+            bs = bl.GetStation(bs.CodeStation);
+            adjacentStationsDataGrid.ItemsSource = bs.ListOfAdjStations;
+            lineDataGrid.ItemsSource = bs.ListOfLinesPass;
         }
     }
 }
