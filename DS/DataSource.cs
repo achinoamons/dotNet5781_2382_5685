@@ -35,7 +35,7 @@ namespace DS
 
             //ListLines = new List<Line>();//רשימה של 10 קוים----1-2-3-4
           
-            for (int i = 1; i < 11; i++){
+           /* for (int i = 1; i < 11; i++){
 
                 Line l = new Line();//create line
                 l.LineID = Configuration.staticline++;//מס  יחודי של הקו---מס רץ---לאזורים וכאלה
@@ -146,7 +146,7 @@ namespace DS
             for (int i = 0; i < 10; i++)
             {
                 ListTrips[i].UserName = arr[i];
-            }
+            }*/
 
         }
 
