@@ -27,11 +27,10 @@ namespace PlGui
             bl = bb;
 
             //List<BO.Station> listOfStations = bl.GetAllStations().ToList();
-            try
-            {
+            
+            
                 stationDataGrid.DataContext = bl.GetAllStations(); // = listOfStations;
-            }
-            catch (Exception e) { }
+            
         }
        
 
