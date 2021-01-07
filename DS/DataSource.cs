@@ -203,7 +203,7 @@ namespace DS
                     listLineStation.Add(new LineStation() { LineId = 10, StationCode = listStations[48].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[47].CodeStation, NextStationCode = listStations[49].CodeStation });
                     listLineStation.Add(new LineStation() { LineId = 10, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
 
-
+                    listLineStation.Add(new LineStation() { LineId = 1, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
                     #endregion listLineStation
 
 
@@ -289,16 +289,26 @@ namespace DS
                     #region AdjacentStations//איתחול תחנות עוקבות 
 
                     listAdjacentStation = new List<AdjacentStations>();
+                    double a = 0, b = 0;
+                    TimeSpan t = new TimeSpan();
 
-                    foreach (LineStation item in listLineStation)
-                        if (item.NextStationCode != 0)
+                    for (int i = 0; i < listLineStation.Count; i++)
+                    {
+                        if (listLineStation[i].NextStationCode != 0)
                         {
                             AdjacentStations ads = new AdjacentStations();
-                            ads.Station1Code = item.StationCode;
-                            ads.Station2Code = item.NextStationCode;
+                            ads.Station1Code = listLineStation[i].StationCode;
+                            ads.Station2Code = listLineStation[i].NextStationCode;
+                            a = Math.Sqrt(Math.Pow(listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Latitude - listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station2Code))].Latitude, 2) + Math.Pow(listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Longitude - listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station2Code))].Longitude, 2));
+                            b = (a * 0.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+                            t = TimeSpan.FromHours(b);
+                            ads.Distance = b;
+
+                            ads.Time = t;
                             //calculate distance and time
                             listAdjacentStation.Add(ads);
                         }
+                    }
 
                     #endregion AdjacentStations
                 }

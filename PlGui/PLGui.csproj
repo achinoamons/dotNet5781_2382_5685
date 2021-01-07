@@ -55,12 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddStation.xaml.cs">
+      <DependentUpon>AddStation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LineStations.xaml.cs">
       <DependentUpon>LineStations.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShowItemsOfSystem.xaml.cs">
       <DependentUpon>ShowItemsOfSystem.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LineStations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,7 +107,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\BO.AdjacentStations.datasource" />
     <None Include="Properties\DataSources\BO.Line.datasource" />
     <None Include="Properties\DataSources\BO.LineStation.datasource" />
     <None Include="Properties\DataSources\BO.Station.datasource" />

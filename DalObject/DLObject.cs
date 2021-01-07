@@ -40,12 +40,14 @@ namespace DL
             if (l != null)
                 return l.Clone();
             else
-                throw new DO.BadLineIdException(id, $"bad line id: {id}");
+                // throw new DO.BadLineIdException(id, $"bad line id: {id}");
+                throw new DO.NotExistException(id+ $"bad line id");
         }
         public void AddLine(DO.Line line)
         {
             if (DataSource.listLines.FirstOrDefault(p => p.FirstStation == line.FirstStation && p.LastStation == line.LastStation) != null)
-                throw new DO.BadLineIdException("Duplicate line");
+                // throw new DO.BadLineIdException("Duplicate line");
+                throw new DO.OlreadtExistException("Duplicate line");
             line.LineID = DO.Configuration.staticline++;
             DataSource.listLines.Add(line.Clone());
         }
@@ -59,7 +61,8 @@ namespace DL
                 DataSource.listLines.Add(line.Clone());
             }
             else
-                throw new DO.BadLineIdException(l.LineID, $"bad line id: {l.LineID}");
+                //throw new DO.BadLineIdException(l.LineID, $"bad line id: {l.LineID}");
+                throw new DO.NotExistException(l.LineID+" bad line id");
         }
       
         public void UpdateLine(int id, Action<DO.Line> update) //method that knows to updt specific fields in Line
@@ -81,7 +84,8 @@ namespace DL
                  
             }
             else
-                throw new DO.BadLineIdException(id, $"bad line id: {id}");
+                //throw new DO.BadLineIdException(id, $"bad line id: {id}");
+                 throw new DO.NotExistException(id+"bad line id");
         }
         #endregion
         #region LineStation
@@ -103,7 +107,8 @@ namespace DL
             if (ls != null)
                 return ls.Clone();
             else
-                throw new DO.BadLineStationIdException(id, $"bad linestation line id: {id}");
+                // throw new DO.BadLineStationIdException(id, $"bad linestation line id: {id}");
+                throw new DO.OlreadtExistException("the line statation"+id+"is not exist");
         }
         public IEnumerable<DO.LineStation> GetLineStationBy(Predicate<DO.LineStation> predicate)
         {
@@ -124,9 +129,11 @@ namespace DL
                 }
             }
             if (!flag)//if there is no station like this
-                throw new DO.BadLineStationIdException(linestation.StationCode, "there is no station code like this ");
+                      //  throw new DO.BadLineStationIdException(linestation.StationCode, "there is no station code like this ");
+                throw new DO.NotExistException( "there is no station code like this "+ linestation.StationCode);
             if (DataSource.listLineStation.FirstOrDefault(p => p.StationCode == linestation.StationCode && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex) != null)
-                throw new DO.BadLineStationIdException(linestation.StationCode, "Duplicate line station ");
+                //throw new DO.BadLineStationIdException(linestation.StationCode, "Duplicate line station ");
+                throw new DO.OlreadtExistException(linestation.StationCode + " Duplicate line station ");
             DataSource.listLineStation.Add(linestation.Clone());
             /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
             {
@@ -144,7 +151,8 @@ namespace DL
                 DataSource.listLineStation.Add(linestation.Clone());
             }
             else
-                throw new DO.BadLineStationIdException(ls.LineId, $"bad line id of line station: {ls.StationCode}");
+                //throw new DO.BadLineStationIdException(ls.LineId, $"bad line id of line station: {ls.StationCode}");
+                throw new DO.NotExistException(ls.LineId+ $" bad line id of line station: {ls.StationCode}");
         }
         public void UpdateLineStation(int id, Action<DO.LineStation> update) { } //method that knows to updt specific fields in Person
         public void DeleteLineStation(int id)
@@ -161,7 +169,8 @@ namespace DL
                 }
             }
             else
-                throw new DO.BadLineStationIdException(id, $"bad line id of line station: {id}");
+                //throw new DO.BadLineStationIdException(id, $"bad line id of line station: {id}");
+                throw new DO.NotExistException( $"bad line id of line station: {id}");
         }
         #endregion
         #region AdjacentStations
@@ -183,13 +192,15 @@ namespace DL
             if (adj != null)
                 return adj.Clone();
             else
-                throw new DO.BadAdjacentStationsException(code1, code2, $"bad codes: {code1},{code2}");
+                // throw new DO.BadAdjacentStationsException(code1, code2, $"bad codes: {code1},{code2}");
+                throw new DO.NotExistException("there is no adjacent station for codes"+ code1+ code2);
         }
         public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {
             if (DataSource.listAdjacentStation.FirstOrDefault(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code) != null)
-                throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, "Duplicate station1 and station2 code of adjacent station");
-            DataSource.listAdjacentStation.Add(adjacentStations.Clone());
+                //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, "Duplicate station1 and station2 code of adjacent station");
+                throw new DO.OlreadtExistException(adjacentStations.Station1Code+" "+ adjacentStations.Station2Code+ " Duplicate station1 and station2 code of adjacent station");
+                DataSource.listAdjacentStation.Add(adjacentStations.Clone());
             /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
             {
                 DataSource.ListLines[i].LineID++;//update the line id to be bigger in each one
@@ -206,8 +217,10 @@ namespace DL
                 DataSource.listAdjacentStation.Add(adjacentStations.Clone());
             }
             else
-                throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
+                //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
+                throw new DO.NotExistException(adjacentStations.Station1Code+ adjacentStations.Station2Code+$"bad codes");
         }
+
         public void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update) { }//method that knows to updt specific fields in Person
         public void DeleteAdjacentStations(int i, int j)
         {
@@ -219,8 +232,9 @@ namespace DL
                 DataSource.listAdjacentStation.Remove(adj);
             }
             else
-                //throw new DO.BadLineStationIdException(id, $"bad line id of line station: {id}");
-                throw new DO.BadAdjacentStationsException(i, j, $"bad codes: {i},{j} there are no such adjacent stations");
+
+                // throw new DO.BadAdjacentStationsException(i, j, $"bad codes: {i},{j} there are no such adjacent stations");
+                throw new DO.NotExistException(i+" "+ j+" there are no such adjacent stations");
         }
         #endregion
         /* #region Bus
@@ -262,12 +276,14 @@ namespace DL
             if (S != null)
                 return S.Clone();
             else
-                throw new DO.BadStationException(CodeStation, $"bad Station CodeStation: {CodeStation}");
+                //throw new DO.BadStationException(CodeStation, $"bad Station CodeStation: {CodeStation}");
+                throw new DO.NotExistException(CodeStation+ "bad Station CodeStation:");
         }
         public void AddStation(DO.Station station)
         {
             if (DataSource.listStations.FirstOrDefault(p => p.CodeStation == station.CodeStation) != null)
-                throw new DO.BadStationException(station.CodeStation, "Duplicate station CodeStation");
+                //throw new DO.BadStationException(station.CodeStation, "Duplicate station CodeStation");
+                throw new DO.OlreadtExistException(station.CodeStation+ "Duplicate station CodeStation");
             DataSource.listStations.Add(station.Clone());
 
           
@@ -283,7 +299,8 @@ namespace DL
                 DataSource.listStations.Add(station.Clone());
             }
             else
-                throw new DO.BadStationException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
+                // throw new DO.BadStationException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
+                throw new DO.NotExistException(S.CodeStation+ "Station CodeStation");
         }
         public void UpdateStation(int codestation, Action<DO.Station> update) { } //method that knows to updt specific fields in Person
         public void DeleteStation(int codestation)
@@ -301,7 +318,8 @@ namespace DL
 
             }
             else
-                throw new DO.BadStationException(codestation, $"bad station codestation: {codestation}");
+                // throw new DO.BadStationException(codestation, $"bad station codestation: {codestation}");
+                throw new DO.NotExistException(codestation+"bad station codestation");
         }
 
         #endregion

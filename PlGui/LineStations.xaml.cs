@@ -38,18 +38,15 @@ namespace PlGui
         {
             bs = (stationDataGrid.SelectedItem as BO.Station);
             bs = bl.GetStation(bs.CodeStation);
-            adjacentStationsDataGrid.ItemsSource = bs.ListOfAdjStations;
+              lineStationDataGrid.ItemsSource = bs.ListOfAdjStations;
             lineDataGrid.ItemsSource = bs.ListOfLinesPass;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)//add station
         {
-
-            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // stationViewSource.Source = [generic data source]
+            AddStation add = new AddStation(bl);
+            add.Show();
+            stationDataGrid.Items.Refresh();
         }
-
-       
     }
 }

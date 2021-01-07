@@ -8,9 +8,10 @@ namespace BO
 {
    public  class Station
     {
-        
+         public Areas area { get; set; }
         public IEnumerable<BO.Line> ListOfLinesPass { get; set; }//רשימת קווים שעוברים בתחנה
-        public   IEnumerable<BO.AdjacentStations> ListOfAdjStations { get; set; }//list of adj to her
+         // public   IEnumerable<BO.AdjacentStations> ListOfAdjStations { get; set; }//list of adj to her
+        public IEnumerable<BO.LineStation> ListOfAdjStations { get; set; }//list of adj to her
         public int CodeStation { get; set; }
         public string Name { get; set; }
        // public double Longitude { get; set; }
