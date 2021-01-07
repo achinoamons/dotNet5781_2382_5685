@@ -8,10 +8,12 @@ namespace BO
 {
   public  class AdjacentStations
     {
+        public  string stationName { get;set }
         public int Station1Code { get; set; }//code of first station
         public int Station2Code { get; set; }//code of last station
         public double Distance { get; set; }//distance
         public TimeSpan Time { get; set; }//time 
+        public int CodeLine { get; set; }//name of line
         public override string ToString() => this.ToStringProperty();
     }
 }
