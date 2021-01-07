@@ -233,24 +233,24 @@ namespace BL
             lsdo.CopyPropertiesTo(lsbo);
             return lsbo;
         }
-        /*public BO.LineStation GetLineStation(int id)//
-        {
-            DO.LineStation dlinestion;
-            
-            try
-            {
-                dlinestion = dl.GetLineStation(id);
-                //dstation = dl.GetStation(code);
-            }
-            catch (DO.BadLineStationIdException ex)
-            {
-                throw new BO.BadLineStationException("This linestation is not exist ", ex);
-            }
-            BO.LineStation bls = new BO.LineStation();
-            bls=LineStationDoBoAdapter(dlinestion);
-            bls.
+    //    public BO.LineStation GetLineStation(int id)//
+    //    {
+    //        DO.LineStation dlinestion;
 
-    }*/
+    //        try
+    //        {
+    //            dlinestion = dl.GetLineStation(id);
+    //            //dstation = dl.GetStation(code);
+    //        }
+    //        catch (DO.BadLineStationIdException ex)
+    //        {
+    //            throw new BO.BadLineStationException("This linestation is not exist ", ex);
+    //        }
+    //        BO.LineStation bls = new BO.LineStation();
+    //        bls = LineStationDoBoAdapter(dlinestion);
+    //        bls.
+
+    //}
         public IEnumerable<BO.LineStation> GetAllLineStationsByLineID(int lineid)
         {
             return from ls1 in dl.GetAllLineStationsBy(s2 => s2.LineId == lineid)
@@ -292,6 +292,10 @@ namespace BL
             
 
         }
+        //public IEnumerable<BO.Line> ListOfLinesPass()
+        //{
+        //    return GetAllLinesPassByStation();
+        //}
         public void AddStation(BO.Station station)
         {
             DO.Station dostation = station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
