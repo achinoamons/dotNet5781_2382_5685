@@ -18,3 +18,4 @@ namespace BO
         public override string ToString() => this.ToStringProperty();
     }
 }
+
