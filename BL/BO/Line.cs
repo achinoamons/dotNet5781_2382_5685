@@ -11,7 +11,7 @@ namespace BO
     {
         public  IEnumerable<BO.Station/*צריך לשים פה את העוקבות של לאה*/> ListOfStationsPass { get; set; }
         public int Code { get; set; }//code of the line
-       // public int LineID { get; set; }
+       public int LineID { get; set; }//
        // public int FirstStation { get; set; }
        // public int LastStation { get; set; }
         public Areas area { get; set; }

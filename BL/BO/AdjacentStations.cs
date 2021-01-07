@@ -8,7 +8,7 @@ namespace BO
 {
   public  class AdjacentStations
     {
-        public  string stationName { get;set }
+        public  string stationName { get; set; }
         public int Station1Code { get; set; }//code of first station
         public int Station2Code { get; set; }//code of last station
         public double Distance { get; set; }//distance

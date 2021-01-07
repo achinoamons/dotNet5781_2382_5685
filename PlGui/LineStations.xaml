@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:PlGui"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PlGui.LineStations"
         mc:Ignorable="d"
-        Title="LineStations" Height="450" Width="800"   >
- 
+        Title="LineStations" Height="450" Width="800"  >
+   
+
 
     <Grid >
 
@@ -33,10 +34,12 @@
         </DataGrid>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="467,384,0,0" TextWrapping="Wrap"  Text="{Binding Path=BO.Station.Name}" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="630,384,0,0" TextWrapping="Wrap" Text="{Binding Path=BO.Station.CodeStation}" VerticalAlignment="Top" Height="23" Width="75"/>
-        <DataGrid x:Name="stationDataGrid1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="475,56,76,265" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="adjacentStationsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="467,42,52,294" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="codeStationColumn1" Binding="{Binding CodeStation}" Header="Code Station" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn1" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="station1CodeColumn" Binding="{Binding Station1Code}" Header="Station 1 Code" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="station2CodeColumn" Binding="{Binding Station2Code}" Header="Station 2 Code" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding Time}" Header="Time" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
 
