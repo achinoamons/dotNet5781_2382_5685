@@ -20,7 +20,7 @@ namespace PlGui
     public partial class LineStations : Window
     {
         IBL bl;
-         public BO.Station bs = new BO.Station();
+        public BO.Station bs = new BO.Station();
         public LineStations(IBL bb)
         {
             InitializeComponent();
@@ -49,5 +49,7 @@ namespace PlGui
             // Load data by setting the CollectionViewSource.Source property:
             // stationViewSource.Source = [generic data source]
         }
+
+       
     }
 }

@@ -90,7 +90,7 @@ namespace BLAPI
         #endregion
         #region AdjacentStations
         IEnumerable<BO.AdjacentStations> GetAllAdjacentStations();//show all AdjacentStations
-        void AddAdjacentStations(BO.Station c1,BO.Station c2);
+       // void AddAdjacentStations(BO.Station c1,BO.Station c2);
 
         #endregion
 
