@@ -45,7 +45,7 @@ namespace BL
         public IEnumerable<BO.Line> GetAllLinesPassByStation(int code)// מחזיר רשימת כל הקווים שעוברים בתחנה-קבלתי קוד תחנה
         {
             var v = from ls in dl.GetAllLineStationsBy(p => p.StationCode == code)//
-                    select ls;//מחזיר רשימה של תחנות קו במקום רשימת קוים
+                    select ls;//
             return from st in v
                    from line in dl.GetAllLines()// 
                    let linebo = line.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
@@ -138,11 +138,15 @@ namespace BL
             DO.Station dostation = station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
             try
             {
-               dl.AddStation(dostation);
+                var v = dl.GetAllStationsBy(p => p.CodeStation == dostation.CodeStation);
+                if (v != null)
+                    throw new BO.OlreadtExistExceptionBO("this station "+station.CodeStation+ " already exist");
+                else
+                dl.AddStation(dostation);
             }
-            catch (DO.BadStationException ex)
+            catch (BO.OlreadtExistExceptionBO ex)
             {
-                throw new BO.BadStationException("this station already exist", ex);
+                throw new BO.OlreadtExistExceptionBO("this station already exist", ex);
             }
         }
          public void DeleteStation(int id)
@@ -150,7 +154,7 @@ namespace BL
             IEnumerable<DO.LineStation> LS= dl.GetAllLineStationsBy(p => p.StationCode == id);
             if (!LS.Any())
             {
-                throw new BO.BadStationException("you cannot delete the line");
+                throw new BO.NotExistExceptionBO("you cannot delete the line");
             }
             else
                 dl.DeleteStation(id);
@@ -162,28 +166,42 @@ namespace BL
             {
                 dostation = dl.GetStation(code);
             }
-            catch (DO.BadStationException ex)
+            catch (DO.NotExistException ex)
             {
-                throw new BO.BadStationException("station code does not exist ", ex);
+                throw new BO.NotExistExceptionBO("station code does not exist ", ex);
             }
 
             BO.Station st = new BO.Station();
             dostation.CopyPropertiesTo(st);
             st.ListOfLinesPass = GetAllLinesPassByStation(st.CodeStation);//קוראת לפונק שמחזירה רשימת קווים שעוברים בתחנה
-            //st.ListOfLinesPass = from ls in dl.GetAllLineStationsBy(p => p.StationCode == st.CodeStation)//list of lines pass
-            //                     let BOline = ls.CopyPropertiesToNew(typeof(BO.Line)) as BO.Line
-            //                     select BOline;
 
-            st.ListOfAdjStations = from ls in dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation /*|| p.Station2Code == st.CodeStation*/)//list of adjacent stations
-                                   let BOADJ = ls.CopyPropertiesToNew(typeof(BO.AdjacentStations)) as BO.AdjacentStations
-                                   select BOADJ;
+
+
+            // var v = dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation);//list of adjacent stations
+
+            //st.ListOfAdjStations = from adj in v
+            //                       from sttt in dl.GetAllLineStations()// 
+            //                       let linestationbo = sttt.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
+            //                       where adj.Station1Code == sttt.StationCode//
+            //                       select linestationbo;
+            IEnumerable < DO.AdjacentStations > adj= dl.GetAllAdjacentStations();
+           st.ListOfAdjStations= from a in adj
+            where a.Station1Code == st.CodeStation
+            select new BO.LineStation { Station1Code = a.Station1Code };
+
+
+
+           
+
+
+
             return st;
 
         }
         public void AddLineToStation(BO.Station station, BO.Line line)//מוסיפה קו לתחנה וג"כ תוסיף את התחנה לקו 
         {
 
-            DO.Station dostation;
+           /* DO.Station dostation;
             DO.Line doline;
             try
             {
@@ -219,11 +237,11 @@ namespace BL
             catch (DO.BadStationException ex)
             {
                 throw new BO.BadStationException("", ex);
-            }
+            }*/
         }
         public void DeletLinefromStation(BO.Station station, BO.Line line)//מחיקת קו מתחנה וג"כ תחנה מקו
         {
-            DO.Station dostation;
+          /*  DO.Station dostation;
             DO.Line doline;
             try
             {
@@ -253,7 +271,7 @@ namespace BL
             catch (DO.BadStationException ex)
             {
                 throw new BO.BadStationException("", ex);
-            }
+            }*/
         }
 
         #endregion
