@@ -23,19 +23,19 @@ namespace DL
         #region Line
         public IEnumerable<DO.Line> GetAllLines() 
         {
-            
-            return from line in DataSource.ListLines
+
+            return from line in DataSource.listLines
                    select line.Clone();
         }
        public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate) 
         { 
-           return from line in DataSource.ListLines
+           return from line in DataSource.listLines
                   where predicate(line)
                   select line.Clone();
         }
         public DO.Line GetLine(int id) 
         {
-            DO.Line l = DataSource.ListLines.Find(p => p.LineID == id);
+            DO.Line l = DataSource.listLines.Find(p => p.LineID == id);
 
             if (l != null)
                 return l.Clone();
@@ -44,19 +44,19 @@ namespace DL
         }
         public void AddLine(DO.Line line)
         {
-            if (DataSource.ListLines.FirstOrDefault(p => p.FirstStation == line.FirstStation && p.LastStation == line.LastStation) != null)
+            if (DataSource.listLines.FirstOrDefault(p => p.FirstStation == line.FirstStation && p.LastStation == line.LastStation) != null)
                 throw new DO.BadLineIdException("Duplicate line");
             line.LineID = DO.Configuration.staticline++;
-            DataSource.ListLines.Add(line.Clone());
+            DataSource.listLines.Add(line.Clone());
         }
         public void UpdateLine(DO.Line line) 
         {
-            DO.Line l = DataSource.ListLines.Find(p => p.LineID == line.LineID);
+            DO.Line l = DataSource.listLines.Find(p => p.LineID == line.LineID);
 
             if (l != null)
             {
-                DataSource.ListLines.Remove(l);
-                DataSource.ListLines.Add(line.Clone());
+                DataSource.listLines.Remove(l);
+                DataSource.listLines.Add(line.Clone());
             }
             else
                 throw new DO.BadLineIdException(l.LineID, $"bad line id: {l.LineID}");
@@ -68,15 +68,15 @@ namespace DL
         }
             public void DeleteLine(int id)
         {
-            DO.Line line = DataSource.ListLines.Find(p => p.LineID == id);
+            DO.Line line = DataSource.listLines.Find(p => p.LineID == id);
 
             if (line != null)
             {
                 int g= line.LineID;
-                DataSource.ListLines.Remove(line);
-                for (int i =g ; i <DataSource.ListLines.Count(); i++)
+                DataSource.listLines.Remove(line);
+                for (int i =g ; i <DataSource.listLines.Count(); i++)
                 {
-                    DataSource.ListLines[i].LineID--;
+                    DataSource.listLines[i].LineID--;
                 }
                  
             }
@@ -87,18 +87,18 @@ namespace DL
         #region LineStation
         public IEnumerable<DO.LineStation> GetAllLineStations() 
         {
-            return from linest in DataSource.ListLineStations
+            return from linest in DataSource.listLineStation
                    select linest.Clone();
         }
         public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate) 
         {
-            return from linest in DataSource.ListLineStations
+            return from linest in DataSource.listLineStation
                    where predicate(linest)
                    select linest.Clone();
         }
         public DO.LineStation GetLineStation(int id) 
         {
-            DO.LineStation ls = DataSource.ListLineStations.Find(p => p.LineId == id);
+            DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == id);
 
             if (ls != null)
                 return ls.Clone();
@@ -107,7 +107,7 @@ namespace DL
         }
         public IEnumerable<DO.LineStation> GetLineStationBy(Predicate<DO.LineStation> predicate)
         {
-            return from linestation in DataSource.ListLineStations
+            return from linestation in DataSource.listLineStation
                    where predicate(linestation)
                    select linestation.Clone();
         }
@@ -115,9 +115,9 @@ namespace DL
         public void AddLineStation(DO.LineStation linestation)//אין לנו עדיין תנאי סינון מתאים להוספת תחנת קו--צרך לשאול את המורה אם נכון
         {
             bool flag = false;
-            for (int i = 0; i < DataSource.ListLineStations.Count(); i++)//to check if there is a physical station like this
+            for (int i = 0; i < DataSource.listLineStation.Count(); i++)//to check if there is a physical station like this
             {
-                if (DataSource.ListLineStations[i].StationCode == linestation.StationCode)
+                if (DataSource.listLineStation[i].StationCode == linestation.StationCode)
                 {
                     flag = true;
                     break;
@@ -125,9 +125,9 @@ namespace DL
             }
             if (!flag)//if there is no station like this
                 throw new DO.BadLineStationIdException(linestation.StationCode, "there is no station code like this ");
-            if (DataSource.ListLineStations.FirstOrDefault(p => p.StationCode == linestation.StationCode && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex) != null)
+            if (DataSource.listLineStation.FirstOrDefault(p => p.StationCode == linestation.StationCode && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex) != null)
                 throw new DO.BadLineStationIdException(linestation.StationCode, "Duplicate line station ");
-            DataSource.ListLineStations.Add(linestation.Clone());
+            DataSource.listLineStation.Add(linestation.Clone());
             /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
             {
                 DataSource.ListLines[i].LineID++;//update the line id to be bigger in each one
@@ -136,12 +136,12 @@ namespace DL
         }
         public void UpdateLineStation(DO.LineStation linestation) 
         {
-            DO.LineStation ls = DataSource.ListLineStations.Find(p => p.LineId == linestation.LineId);
+            DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == linestation.LineId);
 
             if (ls != null)
             {
-                DataSource.ListLineStations.Remove(ls);
-                DataSource.ListLineStations.Add(linestation.Clone());
+                DataSource.listLineStation.Remove(ls);
+                DataSource.listLineStation.Add(linestation.Clone());
             }
             else
                 throw new DO.BadLineStationIdException(ls.LineId, $"bad line id of line station: {ls.StationCode}");
@@ -149,15 +149,15 @@ namespace DL
         public void UpdateLineStation(int id, Action<DO.LineStation> update) { } //method that knows to updt specific fields in Person
         public void DeleteLineStation(int id)
         {
-            DO.LineStation ls = DataSource.ListLineStations.Find(p => p.LineId == id);
+            DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == id);
 
             if (ls != null)
             {
                 int g = ls.LineId;
-                DataSource.ListLineStations.Remove(ls);
-                for (int i = g; i < DataSource.ListLineStations.Count(); i++)
+                DataSource.listLineStation.Remove(ls);
+                for (int i = g; i < DataSource.listLineStation.Count(); i++)
                 {
-                    DataSource.ListLineStations[i].LineId--;
+                    DataSource.listLineStation[i].LineId--;
                 }
             }
             else
@@ -167,18 +167,18 @@ namespace DL
         #region AdjacentStations
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
-            return from linestadj in DataSource.ListAdjacentStations
+            return from linestadj in DataSource.listAdjacentStation
                    select linestadj.Clone();
         }
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsby(Predicate<DO.AdjacentStations> predicate)
         {
-            return from linestadj in DataSource.ListAdjacentStations
+            return from linestadj in DataSource.listAdjacentStation
                    where predicate(linestadj)
                    select linestadj.Clone();
         }
         public DO.AdjacentStations GetAdjacentStations(int code1, int code2)
         {
-            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(p => p.Station1Code == code1 && p.Station2Code == code2);
+            DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == code1 && p.Station2Code == code2);
 
             if (adj != null)
                 return adj.Clone();
@@ -187,9 +187,9 @@ namespace DL
         }
         public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            if (DataSource.ListAdjacentStations.FirstOrDefault(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code) != null)
+            if (DataSource.listAdjacentStation.FirstOrDefault(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code) != null)
                 throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, "Duplicate station1 and station2 code of adjacent station");
-            DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
+            DataSource.listAdjacentStation.Add(adjacentStations.Clone());
             /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
             {
                 DataSource.ListLines[i].LineID++;//update the line id to be bigger in each one
@@ -198,12 +198,12 @@ namespace DL
         }
         public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code);
+            DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code);
 
             if (adj != null)
             {
-                DataSource.ListAdjacentStations.Remove(adj);
-                DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
+                DataSource.listAdjacentStation.Remove(adj);
+                DataSource.listAdjacentStation.Add(adjacentStations.Clone());
             }
             else
                 throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
@@ -211,12 +211,12 @@ namespace DL
         public void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update) { }//method that knows to updt specific fields in Person
         public void DeleteAdjacentStations(int i, int j)
         {
-            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(p => p.Station1Code == i && p.Station2Code == j);
+            DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == i && p.Station2Code == j);
 
             if (adj != null)
             {
 
-                DataSource.ListAdjacentStations.Remove(adj);
+                DataSource.listAdjacentStation.Remove(adj);
             }
             else
                 //throw new DO.BadLineStationIdException(id, $"bad line id of line station: {id}");
@@ -245,19 +245,19 @@ namespace DL
         public IEnumerable<DO.Station> GetAllStations() 
         {
            
-            return from station in DataSource.ListStations
+            return from station in DataSource.listStations
                    select station.Clone();
 
         }
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
         {
-            return from Station in DataSource.ListStations
+            return from Station in DataSource.listStations
                    where predicate(Station)
                    select Station.Clone();
         }
         public DO.Station GetStation(int CodeStation)
         {
-            DO.Station S = DataSource.ListStations.Find(p => p.CodeStation== CodeStation);
+            DO.Station S = DataSource.listStations.Find(p => p.CodeStation== CodeStation);
 
             if (S != null)
                 return S.Clone();
@@ -266,21 +266,21 @@ namespace DL
         }
         public void AddStation(DO.Station station)
         {
-            if (DataSource.ListStations.FirstOrDefault(p => p.CodeStation == station.CodeStation) != null)
+            if (DataSource.listStations.FirstOrDefault(p => p.CodeStation == station.CodeStation) != null)
                 throw new DO.BadStationException(station.CodeStation, "Duplicate station CodeStation");
-            DataSource.ListStations.Add(station.Clone());
+            DataSource.listStations.Add(station.Clone());
 
           
         }
         public void UpdateStation(DO.Station station)
 
         {
-            DO.Station S = DataSource.ListStations.Find(p => p.CodeStation == station.CodeStation);
+            DO.Station S = DataSource.listStations.Find(p => p.CodeStation == station.CodeStation);
 
             if (S != null)
             {
-                DataSource.ListStations.Remove(S);
-                DataSource.ListStations.Add(station.Clone());
+                DataSource.listStations.Remove(S);
+                DataSource.listStations.Add(station.Clone());
             }
             else
                 throw new DO.BadStationException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
@@ -288,12 +288,12 @@ namespace DL
         public void UpdateStation(int codestation, Action<DO.Station> update) { } //method that knows to updt specific fields in Person
         public void DeleteStation(int codestation)
         {
-            DO.Station station = DataSource.ListStations.Find(p => p.CodeStation == codestation);
+            DO.Station station = DataSource.listStations.Find(p => p.CodeStation == codestation);
 
             if (station != null)
             {
                 //int g = station.CodeStation;
-                DataSource.ListStations.Remove(station);
+                DataSource.listStations.Remove(station);
             //    for (int i = g; i < DataSource.ListLines.Count(); i++)
             //    {
             //        DataSource.ListLines[i].LineID--;

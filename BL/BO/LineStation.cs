@@ -9,7 +9,7 @@ namespace BO
 {
     public class LineStation :Station 
     {
-       // IEnumerable<BO.Line> ListOfLines;
+       IEnumerable<BO.Line> ListOfLines;
         public int LineId { get; set; }//מזהה קו
         public int StationCode { get; set; }//קוד תחנה פיזית
         public int LineStationIndex { get; set; }//מס תחנה בקו---- כלומר איזה מס תחנה אני בקו

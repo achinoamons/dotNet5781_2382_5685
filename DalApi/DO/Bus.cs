@@ -8,10 +8,10 @@ namespace DO
 {
    public class Bus
     {
-        public int LicenceNum { get; set; }
+        public int LicenseNum { get; set; }
         public DateTime FromDate { get; set; }
-        public double TotalTrip { get; set; }
-        public double FuelRemain { get; set; }
+        public double Mileage { get; set; }
+        public double FuelTank { get; set; }
         public BusStatus Status { get; set; }
         public override string ToString() => this.ToStringProperty();
     }
