@@ -14,39 +14,44 @@ using System.Windows.Shapes;
 using BLAPI;
 namespace PlGui
 {
-    /// <summary>
-    /// Interaction logic for LineStations.xaml
-    /// </summary>
-    public partial class LineStations : Window
-    {
-        IBL bl;
-        public BO.Station bs = new BO.Station();
-        public LineStations(IBL bb)
-        {
-            InitializeComponent();
-            bl = bb;
+	/// <summary>
+	/// Interaction logic for LineStations.xaml
+	/// </summary>
+	public partial class LineStations : Window
+	{
+		IBL bl;
+		public BO.Station bs = new BO.Station();
+		public LineStations(IBL bb)
+		{
+			InitializeComponent();
+			bl = bb;
 
-            //List<BO.Station> listOfStations = bl.GetAllStations().ToList();
-            
-            
-                stationDataGrid.DataContext = bl.GetAllStations(); // = listOfStations;
-            
-        }
-       
+			//List<BO.Station> listOfStations = bl.GetAllStations().ToList();
+			
+			
+				stationDataGrid.DataContext = bl.GetAllStations(); // = listOfStations;
+			
+		}
+	   
 
-        private void stationDataGrid_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
-        {
-            bs = (stationDataGrid.SelectedItem as BO.Station);
-            bs = bl.GetStation(bs.CodeStation);
-              lineStationDataGrid.ItemsSource = bs.ListOfAdjStations;
-            lineDataGrid.ItemsSource = bs.ListOfLinesPass;
-        }
+		private void stationDataGrid_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+		{
+			bs = (stationDataGrid.SelectedItem as BO.Station);
+			bs = bl.GetStation(bs.CodeStation);
+			  lineStationDataGrid.ItemsSource = bs.ListOfAdjStations;
+			lineDataGrid.ItemsSource = bs.ListOfLinesPass;
+		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)//add station
+		private void Button_Click(object sender, RoutedEventArgs e)//add station
+		{
+			AddStation add = new AddStation(bl);
+			add.Show();
+			stationDataGrid.Items.Refresh();
+		}
+
+        private void lineStationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AddStation add = new AddStation(bl);
-            add.Show();
-            stationDataGrid.Items.Refresh();
+
         }
     }
 }
