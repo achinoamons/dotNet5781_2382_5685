@@ -193,25 +193,44 @@ namespace BL
 
             BO.Station st = new BO.Station();
             dostation.CopyPropertiesTo(st);
+
+
             st.ListOfLinesPass = GetAllLinesPassByStation(st.CodeStation);//קוראת לפונק שמחזירה רשימת קווים שעוברים בתחנה
 
+            IEnumerable<DO.AdjacentStations> adj = dl.GetAllAdjacentStations();
 
+            st.ListOfAdjStations = from a in adj
+                                   where a.Station1Code == st.CodeStation
+                                   select new BO.LineStation { Station1Code = a.Station1Code, Station2Code = a.Station2Code, Distance = a.Distance, Time = a.Time };
 
-            // var v = dl.GetAllAdjacentStationsby(p => p.Station1Code == st.CodeStation);//list of adjacent stations
+            //IEnumerable<BO.Station> stat = GetAllStations();
 
-            //st.ListOfAdjStations = from adj in v
-            //                       from sttt in dl.GetAllLineStations()// 
-            //                       let linestationbo = sttt.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation
-            //                       where adj.Station1Code == sttt.StationCode//
-            //                       select linestationbo;
-            IEnumerable < DO.AdjacentStations > adj= dl.GetAllAdjacentStations();
-           st.ListOfAdjStations= from a in adj
-            where a.Station1Code == st.CodeStation
-            select new BO.LineStation { Station1Code = a.Station1Code };
+            //var v =from s in dl.GetAllStations()
+            //       from ad in st.ListOfAdjStations
+            //       where s.CodeStation==ad.Station2Code            
+            //       select s;
+            //for(int i = 0; i < v.Count(); i++)
+            //{
 
+            //    st.ListOfAdjStations[i].stationName = v[i].Name;
 
+            //}
+            //for (int i = 0; i < st.ListOfAdjStations.Count(); i++)
+            //{
 
-           
+            //}
+            var v = from s in dl.GetAllStations()
+                    from ad in st.ListOfAdjStations
+                    where s.CodeStation == ad.Station2Code
+                    let name = s.Name
+                    select name;
+            int i = 0;
+            foreach (string item in v)
+            {
+
+                st.ListOfAdjStations.ElementAt(i).stationName = item;
+                i++;
+            }
 
 
 
