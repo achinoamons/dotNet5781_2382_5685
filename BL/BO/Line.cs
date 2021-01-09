@@ -15,7 +15,7 @@ namespace BO
         public int Code { get; set; }//code of the line
        public int LineID { get; set; }//
        // public int FirstStation { get; set; }
-       // public int LastStation { get; set; }
+        public int LastStation { get; set; }
         public Areas area { get; set; }
         public override string ToString() => this.ToStringProperty();
     }

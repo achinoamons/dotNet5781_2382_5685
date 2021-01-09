@@ -288,10 +288,10 @@ namespace DL
 
           
         }
-        public void UpdateStation(DO.Station station)
+        public void UpdateStation(DO.Station station,int prevcode)
 
         {
-            DO.Station S = DataSource.listStations.Find(p => p.CodeStation == station.CodeStation);
+            DO.Station S = DataSource.listStations.Find(/*p => p.CodeStation == station.CodeStation*/p => p.CodeStation == prevcode);
 
             if (S != null)
             {
@@ -300,7 +300,7 @@ namespace DL
             }
             else
                 // throw new DO.BadStationException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
-                throw new DO.NotExistException(S.CodeStation+ "Station CodeStation");
+                throw new DO.NotExistException(S.CodeStation+ "Station is not exist");
         }
         public void UpdateStation(int codestation, Action<DO.Station> update) { } //method that knows to updt specific fields in Person
         public void DeleteStation(int codestation)
@@ -311,6 +311,12 @@ namespace DL
             {
                 //int g = station.CodeStation;
                 DataSource.listStations.Remove(station);
+                for (int i = 0; i < DataSource.listAdjacentStation.Count(); i++)//DELETING THE ADJ OF THE STATION
+                {
+                    if (DataSource.listAdjacentStation[i].Station1Code == station.CodeStation || DataSource.listAdjacentStation[i].Station2Code == station.CodeStation)
+                        DataSource.listAdjacentStation.Remove(DataSource.listAdjacentStation[i]);
+                
+                }
             //    for (int i = g; i < DataSource.ListLines.Count(); i++)
             //    {
             //        DataSource.ListLines[i].LineID--;

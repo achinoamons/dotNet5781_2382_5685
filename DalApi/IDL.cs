@@ -64,7 +64,7 @@ namespace DLAPI
         IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate);
         DO.Station GetStation(int id);
         void AddStation(DO.Station station);
-        void UpdateStation(DO.Station station);
+        void UpdateStation(DO.Station station,int i);
         void UpdateStation(int id, Action<DO.Station> update); //method that knows to updt specific fields in Person
         void DeleteStation(int id);
         #endregion

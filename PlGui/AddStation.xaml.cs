@@ -55,6 +55,8 @@ namespace PlGui
             try
             {
                 bl.AddStation(bs);
+                MessageBox.Show("התחנה נוספה בהצלחה");
+                this.Close();
             }
             catch (BO.OlreadtExistExceptionBO ex)
             {

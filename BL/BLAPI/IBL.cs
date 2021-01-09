@@ -84,7 +84,7 @@ namespace BLAPI
         void AddStation(BO.Station linestation);
         void AddLineToStation(BO.Station station, BO.Line line);
         void DeletLinefromStation(BO.Station station, BO.Line line);
-        //void UpdateStation(BO.LineStation linestation);
+        void UpdateStation(BO.Station linestation,int i);
       //  void UpdateStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
         void DeleteStation(int id);
         #endregion
