@@ -136,28 +136,48 @@ namespace BL
         public void AddStation(BO.Station station)
         {
             DO.Station dostation = station.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
+            /* try
+             {
+                 var v = dl.GetAllStationsBy(p => p.CodeStation == dostation.CodeStation);
+                 if (v != null)
+                     throw new BO.OlreadtExistExceptionBO("this station "+station.CodeStation+ " already exist");
+                 else
+                 dl.AddStation(dostation);
+             }
+             catch (BO.OlreadtExistExceptionBO ex)
+             {
+                 throw new BO.OlreadtExistExceptionBO("this station already exist", ex);
+             }*/
             try
             {
-                var v = dl.GetAllStationsBy(p => p.CodeStation == dostation.CodeStation);
-                if (v != null)
-                    throw new BO.OlreadtExistExceptionBO("this station "+station.CodeStation+ " already exist");
-                else
                 dl.AddStation(dostation);
             }
-            catch (BO.OlreadtExistExceptionBO ex)
+            catch (DO.OlreadtExistException ex)
             {
                 throw new BO.OlreadtExistExceptionBO("this station already exist", ex);
             }
+            
         }
          public void DeleteStation(int id)
         {
-            IEnumerable<DO.LineStation> LS= dl.GetAllLineStationsBy(p => p.StationCode == id);
-            if (!LS.Any())
+            //IEnumerable<DO.LineStation> LS= dl.GetAllLineStationsBy(p => p.StationCode == id);
+            //if (!LS.Any())
+            //{
+            //    throw new BO.NotExistExceptionBO("you cannot delete the line");
+            //}
+            //IEnumerable<DO.Station> LS = dl.GetAllStationsBy(p => p.CodeStation == id);
+            //if (!LS.Any())
+            //{
+            //    throw new BO.NotExistExceptionBO("you cannot delete the station");
+            //}
+
+            //else
+            try
+            { dl.DeleteStation(id); }
+            catch (DO.NotExistException ex)
             {
-                throw new BO.NotExistExceptionBO("you cannot delete the line");
+                throw new BO.OlreadtExistExceptionBO("this station is not exist", ex);
             }
-            else
-                dl.DeleteStation(id);
         }
         public BO.Station GetStation(int code)//מחזיר פרטי תחנה בודדת 
         {
@@ -197,6 +217,20 @@ namespace BL
 
             return st;
 
+        }
+        public void UpdateStation(BO.Station bostation,int prevcode) 
+        {
+            DO.Station dostation = bostation.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
+
+            try 
+            {
+                dl.UpdateStation(dostation,prevcode);
+
+            }
+            catch (DO.NotExistException ex)
+            {
+                throw new BO.NotExistExceptionBO("station code does not exist ", ex);
+            }
         }
         public void AddLineToStation(BO.Station station, BO.Line line)//מוסיפה קו לתחנה וג"כ תוסיף את התחנה לקו 
         {
