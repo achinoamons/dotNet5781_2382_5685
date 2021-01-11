@@ -199,40 +199,12 @@ namespace BL
 
             IEnumerable<DO.AdjacentStations> adj = dl.GetAllAdjacentStations();
 
+            IEnumerable<BO.Station> stat = GetAllStations();
             st.ListOfAdjStations = from a in adj
+                                   from s in stat
                                    where a.Station1Code == st.CodeStation
-                                   select new BO.LineStation { Station1Code = a.Station1Code, Station2Code = a.Station2Code, Distance = a.Distance, Time = a.Time };
-
-            //IEnumerable<BO.Station> stat = GetAllStations();
-
-            //var v =from s in dl.GetAllStations()
-            //       from ad in st.ListOfAdjStations
-            //       where s.CodeStation==ad.Station2Code            
-            //       select s;
-            //for(int i = 0; i < v.Count(); i++)
-            //{
-
-            //    st.ListOfAdjStations[i].stationName = v[i].Name;
-
-            //}
-            //for (int i = 0; i < st.ListOfAdjStations.Count(); i++)
-            //{
-
-            //}
-            var v = from s in dl.GetAllStations()
-                    from ad in st.ListOfAdjStations
-                    where s.CodeStation == ad.Station2Code
-                    let name = s.Name
-                    select name;
-            int i = 0;
-            foreach (string item in v)
-            {
-
-                st.ListOfAdjStations.ElementAt(i).stationName = item;
-                i++;
-            }
-
-
+                                   where  a.Station2Code == s.CodeStation
+                                   select new BO.LineStation { Station1Code = a.Station1Code, Station2Code = a.Station2Code, Distance = a.Distance, Time = a.Time ,stationName=s.Name};
 
             return st;
 

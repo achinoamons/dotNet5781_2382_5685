@@ -26,7 +26,7 @@ namespace DS
 
         //public static List<BusOnTrip> listBusOnTrip;
         public static object listUser;
-
+       
         public static Random r = new Random(DateTime.Now.Millisecond);
 
 
@@ -296,16 +296,17 @@ namespace DS
                     {
                         if (listLineStation[i].NextStationCode != 0)
                         {
+                            
                             AdjacentStations ads = new AdjacentStations();
                             ads.Station1Code = listLineStation[i].StationCode;
                             ads.Station2Code = listLineStation[i].NextStationCode;
                             a = Math.Sqrt(Math.Pow(listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Latitude - listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station2Code))].Latitude, 2) + Math.Pow(listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Longitude - listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station2Code))].Longitude, 2));
-                            b = (a + 0.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
-                            t = TimeSpan.FromHours(b);
+                            //b = (a + 0.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
+                            //t = TimeSpan.FromHours(b);
                             ads.Distance = (a + 0.5) /*b*/;
 
-                            ads.Time = t;
-                            //calculate distance and time
+                            ads.Time = TimeSpan.FromHours((a + 0.5) / 70);
+                          
                             listAdjacentStation.Add(ads);
                         }
                     }
