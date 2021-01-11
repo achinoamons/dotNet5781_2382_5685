@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 
 namespace BO
+//     public int Code { get; set; }
+//public AREA Area { get; set; }// area of line activitis
+//public TimeSpan StartAt { get; set; }
+//public TimeSpan FinishAt { get; set; }
+//public TimeSpan Frequency { get; set; }//frequency
+
+//public IEnumerable<STATIONLINE> StationListOfLine { get; set; }
 {
    public class Line
     {
@@ -17,6 +24,11 @@ namespace BO
        // public int FirstStation { get; set; }
         public int LastStation { get; set; }
         public Areas area { get; set; }
-        public override string ToString() => this.ToStringProperty();
+        // public override string ToString() => this.ToStringProperty();
+        public override string ToString()
+        {
+            string str = Code + "   " + area + " ";
+            return str;
+        }
     }
 }

@@ -7,7 +7,7 @@
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PlGui.LineStations"
         mc:Ignorable="d"
         Title="LineStations" Height="450" Width="800"     >
-    
+
 
 
 
@@ -15,30 +15,40 @@
 
 
     <Grid Height="419" VerticalAlignment="Top"    >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="263*"/>
+            <RowDefinition Height="157*"/>
+            <RowDefinition Height="157*"/>
 
-        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="26,29,366,190" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" IsReadOnly="True" SelectedIndex="0" SelectionChanged="stationDataGrid_SelectionChanged"   >
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="113*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="26,29,26,10" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" IsReadOnly="True" SelectedIndex="0" SelectionChanged="stationDataGrid_SelectionChanged" Grid.RowSpan="2"   >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="codeStationColumn" Width="SizeToHeader" Header="Code Station" Binding="{Binding CodeStation}"/>
                 <DataGridTextColumn x:Name="nameColumn" Width="50*" Header="Name" Binding="{Binding Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btaddstation" Content="הוספה" HorizontalAlignment="Left" Margin="68,324,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="עדכון" HorizontalAlignment="Left" Margin="153,364,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
-        <Button Content="מחיקה" HorizontalAlignment="Left" Margin="263,324,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.6,0.6" Click="Button_Click_1"/>
-        <Label Content="רשימת התחנות הצמודות של התחנה" HorizontalAlignment="Left" Margin="511,11,0,0" VerticalAlignment="Top" Width="229"/>
-        <Label Content="רשימת הקוים שעוברים בתחנה" HorizontalAlignment="Left" Margin="489,187,0,0" VerticalAlignment="Top" Width="196" Height="26"/>
-        <TextBox x:Name="tbname" HorizontalAlignment="Left" Height="23" Margin="467,384,0,0" TextWrapping="Wrap"  Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbcode" IsReadOnly="True" HorizontalAlignment="Left" Margin="630,384,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="23" Width="75"/>
-        <DataGrid x:Name="lineDataGrid"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="511,218,107,102" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <Button x:Name="btaddstation" Content="הוספה" HorizontalAlignment="Left" Margin="48,67,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Row="2"/>
+        <Button Content="עדכון" HorizontalAlignment="Left" Margin="162,52,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2" Grid.Row="2"/>
+        <Button Content="מחיקה" HorizontalAlignment="Left" Margin="306,52,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="-0.6,0.6" Click="Button_Click_1" Grid.Row="2"/>
+        <Label Content="רשימת התחנות הצמודות של התחנה" HorizontalAlignment="Left" Margin="59,11,0,0" VerticalAlignment="Top" Width="229" Grid.Column="1"/>
+        <Label Content="רשימת הקוים שעוברים בתחנה" HorizontalAlignment="Left" Margin="59,187,0,0" VerticalAlignment="Top" Width="196" Height="26" Grid.Column="1" Grid.RowSpan="2"/>
+        <TextBox x:Name="tbname" HorizontalAlignment="Left" Height="24" Margin="102,67,0,0" TextWrapping="Wrap"  Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="tbcode" IsReadOnly="True" HorizontalAlignment="Left" Margin="102,31,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="23" Width="120" Grid.Column="1" Grid.Row="2"/>
+        <DataGrid x:Name="lineDataGrid"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,27,26,10" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="1" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="areaColumn" Binding="{Binding area}" Header="area" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="lastStationColumn" Binding="{Binding LastStation}" Header="Last Station" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="שם תחנה" HorizontalAlignment="Left" Margin="511,344,0,0" VerticalAlignment="Top"/>
-        <Label Content="קוד תחנה" HorizontalAlignment="Left" Margin="647,346,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="467,72,24,258" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <Label Content="שם תחנה" HorizontalAlignment="Left" Margin="227,67,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+        <Label Content="קוד תחנה" HorizontalAlignment="Left" Margin="228,31,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,37,26,45" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Column="1">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="station2CodeColumn" Binding="{Binding Station2Code}" Header="Station 2 Code" Width="SizeToHeader"/>

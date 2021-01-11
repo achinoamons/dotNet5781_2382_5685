@@ -33,15 +33,26 @@ namespace DL
                   where predicate(line)
                   select line.Clone();
         }
-        public DO.Line GetLine(int id) 
+        public DO.Line GetLine(int id, DO.Areas area) //L
         {
-            DO.Line l = DataSource.listLines.Find(p => p.LineID == id);
+            //DO.Line l = DataSource.listLines.Find(p => p.LineID == id);
 
+            //if (l != null)
+            //    return l.Clone();
+            //else
+            //    // throw new DO.BadLineIdException(id, $"bad line id: {id}");
+            //    throw new DO.NotExistException(id+ $"bad line id");
+            DO.Line line = DataSource.listLines.Find(b => b.Code == id && b.Area == area);
+            if (line != null)
+                return line.Clone();
+            else throw new DO.NotExistException("THIS LINE DOSENT EXIST");
+        }
+        public DO.Line GetLine(int ID)//L
+        {
+            DO.Line l = DataSource.listLines.Find(b => b.LineID == ID);
             if (l != null)
                 return l.Clone();
-            else
-                // throw new DO.BadLineIdException(id, $"bad line id: {id}");
-                throw new DO.NotExistException(id+ $"bad line id");
+            else { throw new DO.NotExistException("THIS LINE DOSENT EXIST"); }//trhow
         }
         public void AddLine(DO.Line line)
         {

@@ -51,9 +51,9 @@ namespace BLAPI
     public interface IBL
     {
         #region Line
-        //IEnumerable<BO.Line> GetAllLines();//show all lines
+        IEnumerable<BO.Line> GetAllLines();//show all lines
         IEnumerable<BO.Line> GetAllLinesPassByStation(int code);
-        //BO.Line GetLine();//show the line--when use it---show details of the line stations of the line
+        BO.Line GetLine(int i, BO.Areas area);//show the line--when use it---show details of the line stations of the line
         //IEnumerable<BO.Line> GetLineBy(Predicate<BO.Line> predicate);//shoe line by predicate
         //void AddLine(BO.Line line);
         //void UpdateLine(BO.Line line);

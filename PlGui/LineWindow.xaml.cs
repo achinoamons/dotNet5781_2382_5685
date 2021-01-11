@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +19,42 @@ namespace PlGui
     /// Interaction logic for LineWindow.xaml
     /// </summary>
     public partial class LineWindow : Window
+
     {
-        public LineWindow()
+        IBL bl;
+        public BO.Station bs = new BO.Station();
+        public LineWindow(IBL bb)
         {
             InitializeComponent();
+            
+            bl = bb;
+            lst.DataContext = bl.GetAllLines();
+        }
+
+        private void lst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+
+                if (lst.SelectedItem != null)
+                {
+                    BO.Line l = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);
+                    DatatGridLines.DataContext = l.ListOfStationsPass.ToList();
+                    DataContext = l.ListOfStationsPass.ToList();
+                }
+                else
+                {
+                    lst.SelectedItem = default;
+                    //BO.LINE l=bl.GetLINE()
+                }
+                // DatatGridLines.ItemsSource= l.StationListOfLine;
+
+            
+        }
+
+        private void btnAddLine_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewLine a = new AddNewLine(bl);
+            a.Show();
         }
     }
 }
