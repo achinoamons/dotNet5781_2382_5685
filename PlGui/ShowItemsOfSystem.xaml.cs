@@ -33,7 +33,8 @@ namespace PlGui
         {
             if (rblines.IsChecked == true)
             {
-
+                LineWindow lw = new LineWindow();
+                lw.Show();
             }
             else if (rbstations.IsChecked == true)
             {
