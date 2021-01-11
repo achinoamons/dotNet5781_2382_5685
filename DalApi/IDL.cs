@@ -67,24 +67,25 @@ namespace DLAPI
         void UpdateStation(DO.Station station,int i);
         void UpdateStation(int id, Action<DO.Station> update); //method that knows to updt specific fields in Person
         void DeleteStation(int id);
+        IEnumerable<DO.Station> GetSortStations();
         #endregion
-       /* #region Trip
-        IEnumerable<DO.Trip> GetAllTrips();
-        IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate);
-        DO.Trip GetTrip(int id);
-        void AddPerson(DO.Trip t);
-        void UpdateTrip(DO.Trip t);
-        void UpdateTrip(int id, Action<DO.Trip> update); //method that knows to updt specific fields in Person
-        void DeleteTrip(int id);
-        #endregion*/
-       /*#region User
-        IEnumerable<DO.User> GetAllUsers();
-        IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate);
-        DO.User GetUser(int id);
-        void AddUser(DO.User user);
-        void UpdateUser(DO.User user);
-        void UpdateUser(int id, Action<DO.User> update); //method that knows to updt specific fields in Person
-        void DeleteUser(int id);
-        #endregion*/
+        /* #region Trip
+         IEnumerable<DO.Trip> GetAllTrips();
+         IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate);
+         DO.Trip GetTrip(int id);
+         void AddPerson(DO.Trip t);
+         void UpdateTrip(DO.Trip t);
+         void UpdateTrip(int id, Action<DO.Trip> update); //method that knows to updt specific fields in Person
+         void DeleteTrip(int id);
+         #endregion*/
+        /*#region User
+         IEnumerable<DO.User> GetAllUsers();
+         IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate);
+         DO.User GetUser(int id);
+         void AddUser(DO.User user);
+         void UpdateUser(DO.User user);
+         void UpdateUser(int id, Action<DO.User> update); //method that knows to updt specific fields in Person
+         void DeleteUser(int id);
+         #endregion*/
     }
 }

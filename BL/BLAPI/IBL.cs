@@ -87,6 +87,7 @@ namespace BLAPI
         void UpdateStation(BO.Station linestation,int i);
       //  void UpdateStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
         void DeleteStation(int id);
+        IEnumerable<BO.Station> GetSortStations();
         #endregion
         #region AdjacentStations
         IEnumerable<BO.AdjacentStations> GetAllAdjacentStations();//show all AdjacentStations

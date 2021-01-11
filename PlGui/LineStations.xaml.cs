@@ -32,19 +32,19 @@ namespace PlGui
             stationDataGrid.ItemsSource = bl.GetAllStations(); // = listOfStations;
 
         }
-        private void stationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
+        //private void stationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
 
-            bs = (stationDataGrid.SelectedItem as BO.Station);
-            bs = bl.GetStation(bs.CodeStation);
-            lineStationDataGrid.ItemsSource = bs.ListOfAdjStations;
-            lineDataGrid.ItemsSource = bs.ListOfLinesPass;
-            tbname.Text = bs.Name;
-            tbcode.Text = bs.CodeStation.ToString();
-        }
+        //    bs = (stationDataGrid.SelectedItem as BO.Station);
+        //    bs = bl.GetStation(bs.CodeStation);
+        //    lineStationDataGrid.ItemsSource = bs.ListOfAdjStations;
+        //    lineDataGrid.ItemsSource = bs.ListOfLinesPass;
+        //    tbname.Text = bs.Name;
+        //    tbcode.Text = bs.CodeStation.ToString();
+        //}
 
 
-       
+
 
         private void Button_Click(object sender, RoutedEventArgs e)//add station
         {
@@ -64,15 +64,15 @@ namespace PlGui
             else if (MessageBox.Show("האם אתה בטוח שברצונך למחוק תחנה זו?", "מחיקת תחנה", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
 
             {
-               //IEnumerable< BO.Line> l= bl.GetAllLinesPassByStation(s.CodeStation);
-               // if (l.Any())
-               //     MessageBox.Show("לתחנה ישנם קוים שעוברים בה.אינך יכול למחוק אותה");
-                
-                
-                    try { bl.DeleteStation(s.CodeStation); }
-                    catch { MessageBox.Show("התחנה אינה קיימת במערכת"); }
-                    stationDataGrid.ItemsSource = bl.GetAllStations();
-                
+                //IEnumerable< BO.Line> l= bl.GetAllLinesPassByStation(s.CodeStation);
+                // if (l.Any())
+                //     MessageBox.Show("לתחנה ישנם קוים שעוברים בה.אינך יכול למחוק אותה");
+
+
+                try { bl.DeleteStation(s.CodeStation); }
+                catch { MessageBox.Show("התחנה אינה קיימת במערכת"); }
+                stationDataGrid.ItemsSource = bl.GetAllStations();
+
             }
         }
 
@@ -81,34 +81,52 @@ namespace PlGui
             if (stationDataGrid.SelectedIndex == -1) { MessageBox.Show("יש לבחור תחנה לעדכון"); }
             BO.Station s = stationDataGrid.SelectedItem as BO.Station;
             int i = (stationDataGrid.SelectedItem as BO.Station).CodeStation;
-           // s.CodeStation = int.Parse(tbcode.Text);//אני חושבת שלא נכון לאפשר שינוי קוד---לברר
+            // s.CodeStation = int.Parse(tbcode.Text);//אני חושבת שלא נכון לאפשר שינוי קוד---לברר
             s.Name = tbname.Text;
-            
-             if (MessageBox.Show("האם אתה בטוח שברצונך לעדכן תחנה זו?", "עדכון תחנה", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+
+            if (MessageBox.Show("האם אתה בטוח שברצונך לעדכן תחנה זו?", "עדכון תחנה", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
 
             {
-                
-                try { bl.UpdateStation(s, i) ; }
-                catch { MessageBox.Show("התחנה אינה קיימת במערכת"); }
-                stationDataGrid.ItemsSource = bl.GetAllStations();
 
-                
+                try { bl.UpdateStation(s, i); }
+                catch { MessageBox.Show("התחנה אינה קיימת במערכת"); }
+
+                //stationDataGrid.ItemsSource = bl.GetAllStations();
+                stationDataGrid.ItemsSource = bl.GetSortStations();
+
+
 
             }
         }
 
-       
+        private void stationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            {
+                if (stationDataGrid.SelectedItem != null)
+                {
+                    bs = (stationDataGrid.SelectedItem as BO.Station);
+                    bs = bl.GetStation(bs.CodeStation);
+                    lineStationDataGrid.ItemsSource = bs.ListOfAdjStations;
+                    lineDataGrid.ItemsSource = bs.ListOfLinesPass;
+                    tbname.Text = bs.Name;
+                     tbcode.Text = bs.CodeStation.ToString();
+                }
+                else { stationDataGrid.SelectedItem = default; }
+            }
+        }
 
 
 
 
 
-        //private void stationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //     bs = (stationDataGrid.SelectedItem as BO.Station);
-        //    bs = bl.GetStation(bs.CodeStation);
-        //    lineStationDataGrid.ItemsSource = bs.ListOfAdjStations;
-        //    lineDataGrid.ItemsSource = bs.ListOfLinesPass;
-        //}
+
+
+
+
+
+
+
+        
+        }
     }
-}
+

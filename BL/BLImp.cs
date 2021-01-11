@@ -129,6 +129,12 @@ namespace BL
             
 
         }
+        public IEnumerable<BO.Station> GetSortStations()
+        {
+            return from station in dl.GetSortStations()
+                   let BOstation = station.CopyPropertiesToNew(typeof(BO.Station)) as BO.Station
+                   select BOstation;
+        }
         //public IEnumerable<BO.Line> ListOfLinesPass()
         //{
         //    return GetAllLinesPassByStation();
@@ -203,8 +209,8 @@ namespace BL
             st.ListOfAdjStations = from a in adj
                                    from s in stat
                                    where a.Station1Code == st.CodeStation
-                                   where  a.Station2Code == s.CodeStation
-                                   select new BO.LineStation { Station1Code = a.Station1Code, Station2Code = a.Station2Code, Distance = a.Distance, Time = a.Time ,stationName=s.Name};
+                                   where a.Station2Code == s.CodeStation
+                                   select new BO.LineStation { Station1Code = a.Station1Code, Station2Code = a.Station2Code, Distance = a.Distance, Time = a.Time, stationName = s.Name };
 
             return st;
 
