@@ -237,6 +237,7 @@ namespace BL
             return st;
 
         }
+
         public void UpdateStation(BO.Station bostation,int prevcode) 
         {
             DO.Station dostation = bostation.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;

@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:PlGui"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PlGui.LineStations"
         mc:Ignorable="d"
-        Title="LineStations" Height="450" Width="800"    >
+        Title="LineStations" Height="450" Width="800"     >
+    
 
 
 
 
 
 
-    <Grid   >
+    <Grid    >
 
         <DataGrid x:Name="stationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="26,29,366,190" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" IsReadOnly="True" SelectedIndex="0" MouseDoubleClick="stationDataGrid_MouseDoubleClick" >
             <DataGrid.Columns>
@@ -28,15 +29,6 @@
         <Label Content="רשימת הקוים שעוברים בתחנה" HorizontalAlignment="Left" Margin="489,187,0,0" VerticalAlignment="Top" Width="196" Height="26"/>
         <TextBox x:Name="tbname" HorizontalAlignment="Left" Height="23" Margin="467,384,0,0" TextWrapping="Wrap"  Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbcode" HorizontalAlignment="Left" Margin="630,384,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="23" Width="75"/>
-        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="475,42,30,278" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-
-                <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="station2CodeColumn" Binding="{Binding Station2Code}" Header="Station2 Code" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="stationNameColumn" Binding="{Binding stationName}" Header="station Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding Time}" Header="Time" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
         <DataGrid x:Name="lineDataGrid"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="511,218,132,102" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="areaColumn" Binding="{Binding area}" Header="area" Width="SizeToHeader"/>
@@ -46,6 +38,14 @@
         </DataGrid>
         <Label Content="שם תחנה" HorizontalAlignment="Left" Margin="511,344,0,0" VerticalAlignment="Top"/>
         <Label Content="קוד תחנה" HorizontalAlignment="Left" Margin="647,346,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="467,72,52,258" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="station2CodeColumn" Binding="{Binding Station2Code}" Header="Station 2 Code" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="stationNameColumn" Binding="{Binding stationName}" Header="station Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding Time}" Header="Time" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
 
     </Grid>
