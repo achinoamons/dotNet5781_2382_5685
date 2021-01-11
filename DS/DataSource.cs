@@ -96,18 +96,18 @@ namespace DS
             listStations.Add(new Station() { CodeStation = 38877, Name = "דרך מנחם בגין/יעקב חזן", Latitude = 32.076535, Longitude = 34.904907 });
             listStations.Add(new Station() { CodeStation = 38878, Name = "דרך הפארק/הרב נריה", Latitude = 32.299994, Longitude = 34.878765 });
             listStations.Add(new Station() { CodeStation = 38879, Name = "התאנה/הגפן", Latitude = 31.865457, Longitude = 34.859437 });
-            listStations.Add(new Station() { CodeStation = 3880, Name = "התאנה/האלון", Latitude = 31.866772, Longitude = 34.864555 });
+            listStations.Add(new Station() { CodeStation = 38880, Name = "התאנה/האלון", Latitude = 31.866772, Longitude = 34.864555 });
 
-            listStations.Add(new Station() { CodeStation = 3881, Name = "דרך הפרחים/יסמין", Latitude = 31.809325, Longitude = 31.809325 });
-            listStations.Add(new Station() { CodeStation = 3883, Name = "יצחק רבין/פנחס ספיר", Latitude = 31.80037, Longitude = 34.778239 });
-            listStations.Add(new Station() { CodeStation = 3884, Name = "מנחם בגין/יצחק רבין", Latitude = 31.799224, Longitude = 34.782985 });
-            listStations.Add(new Station() { CodeStation = 3885, Name = "חיים הרצוג/דולב", Latitude = 31.800334, Longitude = 34.785069 });
-            listStations.Add(new Station() { CodeStation = 3886, Name = "בית ספר גוונים/ארז", Latitude = 31.802319, Longitude = 34.786735 });
-            listStations.Add(new Station() { CodeStation = 3887, Name = "דרך האילנות/אלון", Latitude = 31.804595, Longitude = 34.786623 });
-            listStations.Add(new Station() { CodeStation = 3888, Name = "דרך האילנות/מנחם בגין", Latitude = 31.805041, Longitude = 34.785098 });
-            listStations.Add(new Station() { CodeStation = 3889, Name = "העצמאות/וייצמן", Latitude = 31.816751, Longitude = 34.782252 });
-            listStations.Add(new Station() { CodeStation = 3890, Name = "וייצמן/מרבד הקסמים", Latitude = 31.816579, Longitude = 34.779753 });
-            listStations.Add(new Station() { CodeStation = 3891, Name = "צאלה/אלמוג", Latitude = 31.801182, Longitude = 31.801182 });
+            listStations.Add(new Station() { CodeStation = 38881, Name = "דרך הפרחים/יסמין", Latitude = 31.809325, Longitude = 31.809325 });
+            listStations.Add(new Station() { CodeStation = 38883, Name = "יצחק רבין/פנחס ספיר", Latitude = 31.80037, Longitude = 34.778239 });
+            listStations.Add(new Station() { CodeStation = 38884, Name = "מנחם בגין/יצחק רבין", Latitude = 31.799224, Longitude = 34.782985 });
+            listStations.Add(new Station() { CodeStation = 38885, Name = "חיים הרצוג/דולב", Latitude = 31.800334, Longitude = 34.785069 });
+            listStations.Add(new Station() { CodeStation = 38886, Name = "בית ספר גוונים/ארז", Latitude = 31.802319, Longitude = 34.786735 });
+            listStations.Add(new Station() { CodeStation = 38887, Name = "דרך האילנות/אלון", Latitude = 31.804595, Longitude = 34.786623 });
+            listStations.Add(new Station() { CodeStation = 38888, Name = "דרך האילנות/מנחם בגין", Latitude = 31.805041, Longitude = 34.785098 });
+            listStations.Add(new Station() { CodeStation = 38889, Name = "העצמאות/וייצמן", Latitude = 31.816751, Longitude = 34.782252 });
+            listStations.Add(new Station() { CodeStation = 38890, Name = "וייצמן/מרבד הקסמים", Latitude = 31.816579, Longitude = 34.779753 });
+            listStations.Add(new Station() { CodeStation = 38891, Name = "צאלה/אלמוג", Latitude = 31.801182, Longitude = 31.801182 });
 
             #endregion
 
@@ -209,7 +209,7 @@ namespace DS
 
 
 
-                    #region InitialLineTrip//בונוס
+                    #region InitialLineTrip//
 
                     //listLineTrip = new List<LineTrip>
                     //{

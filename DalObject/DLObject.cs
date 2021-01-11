@@ -288,6 +288,13 @@ namespace DL
 
           
         }
+        public IEnumerable<DO.Station> GetSortStations()
+        {
+            var v = from st in DataSource.listStations
+                    orderby st.CodeStation
+                    select st;
+            return v;
+        }
         public void UpdateStation(DO.Station station,int prevcode)
 
         {
@@ -297,6 +304,7 @@ namespace DL
             {
                 DataSource.listStations.Remove(S);
                 DataSource.listStations.Add(station.Clone());
+                
             }
             else
                 // throw new DO.BadStationException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
