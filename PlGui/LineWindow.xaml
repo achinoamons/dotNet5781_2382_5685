@@ -23,7 +23,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAddLine" Content="הוספת קו" HorizontalAlignment="Left" Margin="672,165,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnAddLine_Click" />
-        <Button x:Name="btnDeleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="674,93,-2,0" VerticalAlignment="Top" Width="120" FontSize="18" />
+        <Button x:Name="btnDeleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="674,93,-2,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnDeleteLine_Click"/>
         <Button x:Name="btnUpdateLine" Content="עידכון קו" HorizontalAlignment="Left" Margin="672,132,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnUpdateLine_Click" />
 
 
