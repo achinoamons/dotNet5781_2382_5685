@@ -14,7 +14,8 @@ namespace DO
         public int StationCode { get; set; }//קוד תחנה פיזית
         public int LineStationIndex { get; set;}//מס תחנה בקו---- כלומר איזה מס תחנה אני בקו
         public int PrevStationCode { get; set;}
-        public int NextStationCode { get; set;}  
+        public int NextStationCode { get; set;}
+        public int lineCode { get; set; }//number line//שדה שהוספתי ביום שני
         public override string ToString() => this.ToStringProperty();
 
     }

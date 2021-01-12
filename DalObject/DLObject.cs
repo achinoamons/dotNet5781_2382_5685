@@ -56,7 +56,7 @@ namespace DL
         }
         public void AddLine(DO.Line line)
         {
-            if (DataSource.listLines.FirstOrDefault(p => p.FirstStation == line.FirstStation && p.LastStation == line.LastStation) != null)
+            if (DataSource.listLines.FirstOrDefault(p => p.FirstStation == line.FirstStation && p.LastStation == line.LastStation&&p.Code==line.Code) != null)
                 // throw new DO.BadLineIdException("Duplicate line");
                 throw new DO.OlreadtExistException("Duplicate line");
             line.LineID = DO.Configuration.staticline++;
@@ -154,7 +154,7 @@ namespace DL
         }
         public void UpdateLineStation(DO.LineStation linestation) 
         {
-            DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == linestation.LineId);
+            DO.LineStation ls = DataSource.listLineStation.Find(/*p => p.LineId == linestation.LineId  שיניתי ביום שני*/p => p.lineCode == linestation.lineCode && p.StationCode == linestation.StationCode);
 
             if (ls != null)
             {

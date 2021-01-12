@@ -51,10 +51,28 @@ namespace PlGui
             
         }
 
-        private void btnAddLine_Click(object sender, RoutedEventArgs e)
+        private void btnAddLine_Click(object sender, RoutedEventArgs e)//add line
         {
             AddNewLine a = new AddNewLine(bl);
-            a.Show();
+            a.ShowDialog();
+            lst.ItemsSource = bl.GetAllLines();
+        }
+
+        private void btnUpdateLine_Click(object sender, RoutedEventArgs e)//לא עשוי----חלון עדכון קו----לא גמור בכלל
+        {
+            UpdateLine update = new UpdateLine(bl, (lst.SelectedItem) as BO.Line);
+            update.Show();
+        }
+
+        private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)//update line stationכנל----לא גמור
+        {
+            // UpdateStationLine a = new UpdateStationLine(bl);
+            BO.LineStation z = (BO.LineStation)DatatGridLines.SelectedItem;
+            UpdateStationLine a = new UpdateStationLine(bl, z, 1);
+            a.ShowDialog();
+            DatatGridLines.DataContext = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
+
+
         }
     }
 }

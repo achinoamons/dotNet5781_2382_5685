@@ -70,6 +70,12 @@
     <Compile Include="ShowItemsOfSystem.xaml.cs">
       <DependentUpon>ShowItemsOfSystem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateLine.xaml.cs">
+      <DependentUpon>UpdateLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateStationLine.xaml.cs">
+      <DependentUpon>UpdateStationLine.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddNewLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +105,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ShowItemsOfSystem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateStationLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
