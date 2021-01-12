@@ -14,9 +14,54 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
         #region Line
-        public void AddLine(BO.Line line)
+
+       
+
+       
+        public void AddLine(BO.Line l)
         {
-            throw new NotImplementedException();
+           /* DO.Line ld = new DO.Line();
+            ld.Area = (Line.AREA)l.Area;
+            ld.Code = l.Code;
+            try { dl.AddLine(ld); }
+            catch { throw new BO.OlreadtExistExceptionBO(); }
+
+            // findig line id to creat line trip
+            DO.Line temp = new DO.Line();
+            try { temp = dl.GetLine(l.Code, (Line.AREA)l.Area); }
+            catch { throw new BO.NotExistExceptionBO(); }
+            int id = temp.ID;
+
+            //DO.LineTrip lt = new LineTrip();
+            //lt.LineID = id;
+            //lt.StartAt = l.StartAt;
+            //lt.FinishAt = l.FinishAt;
+            //lt.Frequency = l.Frequency;
+            //try { dl.AddLineTrip(lt); }
+            catch { throw new BO.OlreadtExistExceptionBO(); }
+
+            if (l.ListOfStationsPass != null)
+            {
+                var v = from a in l.ListOfStationsPass
+                        select ConvertSTATIONToLineStation(a, id);//רשימה של תחנות קו
+                
+
+                try
+                {
+                    var v1 = from b in v
+                             select dl.AddLineStation(b);
+                }
+                catch { throw new BO.OlreadtExistExceptionBO(); }
+            }*/
+        }
+        public DO.LineStation ConvertSTATIONToLineStation(BO.LineStation S, int LineID)// Convert STATION To  Line Station
+        {
+            DO.LineStation ls = new DO.LineStation();
+            ls.LineId = LineID;
+            ls.StationCode = S.Station1Code;
+            ls.NextStationCode = S.Station2Code;
+            // ls.PrevStation = S.PrevStation;
+            return ls;
         }
 
         public void AddLineStation(BO.LineStation linestation)
@@ -35,10 +80,14 @@ namespace BL
         }
         public IEnumerable<BO.Line> GetAllLines()
         {
-            throw new NotImplementedException();
+            IEnumerable<DO.Line> ls = dl.GetAllLines();
+
+            var v = from a in ls
+                    select GetLine(a.Code, (BO.Areas)a.Area);
+            return v;
         }
 
-        public IEnumerable<BO.LineStation> GetAllLineStations()
+        public IEnumerable<BO.LineStation> GetAllLineStations()//L
         {
             throw new NotImplementedException();
         }
@@ -53,9 +102,37 @@ namespace BL
                    select linebo;
 
         }
-        public BO.Line GetLine()
+        public BO.LineStation ConvertLineStationToBOlineStation(DO.LineStation ls, TimeSpan t, double dis, string name)//L
         {
-            throw new NotImplementedException();
+            BO.LineStation SL = new BO.LineStation();
+            SL.Station1Code = ls.StationCode;
+            SL.Station2Code = ls.NextStationCode;
+            // SL.PrevStation = ls.PrevStation;
+            SL.CodeLine = dl.GetLine(ls.LineId).Code;
+            SL.Time = t;
+            SL.Distance = dis;
+            SL.stationName = name;
+            return SL;
+        }
+        public BO.Line GetLine(int code, BO.Areas area)//L
+        {
+            DO.Line l = dl.GetLine(code, (DO.Areas)area);
+            BO.Line L = new BO.Line();
+            L.Code = l.Code;
+            L.area = (BO.Areas)l.Area;
+            
+            IEnumerable<DO.LineStation> ls = dl.GetAllLineStationsBy(x => x.LineId == l.LineID);
+           
+            IEnumerable<BO.LineStation> SL = from a in ls
+                                          from b in dl.GetAllAdjacentStationsby(x => x.Station1Code == a.StationCode || x.Station2Code == a.NextStationCode)
+                                          from v in dl.GetAllStationsBy(y => y.CodeStation == a.StationCode)
+                                          select ConvertLineStationToBOlineStation(a, b.Time, b.Distance, v.Name);
+
+
+            L.ListOfStationsPass = SL;
+            return L;
+
+            //throw new NotImplementedException();
         }
 
         public IEnumerable<BO.Line> GetLineBy(Predicate<BO.Line> predicate)

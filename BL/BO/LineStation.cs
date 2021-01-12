@@ -35,6 +35,18 @@ using System.Threading.Tasks;
 namespace BO
 
 {
+    //public string StationName { get; set; }
+    //public int CodeStation { get; set; }//cobe station 1
+    //public int LineCode { get; set; }//lune number//name of line
+    //                                 //public int PrevStation { get; set; }
+    //public int NextStation { get; set; }//CODESTATION2
+    //public double Distance { get; set; }
+    //public TimeSpan Time { get; set; }
+    //public override string ToString()
+    //{
+    //    string str = " StationName:" + StationName + " CodeStation: " + CodeStation + " Distance:" + Distance + " Time:" + Time;
+    //    return str;
+    //}
     public class LineStation
     {//הם הצמודות שלנו כביכול
         public string stationName { get; set; }
@@ -43,6 +55,11 @@ namespace BO
         public double Distance { get; set; }//distance
         public TimeSpan Time { get; set; }//time 
         public int CodeLine { get; set; }//name of line
-        public override string ToString() => this.ToStringProperty();
+        //public override string ToString() => this.ToStringProperty();
+        public override string ToString()
+        {
+            string str = " StationName:" + stationName + " CodeStation: " + Station1Code + " Distance:" + Distance + " Time:" + Time;
+            return str;
+        }
     }
 }
