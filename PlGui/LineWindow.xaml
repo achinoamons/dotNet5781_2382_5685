@@ -9,17 +9,13 @@
     <Grid>
 
         <ListBox x:Name="lst" HorizontalAlignment="Left" Height="386" Margin="34,10,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}" SelectionChanged="lst_SelectionChanged" />
-        <DataGrid x:Name="DatatGridLines" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="312" Margin="217,47,0,0" VerticalAlignment="Top" Width="438"  HorizontalContentAlignment="Right">
-
+        <DataGrid x:Name="DatatGridLines" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="312" Margin="217,30,0,0" VerticalAlignment="Top" Width="417"  HorizontalContentAlignment="Right">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="StationCode" Header="מספר תחנה" Width="sizeToHeader" Binding="{Binding  CodeStation}"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="StationName" Header="שם התחנה"  Width="sizeToHeader" Binding="{Binding StationName}"/>
-                <DataGridTextColumn x:Name="DistanceBetWeenNextStation" Header="מרחק לתחנה הבאה"  Width="sizeToHeader" Binding="{Binding  Distance}"/>
-                <DataGridTextColumn x:Name="TimeBetweenNextStation" Header="זמן לתחנה הבאה" Width="sizeToHeader" Binding="{Binding Time}"/>
+
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnUpdateStationLine" Content="עדכן תחנה" />
+                            <Button x:Name="btnUpdateStationLine" Content="עדכן תחנה" Click="btnUpdateStationLine_Click" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -27,8 +23,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAddLine" Content="הוספת קו" HorizontalAlignment="Left" Margin="672,165,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnAddLine_Click" />
-        <Button x:Name="btnDeleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="674,93,-2,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnDeleteLine_Click" />
-        <Button x:Name="btnUpdateLine" Content="עידכון קו" HorizontalAlignment="Left" Margin="672,132,0,0" VerticalAlignment="Top" Width="120" FontSize="18" />
+        <Button x:Name="btnDeleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="674,93,-2,0" VerticalAlignment="Top" Width="120" FontSize="18" />
+        <Button x:Name="btnUpdateLine" Content="עידכון קו" HorizontalAlignment="Left" Margin="672,132,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnUpdateLine_Click" />
 
 
     </Grid>

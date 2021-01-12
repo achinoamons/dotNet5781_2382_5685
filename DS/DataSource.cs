@@ -112,7 +112,6 @@ namespace DS
 
             #endregion
 
-            
             #region lines//איתחול קווים
 
             listLines = new List<Line>();
@@ -132,7 +131,7 @@ namespace DS
 
                 #endregion lines
 
-                #region LineStation//איתחול תחנות קו
+            #region LineStation//איתחול תחנות קו
 
                 listLineStation = new List<LineStation>();
                 {

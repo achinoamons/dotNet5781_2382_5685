@@ -20,39 +20,42 @@ namespace BL
        
         public void AddLine(BO.Line l)
         {
-           /* DO.Line ld = new DO.Line();
-            ld.Area = (Line.AREA)l.Area;
-            ld.Code = l.Code;
-            try { dl.AddLine(ld); }
-            catch { throw new BO.OlreadtExistExceptionBO(); }
+            /* DO.Line ld = new DO.Line();
+             ld.Area = (DO.Areas)l.area;
+             ld.Code = l.Code;
+             try { dl.AddLine(ld); }
+             catch { throw new BO.OlreadtExistExceptionBO(); }
 
-            // findig line id to creat line trip
-            DO.Line temp = new DO.Line();
-            try { temp = dl.GetLine(l.Code, (Line.AREA)l.Area); }
-            catch { throw new BO.NotExistExceptionBO(); }
-            int id = temp.ID;
+             // findig line id to creat line trip
+             DO.Line temp = new DO.Line();
+             try { temp = dl.GetLine(l.Code, (DO.Areas)l.area); }
+             catch { throw new BO.NotExistExceptionBO(); }
+             int id = temp.LineID;
 
-            //DO.LineTrip lt = new LineTrip();
-            //lt.LineID = id;
-            //lt.StartAt = l.StartAt;
-            //lt.FinishAt = l.FinishAt;
-            //lt.Frequency = l.Frequency;
-            //try { dl.AddLineTrip(lt); }
-            catch { throw new BO.OlreadtExistExceptionBO(); }
 
-            if (l.ListOfStationsPass != null)
+
+             if (l.ListOfStationsPass != null)
+             {
+                 var v = from a in l.ListOfStationsPass
+                         select ConvertSTATIONToLineStation(a, id);//רשימה של תחנות קו
+
+
+                 try
+                 {
+                     var v1 = from b in v
+                              select dl.AddLineStation(b);
+                 }
+                 catch { throw new BO.OlreadtExistExceptionBO(); }
+             }*/
+            DO.Line doline = l.CopyPropertiesToNew(typeof(DO.Line)) as DO.Line;
+            try
             {
-                var v = from a in l.ListOfStationsPass
-                        select ConvertSTATIONToLineStation(a, id);//רשימה של תחנות קו
-                
-
-                try
-                {
-                    var v1 = from b in v
-                             select dl.AddLineStation(b);
-                }
-                catch { throw new BO.OlreadtExistExceptionBO(); }
-            }*/
+                dl.AddLine(doline);
+            }
+            catch (DO.OlreadtExistException ex)
+            {
+                throw new BO.OlreadtExistExceptionBO("this line already exist", ex);
+            }
         }
         public DO.LineStation ConvertSTATIONToLineStation(BO.LineStation S, int LineID)// Convert STATION To  Line Station
         {
@@ -220,7 +223,17 @@ namespace BL
 
         public void UpdateLineStation(BO.LineStation linestation)
         {
-            throw new NotImplementedException();
+            DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
+
+            try
+            {
+                dl.UpdateLineStation(dolinestation);
+
+            }
+            catch (DO.NotExistException ex)
+            {
+                throw new BO.NotExistExceptionBO("station code does not exist ", ex);
+            }
         }
 
         public void UpdateLineStation(int id, Action<BO.LineStation> update)
