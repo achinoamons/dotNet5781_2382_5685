@@ -26,35 +26,47 @@ namespace PlGui
         public LineWindow(IBL bb)
         {
             InitializeComponent();
-            
+
             bl = bb;
             lst.DataContext = bl.GetAllLines();
         }
 
         private void lst_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
 
-                if (lst.SelectedItem != null)
-                {
-                    BO.Line l = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);
-                    DatatGridLines.DataContext = l.ListOfStationsPass.ToList();
-                    DataContext = l.ListOfStationsPass.ToList();
-                }
-                else
-                {
-                    lst.SelectedItem = default;
-                    //BO.LINE l=bl.GetLINE()
-                }
-                // DatatGridLines.ItemsSource= l.StationListOfLine;
 
-            
+            if (lst.SelectedItem != null)
+            {
+                BO.Line l = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);
+                DatatGridLines.DataContext = l.ListOfStationsPass.ToList();
+                DataContext = l.ListOfStationsPass.ToList();
+            }
+            else
+            {
+                lst.SelectedItem = default;
+                //BO.LINE l=bl.GetLINE()
+            }
+            // DatatGridLines.ItemsSource= l.StationListOfLine;
+
+
         }
 
         private void btnAddLine_Click(object sender, RoutedEventArgs e)
         {
             AddNewLine a = new AddNewLine(bl);
             a.Show();
+        }
+
+        private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
+        {
+            BO.Line dl1 = (lst.SelectedItem) as BO.Line;
+            if (MessageBox.Show("?אתה בטוח שהינך רוצה למחוק קו זה", " מחיקת קו", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                == MessageBoxResult.Yes)
+            {
+                try { bl.DeleteLine(dl1.Code, dl1.area); }
+                catch { MessageBox.Show("שגיאה: קו זה לא נמצא במערכת "); }
+                lst.DataContext = bl.GetAllLines();
+            }
         }
     }
 }

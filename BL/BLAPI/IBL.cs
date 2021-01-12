@@ -58,11 +58,11 @@ namespace BLAPI
         //void AddLine(BO.Line line);
         //void UpdateLine(BO.Line line);
         //void UpdateLine(int id, Action<BO.Line> update); //method that knows to update specific fields in line
-        //void DeleteLine(int id);
+        void DeleteLine(int code, BO.Areas area);
         #endregion
 
         #region LineStation
-        IEnumerable<BO.LineStation> GetAllLineStations();//show all linestations
+      //  IEnumerable<BO.LineStation> GetAllLineStations();//show all linestations
 
 
 
@@ -72,7 +72,7 @@ namespace BLAPI
         void AddLineStation(BO.LineStation linestation);
         void UpdateLineStation(BO.LineStation linestation);
         void UpdateLineStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
-        void DeleteLineStation(int id);
+        bool DeleteLineStation(BO.LineStation ls);
         #endregion
 
         #region Station

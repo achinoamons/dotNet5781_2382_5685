@@ -23,17 +23,17 @@ namespace DL
 
         //Implement IDL methods, CRUD
         #region Line
-        public IEnumerable<DO.Line> GetAllLines() 
+        public IEnumerable<DO.Line> GetAllLines()
         {
 
             return from line in DataSource.listLines
                    select line.Clone();
         }
-       public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate) 
-        { 
-           return from line in DataSource.listLines
-                  where predicate(line)
-                  select line.Clone();
+        public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
+        {
+            return from line in DataSource.listLines
+                   where predicate(line)
+                   select line.Clone();
         }
         public DO.Line GetLine(int id, DO.Areas area) //L
         {
@@ -64,7 +64,7 @@ namespace DL
             line.LineID = DO.Configuration.staticline++;
             DataSource.listLines.Add(line.Clone());
         }
-        public void UpdateLine(DO.Line line) 
+        public void UpdateLine(DO.Line line)
         {
             DO.Line l = DataSource.listLines.Find(p => p.LineID == line.LineID);
 
@@ -75,45 +75,40 @@ namespace DL
             }
             else
                 //throw new DO.BadLineIdException(l.LineID, $"bad line id: {l.LineID}");
-                throw new DO.NotExistException(l.LineID+" bad line id");
+                throw new DO.NotExistException(l.LineID + " bad line id");
         }
-      
+
         public void UpdateLine(int id, Action<DO.Line> update) //method that knows to updt specific fields in Line
         {
 
         }
-            public void DeleteLine(int id)
-        {
-            DO.Line line = DataSource.listLines.Find(p => p.LineID == id);
 
+
+        public void DeleteLine(int code, DO.Areas area)
+        {
+            DO.Line line = DataSource.listLines.Find(b => b.Code == code && b.Area == area);
             if (line != null)
             {
-                int g= line.LineID;
                 DataSource.listLines.Remove(line);
-                for (int i =g ; i <DataSource.listLines.Count(); i++)
-                {
-                    DataSource.listLines[i].LineID--;
-                }
-                 
             }
-            else
-                //throw new DO.BadLineIdException(id, $"bad line id: {id}");
-                 throw new DO.NotExistException(id+"bad line id");
+            else throw new DO.NotExistException("THIS LINE DOSENT EXIST");
         }
+
+
         #endregion
         #region LineStation
-        public IEnumerable<DO.LineStation> GetAllLineStations() 
+        public IEnumerable<DO.LineStation> GetAllLineStations()/*IEnumerable<DO.LineStation> GetAllLineStations()*/
         {
             return from linest in DataSource.listLineStation
                    select linest.Clone();
         }
-        public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate) 
+        public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
         {
             return from linest in DataSource.listLineStation
                    where predicate(linest)
                    select linest.Clone();
         }
-        public DO.LineStation GetLineStation(int id) 
+        public DO.LineStation GetLineStation(int id)
         {
             DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == id);
 
@@ -121,7 +116,15 @@ namespace DL
                 return ls.Clone();
             else
                 // throw new DO.BadLineStationIdException(id, $"bad linestation line id: {id}");
-                throw new DO.OlreadtExistException("the line statation"+id+"is not exist");
+                throw new DO.OlreadtExistException("the line statation" + id + "is not exist");
+
+        }
+
+        public DO.LineStation GetLineStationLEA(int lineCode1, int StationCode)//L
+        {
+            DO.LineStation a = DataSource.listLineStation.Find(x => x.LineId == lineCode1 && x.StationCode == StationCode);
+            if (a != null) return a.Clone();
+            else throw new DO.NotExistException();
         }
         public IEnumerable<DO.LineStation> GetLineStationBy(Predicate<DO.LineStation> predicate)
         {
@@ -143,7 +146,7 @@ namespace DL
             }
             if (!flag)//if there is no station like this
                       //  throw new DO.BadLineStationIdException(linestation.StationCode, "there is no station code like this ");
-                throw new DO.NotExistException( "there is no station code like this "+ linestation.StationCode);
+                throw new DO.NotExistException("there is no station code like this " + linestation.StationCode);
             if (DataSource.listLineStation.FirstOrDefault(p => p.StationCode == linestation.StationCode && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex) != null)
                 //throw new DO.BadLineStationIdException(linestation.StationCode, "Duplicate line station ");
                 throw new DO.OlreadtExistException(linestation.StationCode + " Duplicate line station ");
@@ -154,7 +157,7 @@ namespace DL
             }*/
             DO.Configuration.staticforlinestation++;//?
         }
-        public void UpdateLineStation(DO.LineStation linestation) 
+        public void UpdateLineStation(DO.LineStation linestation)
         {
             DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == linestation.LineId);
 
@@ -165,39 +168,47 @@ namespace DL
             }
             else
                 //throw new DO.BadLineStationIdException(ls.LineId, $"bad line id of line station: {ls.StationCode}");
-                throw new DO.NotExistException(ls.LineId+ $" bad line id of line station: {ls.StationCode}");
+                throw new DO.NotExistException(ls.LineId + $" bad line id of line station: {ls.StationCode}");
         }
-        public void UpdateLineStation(int id, Action<DO.LineStation> update) { } //method that knows to updt specific fields in Person
-        public void DeleteLineStation(int id)
+        // public void UpdateLineStation(int id, Action<DO.LineStation> update) { } //method that knows to updt specific fields in Person
+        public void DeleteLineStation(DO.LineStation l/*,int id*/)
         {
-            DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == id);
+            DO.LineStation a = DataSource.listLineStation.Find(x => x.LineId== l.LineId && x.StationCode == l.StationCode);
+            if (a != null)
+                DataSource.listLineStation.Remove(a);
+            else throw new DO.NotExistException();
+            //DO.LineStation ls = DataSource.listLineStation.Find(p => p.LineId == id);
 
-            if (ls != null)
-            {
-                int g = ls.LineId;
-                DataSource.listLineStation.Remove(ls);
-                for (int i = g; i < DataSource.listLineStation.Count(); i++)
-                {
-                    DataSource.listLineStation[i].LineId--;
-                }
-            }
-            else
-                //throw new DO.BadLineStationIdException(id, $"bad line id of line station: {id}");
-                throw new DO.NotExistException( $"bad line id of line station: {id}");
+            //if (ls != null)
+            //{
+            //    int g = ls.LineId;
+            //    DataSource.listLineStation.Remove(ls);
+            //    for (int i = g; i < DataSource.listLineStation.Count(); i++)
+            //    {
+            //        DataSource.listLineStation[i].LineId--;
+            //    }
+            //}
+            //else
+            //    //throw new DO.BadLineStationIdException(id, $"bad line id of line station: {id}");
+            //    throw new DO.NotExistException($"bad line id of line station: {id}");
         }
+
         #endregion
         #region AdjacentStations
+
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
             return from linestadj in DataSource.listAdjacentStation
                    select linestadj.Clone();
         }
+
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsby(Predicate<DO.AdjacentStations> predicate)
         {
             return from linestadj in DataSource.listAdjacentStation
                    where predicate(linestadj)
                    select linestadj.Clone();
         }
+
         public DO.AdjacentStations GetAdjacentStations(int code1, int code2)
         {
             DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == code1 && p.Station2Code == code2);
@@ -206,14 +217,15 @@ namespace DL
                 return adj.Clone();
             else
                 // throw new DO.BadAdjacentStationsException(code1, code2, $"bad codes: {code1},{code2}");
-                throw new DO.NotExistException("there is no adjacent station for codes"+ code1+ code2);
+                throw new DO.NotExistException("there is no adjacent station for codes" + code1 + code2);
         }
+
         public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {
             if (DataSource.listAdjacentStation.FirstOrDefault(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code) != null)
                 //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, "Duplicate station1 and station2 code of adjacent station");
-                throw new DO.OlreadtExistException(adjacentStations.Station1Code+" "+ adjacentStations.Station2Code+ " Duplicate station1 and station2 code of adjacent station");
-                DataSource.listAdjacentStation.Add(adjacentStations.Clone());
+                throw new DO.OlreadtExistException(adjacentStations.Station1Code + " " + adjacentStations.Station2Code + " Duplicate station1 and station2 code of adjacent station");
+            DataSource.listAdjacentStation.Add(adjacentStations.Clone());
             /*for (int i = 0; i < DataSource.ListLines.Count(); i++)
             {
                 DataSource.ListLines[i].LineID++;//update the line id to be bigger in each one
@@ -231,7 +243,7 @@ namespace DL
             }
             else
                 //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
-                throw new DO.NotExistException(adjacentStations.Station1Code+ adjacentStations.Station2Code+$"bad codes");
+                throw new DO.NotExistException(adjacentStations.Station1Code + adjacentStations.Station2Code + $"bad codes");
         }
 
         public void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update) { }//method that knows to updt specific fields in Person
@@ -247,9 +259,9 @@ namespace DL
             else
 
                 // throw new DO.BadAdjacentStationsException(i, j, $"bad codes: {i},{j} there are no such adjacent stations");
-                throw new DO.NotExistException(i+" "+ j+" there are no such adjacent stations");
+                throw new DO.NotExistException(i + " " + j + " there are no such adjacent stations");
         }
-        #endregion
+        #endregion AdjacentStations
         /* #region Bus
          public IEnumerable<DO.Bus> GetAllBuses() { }
          public IEnumerable<DO.Bus> GetAllBusesby(Predicate<DO.Bus> predicate) { }
@@ -259,19 +271,36 @@ namespace DL
          public void UpdateBus(int id, Action<DO.Bus> update) { }//method that knows to updt specific fields in Person
          public void DeleteBus(int id) { }
          #endregion*/
-        /* #region LineTrip
-         public IEnumerable<DO.LineTrip> GetAllLineTripes() { }
-         public IEnumerable<DO.LineTrip> GetAllLineTripesby(Predicate<DO.LineTrip> predicate) { }
-         public DO.LineStation GetLineTrip(int id) { }
-         public void AddLineTrip(DO.LineTrip linetrip) { }
-         public void UpdateLineTrip(DO.LineTrip linetrip) { }
-         public void UpdateLineTrip(int id, Action<DO.LineTrip> update) { } //method that knows to updt specific fields in Person
-         public void DeleteLineTrip(int id) { }
-         #endregion*/
+        #region LineTrip
+        //public IEnumerable<DO.LineTrip> GetAllLineTripes() { }
+        //public IEnumerable<DO.LineTrip> GetAllLineTripesby(Predicate<DO.LineTrip> predicate) { }
+        //public DO.LineStation GetLineTrip(int id) { }
+        //public void AddLineTrip(DO.LineTrip linetrip) { }
+        //public void UpdateLineTrip(DO.LineTrip linetrip) { }
+        //  public void UpdateLineTrip(int id, Action<DO.LineTrip> update) { } //method that knows to updt specific fields in Person
+        // public void DeleteLineTrip(int linecode) 
+        //{
+        //       DO.LineTrip lt = DataSource.listLineTrip.Find(b => b.LineId`== linecode);
+        //        if (lt != null)
+        //        { DataSource.listLineTrip.Remove(lt); }
+        //        else throw new DO.NotExistException();
+
+        //    //public void DeleteLineTrip(int lineCode)
+        //    //{
+        //    //    LineTrip lt = DataSource.listLineTrip.Find(b => b.LineID == lineCode);
+        //    //    if (lt != null)
+        //    //    { DataSource.listLineTrip.Remove(lt); }
+        //    //    else throw new DO.NotExistException();
+
+        //    //}
+
+
+        //}
+        #endregion
         #region Station
-        public IEnumerable<DO.Station> GetAllStations() 
+        public IEnumerable<DO.Station> GetAllStations()
         {
-           
+
             return from station in DataSource.listStations
                    select station.Clone();
 
@@ -284,22 +313,22 @@ namespace DL
         }
         public DO.Station GetStation(int CodeStation)
         {
-            DO.Station S = DataSource.listStations.Find(p => p.CodeStation== CodeStation);
+            DO.Station S = DataSource.listStations.Find(p => p.CodeStation == CodeStation);
 
             if (S != null)
                 return S.Clone();
             else
                 //throw new DO.BadStationException(CodeStation, $"bad Station CodeStation: {CodeStation}");
-                throw new DO.NotExistException(CodeStation+ "bad Station CodeStation:");
+                throw new DO.NotExistException(CodeStation + "bad Station CodeStation:");
         }
         public void AddStation(DO.Station station)
         {
             if (DataSource.listStations.FirstOrDefault(p => p.CodeStation == station.CodeStation) != null)
                 //throw new DO.BadStationException(station.CodeStation, "Duplicate station CodeStation");
-                throw new DO.OlreadtExistException(station.CodeStation+ "Duplicate station CodeStation");
+                throw new DO.OlreadtExistException(station.CodeStation + "Duplicate station CodeStation");
             DataSource.listStations.Add(station.Clone());
 
-          
+
         }
         public IEnumerable<DO.Station> GetSortStations()
         {
@@ -308,7 +337,7 @@ namespace DL
                     select st;
             return v;
         }
-        public void UpdateStation(DO.Station station,int prevcode)
+        public void UpdateStation(DO.Station station, int prevcode)
 
         {
             DO.Station S = DataSource.listStations.Find(/*p => p.CodeStation == station.CodeStation*/p => p.CodeStation == prevcode);
@@ -317,11 +346,11 @@ namespace DL
             {
                 DataSource.listStations.Remove(S);
                 DataSource.listStations.Add(station.Clone());
-                
+
             }
             else
                 // throw new DO.BadStationException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
-                throw new DO.NotExistException(S.CodeStation+ "Station is not exist");
+                throw new DO.NotExistException(S.CodeStation + "Station is not exist");
         }
         public void UpdateStation(int codestation, Action<DO.Station> update) { } //method that knows to updt specific fields in Person
         public void DeleteStation(int codestation)
@@ -336,17 +365,17 @@ namespace DL
                 {
                     if (DataSource.listAdjacentStation[i].Station1Code == station.CodeStation || DataSource.listAdjacentStation[i].Station2Code == station.CodeStation)
                         DataSource.listAdjacentStation.Remove(DataSource.listAdjacentStation[i]);
-                
+
                 }
-            //    for (int i = g; i < DataSource.ListLines.Count(); i++)
-            //    {
-            //        DataSource.ListLines[i].LineID--;
-            //    }
+                //    for (int i = g; i < DataSource.ListLines.Count(); i++)
+                //    {
+                //        DataSource.ListLines[i].LineID--;
+                //    }
 
             }
             else
                 // throw new DO.BadStationException(codestation, $"bad station codestation: {codestation}");
-                throw new DO.NotExistException(codestation+"bad station codestation");
+                throw new DO.NotExistException(codestation + "bad station codestation");
         }
 
         #endregion

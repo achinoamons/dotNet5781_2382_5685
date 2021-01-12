@@ -12,6 +12,7 @@ namespace DO
     /// </summary>
     public class AdjacentStations
     {
+        //public int lineCode { get; set; }//L
         public int Station1Code { get; set; }//קוד תחנה ראשונה
         public int Station2Code { get; set; }//קוד תחנה שניה
         public double Distance { get; set; }//מרחק בין תחנות

@@ -64,19 +64,49 @@ namespace BL
             return ls;
         }
 
-        public void AddLineStation(BO.LineStation linestation)
+        public void AddLineStation(BO.LineStation linestation)//L
         {
-            throw new NotImplementedException();
+            DO.LineStation a = new DO.LineStation();
+            a.StationCode = linestation.CodeLine;
+            a.StationCode = linestation.Station1Code;
+            a.NextStationCode = linestation.Station2Code;
+            dl.AddLineStation(a);
+            DO.AdjacentStations adj = new DO.AdjacentStations();
+            adj.Station1Code = linestation.Station1Code;
+            adj.Station2Code = linestation.Station2Code;
+            adj.Distance = linestation.Distance;
+            adj.Time = linestation.Time;
+            adj.Station1Code = linestation.CodeLine;
+            dl.AddAdjacentStations(adj);
+            // L.StationListOfLine.
+            // dl.add 
+        }
+   
+
+        public void DeleteLine(int code, BO.Areas area)
+        {
+            BO.Line l = GetLine(code, area);
+            int c = l.Code;
+            BO.Areas ar = l.area;
+            DO.Line a = dl.GetLine(c, (DO.Areas)ar);
+            try { dl.DeleteLine(l.Code, (DO.Areas)l.area); }
+            catch { throw new BO.NotExistExceptionBO(); }
+
+            //dl.DeleteLineTrip(a.Code);
         }
 
-        public void DeleteLine(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void DeleteLineStation(int id)
+        public bool DeleteLineStation(BO.LineStation ls)//L
         {
-            throw new NotImplementedException();
+            try
+            {
+                DO.LineStation l = dl.GetLineStationLEA(ls.CodeLine, ls.Station1Code);
+                dl.DeleteLineStation(l);
+                //DO.AdjacentStations adj = dl.GetAdjacentStations(ls.Station1Code, ls.Station2Code/*, ls.CodeLine*/);
+                dl.DeleteAdjacentStations(ls.Station1Code, ls.Station2Code);
+            }
+            catch { throw new BO.NotExistExceptionBO(); }
+            return true;
         }
         public IEnumerable<BO.Line> GetAllLines()
         {
@@ -87,10 +117,11 @@ namespace BL
             return v;
         }
 
-        public IEnumerable<BO.LineStation> GetAllLineStations()//L
-        {
-            throw new NotImplementedException();
-        }
+
+        //public IEnumerable<BO.LineStation> GetAllLineStations()//L
+        //{
+        //    throw new NotImplementedException();
+        //}
         public IEnumerable<BO.Line> GetAllLinesPassByStation(int code)// מחזיר רשימת כל הקווים שעוברים בתחנה-קבלתי קוד תחנה
         {
             var v = from ls in dl.GetAllLineStationsBy(p => p.StationCode == code)//
