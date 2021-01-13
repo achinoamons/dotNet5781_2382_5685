@@ -56,7 +56,19 @@ namespace PlGui
 
         private void btnUpdataLine_Click(object sender, RoutedEventArgs e)
         {
-
+            //BO.LineStation x = (BO.LineStation)dataGridStationLINE.SelectedItem;
+            //stationlinechoosen = x;
+            //BO.Line upli = new BO.Line();
+            //upli.area = (BO.Areas)cmbArea.SelectedItem;
+            //upli.Code = Convert.ToInt32(txtLineCode.Text);
+            ////upli.FinishAt = ln.FinishAt;
+            ////upli.StartAt = ln.StartAt;
+            ////upli.Frequency = ln.Frequency;
+            //////if( isListOfLineStationIsChanged==false)
+            ////// upli.StationListOfLine = FinalListStation;
+            //upli.ListOfStationsPass = ll.ListOfStationsPass;
+            //bl.UpdateLine(upli);
+            this.Close();
         }
 
         private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)
@@ -64,7 +76,9 @@ namespace PlGui
             UpdateStationLine a = new UpdateStationLine(bl, (BO.LineStation)dataGridStationLINE.SelectedItem, 2);
             a.ShowDialog();
             DataContext = ll.ListOfStationsPass;
-            //dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ln.Code);
+            //dataGridStationLINE.ItemsSource = ll.ListOfStationsPass;
+            //DataContext = ln.StationListOfLine;
+            dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ll.Code);
         }
 
 

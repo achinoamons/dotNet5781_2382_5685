@@ -61,7 +61,8 @@ namespace PlGui
         private void btnUpdateLine_Click(object sender, RoutedEventArgs e)//לא עשוי----חלון עדכון קו----לא גמור בכלל
         {
             UpdateLine update = new UpdateLine(bl, (lst.SelectedItem) as BO.Line);
-            update.Show();
+            update.ShowDialog();
+            DatatGridLines.ItemsSource = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
         }
 
         private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)//update line stationכנל----לא גמור

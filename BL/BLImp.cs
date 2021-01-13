@@ -16,8 +16,22 @@ namespace BL
         #region Line
 
        
+        public void UpdateLine(BO.Line line)
+        {
+            DO.Line ld = new DO.Line();
+            ld.Area = (DO.Areas)line.area;
+            ld.Code = line.Code;
 
-       
+            //DO.Line ld = dl.GetLine(upline.Code, (Line.AREA)upline.Area);
+            dl.UpdateLine(ld);
+
+            /*  var v = from a in line.ListOfStationsPass
+                      select convertSTATIONLINEToLineStation(a, ld.ID);
+              var v1 = from z in v
+                       select dl.UpdateLineStation(z);*/
+            GetAllLineStationsByLineCode(line.Code);
+        }
+
         public void AddLine(BO.Line l)
         {
             /* DO.Line ld = new DO.Line();
@@ -206,13 +220,20 @@ namespace BL
         }
         public IEnumerable<BO.LineStation> GetAllLineStationsByLineCode(int LineCode)
         {
-            var v = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
-            return from a in v
+            //var v = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
+            //return from a in v
 
-                   select a.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
+            //       select a.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
             //var v = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
             //return from a in v
             //       select convertLineStationToSTATIONLINE(a);
+            IEnumerable<DO.LineStation> ls = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
+
+            IEnumerable<BO.LineStation> SL = from a in ls
+                                             from b in dl.GetAllAdjacentStationsby(x => x.Station1Code == a.StationCode || x.Station2Code == a.NextStationCode)
+                                             from v in dl.GetAllStationsBy(y => y.CodeStation == a.StationCode)
+                                             select ConvertLineStationToBOlineStation(a, b.Time, b.Distance, v.Name);
+            return SL;
 
         }
         //public BO.LineStation convertLineStationToSTATIONLINE(DO.LineStation l)
@@ -223,9 +244,9 @@ namespace BL
         //    s.Station2Code = l.NextStationCode;
 
         //    s.stationName = dl.GetStation(l.StationCode).Name;
-        //DO.AdjacentStations adj = dl.GetAllAdjacentStationsby(x => x.Station1Code == l.StationCode && x.Station2Code == l.NextStationCode).FirstOrDefault();
-        //s.Distance = adj.Distance;
-        //s.Time = adj.Time;
+        //    DO.AdjacentStations adj = dl.GetAllAdjacentStationsby(x => x.Station1Code == l.StationCode && x.Station2Code == l.NextStationCode).FirstOrDefault();
+        //    s.Distance = adj.Distance;
+        //    s.Time = adj.Time;
 
 
         //    return s;
