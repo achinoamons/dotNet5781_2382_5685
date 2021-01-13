@@ -204,6 +204,32 @@ namespace BL
             return from ls1 in dl.GetAllLineStationsBy(s2 => s2.LineId == lineid)
                    select ls1.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
         }
+        public IEnumerable<BO.LineStation> GetAllLineStationsByLineCode(int LineCode)
+        {
+            var v = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
+            return from a in v
+
+                   select a.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
+            //var v = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
+            //return from a in v
+            //       select convertLineStationToSTATIONLINE(a);
+
+        }
+        //public BO.LineStation convertLineStationToSTATIONLINE(DO.LineStation l)
+        //{
+        //    BO.LineStation s = new BO.LineStation();
+        //    s.Station1Code = l.StationCode;
+        //    s.CodeLine = l.lineCode;
+        //    s.Station2Code = l.NextStationCode;
+
+        //    s.stationName = dl.GetStation(l.StationCode).Name;
+        //DO.AdjacentStations adj = dl.GetAllAdjacentStationsby(x => x.Station1Code == l.StationCode && x.Station2Code == l.NextStationCode).FirstOrDefault();
+        //s.Distance = adj.Distance;
+        //s.Time = adj.Time;
+
+
+        //    return s;
+        //}
         public IEnumerable<BO.LineStation> GetAllLineStationsByStationCode(int code)
         {
             return from ls1 in dl.GetAllLineStationsBy(s2 => s2.StationCode == code)
@@ -211,42 +237,55 @@ namespace BL
         }
 
 
-        public void UpdateLine(BO.Line line)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateLine(BO.Line line)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void UpdateLine(int id, Action<BO.Line> update)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateLine(int id, Action<BO.Line> update)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public void UpdateLineStation(BO.LineStation linestation)
         {
-            /*DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
+            //DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
 
-            try
-            {
-                dl.UpdateLineStation(dolinestation);
+            //try
+            //{
+            //    dl.UpdateLineStation(dolinestation);
 
-            }
-            catch (DO.NotExistException ex)
-            {
-                throw new BO.NotExistExceptionBO("station code does not exist ", ex);
-            }*/
-            DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
-
-            try { dl.UpdateLineStation(dolinestation); }
+            //}
+            //catch (DO.NotExistException ex)
+            //{
+            //    throw new BO.NotExistExceptionBO("station code does not exist ", ex);
+            //}
+            // DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
+            //try { dl.UpdateLineStation(dolinestation); }
+            //catch { throw new BO.NotExistExceptionBO(); }
+            DO.Station st = new DO.Station();
+            st.Name = linestation.stationName;
+            st.CodeStation = linestation.Station1Code;
+            try { dl.UpdateStationName(st, linestation.Station1Code); }
             catch { throw new BO.NotExistExceptionBO(); }
-            DO.AdjacentStations adjs = linestation.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations;
-
-
-            try { dl.UpdateAdjacentStations(adjs); }
+            DO.AdjacentStations adj = linestation.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations;
+            try { dl.UpdateAdjacentStations(adj); }
             catch { throw new BO.NotExistExceptionBO(); }
-            DO.Station std = linestation.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
+            /* DO.LineStation dolinestation = new DO.LineStation();
+             dolinestation.StationCode = linestation.Station1Code;
+             dolinestation.NextStationCode = linestation.Station2Code;
+             dolinestation.lineCode = linestation.CodeLine;
+             try { dl.UpdateLineStation(dolinestation); }
+             catch { throw new BO.NotExistExceptionBO(); }
+             DO.AdjacentStations adjs = linestation.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations;
 
-            try { dl.UpdateStation(std,linestation.Station1Code); }
-            catch { throw new BO.NotExistExceptionBO(); }
+
+             try { dl.UpdateAdjacentStations(adjs); }
+             catch { throw new BO.NotExistExceptionBO(); }
+             DO.Station std = linestation.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
+
+             try { dl.UpdateStation(std, linestation.Station1Code); }
+             catch { throw new BO.NotExistExceptionBO(); }*/
         }
 
         public void UpdateLineStation(int id, Action<BO.LineStation> update)

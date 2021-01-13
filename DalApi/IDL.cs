@@ -31,7 +31,7 @@ namespace DLAPI
         DO.LineStation GetLineStationLEA(int lineCode1, int StationCode);
         IEnumerable<DO.LineStation> GetLineStationBy(Predicate<DO.LineStation> predicate);
         void AddLineStation(DO.LineStation linestation);
-        void UpdateLineStation(DO.LineStation linestation);
+        bool UpdateLineStation(DO.LineStation linestation);
        // void UpdateLineStation(int id, Action<DO.LineStation> update); //method that knows to updt specific fields in Person
         void DeleteLineStation(DO.LineStation l);
         #endregion
@@ -68,6 +68,7 @@ namespace DLAPI
         DO.Station GetStation(int id);
         void AddStation(DO.Station station);
         void UpdateStation(DO.Station station,int i);
+        void UpdateStationName(DO.Station station, int prevcode);//פונקציה שהוספתי שרק משנה את השם
         void UpdateStation(int id, Action<DO.Station> update); //method that knows to updt specific fields in Person
         void DeleteStation(int id);
         IEnumerable<DO.Station> GetSortStations();

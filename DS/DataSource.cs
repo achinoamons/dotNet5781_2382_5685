@@ -138,72 +138,72 @@ namespace DS
                     ////linestation for line 1
                     ///
 
-                    listLineStation.Add(new LineStation() { LineId = 1, StationCode = listStations[0].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[1].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 1, StationCode = listStations[1].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[0].CodeStation, NextStationCode = listStations[2].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 1, StationCode = listStations[2].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[1].CodeStation, NextStationCode = listStations[3].CodeStation });
+                    listLineStation.Add(new LineStation() {  lineCode=75,LineId = 1, StationCode = listStations[0].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[1].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 75,LineId = 1, StationCode = listStations[1].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[0].CodeStation, NextStationCode = listStations[2].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 75, LineId = 1, StationCode = listStations[2].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[1].CodeStation, NextStationCode = listStations[3].CodeStation });
 
-                    listLineStation.Add(new LineStation() { LineId = 1, StationCode = listStations[3].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[2].CodeStation, NextStationCode = listStations[4].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 75,LineId = 1, StationCode = listStations[3].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[2].CodeStation, NextStationCode = listStations[4].CodeStation });
 
-                    listLineStation.Add(new LineStation() { LineId = 1, StationCode = listStations[4].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[3].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 75, LineId = 1, StationCode = listStations[4].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[3].CodeStation, NextStationCode = 0 });
                     ////linestation for line 2
-                    listLineStation.Add(new LineStation() { LineId = 2, StationCode = listStations[5].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[6].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 2, StationCode = listStations[6].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[5].CodeStation, NextStationCode = listStations[7].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 2, StationCode = listStations[7].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[6].CodeStation, NextStationCode = listStations[8].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 2, StationCode = listStations[8].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[7].CodeStation, NextStationCode = listStations[9].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 2, StationCode = listStations[9].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[8].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 76, LineId = 2, StationCode = listStations[5].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[6].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 76,LineId = 2, StationCode = listStations[6].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[5].CodeStation, NextStationCode = listStations[7].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 76, LineId = 2, StationCode = listStations[7].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[6].CodeStation, NextStationCode = listStations[8].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 76, LineId = 2, StationCode = listStations[8].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[7].CodeStation, NextStationCode = listStations[9].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 76, LineId = 2, StationCode = listStations[9].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[8].CodeStation, NextStationCode = 0 });
                     ////linestation for line 3
-                    listLineStation.Add(new LineStation() { LineId = 3, StationCode = listStations[10].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[11].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 3, StationCode = listStations[11].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[10].CodeStation, NextStationCode = listStations[12].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 3, StationCode = listStations[12].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[11].CodeStation, NextStationCode = listStations[13].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 3, StationCode = listStations[13].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[12].CodeStation, NextStationCode = listStations[14].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 3, StationCode = listStations[14].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[13].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 77, LineId = 3, StationCode = listStations[10].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[11].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 77, LineId = 3, StationCode = listStations[11].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[10].CodeStation, NextStationCode = listStations[12].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 77, LineId = 3, StationCode = listStations[12].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[11].CodeStation, NextStationCode = listStations[13].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 77, LineId = 3, StationCode = listStations[13].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[12].CodeStation, NextStationCode = listStations[14].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 77, LineId = 3, StationCode = listStations[14].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[13].CodeStation, NextStationCode = 0 });
                     ////linestation for line 4
-                    listLineStation.Add(new LineStation() { LineId = 4, StationCode = listStations[15].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[16].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 4, StationCode = listStations[16].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[15].CodeStation, NextStationCode = listStations[17].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 4, StationCode = listStations[17].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[16].CodeStation, NextStationCode = listStations[18].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 4, StationCode = listStations[18].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[17].CodeStation, NextStationCode = listStations[19].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 4, StationCode = listStations[19].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[18].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 78, LineId = 4, StationCode = listStations[15].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[16].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 78, LineId = 4, StationCode = listStations[16].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[15].CodeStation, NextStationCode = listStations[17].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 78, LineId = 4, StationCode = listStations[17].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[16].CodeStation, NextStationCode = listStations[18].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 78, LineId = 4, StationCode = listStations[18].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[17].CodeStation, NextStationCode = listStations[19].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 78, LineId = 4, StationCode = listStations[19].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[18].CodeStation, NextStationCode = 0 });
                     ////linestation for line 5
-                    listLineStation.Add(new LineStation() { LineId = 5, StationCode = listStations[20].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[19].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 5, StationCode = listStations[21].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[20].CodeStation, NextStationCode = listStations[22].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 5, StationCode = listStations[22].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[21].CodeStation, NextStationCode = listStations[23].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 5, StationCode = listStations[23].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[22].CodeStation, NextStationCode = listStations[24].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 5, StationCode = listStations[24].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[23].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 79, LineId = 5, StationCode = listStations[20].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[19].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 79, LineId = 5, StationCode = listStations[21].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[20].CodeStation, NextStationCode = listStations[22].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 79, LineId = 5, StationCode = listStations[22].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[21].CodeStation, NextStationCode = listStations[23].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 79, LineId = 5, StationCode = listStations[23].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[22].CodeStation, NextStationCode = listStations[24].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 79, LineId = 5, StationCode = listStations[24].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[23].CodeStation, NextStationCode = 0 });
 
                     ////linestation for line 6
-                    listLineStation.Add(new LineStation() { LineId = 6, StationCode = listStations[25].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[26].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 6, StationCode = listStations[26].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[25].CodeStation, NextStationCode = listStations[27].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 6, StationCode = listStations[27].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[26].CodeStation, NextStationCode = listStations[28].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 6, StationCode = listStations[28].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[27].CodeStation, NextStationCode = listStations[29].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 6, StationCode = listStations[29].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[28].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 80, LineId = 6, StationCode = listStations[25].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[26].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 80, LineId = 6, StationCode = listStations[26].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[25].CodeStation, NextStationCode = listStations[27].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 80, LineId = 6, StationCode = listStations[27].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[26].CodeStation, NextStationCode = listStations[28].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 80, LineId = 6, StationCode = listStations[28].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[27].CodeStation, NextStationCode = listStations[29].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 80, LineId = 6, StationCode = listStations[29].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[28].CodeStation, NextStationCode = 0 });
 
                     ////linestation for line 7
-                    listLineStation.Add(new LineStation() { LineId = 7, StationCode = listStations[30].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[31].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 7, StationCode = listStations[31].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[30].CodeStation, NextStationCode = listStations[32].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 7, StationCode = listStations[32].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[31].CodeStation, NextStationCode = listStations[33].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 7, StationCode = listStations[33].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[32].CodeStation, NextStationCode = listStations[34].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 7, StationCode = listStations[34].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[33].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 81, LineId = 7, StationCode = listStations[30].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[31].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 81, LineId = 7, StationCode = listStations[31].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[30].CodeStation, NextStationCode = listStations[32].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 81, LineId = 7, StationCode = listStations[32].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[31].CodeStation, NextStationCode = listStations[33].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 81, LineId = 7, StationCode = listStations[33].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[32].CodeStation, NextStationCode = listStations[34].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 81, LineId = 7, StationCode = listStations[34].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[33].CodeStation, NextStationCode = 0 });
                     ////linestation for line 8
-                    listLineStation.Add(new LineStation() { LineId = 8, StationCode = listStations[35].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[36].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 8, StationCode = listStations[36].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[35].CodeStation, NextStationCode = listStations[37].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 8, StationCode = listStations[37].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[36].CodeStation, NextStationCode = listStations[38].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 8, StationCode = listStations[38].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[37].CodeStation, NextStationCode = listStations[39].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 8, StationCode = listStations[39].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[38].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 82, LineId = 8, StationCode = listStations[35].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[36].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 82,LineId = 8, StationCode = listStations[36].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[35].CodeStation, NextStationCode = listStations[37].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 82, LineId = 8, StationCode = listStations[37].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[36].CodeStation, NextStationCode = listStations[38].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 82, LineId = 8, StationCode = listStations[38].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[37].CodeStation, NextStationCode = listStations[39].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 82, LineId = 8, StationCode = listStations[39].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[38].CodeStation, NextStationCode = 0 });
 
                     ////linestation for line 9
-                    listLineStation.Add(new LineStation() { LineId = 9, StationCode = listStations[40].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[41].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 9, StationCode = listStations[41].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[40].CodeStation, NextStationCode = listStations[42].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 9, StationCode = listStations[42].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[41].CodeStation, NextStationCode = listStations[43].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 9, StationCode = listStations[43].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[42].CodeStation, NextStationCode = listStations[44].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 9, StationCode = listStations[44].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[43].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 83, LineId = 9, StationCode = listStations[40].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[41].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 83, LineId = 9, StationCode = listStations[41].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[40].CodeStation, NextStationCode = listStations[42].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 83, LineId = 9, StationCode = listStations[42].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[41].CodeStation, NextStationCode = listStations[43].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 83, LineId = 9, StationCode = listStations[43].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[42].CodeStation, NextStationCode = listStations[44].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 83, LineId = 9, StationCode = listStations[44].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[43].CodeStation, NextStationCode = 0 });
                     ////linestation for line 10
-                    listLineStation.Add(new LineStation() { LineId = 10, StationCode = listStations[45].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[46].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 10, StationCode = listStations[46].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[45].CodeStation, NextStationCode = listStations[47].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 10, StationCode = listStations[47].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[46].CodeStation, NextStationCode = listStations[48].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 10, StationCode = listStations[48].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[47].CodeStation, NextStationCode = listStations[49].CodeStation });
-                    listLineStation.Add(new LineStation() { LineId = 10, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[45].CodeStation, LineStationIndex = 1, PrevStationCode = 0, NextStationCode = listStations[46].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[46].CodeStation, LineStationIndex = 2, PrevStationCode = listStations[45].CodeStation, NextStationCode = listStations[47].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[47].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[46].CodeStation, NextStationCode = listStations[48].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[48].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[47].CodeStation, NextStationCode = listStations[49].CodeStation });
+                    listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
 
-                    listLineStation.Add(new LineStation() { LineId = 1, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
+                    listLineStation.Add(new LineStation() { lineCode = 75, LineId = 1, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
                     #endregion listLineStation
 
 

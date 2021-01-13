@@ -62,13 +62,13 @@ namespace BLAPI
         #endregion
 
         #region LineStation
-      //  IEnumerable<BO.LineStation> GetAllLineStations();//show all linestations
+        //  IEnumerable<BO.LineStation> GetAllLineStations();//show all linestations
 
 
-
+        IEnumerable<BO.LineStation> GetAllLineStationsByLineCode(int LineCode);
 
         //BO.LineStation GetLineStation(int code);//show the linestation--
-        //IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
+       // IEnumerable<BO.LineStation> GetLineStationBy(Predicate<BO.LineStation> predicate);//shoe linestation by predicate
         void AddLineStation(BO.LineStation linestation);
         void UpdateLineStation(BO.LineStation linestation);
         void UpdateLineStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation

@@ -70,7 +70,13 @@ namespace PlGui
             BO.LineStation z = (BO.LineStation)DatatGridLines.SelectedItem;
             UpdateStationLine a = new UpdateStationLine(bl, z, 1);
             a.ShowDialog();
-            DatatGridLines.DataContext = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
+            
+            DatatGridLines.ItemsSource = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
+            //DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode((lst.SelectedItem as BO.Line).Code);
+
+
+            //BO.Line line1 = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);
+            //DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode(line1.Code);
 
 
         }

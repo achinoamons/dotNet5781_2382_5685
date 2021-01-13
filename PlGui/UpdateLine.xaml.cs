@@ -58,57 +58,15 @@ namespace PlGui
         {
 
         }
-        /* 
 
+        private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateStationLine a = new UpdateStationLine(bl, (BO.LineStation)dataGridStationLINE.SelectedItem, 2);
+            a.ShowDialog();
+            DataContext = ll.ListOfStationsPass;
+            //dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ln.Code);
+        }
 
-
-private void btnDeleteStationLine_Click(object sender, RoutedEventArgs e)//Delete Station Line
-{
-BO.STATIONLINE sld = (BO.STATIONLINE)dataGridStationLINE.SelectedItem;
-if (MessageBox.Show("?אתה בטוח שהינך רוצה למחוק תחנה זה", " מחיקת תחנת קו", MessageBoxButton.YesNo, MessageBoxImage.Question)
-== MessageBoxResult.Yes)
-{
-try { bl.DeleteSTATIONLINE(sld); }
-catch { MessageBox.Show("לא ניתן למחוק את התחנה, מכיון שהיא לא קיימת"); }
-}
-//לאתחל את הדטה גריד
-}
-private void btnAddStationLine_Click(object sender, RoutedEventArgs e)
-{
-BO.STATIONLINE x = (BO.STATIONLINE)dataGridStationLINE.SelectedItem;
-stationlinechhosen = x;
-AddStationLine a = new AddStationLine(bl, ln, stationlinechhosen, false);
-a.Show();
-}
-private void btnUpdateLine_Click(object sender, RoutedEventArgs e)
-{
-UpdateStationLine a = new UpdateStationLine(bl, (BO.STATIONLINE)dataGridStationLINE.SelectedItem, 2);
-a.Show();
-}
-
-private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)
-{
-UpdateStationLine a = new UpdateStationLine(bl, (BO.STATIONLINE)dataGridStationLINE.SelectedItem, 2);
-a.Show();
-}
-
-private void btnUpdataLine_Click(object sender, RoutedEventArgs e)
-{
-BO.STATIONLINE x = (BO.STATIONLINE)dataGridStationLINE.SelectedItem;
-stationlinechhosen = x;
-BO.LINE upli = new BO.LINE();
-upli.Area = (BO.Emuns.AREA)cmbArea.SelectedItem;
-upli.Code = Convert.ToInt32(txtLineCode.Text);
-upli.FinishAt = ln.FinishAt;
-upli.StartAt = ln.StartAt;
-upli.Frequency = ln.Frequency;
-//if( isListOfLineStationIsChanged==false)
-// upli.StationListOfLine = FinalListStation;
-upli.StationListOfLine = ln.StationListOfLine;
-bl.UpdateLINE(upli);
-SHOWALL sHOWALL = new SHOWALL(bl);
-sHOWALL.Show();
-}*/
 
 
 

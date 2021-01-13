@@ -157,18 +157,19 @@ namespace DL
             }*/
             DO.Configuration.staticforlinestation++;//?
         }
-        public void UpdateLineStation(DO.LineStation linestation)
+        public bool UpdateLineStation(DO.LineStation linestation)
         {
-            DO.LineStation ls = DataSource.listLineStation.Find(/*p => p.LineId == linestation.LineId  שיניתי ביום שני*/p => p.lineCode == linestation.lineCode && p.StationCode == linestation.StationCode);
+            DO.LineStation ls = DataSource.listLineStation.Find(/*p => p.LineId == linestation.LineId  שיניתי ביום שני*/p => p.lineCode == linestation.lineCode&&p.StationCode == linestation.StationCode);
 
             if (ls != null)
             {
                 DataSource.listLineStation.Remove(ls);
                 DataSource.listLineStation.Add(linestation.Clone());
+                return true;
             }
             else
                 //throw new DO.BadLineStationIdException(ls.LineId, $"bad line id of line station: {ls.StationCode}");
-                throw new DO.NotExistException(ls.LineId + $" bad line id of line station: {ls.StationCode}");
+                throw new DO.NotExistException("THIS LINE STATION DOSENT EXIST");
         }
         // public void UpdateLineStation(int id, Action<DO.LineStation> update) { } //method that knows to updt specific fields in Person
         public void DeleteLineStation(DO.LineStation l/*,int id*/)
@@ -346,6 +347,21 @@ namespace DL
             {
                 DataSource.listStations.Remove(S);
                 DataSource.listStations.Add(station.Clone());
+
+            }
+            else
+                // throw new DO.BadStationException(S.CodeStation, $"Station CodeStation: {S.CodeStation}");
+                throw new DO.NotExistException(S.CodeStation + "Station is not exist");
+        }
+        public void UpdateStationName(DO.Station station, int prevcode)
+        {
+            DO.Station S = DataSource.listStations.Find(p => p.CodeStation == prevcode);
+
+            if (S != null)
+            {
+                int i = DataSource.listStations.IndexOf(S);
+                DataSource.listStations[i].Name = station.Name;
+                
 
             }
             else

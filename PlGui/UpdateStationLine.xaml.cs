@@ -42,15 +42,16 @@ namespace PlGui
         {
 
 
-            BO.LineStation sl = new BO.LineStation();
-            sl.stationName = txtStationName.Text;
-            sl.Time = new TimeSpan(Convert.ToInt32(txtTimeHour.Text), Convert.ToInt32(txtTimeMiniute.Text), Convert.ToInt32(txtTimeSecond.Text));
-            sl.Distance = Convert.ToDouble(txtDistance.Text);
-            sl.Station1Code = stl.Station1Code;
-            sl.Station2Code = stl.Station2Code;
-            sl.CodeLine = stl.CodeLine;
-            sl.CodeLine = stl.CodeLine;
-            try { bl.UpdateLineStation(sl); }
+           // BO.LineStation sl = new BO.LineStation();
+           
+            stl.stationName = txtStationName.Text;
+            stl.Time = new TimeSpan(Convert.ToInt32(txtTimeHour.Text), Convert.ToInt32(txtTimeMiniute.Text), Convert.ToInt32(txtTimeSecond.Text));
+            stl.Distance = Convert.ToDouble(txtDistance.Text);
+            //sl.Station1Code = stl.Station1Code;
+            //sl.Station2Code = stl.Station2Code;
+            //stl.CodeLine = stl.CodeLine;
+      
+            try { bl.UpdateLineStation(stl); MessageBox.Show("התחנה עודכנה בהצלחה"); }
             
              catch { MessageBox.Show("התחנה אינה קיימת במערכת"); }
         
