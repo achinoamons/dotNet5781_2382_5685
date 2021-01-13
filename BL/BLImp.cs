@@ -223,7 +223,7 @@ namespace BL
 
         public void UpdateLineStation(BO.LineStation linestation)
         {
-            DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
+            /*DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
 
             try
             {
@@ -233,7 +233,20 @@ namespace BL
             catch (DO.NotExistException ex)
             {
                 throw new BO.NotExistExceptionBO("station code does not exist ", ex);
-            }
+            }*/
+            DO.LineStation dolinestation = linestation.CopyPropertiesToNew(typeof(DO.LineStation)) as DO.LineStation;
+
+            try { dl.UpdateLineStation(dolinestation); }
+            catch { throw new BO.NotExistExceptionBO(); }
+            DO.AdjacentStations adjs = linestation.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations;
+
+
+            try { dl.UpdateAdjacentStations(adjs); }
+            catch { throw new BO.NotExistExceptionBO(); }
+            DO.Station std = linestation.CopyPropertiesToNew(typeof(DO.Station)) as DO.Station;
+
+            try { dl.UpdateStation(std,linestation.Station1Code); }
+            catch { throw new BO.NotExistExceptionBO(); }
         }
 
         public void UpdateLineStation(int id, Action<BO.LineStation> update)

@@ -30,12 +30,18 @@ namespace PlGui
             stl = S;
             wind = i;
             txtStationName.Text = S.stationName;
+            txtDistance.Text = Convert.ToString(S.Distance);
+            txtTimeHour.Text = Convert.ToString(S.Time.Hours);
+            txtTimeMiniute.Text = Convert.ToString(S.Time.Minutes);
+            txtTimeSecond.Text = Convert.ToString(S.Time.Seconds);
 
 
         }
 
         private void btnUpdateLineStation_Click(object sender, RoutedEventArgs e)
         {
+
+
             BO.LineStation sl = new BO.LineStation();
             sl.stationName = txtStationName.Text;
             sl.Time = new TimeSpan(Convert.ToInt32(txtTimeHour.Text), Convert.ToInt32(txtTimeMiniute.Text), Convert.ToInt32(txtTimeSecond.Text));
@@ -48,16 +54,15 @@ namespace PlGui
             
              catch { MessageBox.Show("התחנה אינה קיימת במערכת"); }
         
-           /* if (wind == 1)
+            if (wind == 1)
             {
-                SHOWALL a = new SHOWALL(bl);
-                a.Show();
+                this.Close();
             }
             if (wind == 2)
             {
                 this.Close();
-                //UpdateLine c=new UpdateLine(bl,bl.GetLINE())
-            }*/
+               
+            }
         }
     }
 }
