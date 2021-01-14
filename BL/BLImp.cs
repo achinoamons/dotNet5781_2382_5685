@@ -83,11 +83,12 @@ namespace BL
 
         public void AddLineStation(BO.LineStation linestation)//L
         {
-            //DO.LineStation a = new DO.LineStation();
-            //a.lineCode = linestation.CodeLine;
-            //a.StationCode = linestation.Station1Code;
-            //a.NextStationCode = linestation.Station2Code;
-            //dl.AddLineStation(a);
+            DO.LineStation a = new DO.LineStation();
+            a.lineCode = linestation.CodeLine;
+            a.StationCode = linestation.Station1Code;
+            a.NextStationCode = linestation.Station2Code;
+            dl.AddLineStation(a);
+
             //DO.AdjacentStations adj = new DO.AdjacentStations();
             //adj.Station1Code = linestation.Station1Code;
             //adj.Station2Code = linestation.Station2Code;
@@ -95,6 +96,7 @@ namespace BL
             //adj.Time = linestation.Time;
             //adj.Station1Code = linestation.CodeLine;
             //dl.AddAdjacentStations(adj);
+
 
         }
    

@@ -55,6 +55,7 @@ namespace BO
         public double Distance { get; set; }//distance
         public TimeSpan Time { get; set; }//time 
         public int CodeLine { get; set; }//name of line
+       
         //public override string ToString() => this.ToStringProperty();
         public override string ToString()
         {
