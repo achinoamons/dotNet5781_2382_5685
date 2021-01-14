@@ -61,6 +61,7 @@ namespace PlGui
             }
             catch { MessageBox.Show("לא ניתן להוסיף את התחנה מכיון שהיא כבר קיימת"); }
             dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ll.Code);
+           // dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCodeByOrder(ll.Code);
 
         }
 
@@ -111,17 +112,17 @@ namespace PlGui
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            BO.LineStation x = (BO.LineStation)dataGridStationLINE.SelectedItem;
-            stationlinechoosen = x;
-            try
-            {
-                AddStationLine a = new AddStationLine(bl, ll, stationlinechoosen, false);
-                a.ShowDialog();
-            }
-            catch { MessageBox.Show("לא ניתן להוסיף את התחנה מכיון שהיא כבר קיימת"); }
-            dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ll.Code);
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    BO.LineStation x = (BO.LineStation)dataGridStationLINE.SelectedItem;
+        //    stationlinechoosen = x;
+        //    try
+        //    {
+        //        AddStationLine a = new AddStationLine(bl, ll, stationlinechoosen, false);
+        //        a.ShowDialog();
+        //    }
+        //    catch { MessageBox.Show("לא ניתן להוסיף את התחנה מכיון שהיא כבר קיימת"); }
+        //    dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ll.Code);
+        //}
     }
 }

@@ -138,8 +138,10 @@ namespace DL
                    where predicate(linestation)
                    select linestation.Clone();
         }
+       
 
-        public void AddLineStation(DO.LineStation linestation)//אין לנו עדיין תנאי סינון מתאים להוספת תחנת קו--צרך לשאול את המורה אם נכון
+
+            public void AddLineStation(DO.LineStation linestation)//אין לנו עדיין תנאי סינון מתאים להוספת תחנת קו--צרך לשאול את המורה אם נכון
         {
             bool flag = false;
             for (int i = 0; i < DataSource.listLineStation.Count(); i++)//to check if there is a physical station like this

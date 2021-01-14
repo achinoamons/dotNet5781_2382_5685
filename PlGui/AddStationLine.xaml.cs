@@ -53,13 +53,12 @@ namespace PlGui
         private void btnAddStationLine_Click(object sender, RoutedEventArgs e)
         {
             
-            
-                BO.LineStation sl = new BO.LineStation();
+            BO.LineStation sl = new BO.LineStation();
                 BO.Station a = (BO.Station)cmbStation.SelectedItem;
                 sl.Station1Code = a.CodeStation;
                 sl.stationName = a.Name;
                 if (stationline != null)
-                    sl.Station2Code = stationline.Station2Code;//   
+                    sl.Station2Code = stationline.Station1Code;//  כי מוסיפה לפני 
                 sl.CodeLine = ln.Code;
                 sl.Distance = Convert.ToDouble(txtDistance.Text);
                 sl.Time = new TimeSpan(Convert.ToInt32(txtFinishAtHour.Text), Convert.ToInt32(txtFinishAtMiniute.Text), Convert.ToInt32(txtFinishAtSecond.Text));
@@ -77,6 +76,7 @@ namespace PlGui
                 {
                     MessageBox.Show("התחנה כבר קיימת בקו");
                 }
+            this.Close();
 
 
            

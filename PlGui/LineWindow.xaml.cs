@@ -63,6 +63,7 @@ namespace PlGui
 
         private void btnAddLine_Click(object sender, RoutedEventArgs e)//add line
         {
+           
             AddNewLine a = new AddNewLine(bl);
             a.ShowDialog();
             lst.ItemsSource = bl.GetAllLines();
@@ -108,6 +109,7 @@ namespace PlGui
 
         private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
         {
+            if (lst.SelectedItem == null) { MessageBox.Show("הקש את הקו המבוקש ואז לחץ על עדכון"); return; }
             BO.Line dl1 = (lst.SelectedItem) as BO.Line;
             if (MessageBox.Show("?אתה בטוח שהינך רוצה למחוק קו זה", " מחיקת קו", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)
