@@ -9,18 +9,22 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="186*"/>
-            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="215*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="468*"/>
             <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="54*"/>
-            <ColumnDefinition Width="479*"/>
-            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblLineCode" Content=":  מספר קו " HorizontalAlignment="Left" Margin="284.6,60,0,0" VerticalAlignment="Top" FontSize="22" Width="202" Grid.Column="5" Grid.ColumnSpan="2"/>
-        <Label x:Name="lblArea" Content=": איזור" HorizontalAlignment="Left" Margin="329.6,148,0,0" VerticalAlignment="Top" FontSize="22" Width="104" Grid.Column="5"/>
-        <TextBox x:Name="txtLineCode" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="38" Margin="84.6,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="5"/>
-        <ComboBox x:Name="cbLineArea" HorizontalAlignment="Left" Margin="84.6,139,0,0" VerticalAlignment="Top" Width="175" Height="49"  Grid.Column="5"/>
+        <Label x:Name="lblLineCode" Content=":  מספר קו " HorizontalAlignment="Left" Margin="285,60,-12,0" VerticalAlignment="Top" FontSize="22" Width="202" Grid.Column="5" Grid.ColumnSpan="2" Height="39"/>
+        <Label x:Name="lblArea" Content=": איזור" HorizontalAlignment="Left" Margin="330,148,0,0" VerticalAlignment="Top" FontSize="22" Width="104" Grid.Column="5" Height="39"/>
+        <TextBox x:Name="txtLineCode" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="38" Margin="85,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="5"/>
+        <ComboBox x:Name="cbLineArea" HorizontalAlignment="Left" Margin="85,139,0,0" VerticalAlignment="Top" Width="175" Height="49"  Grid.Column="5"/>
         <Button x:Name="btnSaveNewLine" Content="הוספת קו" HorizontalAlignment="Left" Margin="101,249,0,0" VerticalAlignment="Top" Width="230" Height="77" FontSize="36" FontWeight="Bold" Grid.Column="5" Click="btnSaveNewLine_Click"/>
+        <ComboBox x:Name="cbfirststation" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="70,102,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cblaststation" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="70,179,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Grid.ColumnSpan="2" Content="הוסף תחנה א" HorizontalAlignment="Left" Margin="92,71,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label Grid.ColumnSpan="2" Content="הוסף תחנה ב" HorizontalAlignment="Left" Margin="92,148,0,0" VerticalAlignment="Top" Width="82"/>
 
     </Grid>
 </Window>

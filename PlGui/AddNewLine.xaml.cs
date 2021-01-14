@@ -28,6 +28,8 @@ namespace PlGui
             InitializeComponent();
             bl = bbl;
             cbLineArea.ItemsSource = Enum.GetValues(typeof(BO.Areas));
+            cbfirststation.ItemsSource = bl.GetAllStations();
+            cblaststation.ItemsSource = bl.GetAllStations();
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -45,9 +47,36 @@ namespace PlGui
             {
                 l.Code = int.Parse(txtLineCode.Text);
             }
-            
+
 
             l.area = (BO.Areas)cbLineArea.SelectedItem;
+            List<BO.LineStation> ls = new List<BO.LineStation>();
+
+            if ((cblaststation.SelectedItem as BO.Station).Name == (cbfirststation.SelectedItem as BO.Station).Name)
+            { MessageBox.Show("יש לבחור תחנה שונה"); return; }
+            //first station
+            BO.LineStation a = new BO.LineStation();
+            BO.Station v = cbfirststation.SelectedItem as BO.Station;
+            a.CodeLine = l.Code;
+            a.stationName = v.Name;
+            a.Station1Code = v.CodeStation;
+
+
+            //second station
+            BO.LineStation nn = new BO.LineStation();
+            BO.Station vv = cblaststation.SelectedItem as BO.Station;
+            nn.CodeLine = l.Code;
+            nn.stationName = vv.Name;
+            nn.Station1Code = vv.CodeStation;
+
+            a.Station2Code = nn.Station1Code;
+            ls.Add(nn);
+            ls.Add(a);
+            try { bl.AddLineStation(nn); } 
+            catch { MessageBox.Show("כבר קיימת לקו כזו תחנה"); } 
+           try { bl.AddLineStation(a);}
+            catch { MessageBox.Show("כבר קיימת לקו כזו תחנה"); } 
+            l.ListOfStationsPass = ls;
 
 
             try

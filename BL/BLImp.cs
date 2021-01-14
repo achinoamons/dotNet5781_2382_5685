@@ -86,20 +86,23 @@ namespace BL
             DO.LineStation a = new DO.LineStation();
             a.lineCode = linestation.CodeLine;
             a.StationCode = linestation.Station1Code;
-            a.NextStationCode = linestation.Station2Code;
+            a.NextStationCode = 38833;
             dl.AddLineStation(a);
-
             //DO.AdjacentStations adj = new DO.AdjacentStations();
             //adj.Station1Code = linestation.Station1Code;
-            //adj.Station2Code = linestation.Station2Code;
+            //adj.Station2Code = 38833;
             //adj.Distance = linestation.Distance;
             //adj.Time = linestation.Time;
-            //adj.Station1Code = linestation.CodeLine;
-            //dl.AddAdjacentStations(adj);
+            ////adj.Station1Code = linestation.CodeLine;
+            //adj.lineCode = linestation.CodeLine;
+            //try { dl.UpdateAdjacentStations/AddAdjacentStations/(adj); }
+            //catch (DO.OlreadtExistException ex)
+            //{
+            //    throw new BO.OlreadtExistExceptionBO("this line already exist", ex);
 
 
         }
-   
+
 
         public void DeleteLine(int code, BO.Areas area)
         {
@@ -181,10 +184,10 @@ namespace BL
             L.Code = l.Code;
             L.area = (BO.Areas)l.Area;
             
-            IEnumerable<DO.LineStation> ls = dl.GetAllLineStationsBy(x => x.LineId == l.LineID);
+            IEnumerable<DO.LineStation> ls = dl.GetAllLineStationsBy(/*x => x.LineId == l.LineID*/x=>x.lineCode==l.Code);
            
             IEnumerable<BO.LineStation> SL = from a in ls
-                                          from b in dl.GetAllAdjacentStationsby(x => x.Station1Code == a.StationCode || x.Station2Code == a.NextStationCode)
+                                          from b in dl.GetAllAdjacentStationsby(x => x.Station1Code == a.StationCode && x.Station2Code == a.NextStationCode)
                                           from v in dl.GetAllStationsBy(y => y.CodeStation == a.StationCode)
                                           select ConvertLineStationToBOlineStation(a, b.Time, b.Distance, v.Name);
 
@@ -242,7 +245,7 @@ namespace BL
             IEnumerable<DO.LineStation> ls = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
 
             IEnumerable<BO.LineStation> SL = from a in ls
-                                             from b in dl.GetAllAdjacentStationsby(x => x.Station1Code == a.StationCode || x.Station2Code == a.NextStationCode)
+                                             from b in dl.GetAllAdjacentStationsby(x => x.Station1Code == a.StationCode && x.Station2Code == a.NextStationCode)
                                              from v in dl.GetAllStationsBy(y => y.CodeStation == a.StationCode)
                                              select ConvertLineStationToBOlineStation(a, b.Time, b.Distance, v.Name);
             return SL;

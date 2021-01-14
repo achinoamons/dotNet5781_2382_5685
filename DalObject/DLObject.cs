@@ -257,16 +257,37 @@ namespace DL
         }
         public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code);
+            
+            
+                //DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code);
 
-            if (adj != null)
-            {
-                DataSource.listAdjacentStation.Remove(adj);
-                DataSource.listAdjacentStation.Add(adjacentStations.Clone());
-            }
-            else
-                //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
-                throw new DO.NotExistException(adjacentStations.Station1Code + adjacentStations.Station2Code + $"bad codes");
+                //if (adj != null)
+                //{
+                //    DataSource.listAdjacentStation.Remove(adj);
+                //    DataSource.listAdjacentStation.Add(adjacentStations.Clone());
+                //}
+                //else
+                //    //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
+                ////throw new DO.NotExistException(adjacentStations.Station1Code + adjacentStations.Station2Code + $"bad codes");
+                ///////////////////////////////////////////////עד פה הישןןן
+
+                int g = 0;
+                DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == adjacentStations.Station2Code && p.lineCode == adjacentStations.lineCode);
+
+                if (adj != null)
+                {
+
+                    int i = DataSource.listAdjacentStation.IndexOf(adj);
+
+                    g = DataSource.listAdjacentStation[i].Station2Code;
+                    DataSource.listAdjacentStation[i].Station2Code = adjacentStations.Station1Code;
+                }
+                else
+                    //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
+
+                    throw new DO.NotExistException(adjacentStations.Station1Code + adjacentStations.Station2Code + $"bad codes");
+               
+            
         }
         public void UpdateAdjacentStationsTimeAndFare(DO.AdjacentStations adjacentStations)
         {
