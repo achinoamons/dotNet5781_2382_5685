@@ -235,14 +235,15 @@ namespace DL
                 throw new DO.NotExistException("there is no adjacent station for codes" + code1 + code2);
         }
 
-        //public AdjacentStations GetAdjacentStations(int codeStation1, int codeStation2, int lineCode)
-        //{
-        //    AdjacentStations a = DataSource.listAdjacentStation.Find(x => x.Station1 == codeStation1 && x.Station2 == codeStation2 && x.lineCode == lineCode);
-        //    if (a != null) return a.Clone();
-        //    else throw new NotExistException();
-        //}
 
-        public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
+            //public AdjacentStations GetAdjacentStations(int codeStation1, int codeStation2, int lineCode)
+            //{
+            //    AdjacentStations a = DataSource.listAdjacentStation.Find(x => x.Station1 == codeStation1 && x.Station2 == codeStation2 && x.lineCode == lineCode);
+            //    if (a != null) return a.Clone();
+            //    else throw new NotExistException();
+            //}
+
+            public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {
             if (DataSource.listAdjacentStation.FirstOrDefault(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code) != null)
                 //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, "Duplicate station1 and station2 code of adjacent station");

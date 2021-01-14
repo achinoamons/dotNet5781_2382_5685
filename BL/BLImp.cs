@@ -117,10 +117,10 @@ namespace BL
         {
             try
             {
-                DO.LineStation l = dl.GetLineStationLEA(ls.CodeLine, ls.Station1Code);
+                DO.LineStation l = dl.GetLineStation(ls.CodeLine, ls.Station1Code);
                 dl.DeleteLineStation(l);
-                //DO.AdjacentStations adj = dl.GetAdjacentStations(ls.Station1Code, ls.Station2Code/*, ls.CodeLine*/);
-                dl.DeleteAdjacentStations(ls.Station1Code, ls.Station2Code);
+                DO.AdjacentStations adj = dl.GetAdjacentStations(ls.Station1Code, ls.Station2Code, ls.CodeLine);
+                dl.DeleteAdjacentStations(adj);
             }
             catch { throw new BO.NotExistExceptionBO(); }
             return true;
