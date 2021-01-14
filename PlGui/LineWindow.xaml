@@ -9,7 +9,7 @@
     <Grid>
 
         <ListBox x:Name="lst" HorizontalAlignment="Left" Height="386" Margin="34,10,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}" SelectionChanged="lst_SelectionChanged" />
-        <DataGrid x:Name="DatatGridLines" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="312" Margin="217,30,0,0" VerticalAlignment="Top" Width="417"  HorizontalContentAlignment="Right">
+        <DataGrid x:Name="DatatGridLines" SelectedIndex="0" HorizontalAlignment="Left"  ItemsSource="{Binding}" Height="312" Margin="217,30,0,0"  VerticalAlignment="Top" Width="417"  HorizontalContentAlignment="Right">
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn>

@@ -88,9 +88,11 @@ namespace PlGui
             if (MessageBox.Show("?אתה בטוח שהינך רוצה למחוק קו זה", " מחיקת קו", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)
             {
-                try { bl.DeleteLine(dl1.Code, dl1.area); }
+                try { bl.DeleteLine(dl1.Code, dl1.area);  }
                 catch { MessageBox.Show("שגיאה: קו זה לא נמצא במערכת "); }
-                lst.DataContext = bl.GetAllLines();
+                lst.ItemsSource = bl.GetAllLines();
+                //DatatGridLines.ItemsSource = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
+
             }
         }
     }
