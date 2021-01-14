@@ -30,7 +30,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnDeleteStationLine" Content="הסר תחנה" />
+                            <Button x:Name="btnDeleteStationLine" Content="הסר תחנה" Click="btnDeleteStationLine_Click" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -27,32 +27,34 @@ namespace DLAPI
         IEnumerable<DO.LineStation> GetAllLineStations();
         ////DO.LineStation GetLineStation(int lineCode, int StationCode);
         IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate);
-        DO.LineStation GetLineStation(int id);
+        //DO.LineStation GetLineStation(int id);
+        DO.LineStation GetLineStation(int lineCode1, int StationCode);
         DO.LineStation GetLineStationLEA(int lineCode1, int StationCode);
         IEnumerable<DO.LineStation> GetLineStationBy(Predicate<DO.LineStation> predicate);
         void AddLineStation(DO.LineStation linestation);
         bool UpdateLineStation(DO.LineStation linestation);
-       // void UpdateLineStation(int id, Action<DO.LineStation> update); //method that knows to updt specific fields in Person
-        void DeleteLineStation(DO.LineStation l);
+        // void UpdateLineStation(int id, Action<DO.LineStation> update); //method that knows to updt specific fields in Person
+        void DeleteLineStation(DO.LineStation l/*int id*/);
         #endregion
         #region AdjacentStations
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsby(Predicate<DO.AdjacentStations> predicate);
-        DO.AdjacentStations GetAdjacentStations(int i,int j);
+        DO.AdjacentStations GetAdjacentStations(int code1, int code2, int lineCode);
         void AddAdjacentStations(DO.AdjacentStations adjacentStations);
         void UpdateAdjacentStations(DO.AdjacentStations adjacentStations);
         void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update); //method that knows to updt specific fields in Person
-        void DeleteAdjacentStations(int i,int j);
+        //void DeleteAdjacentStations(int i,int j);
+        void DeleteAdjacentStations(DO.AdjacentStations adjd);
         #endregion
-       /* #region Bus
-        IEnumerable<DO.Bus> GetAllBuses();
-        IEnumerable<DO.Bus> GetAllBusesby(Predicate<DO.Bus> predicate);
-        DO.LineStation GetBus(int id);
-        void AddBus(DO.Bus bus);
-        void UpdateBus(DO.Bus bus);
-        void UpdateBus(int id, Action<DO.Bus> update); //method that knows to updt specific fields in Person
-        void DeleteBus(int id);
-        #endregion*/
+        /* #region Bus
+         IEnumerable<DO.Bus> GetAllBuses();
+         IEnumerable<DO.Bus> GetAllBusesby(Predicate<DO.Bus> predicate);
+         DO.LineStation GetBus(int id);
+         void AddBus(DO.Bus bus);
+         void UpdateBus(DO.Bus bus);
+         void UpdateBus(int id, Action<DO.Bus> update); //method that knows to updt specific fields in Person
+         void DeleteBus(int id);
+         #endregion*/
         //#region LineTrip
         //IEnumerable<DO.LineTrip> GetAllLineTripes();
         //IEnumerable<DO.LineTrip> GetAllLineTripesby(Predicate<DO.LineTrip> predicate);
@@ -61,8 +63,8 @@ namespace DLAPI
         //void UpdateLineTrip(DO.LineTrip linetrip);
         //void UpdateLineTrip(int id, Action<DO.LineTrip> update); //method that knows to updt specific fields in Person
         //void DeleteLineTrip(int id);
-       // #endregion
-       #region Station
+        // #endregion
+        #region Station
         IEnumerable<DO.Station> GetAllStations();
         IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate);
         DO.Station GetStation(int id);

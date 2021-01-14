@@ -67,9 +67,24 @@ namespace PlGui
             //dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ln.Code);
         }
 
+        private void btnDeleteStationLine_Click(object sender, RoutedEventArgs e)
+        {
+            BO.LineStation sld = (BO.LineStation)dataGridStationLINE.SelectedItem;
+            if (MessageBox.Show("?אתה בטוח שהינך רוצה למחוק תחנה זה", " מחיקת תחנת קו", MessageBoxButton.YesNo, MessageBoxImage.Question)
+               == MessageBoxResult.Yes)
+            {
+                try { bl.DeleteLineStation(sld); }
+                catch { MessageBox.Show("לא ניתן למחוק את התחנה, מכיון שהיא לא קיימת"); }
+            }
+
+           // DataContext = ll.ListOfStationsPass;//בעייתייי
 
 
+            dataGridStationLINE.ItemsSource = ll.ListOfStationsPass.ToList();
+            //dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ll.Code);///הקופי פרופרטיזז מחזיר את הרשימה ריקה!!!
+            // DataContext= bl.GetAllLineStationsByLineCode(ll.Code);
 
 
+        }
     }
 }

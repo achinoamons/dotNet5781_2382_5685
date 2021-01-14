@@ -103,14 +103,15 @@ namespace BL
         {
             try
             {
-                DO.LineStation l = dl.GetLineStationLEA(ls.CodeLine, ls.Station1Code);
+                DO.LineStation l = dl.GetLineStation(ls.CodeLine, ls.Station1Code);
                 dl.DeleteLineStation(l);
-                //DO.AdjacentStations adj = dl.GetAdjacentStations(ls.Station1Code, ls.Station2Code/*, ls.CodeLine*/);
-                dl.DeleteAdjacentStations(ls.Station1Code, ls.Station2Code);
+                DO.AdjacentStations adj = dl.GetAdjacentStations(ls.Station1Code, ls.Station2Code, ls.CodeLine);
+                dl.DeleteAdjacentStations(adj);
             }
             catch { throw new BO.NotExistExceptionBO(); }
             return true;
-        }
+
+    }
         public IEnumerable<BO.Line> GetAllLines()
         {
             IEnumerable<DO.Line> ls = dl.GetAllLines();
@@ -208,13 +209,12 @@ namespace BL
         {
             var v = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
             return from a in v
-
                    select a.CopyPropertiesToNew(typeof(BO.LineStation)) as BO.LineStation;
-            //var v = dl.GetAllLineStationsBy(x => x.lineCode == LineCode);
-            //return from a in v
-            //       select convertLineStationToSTATIONLINE(a);
 
-        }
+            }
+
+
+
         //public BO.LineStation convertLineStationToSTATIONLINE(DO.LineStation l)
         //{
         //    BO.LineStation s = new BO.LineStation();
@@ -223,9 +223,25 @@ namespace BL
         //    s.Station2Code = l.NextStationCode;
 
         //    s.stationName = dl.GetStation(l.StationCode).Name;
-        //DO.AdjacentStations adj = dl.GetAllAdjacentStationsby(x => x.Station1Code == l.StationCode && x.Station2Code == l.NextStationCode).FirstOrDefault();
-        //s.Distance = adj.Distance;
-        //s.Time = adj.Time;
+
+        //    DO.AdjacentStations adj = dl.GetAllAdjacentStationsby(x => x.Station1Code == l.StationCode && x.Station2Code == l.NextStationCode && x.lineCode == l.lineCode).FirstOrDefault();
+        //    s.Distance = adj.Distance;
+        //    s.Time = adj.Time;
+
+
+        //    return s;
+        //}
+
+        //public STATIONLINE convertLineStationToSTATIONLINE(DO.LineStation l)
+        //{
+        //    STATIONLINE s = new STATIONLINE();
+        //    s.CodeStation = l.Station;
+        //    s.LineCode = l.lineCode;
+        //    s.NextStation = l.NextStation;
+        //    s.StationName = dl.GetStation(l.Station).Name;
+        //    DO.AdjacentStations adj = dl.GetAllAdjacentStationsBy(x => x.Station1 == l.Station && x.Station2 == l.NextStation && x.lineCode == l.lineCode).FirstOrDefault();
+        //    s.Distance = adj.Distance;
+        //    s.Time = adj.Time;
 
 
         //    return s;

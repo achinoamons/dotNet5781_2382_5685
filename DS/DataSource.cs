@@ -308,6 +308,7 @@ namespace DS
                             ads.Distance = distance*1.5/1000;
                             t = TimeSpan.FromHours(ads.Distance / 50);
                             ads.Time = t;
+                            ads.lineCode = listLineStation[i].lineCode;
 
                             //a = Math.Sqrt(Math.Pow(listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Latitude - listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station2Code))].Latitude, 2) + Math.Pow(listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Longitude - listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station2Code))].Longitude, 2));
                             // b = (a + 0.5) / 70;//דרך לחלק למהירות שווה זמן--ומהירות ממוצעת 70
