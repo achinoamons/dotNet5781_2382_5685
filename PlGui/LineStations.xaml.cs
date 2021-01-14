@@ -32,6 +32,8 @@ namespace PlGui
             stationDataGrid.ItemsSource = bl.GetAllStations(); // = listOfStations;
 
         }
+
+
         //private void stationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         //{
 
@@ -42,8 +44,6 @@ namespace PlGui
         //    tbname.Text = bs.Name;
         //    tbcode.Text = bs.CodeStation.ToString();
         //}
-
-
 
 
         private void Button_Click(object sender, RoutedEventArgs e)//add station
