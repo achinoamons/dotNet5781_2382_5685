@@ -66,7 +66,7 @@ namespace DL
         }
         public void UpdateLine(DO.Line line)
         {
-            DO.Line l = DataSource.listLines.Find(p => p.LineID == line.LineID);
+            DO.Line l = DataSource.listLines.Find(/*/*p => p.LineID == line.LineIDשיניתי יום רביעי/*/p => p.Code == line.Code);
 
             if (l != null)
             {

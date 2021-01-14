@@ -56,7 +56,7 @@ namespace BLAPI
         BO.Line GetLine(int i, BO.Areas area);//show the line--when use it---show details of the line stations of the line
         //IEnumerable<BO.Line> GetLineBy(Predicate<BO.Line> predicate);//shoe line by predicate
         void AddLine(BO.Line line);
-        //void UpdateLine(BO.Line line);
+        void UpdateLine(BO.Line line);
         //void UpdateLine(int id, Action<BO.Line> update); //method that knows to update specific fields in line
         void DeleteLine(int code, BO.Areas area);
         #endregion
