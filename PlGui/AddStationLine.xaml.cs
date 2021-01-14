@@ -59,7 +59,7 @@ namespace PlGui
                 sl.Station1Code = a.CodeStation;
                 sl.stationName = a.Name;
                 if (stationline != null)
-                    sl.Station2Code = stationline.Station1Code;//   
+                    sl.Station2Code = stationline.Station2Code;//   
                 sl.CodeLine = ln.Code;
                 sl.Distance = Convert.ToDouble(txtDistance.Text);
                 sl.Time = new TimeSpan(Convert.ToInt32(txtFinishAtHour.Text), Convert.ToInt32(txtFinishAtMiniute.Text), Convert.ToInt32(txtFinishAtSecond.Text));
@@ -79,8 +79,7 @@ namespace PlGui
                 }
 
 
-                //SHOWALL sHOWALL = new SHOWALL(bl);
-                //sHOWALL.Show();
-            }
+           
+        }
     }
 }

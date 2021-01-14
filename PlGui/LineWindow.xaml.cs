@@ -23,12 +23,21 @@ namespace PlGui
     {
         IBL bl;
         public BO.Station bs = new BO.Station();
+        BO.Line line;
         public LineWindow(IBL bb)
         {
             InitializeComponent();
 
             bl = bb;
+            DatatGridLines.IsReadOnly = true;
             lst.DataContext = bl.GetAllLines();
+            /*////////////////////*/
+            if (lst.SelectedItem != null)
+            {
+                BO.Line l = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);
+                DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode(l.Code);
+                line = l;
+            }
         }
 
         private void lst_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,8 +47,9 @@ namespace PlGui
             if (lst.SelectedItem != null)
             {
                 BO.Line l = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);
-                DatatGridLines.DataContext = l.ListOfStationsPass.ToList();
-                DataContext = l.ListOfStationsPass.ToList();
+                DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode(l.Code);
+                //DatatGridLines.DataContext = l.ListOfStationsPass.ToList();
+                //DataContext = l.ListOfStationsPass.ToList();
             }
             else
             {
@@ -60,9 +70,23 @@ namespace PlGui
 
         private void btnUpdateLine_Click(object sender, RoutedEventArgs e)//לא עשוי----חלון עדכון קו----לא גמור בכלל
         {
+            //UpdateLine update = new UpdateLine(bl, (lst.SelectedItem) as BO.Line);
+            //update.ShowDialog();
+            //DatatGridLines.ItemsSource = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
+
+            //------------------------------------------------------------//
+            if (lst.SelectedItem == null) { MessageBox.Show("הקש את הקו המבוקש ואז לחץ על עדכון"); return; }
+
+            BO.Line l2 = (lst.SelectedItem) as BO.Line;
             UpdateLine update = new UpdateLine(bl, (lst.SelectedItem) as BO.Line);
             update.ShowDialog();
-            DatatGridLines.ItemsSource = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
+            DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode(l2.Code);
+            lst.DataContext = bl.GetAllLines();
+            // BO.LINE l=bl.GetLINE(lst.SelectedItema BO.LINE).Code, (lst.SelectedItem as BO.LINE).Area);
+            //if (lst.SelectedIndex == -1) lst.SelectedItem = default;
+            //BO.LINE l = bl.GetLINE((lst.SelectedItem as BO.LINE).Code, (lst.SelectedItem as BO.LINE).Area);
+            //DatatGridLines.ItemsSource = default;
+            //  DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode(l2.Code);
         }
 
         private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)//update line stationכנל----לא גמור

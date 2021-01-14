@@ -47,10 +47,20 @@ namespace PlGui
 
         private void btnAddStationLine_Click(object sender, RoutedEventArgs e)
         {
-            AddStationLine a = new AddStationLine(bl, ll, stationlinechoosen, true);
-            a.ShowDialog();
+            //AddStationLine a = new AddStationLine(bl, ll, stationlinechoosen, true);
+            //a.ShowDialog();
            
-            DataContext = ll.ListOfStationsPass;
+            //DataContext = ll.ListOfStationsPass;
+            //-------------------------------------------------------
+            BO.LineStation x = (BO.LineStation)dataGridStationLINE.SelectedItem;
+            stationlinechoosen = x;
+            try
+            {
+                AddStationLine a = new AddStationLine(bl, ll, stationlinechoosen, false);
+                a.ShowDialog();
+            }
+            catch { MessageBox.Show("לא ניתן להוסיף את התחנה מכיון שהיא כבר קיימת"); }
+            dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ll.Code);
 
         }
 
@@ -76,9 +86,9 @@ namespace PlGui
             UpdateStationLine a = new UpdateStationLine(bl, (BO.LineStation)dataGridStationLINE.SelectedItem, 2);
             a.ShowDialog();
             DataContext = ll.ListOfStationsPass;
-            //dataGridStationLINE.ItemsSource = ll.ListOfStationsPass;
-            //DataContext = ln.StationListOfLine;
             dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ll.Code);
+            //DataContext = ln.StationListOfLine;
+            //dataGridStationLINE.ItemsSource = bl.GetAllLineStationsByLineCode(ln.Code);
         }
 
         private void btnDeleteStationLine_Click(object sender, RoutedEventArgs e)

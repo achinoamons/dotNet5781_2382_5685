@@ -83,20 +83,19 @@ namespace BL
 
         public void AddLineStation(BO.LineStation linestation)//L
         {
-            DO.LineStation a = new DO.LineStation();
-            a.StationCode = linestation.CodeLine;
-            a.StationCode = linestation.Station1Code;
-            a.NextStationCode = linestation.Station2Code;
-            dl.AddLineStation(a);
-            DO.AdjacentStations adj = new DO.AdjacentStations();
-            adj.Station1Code = linestation.Station1Code;
-            adj.Station2Code = linestation.Station2Code;
-            adj.Distance = linestation.Distance;
-            adj.Time = linestation.Time;
-            adj.Station1Code = linestation.CodeLine;
-            dl.AddAdjacentStations(adj);
-            // L.StationListOfLine.
-            // dl.add 
+            //DO.LineStation a = new DO.LineStation();
+            //a.lineCode = linestation.CodeLine;
+            //a.StationCode = linestation.Station1Code;
+            //a.NextStationCode = linestation.Station2Code;
+            //dl.AddLineStation(a);
+            //DO.AdjacentStations adj = new DO.AdjacentStations();
+            //adj.Station1Code = linestation.Station1Code;
+            //adj.Station2Code = linestation.Station2Code;
+            //adj.Distance = linestation.Distance;
+            //adj.Time = linestation.Time;
+            //adj.Station1Code = linestation.CodeLine;
+            //dl.AddAdjacentStations(adj);
+
         }
    
 
@@ -156,11 +155,22 @@ namespace BL
             SL.Station1Code = ls.StationCode;
             SL.Station2Code = ls.NextStationCode;
             // SL.PrevStation = ls.PrevStation;
-            SL.CodeLine = dl.GetLine(ls.LineId).Code;
+            //SL.CodeLine = dl.GetLine(ls.LineId).Code;
+            SL.CodeLine = ls.lineCode;
             SL.Time = t;
             SL.Distance = dis;
             SL.stationName = name;
             return SL;
+            //---------
+            //     STATIONLINE SL = new STATIONLINE();
+            //SL.CodeStation = ls.Station;
+            //SL.NextStation = ls.NextStation;
+            //// SL.PrevStation = ls.PrevStation;
+            //SL.LineCode = ls.lineCode;
+            //SL.Time = t;
+            //SL.Distance = dis;
+            //SL.StationName = name;
+            //return SL;
         }
         public BO.Line GetLine(int code, BO.Areas area)//L
         {
@@ -290,7 +300,8 @@ namespace BL
             try { dl.UpdateStationName(st, linestation.Station1Code); }
             catch { throw new BO.NotExistExceptionBO(); }
             DO.AdjacentStations adj = linestation.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations;
-            try { dl.UpdateAdjacentStations(adj); }
+            // try { dl.UpdateAdjacentStations(adj); }//לעדכן צמודות אבל רק למרחק וזמן חדש
+            try { dl.UpdateAdjacentStationsTimeAndFare(adj); }
             catch { throw new BO.NotExistExceptionBO(); }
             /* DO.LineStation dolinestation = new DO.LineStation();
              dolinestation.StationCode = linestation.Station1Code;

@@ -268,8 +268,24 @@ namespace DL
                 //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
                 throw new DO.NotExistException(adjacentStations.Station1Code + adjacentStations.Station2Code + $"bad codes");
         }
+        public void UpdateAdjacentStationsTimeAndFare(DO.AdjacentStations adjacentStations)
+        {
 
-      
+            DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code);
+
+            if (adj != null)
+            {
+                int i = DataSource.listAdjacentStation.IndexOf(adj);
+                DataSource.listAdjacentStation[i].Distance = adjacentStations.Distance;
+                DataSource.listAdjacentStation[i].Time = adjacentStations.Time;
+            }
+            else
+                //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
+                throw new DO.NotExistException(adjacentStations.Station1Code + adjacentStations.Station2Code + $"bad codes");
+
+
+        }
+
         public void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update) { }//method that knows to updt specific fields in Person
        //public void DeleteAdjacentStations(int i, int j)
         //{

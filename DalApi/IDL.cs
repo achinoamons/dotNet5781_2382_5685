@@ -42,6 +42,7 @@ namespace DLAPI
         DO.AdjacentStations GetAdjacentStations(int code1, int code2, int lineCode);
         void AddAdjacentStations(DO.AdjacentStations adjacentStations);
         void UpdateAdjacentStations(DO.AdjacentStations adjacentStations);
+        void UpdateAdjacentStationsTimeAndFare(DO.AdjacentStations adjacentStations);
         void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update); //method that knows to updt specific fields in Person
         //void DeleteAdjacentStations(int i,int j);
         void DeleteAdjacentStations(DO.AdjacentStations adjd);
