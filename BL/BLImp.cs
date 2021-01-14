@@ -273,7 +273,7 @@ namespace BL
             //l.Reverse();
             //l.RemoveAt(0);
             var vv = from a in SL
-                    orderby a.Station1Code
+                    orderby a.Station2Code
                     select a;
             return vv;
 
