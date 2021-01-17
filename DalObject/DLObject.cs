@@ -144,9 +144,17 @@ namespace DL
             public void AddLineStation(DO.LineStation linestation)//אין לנו עדיין תנאי סינון מתאים להוספת תחנת קו--צרך לשאול את המורה אם נכון
         {
             bool flag = false;
-            for (int i = 0; i < DataSource.listLineStation.Count(); i++)//to check if there is a physical station like this
+            //for (int i = 0; i < DataSource.listLineStation.Count(); i++)//to check if there is a physical station like this
+            //{
+            //    if (DataSource.listLineStation[i].StationCode == linestation.StationCode)
+            //    {
+            //        flag = true;
+            //        break;
+            //    }
+            //}
+            for (int i = 0; i < DataSource.listStations.Count(); i++)//to check if there is a physical station like this
             {
-                if (DataSource.listLineStation[i].StationCode == linestation.StationCode)
+                if (DataSource.listStations[i].CodeStation == linestation.StationCode)
                 {
                     flag = true;
                     break;
@@ -155,7 +163,7 @@ namespace DL
             if (!flag)//if there is no station like this
                       //  throw new DO.BadLineStationIdException(linestation.StationCode, "there is no station code like this ");
                 throw new DO.NotExistException("there is no station code like this " + linestation.StationCode);
-            if (DataSource.listLineStation.FirstOrDefault(p => p.StationCode == linestation.StationCode && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex) != null)
+            if (DataSource.listLineStation.FirstOrDefault(p => p.StationCode == linestation.StationCode/* && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex*/&& p.lineCode == linestation.lineCode) != null)
                 //throw new DO.BadLineStationIdException(linestation.StationCode, "Duplicate line station ");
                 throw new DO.OlreadtExistException(linestation.StationCode + " Duplicate line station ");
             DataSource.listLineStation.Add(linestation.Clone());

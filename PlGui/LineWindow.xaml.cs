@@ -92,8 +92,11 @@ namespace PlGui
 
         private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)//update line stationכנל----לא גמור
         {
+            if (lst.SelectedItem == null) { MessageBox.Show("בחר את הקו אשר ברצונך לעדכן את התחנה עבורו"); return; }
+           
             // UpdateStationLine a = new UpdateStationLine(bl);
-            BO.LineStation z = (BO.LineStation)DatatGridLines.SelectedItem;
+           else
+            { BO.LineStation z = (BO.LineStation)DatatGridLines.SelectedItem;
             UpdateStationLine a = new UpdateStationLine(bl, z, 1);
             a.ShowDialog();
             
@@ -103,13 +106,14 @@ namespace PlGui
 
             //BO.Line line1 = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);
             //DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode(line1.Code);
+            }
 
 
         }
 
         private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
         {
-            if (lst.SelectedItem == null) { MessageBox.Show("הקש את הקו המבוקש ואז לחץ על עדכון"); return; }
+            if (lst.SelectedItem == null) { MessageBox.Show("הקש את הקו המבוקש ואז לחץ על מחיקה"); return; }
             BO.Line dl1 = (lst.SelectedItem) as BO.Line;
             if (MessageBox.Show("?אתה בטוח שהינך רוצה למחוק קו זה", " מחיקת קו", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)

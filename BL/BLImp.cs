@@ -91,14 +91,21 @@ namespace BL
             a.lineCode = linestation.CodeLine;
             a.StationCode = linestation.Station1Code;
             a.NextStationCode = linestation.Station2Code;
-            dl.AddLineStation(a);
+            try { dl.AddLineStation(a); }
+            catch  (DO.OlreadtExistException ex )
+            { throw new BO.OlreadtExistExceptionBO("this line already exist", ex);
+            }
             DO.AdjacentStations adj = new DO.AdjacentStations();
             adj.Station1Code = linestation.Station1Code;
             adj.Station2Code = linestation.Station2Code;
             adj.Distance = linestation.Distance;
             adj.Time = linestation.Time;
             adj.lineCode = linestation.CodeLine;
-            dl.AddAdjacentStations(adj);
+            try { dl.AddAdjacentStations(adj); }
+            catch (DO.OlreadtExistException ex)
+            {
+                throw new BO.OlreadtExistExceptionBO("this line already exist", ex);
+            }
             //DO.AdjacentStations adj = new DO.AdjacentStations();
             //adj.Station1Code = linestation.Station1Code;
             //adj.Station2Code = 38833;

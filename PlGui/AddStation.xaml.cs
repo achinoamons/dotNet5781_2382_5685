@@ -46,22 +46,37 @@ namespace PlGui
             else
             {
                 bs.CodeStation = int.Parse(tbcode.Text);
-            }
-            bs.Name = tbname.Text;
+                bs.Name = tbname.Text;
 
-            bs.area = (BO.Areas)cbarea.SelectedItem;
+                bs.area = (BO.Areas)cbarea.SelectedItem;
 
 
-            try
-            {
-                bl.AddStation(bs);
-                MessageBox.Show("התחנה נוספה בהצלחה");
-                this.Close();
+                try
+                {
+                    bl.AddStation(bs);
+                    MessageBox.Show("התחנה נוספה בהצלחה");
+                    this.Close();
+                }
+                catch (BO.OlreadtExistExceptionBO ex)
+                {
+                    MessageBox.Show("התחנה כבר קיימת במערכת");
+                }
             }
-            catch (BO.OlreadtExistExceptionBO ex)
-            {
-                MessageBox.Show("התחנה כבר קיימת במערכת");
-            }
+            //bs.Name = tbname.Text;
+
+            //bs.area = (BO.Areas)cbarea.SelectedItem;
+
+
+            //try
+            //{
+            //    bl.AddStation(bs);
+            //    MessageBox.Show("התחנה נוספה בהצלחה");
+            //    this.Close();
+            //}
+            //catch (BO.OlreadtExistExceptionBO ex)
+            //{
+            //    MessageBox.Show("התחנה כבר קיימת במערכת");
+            //}
         }
     }
 }
