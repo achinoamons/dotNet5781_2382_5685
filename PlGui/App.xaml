@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:PlGui"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style    TargetType="Button">
+            <Setter Property="FontSize"
+              Value="12" />
+            <Setter Property="FontFamily"
+              Value="Kristen ITC" />
+            <Setter Property="FontWeight"
+              Value="Bold" />
+        </Style>
     </Application.Resources>
 </Application>
