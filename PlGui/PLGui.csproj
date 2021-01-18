@@ -165,5 +165,11 @@
   <ItemGroup>
     <Resource Include="WhatsApp Image 2021-01-18 at 13.31.55.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WhatsApp Image 2021-01-18 at 15.10.29.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WhatsApp Image 2021-01-18 at 13.31.54.jpeg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

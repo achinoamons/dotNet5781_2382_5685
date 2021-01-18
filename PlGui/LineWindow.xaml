@@ -5,26 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="LineWindow" Height="450" Width="800">
+        Title="LineWindow" Height="450" Width="800" Icon="WhatsApp Image 2021-01-18 at 13.31.54.jpeg">
+    <Window.Resources>
+        <Color x:Key="Color1">#FF30DB97</Color>
+    </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="WhatsApp Image 2021-01-18 at 15.10.29.jpeg"/>
+        </Grid.Background>
+        <Grid.OpacityMask>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.OpacityMask>
 
-        <ListBox x:Name="lst" HorizontalAlignment="Left" Height="386" Margin="34,10,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding}" SelectionChanged="lst_SelectionChanged" />
+        <ListBox x:Name="lst" HorizontalAlignment="Left" Height="386" Margin="32,10,0,0" VerticalAlignment="Center" Width="157" ItemsSource="{Binding}" SelectionChanged="lst_SelectionChanged"  Background="White" FontWeight="Bold" FontSize="14" >
+            <ListBox.BorderBrush>
+                <SolidColorBrush Color="#FFF7FAF9" Opacity="20"/>
+            </ListBox.BorderBrush>
+        </ListBox>
         <DataGrid x:Name="DatatGridLines" SelectedIndex="0" HorizontalAlignment="Left"  ItemsSource="{Binding}" Height="312" Margin="217,30,0,0"  VerticalAlignment="Top" Width="417"  HorizontalContentAlignment="Right">
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnUpdateStationLine" Content="עדכן תחנה" Click="btnUpdateStationLine_Click" />
+                            <Button x:Name="btnUpdateStationLine" Content="עדכן תחנה" Click="btnUpdateStationLine_Click" Background="#FFB4EADA"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnAddLine" Content="הוספת קו" HorizontalAlignment="Left" Margin="672,165,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnAddLine_Click" Background="#FF98E6CE"/>
-        <Button x:Name="btnDeleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="674,93,-2,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnDeleteLine_Click" Background="#FF98E6CE"/>
-        <Button x:Name="btnUpdateLine" Content="עידכון קו" HorizontalAlignment="Left" Margin="672,132,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnUpdateLine_Click" Background="#FF98E6CE"/>
+        <Button x:Name="btnAddLine" Content="הוספת קו" HorizontalAlignment="Left" Margin="663,217,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnAddLine_Click" Background="#FFB4EADA" RenderTransformOrigin="0.518,1.913"/>
+        <Button x:Name="btnDeleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="663,98,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnDeleteLine_Click" Background="#FFB4EADA"/>
+        <Button x:Name="btnUpdateLine" Content="עידכון קו" HorizontalAlignment="Left" Margin="663,160,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="btnUpdateLine_Click" Background="#FFB4EADA"/>
 
 
     </Grid>

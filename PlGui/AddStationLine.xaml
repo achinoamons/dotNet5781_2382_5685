@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="AddStationLine" Height="450" Width="800">
+        Title="AddStationLine" Height="450" Width="800" Icon="WhatsApp Image 2021-01-18 at 13.31.54.jpeg">
     <Grid>
         <Label Content="בחר תחנה  " HorizontalAlignment="Left" Margin="668,93,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ComboBox x:Name="cmbStation" HorizontalAlignment="Left" Margin="423,93,0,0" VerticalAlignment="Top" Width="192" Height="34" SelectionChanged="cmbStation_SelectionChanged" />
-        <Label Content=" :מרחק לתחנה  " HorizontalAlignment="Left" Margin="598,178,-0.4,0" VerticalAlignment="Top" FontSize="18" Width="196"/>
-        <Label Content=":זמן לתחנה " HorizontalAlignment="Left" Margin="642,269,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="txtDistance" HorizontalAlignment="Left" Height="34" Margin="406,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
-        <TextBox x:Name="txtFinishAtSecond" HorizontalAlignment="Left" Height="38" Margin="522,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
-        <TextBox x:Name="txtFinishAtMiniute" HorizontalAlignment="Left" Height="38" Margin="449,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
-        <TextBox x:Name="txtFinishAtHour" HorizontalAlignment="Left" Height="38" Margin="366,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
+        <ComboBox x:Name="cmbStation" HorizontalAlignment="Left" Margin="382,93,0,0" VerticalAlignment="Top" Width="192" Height="34" SelectionChanged="cmbStation_SelectionChanged" Background="#FFB4EADA" FontSize="14" FontWeight="Bold"/>
+        <Label Content=" :מרחק לתחנה  " HorizontalAlignment="Left" Margin="642,178,0,0" VerticalAlignment="Top" FontSize="18" Width="128"/>
+        <Label Content=":זמן לתחנה " HorizontalAlignment="Left" Margin="668,269,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="txtDistance" HorizontalAlignment="Left" Height="34" Margin="406,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtFinishAtSecond" HorizontalAlignment="Left" Height="38" Margin="522,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Background="#FFE5F5F0" FontSize="14"/>
+        <TextBox x:Name="txtFinishAtMiniute" HorizontalAlignment="Left" Height="38" Margin="449,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Background="#FFE5F5F0" FontSize="14" RenderTransformOrigin="0.541,0.87"/>
+        <TextBox x:Name="txtFinishAtHour" HorizontalAlignment="Left" Height="38" Margin="366,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Background="#FFE5F5F0" FontSize="14"/>
         <Label Content=":" HorizontalAlignment="Left" Margin="506,269,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <Label Content=":" HorizontalAlignment="Left" Margin="423,269,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
-        <Button x:Name="btnAddStationLine" Content="הוסף תחנת קו " HorizontalAlignment="Left" Margin="32,178,0,0" VerticalAlignment="Top" Width="189" Height="85" FontSize="20" FontWeight="Bold" Click="btnAddStationLine_Click" />
+        <Button x:Name="btnAddStationLine" Content="הוסף תחנת קו " HorizontalAlignment="Left" Margin="32,226,0,0" VerticalAlignment="Top" Width="158" Height="85" FontSize="20" FontWeight="Bold" Click="btnAddStationLine_Click" Background="#FFB4EADA"/>
 
     </Grid>
 </Window>

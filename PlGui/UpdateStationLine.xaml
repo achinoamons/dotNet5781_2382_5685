@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="UpdateStationLine" Height="450" Width="800">
+        Title="UpdateStationLine" Height="450" Width="800" Icon="WhatsApp Image 2021-01-18 at 13.31.54.jpeg">
     <Grid>
         <Label Content=": שם התחנה" HorizontalAlignment="Left" Margin="587,74,0,0" VerticalAlignment="Top" FontSize="20" Width="206"/>
         <Label Content=": מרחק לתחנה הבאה  " HorizontalAlignment="Left" Margin="587,152,0,0" VerticalAlignment="Top" FontSize="20" Width="206"/>
         <Label Content=": זמן לתחנה הבאה" HorizontalAlignment="Left" Margin="587,225,0,0" VerticalAlignment="Top" FontSize="20" Width="206"/>
-        <TextBox x:Name="txtStationName" HorizontalAlignment="Left" Height="35" Margin="421,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
-        <TextBox x:Name="txtDistance" HorizontalAlignment="Left" Height="35" Margin="421,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
-        <Button x:Name="btnUpdateLineStation" Content="עדכן תחנה" HorizontalAlignment="Left" Margin="60,196,0,0" VerticalAlignment="Top" Width="196" Height="83" FontSize="24" FontWeight="Bold" Click="btnUpdateLineStation_Click" />
-        <TextBox x:Name="txtTimeSecond" HorizontalAlignment="Left" Height="38" Margin="520,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
-        <TextBox x:Name="txtTimeMiniute" HorizontalAlignment="Left" Height="38" Margin="447,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
-        <TextBox x:Name="txtTimeHour" HorizontalAlignment="Left" Height="38" Margin="364,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52"/>
+        <TextBox x:Name="txtStationName" HorizontalAlignment="Left" Height="35" Margin="421,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Background="#FFB4EADA" FontWeight="Bold" FontSize="14" />
+        <TextBox x:Name="txtDistance" HorizontalAlignment="Left" Height="35" Margin="421,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="btnUpdateLineStation" Content="עדכן תחנה" HorizontalAlignment="Left" Margin="60,224,0,0" VerticalAlignment="Top" Width="162" Height="55" FontSize="24" FontWeight="Bold" Click="btnUpdateLineStation_Click" Background="#FFB4EADA" />
+        <TextBox x:Name="txtTimeSecond" HorizontalAlignment="Left" Height="38" Margin="520,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Background="#FFE5F5F0" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtTimeMiniute" HorizontalAlignment="Left" Height="38" Margin="447,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Background="#FFE5F5F0" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="txtTimeHour" HorizontalAlignment="Left" Height="39" Margin="364,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" FontWeight="Bold" Background="#FFE5F5F0" FontSize="14"/>
         <Label Content=":" HorizontalAlignment="Left" Margin="504,225,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
         <Label Content=":" HorizontalAlignment="Left" Margin="421,225,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="24"/>
 

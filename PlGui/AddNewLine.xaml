@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="AddNewLine" Height="396.735" Width="704.49">
+        Title="AddNewLine" Height="396.735" Width="704.49" Icon="WhatsApp Image 2021-01-18 at 13.31.54.jpeg">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
@@ -16,15 +16,29 @@
             <ColumnDefinition Width="468*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblLineCode" Content=":  מספר קו " HorizontalAlignment="Left" Margin="285,60,-12,0" VerticalAlignment="Top" FontSize="22" Width="202" Grid.Column="5" Grid.ColumnSpan="2" Height="39"/>
-        <Label x:Name="lblArea" Content=": איזור" HorizontalAlignment="Left" Margin="330,148,0,0" VerticalAlignment="Top" FontSize="22" Width="104" Grid.Column="5" Height="39"/>
-        <TextBox x:Name="txtLineCode" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="38" Margin="85,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="5"/>
-        <ComboBox x:Name="cbLineArea" HorizontalAlignment="Left" Margin="85,139,0,0" VerticalAlignment="Top" Width="175" Height="49"  Grid.Column="5"/>
-        <Button x:Name="btnSaveNewLine" Content="הוספת קו" HorizontalAlignment="Left" Margin="101,249,0,0" VerticalAlignment="Top" Width="230" Height="77" FontSize="36" FontWeight="Bold" Grid.Column="5" Click="btnSaveNewLine_Click"/>
-        <ComboBox x:Name="cbfirststation" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="70,102,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cblaststation" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="70,179,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Grid.ColumnSpan="2" Content="הוסף תחנה א" HorizontalAlignment="Left" Margin="92,71,0,0" VerticalAlignment="Top" Width="82"/>
-        <Label Grid.ColumnSpan="2" Content="הוסף תחנה ב" HorizontalAlignment="Left" Margin="92,148,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label x:Name="lblLineCode" Content=":  מספר קו " HorizontalAlignment="Left" Margin="329.667,60,0,0" VerticalAlignment="Top" FontSize="22" Width="121" Grid.Column="5" Height="37"/>
+        <Label x:Name="lblArea" Content=": איזור" HorizontalAlignment="Left" Margin="374.667,145,0,0" VerticalAlignment="Top" FontSize="22" Width="76" Grid.Column="5" Height="39" RenderTransformOrigin="0.838,0.414"/>
+        <TextBox x:Name="txtLineCode" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="38" Margin="85,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="5" Background="#FFB4EADA" SelectionTextBrush="#FF060706" FontWeight="Bold" FontSize="18"/>
+        <ComboBox x:Name="cbLineArea" HorizontalAlignment="Left" Margin="84.667,148,0,0" VerticalAlignment="Top" Width="175" Height="40"  Grid.Column="5" FontWeight="Bold" FontSize="18">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FF8AC8B5" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <Button x:Name="btnSaveNewLine" Content="הוספת קו" HorizontalAlignment="Left" Margin="84.667,271,0,0" VerticalAlignment="Top" Width="175" Height="55" FontSize="24" FontWeight="Bold" Grid.Column="5" Click="btnSaveNewLine_Click" Background="#FFB4EADA"/>
+        <ComboBox x:Name="cbfirststation" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="37,73,0,0" VerticalAlignment="Top" Width="153" BorderBrush="#FFC3EBDD">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FFB5E0CE" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <ComboBox x:Name="cblaststation" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="37,157,0,0" VerticalAlignment="Top" Width="153" Height="27"/>
+        <Label Grid.ColumnSpan="2" Content="הוסף תחנה א" HorizontalAlignment="Left" Margin="108,42,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label Grid.ColumnSpan="2" Content="הוסף תחנה ב" HorizontalAlignment="Left" Margin="108,116,0,0" VerticalAlignment="Top" Width="82"/>
 
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="UpdateLine" Height="450" Width="800">
+        Title="UpdateLine" Height="450" Width="800" Icon="WhatsApp Image 2021-01-18 at 13.31.54.jpeg">
     <Grid Margin="0,0,-0.4,-86">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="437*"/>
@@ -15,37 +15,40 @@
         <Label Content=": מספר הקו" HorizontalAlignment="Left" Margin="206,71,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="16" Width="115"/>
         <Label Content=": איזור" HorizontalAlignment="Left" Margin="235,139,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="18" Width="84"/>
         <Label Content=": תחנות הקו" HorizontalAlignment="Left" Margin="206,194,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="18" Width="115"/>
-        <TextBox x:Name="txtLineCode" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="81,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-        <ComboBox x:Name="cmbArea" Grid.Column="2" HorizontalAlignment="Left" Margin="68,139,0,0" VerticalAlignment="Top" Width="133" />
+        <TextBox x:Name="txtLineCode" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="81,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFB4EADA" FontWeight="Bold" FontSize="16" />
+        <ComboBox x:Name="cmbArea" Grid.Column="2" HorizontalAlignment="Left" Margin="68,139,0,0" VerticalAlignment="Top" Width="133" FontWeight="Bold" FontSize="16" />
         <DataGrid x:Name="dataGridStationLINE" HorizontalAlignment="Left" Height="200" Margin="183,194,0,0" VerticalAlignment="Top" Width="490" Grid.ColumnSpan="3" ItemsSource="{Binding}" >
+            <DataGrid.Background>
+                <ImageBrush ImageSource="WhatsApp Image 2021-01-18 at 15.10.29.jpeg"/>
+            </DataGrid.Background>
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnUpdateStationLine" Content="עדכן תחנה" Click="btnUpdateStationLine_Click"/>
+                            <Button x:Name="btnUpdateStationLine" Content="עדכן תחנה" Click="btnUpdateStationLine_Click" Background="#FFB4EADA" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnDeleteStationLine" Content="הסר תחנה" Click="btnDeleteStationLine_Click" />
+                            <Button x:Name="btnDeleteStationLine" Content="הסר תחנה" Click="btnDeleteStationLine_Click" Background="#FFB4EADA" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnAddStationLine" Content=" הוסף תחנה לפני" Click="btnAddStationLine_Click" />
+                            <Button x:Name="btnAddStationLine" Content=" הוסף תחנה לפני" Click="btnAddStationLine_Click" Background="#FFB4EADA"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnUpdataLine" Content="עדכן קו" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Width="146" Height="84" FontSize="20" FontWeight="Bold" Click="btnUpdataLine_Click" />
-        <Button x:Name="btnAddFirstStationLine" Content=" הוסף את התחנה הראשונה שלך" HorizontalAlignment="Left" Margin="55,399,0,0" VerticalAlignment="Top" Width="200" Height="39" Grid.Column="2"  Visibility="Hidden"/>
-       
+        <Button x:Name="btnUpdataLine" Content="עדכן קו" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" Width="144" Height="59" FontSize="20" FontWeight="Bold" Click="btnUpdataLine_Click" Background="#FFB4EADA"/>
+        <Button x:Name="btnAddFirstStationLine" Content=" הוסף את התחנה הראשונה שלך" HorizontalAlignment="Left" Margin="55,399,0,0" VerticalAlignment="Top" Width="200" Height="39" Grid.Column="2"  Visibility="Hidden" Background="#FFB4EADA"  />
+
 
     </Grid>
 </Window>
