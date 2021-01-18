@@ -100,8 +100,8 @@ namespace PlGui
             UpdateStationLine a = new UpdateStationLine(bl, z, 1);
             a.ShowDialog();
             
-            DatatGridLines.ItemsSource = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
-            //DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode((lst.SelectedItem as BO.Line).Code);
+            //DatatGridLines.ItemsSource = (lst.SelectedItem as BO.Line).ListOfStationsPass.ToList();
+            DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode((lst.SelectedItem as BO.Line).Code);
 
 
             //BO.Line line1 = bl.GetLine((lst.SelectedItem as BO.Line).Code, (lst.SelectedItem as BO.Line).area);

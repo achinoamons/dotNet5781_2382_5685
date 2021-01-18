@@ -70,9 +70,9 @@ namespace PlGui
                 a.Station2Code = nn.Station1Code;
                 ls.Add(nn);
                 ls.Add(a);
-                try { bl.AddLineStation(nn); }
-                catch { MessageBox.Show("כבר קיימת לקו כזו תחנה"); }
                 try { bl.AddLineStation(a); }
+                catch { MessageBox.Show("כבר קיימת לקו כזו תחנה"); }
+                try { bl.AddLineStation(nn); }
                 catch { MessageBox.Show("כבר קיימת לקו כזו תחנה"); }
                 l.ListOfStationsPass = ls;
 

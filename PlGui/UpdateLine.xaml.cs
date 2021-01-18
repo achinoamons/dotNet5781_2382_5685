@@ -67,18 +67,17 @@ namespace PlGui
 
         private void btnUpdataLine_Click(object sender, RoutedEventArgs e)
         {
-            //BO.LineStation x = (BO.LineStation)dataGridStationLINE.SelectedItem;
-            //stationlinechoosen = x;
-            //BO.Line upli = new BO.Line();
-            //upli.area = (BO.Areas)cmbArea.SelectedItem;
-            //upli.Code = Convert.ToInt32(txtLineCode.Text);
-            ////upli.FinishAt = ln.FinishAt;
-            ////upli.StartAt = ln.StartAt;
-            ////upli.Frequency = ln.Frequency;
-            //////if( isListOfLineStationIsChanged==false)
-            ////// upli.StationListOfLine = FinalListStation;
-            //upli.ListOfStationsPass = ll.ListOfStationsPass;
-            //bl.UpdateLine(upli);
+            BO.LineStation x = (BO.LineStation)dataGridStationLINE.SelectedItem;
+            stationlinechoosen = x;
+            BO.Line upli = new BO.Line();
+            upli.area = (BO.Areas)cmbArea.SelectedItem;
+            upli.Code = Convert.ToInt32(txtLineCode.Text);
+
+            ////if( isListOfLineStationIsChanged==false)
+            //// upli.StationListOfLine = FinalListStation;
+            upli.ListOfStationsPass = ll.ListOfStationsPass;
+            bl.UpdateLine(upli);
+
             this.Close();
         }
 

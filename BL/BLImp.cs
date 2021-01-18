@@ -62,6 +62,7 @@ namespace BL
                  catch { throw new BO.OlreadtExistExceptionBO(); }
              }*/
             DO.Line doline = l.CopyPropertiesToNew(typeof(DO.Line)) as DO.Line;
+            doline.Area=(DO.Areas)l.area;////יום ראשון
             try
             {
                 dl.AddLine(doline);
@@ -153,7 +154,11 @@ namespace BL
 
             var v = from a in ls
                     select GetLine(a.Code, (BO.Areas)a.Area);
-            return v;
+            //return v;
+            var vv = from a in v
+                     orderby a.Code
+                     select a;
+            return vv;
         }
 
 
