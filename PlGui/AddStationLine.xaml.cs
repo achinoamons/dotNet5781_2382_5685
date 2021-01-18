@@ -67,8 +67,18 @@ namespace PlGui
                 
                 try
                 {
-                   bl.AddLineStation(sl);
+
+
+                
+                bl.AddLineStation(sl);
                 MessageBox.Show("התחנה נוספה בהצלחה");
+                /////////////////////////////////////////////////////הערה:לדבר על זה עם אפרת
+                //BO.LineStation help = ln.ListOfStationsPass.FirstOrDefault(x => x.Station2Code == stationline.Station1Code && x.Station1Code != sl.Station1Code);
+                //help.Station2Code = sl.Station1Code;
+                //ln.ListOfStationsPass.ToList().Add(help);
+
+                //////////////////////////////////////////
+
 
                 this.Close();
                 }

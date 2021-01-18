@@ -5,11 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Icon="WhatsApp Image 2021-01-18 at 13.31.55.jpeg" >
+    <Window.Resources>
+        <Style x:Key="myButtonStyle"   TargetType="Button">
+            <Setter Property="FontSize"
+              Value="16" />
+            <Setter Property="FontFamily"
+              Value="Kristen ITC" />
+            <Setter Property="FontWeight"
+              Value="Bold" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Label Content="Welcome to our System! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
-      
-        <Button x:Name="btnGO" Content="LOGIN" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="WhatsApp Image 2021-01-18 at 13.14.55.jpeg"/>
+        </Grid.Background>
+        <Label Content="מערכת לניהול מערך היסעים" HorizontalAlignment="Left" Margin="179,102,0,0" VerticalAlignment="Top" Height="50" Width="451" FontWeight="Bold" FontStyle="Italic" FontSize="30" Foreground="#FFE8D7E8"/>
+
+        <Button Style="{StaticResource myButtonStyle}" x:Name="btnGO" Content="LOGIN" HorizontalAlignment="Left" Height="42" Margin="356,283,0,0" VerticalAlignment="Top" Width="105" Background="#FFDAEED7" Click="btnGO_Click" Foreground="#FF150415"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="329,197,0,0" VerticalAlignment="Top" Height="44" Width="192"/>
 
     </Grid>
 </Window>

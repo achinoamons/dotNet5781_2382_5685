@@ -163,7 +163,7 @@ namespace DL
             if (!flag)//if there is no station like this
                       //  throw new DO.BadLineStationIdException(linestation.StationCode, "there is no station code like this ");
                 throw new DO.NotExistException("there is no station code like this " + linestation.StationCode);
-            if (DataSource.listLineStation.FirstOrDefault(p => p.StationCode == linestation.StationCode/* && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex*/&& p.lineCode == linestation.lineCode) != null)
+            if (DataSource.listLineStation.FirstOrDefault(p => p.StationCode == linestation.StationCode /* && p.PrevStationCode == linestation.PrevStationCode && p.NextStationCode == linestation.NextStationCode && p.LineStationIndex == linestation.LineStationIndex*/&& p.lineCode == linestation.lineCode) != null)
                 //throw new DO.BadLineStationIdException(linestation.StationCode, "Duplicate line station ");
                 throw new DO.OlreadtExistException(linestation.StationCode + " Duplicate line station ");
             DataSource.listLineStation.Add(linestation.Clone());
@@ -316,6 +316,23 @@ namespace DL
 
 
         }
+        //public void UpdateAdjacentStationStation2Code(DO.AdjacentStations adjacentStations,int i)
+        //{
+
+        //    DO.AdjacentStations adj = DataSource.listAdjacentStation.Find(p => p.Station1Code == adjacentStations.Station1Code && p.Station2Code == adjacentStations.Station2Code);
+
+        //    if (adj != null)
+        //    {
+        //        int j = DataSource.listAdjacentStation.IndexOf(adj);
+        //        DataSource.listAdjacentStation[j].Station2Code = i;
+               
+        //    }
+        //    else
+        //        //throw new DO.BadAdjacentStationsException(adjacentStations.Station1Code, adjacentStations.Station2Code, $"bad codes: {adjacentStations.Station1Code},{adjacentStations.Station2Code}");
+        //        throw new DO.NotExistException(adjacentStations.Station1Code + adjacentStations.Station2Code + $"bad codes");
+
+
+        //}
 
         public void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update) { }//method that knows to updt specific fields in Person
        //public void DeleteAdjacentStations(int i, int j)

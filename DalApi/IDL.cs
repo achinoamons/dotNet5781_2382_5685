@@ -46,6 +46,7 @@ namespace DLAPI
         void UpdateAdjacentStations(int id, Action<DO.AdjacentStations> update); //method that knows to updt specific fields in Person
         //void DeleteAdjacentStations(int i,int j);
         void DeleteAdjacentStations(DO.AdjacentStations adjd);
+        //void UpdateAdjacentStationStation2Code(DO.AdjacentStations adjacentStations,int i);
         #endregion
         /* #region Bus
          IEnumerable<DO.Bus> GetAllBuses();

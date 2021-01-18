@@ -31,8 +31,17 @@ namespace PlGui
 
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
-            ShowItemsOfSystem show = new ShowItemsOfSystem(bl);
-            show.Show();//open a new window
+            if (password.Password == (12345).ToString())
+            {
+                ShowItemsOfSystem show = new ShowItemsOfSystem(bl);
+                show.Show();//open a new window
+            }
+            else
+                
+            MessageBox.Show("קוד שגוי הקש שנית", "input",   MessageBoxButton.OK,  MessageBoxImage.Information);
+
+
         }
+
     }
 }

@@ -397,6 +397,15 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+        //public void UpdateCode2(BO.LineStation l,int num)
+        //{
+        //    DO.AdjacentStations d = l.CopyPropertiesToNew(typeof(DO.AdjacentStations)) as DO.AdjacentStations;
+        //    try { dl.UpdateAdjacentStationStation2Code(d, num); }
+        //    catch
+        //    { throw new BO.NotExistExceptionBO(); }
+        
+        //}
+        
         #endregion
         #region Station
         public IEnumerable<BO.Station> GetAllStations()//מחזיר את רשימת כל התחנות הפיזיות 

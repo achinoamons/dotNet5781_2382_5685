@@ -36,10 +36,10 @@ namespace PlGui
                 LineWindow lw = new LineWindow(bl);
                 lw.Show();
             }
-            else if (rbstations.IsChecked == true)
-            {
-            }
-            else//linestations
+            //else if (rbstations.IsChecked == true)
+            //{
+            //}
+            else if(rblinestations.IsChecked==true)//linestations
             {
                 LineStations ls = new LineStations(bl);
                 ls.Show();

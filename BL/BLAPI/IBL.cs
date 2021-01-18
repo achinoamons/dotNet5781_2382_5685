@@ -74,6 +74,7 @@ namespace BLAPI
         void UpdateLineStation(BO.LineStation linestation);
         void UpdateLineStation(int id, Action<BO.LineStation> update); //method that knows to update specific fields in linestation
         bool DeleteLineStation(BO.LineStation ls);
+        //void UpdateCode2(BO.LineStation l, int num);
         #endregion
 
         #region Station
