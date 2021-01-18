@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="ShowItemsOfSystem" Height="450" Width="575.862" Icon="WhatsApp Image 2021-01-18 at 13.31.55.jpeg">
     <Grid Margin="0,0,2,3">
-        <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="108,119,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="#FF590A70">
+        <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="108,119,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="#FF2BDCAB">
             <StackPanel Margin="21,20,29,24">
                 <RadioButton x:Name ="rblines" Content="קוים" Height="24" />
 
                 <RadioButton x:Name ="rblinestations" Content="תחנות " Height="35"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FFAC61A2" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click" />
+        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FFB4EADA" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click" />
 
     </Grid>
 </Window>

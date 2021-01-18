@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:PlGui"
         mc:Ignorable="d"
         Title="AddStation" Height="450" Width="418.382" Icon="WhatsApp Image 2021-01-18 at 13.31.55.jpeg">
-    <Border BorderBrush="Orange"  BorderThickness="3">
+    <Border BorderBrush="#FF97EBCC"  BorderThickness="3">
         
         <Grid Margin="-31,10,10,7">
         <Label Content=" הכנס קוד תחנה בן 5 ספרות "  HorizontalAlignment="Left" Margin="134,57,0,0" VerticalAlignment="Top" Height="33" Width="165"/>
-        <TextBox x:Name="tbcode" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="162,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbcode" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="162,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontWeight="Bold" FontSize="14" Background="#FFD1F5E8"/>
         <Label Content="הכנס שם תחנה" HorizontalAlignment="Left" Margin="162,123,0,0" VerticalAlignment="Top" Height="33" Width="120"/>
-        <TextBox x:Name="tbname" HorizontalAlignment="Left" Height="23" Margin="162,161,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbname" HorizontalAlignment="Left" Height="23" Margin="162,161,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontWeight="Bold" FontSize="14" Background="#FFD1F5E8"/>
         <Label Content="בחר אזור תחנה" HorizontalAlignment="Left" Margin="162,210,0,0" VerticalAlignment="Top" Height="33" Width="107"/>
-        <ComboBox x:Name="cbarea" HorizontalAlignment="Left" Margin="162,248,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="add" Content="הוסף" HorizontalAlignment="Left" Margin="179,324,0,0" VerticalAlignment="Top" Height="29" Width="90" MouseDoubleClick="add_MouseDoubleClick" Background="#FFE08132"/>
+        <ComboBox x:Name="cbarea" HorizontalAlignment="Left" Margin="162,248,0,0" VerticalAlignment="Top" Width="120" FontWeight="Bold" FontSize="14"/>
+            <Button x:Name="add" Content="הוסף" HorizontalAlignment="Left" Margin="179,324,0,0" VerticalAlignment="Top" Height="29" Width="90" MouseDoubleClick="add_MouseDoubleClick" Background="#FFB4EADA" FontWeight="Bold"/>
 
 
     </Grid>

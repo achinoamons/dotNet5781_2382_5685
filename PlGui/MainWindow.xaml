@@ -23,7 +23,7 @@
         </Grid.Background>
         <Label Content="מערכת לניהול מערך היסעים" HorizontalAlignment="Left" Margin="179,102,0,0" VerticalAlignment="Top" Height="50" Width="451" FontWeight="Bold" FontStyle="Italic" FontSize="30" Foreground="#FFE8D7E8"/>
 
-        <Button Style="{StaticResource myButtonStyle}" x:Name="btnGO" Content="LOGIN" HorizontalAlignment="Left" Height="42" Margin="356,283,0,0" VerticalAlignment="Top" Width="105" Background="#FFDAEED7" Click="btnGO_Click" Foreground="#FF150415"/>
+        <Button Style="{StaticResource myButtonStyle}" x:Name="btnGO" Content="כניסה" HorizontalAlignment="Left" Height="42" Margin="356,283,0,0" VerticalAlignment="Top" Width="105" Background="#FFB4EADA" Click="btnGO_Click" Foreground="#FF150415"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="329,197,0,0" VerticalAlignment="Top" Height="44" Width="192"/>
 
     </Grid>
