@@ -37,8 +37,8 @@ namespace PlGui
                 show.Show();//open a new window
             }
             else
-                
-            MessageBox.Show("קוד שגוי הקש שנית", "input",   MessageBoxButton.OK,  MessageBoxImage.Information);
+
+                MessageBox.Show("קוד שגוי הקש שנית", "input", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
         }
