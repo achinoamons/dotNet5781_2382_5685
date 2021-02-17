@@ -269,8 +269,8 @@ namespace BL
                                              from b in dl.GetAllAdjacentStationsby(x => x.Station1Code == a.StationCode && x.Station2Code == a.NextStationCode)
                                              from v in dl.GetAllStationsBy(y => y.CodeStation == a.StationCode)
                                              select ConvertLineStationToBOlineStation(a, b.Time, b.Distance, v.Name);
-            //return SL;
-            //////////////////
+            return SL;
+            //////////////////סתם משו
             //List<BO.LineStation> l = new List<BO.LineStation>();
             //BO.LineStation w = SL.FirstOrDefault((x => x.Station2Code == 0));
             //l.Add(w);
@@ -284,10 +284,12 @@ namespace BL
 
             //l.Reverse();
             //l.RemoveAt(0);
-            var vv = from a in SL
-                    orderby a.Station2Code
-                    select a;
-            return vv;
+            ////////////////////////////////////////////////////////////////////////
+            //יום רביעי סוף מבחנים שמתי מפה והלאה בהערה והוצאתי את SL מהערה
+            //var vv = from a in SL
+            //        orderby a.Station2Code
+            //        select a;
+            //return vv;
 
         }
         public BO.LineStation Convertt(DO.LineStation l)

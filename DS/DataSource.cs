@@ -202,8 +202,8 @@ namespace DS
                     listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[47].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[46].CodeStation, NextStationCode = listStations[48].CodeStation });
                     listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[48].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[47].CodeStation, NextStationCode = listStations[49].CodeStation });
                     listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
-
-                    listLineStation.Add(new LineStation() { lineCode = 75, LineId = 1, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
+                    //יום רביעי סוף תקופת מבחנים שמתי בהערה
+                  // listLineStation.Add(new LineStation() { lineCode = 75, LineId = 1, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
                     #endregion listLineStation
 
 
@@ -319,6 +319,22 @@ namespace DS
 
 
                             //calculate distance and time
+                            listAdjacentStation.Add(ads);
+                        }
+                        else//הוספתי ביום רביעי סוף תקופת מבחנים
+                        {
+                            AdjacentStations ads = new AdjacentStations();
+                            ads.Station1Code = listLineStation[i].StationCode;
+                            ads.Station2Code = 0;
+                            //var sCoord = new GeoCoordinate(listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Latitude, listStations[listStations.IndexOf(listStations.Find(p => p.CodeStation == ads.Station1Code))].Longitude); //coordinate of tel aviv
+
+                            //var eCoord = new GeoCoordinate(0, 0); //coordinate of tel aviv
+                            //                                                                                                                                                                                                                                                 //coordinate of jerusalem
+                            //var distance = sCoord.GetDistanceTo(eCoord);
+                            ads.Distance = 0;
+                            t =new TimeSpan(0,0,0);
+                            ads.Time = t;
+                            ads.lineCode = listLineStation[i].lineCode;
                             listAdjacentStation.Add(ads);
                         }
                     }
