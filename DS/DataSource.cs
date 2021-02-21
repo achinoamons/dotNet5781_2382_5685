@@ -202,7 +202,7 @@ namespace DS
                     listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[47].CodeStation, LineStationIndex = 3, PrevStationCode = listStations[46].CodeStation, NextStationCode = listStations[48].CodeStation });
                     listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[48].CodeStation, LineStationIndex = 4, PrevStationCode = listStations[47].CodeStation, NextStationCode = listStations[49].CodeStation });
                     listLineStation.Add(new LineStation() { lineCode = 84, LineId = 10, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
-                    //יום רביעי סוף תקופת מבחנים שמתי בהערה
+                    //יום רביעי סוף תקופת מבחנים שמתי בהערה//
                   // listLineStation.Add(new LineStation() { lineCode = 75, LineId = 1, StationCode = listStations[49].CodeStation, LineStationIndex = 5, PrevStationCode = listStations[48].CodeStation, NextStationCode = 0 });
                     #endregion listLineStation
 
