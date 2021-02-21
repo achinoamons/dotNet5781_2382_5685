@@ -69,7 +69,7 @@ namespace PlGui
             lst.ItemsSource = bl.GetAllLines();
         }
 
-        private void btnUpdateLine_Click(object sender, RoutedEventArgs e)//לא עשוי----חלון עדכון קו----לא גמור בכלל
+        private void btnUpdateLine_Click(object sender, RoutedEventArgs e)//
         {
             //UpdateLine update = new UpdateLine(bl, (lst.SelectedItem) as BO.Line);
             //update.ShowDialog();
@@ -90,7 +90,7 @@ namespace PlGui
             //  DatatGridLines.ItemsSource = bl.GetAllLineStationsByLineCode(l2.Code);
         }
 
-        private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)//update line stationכנל----לא גמור
+        private void btnUpdateStationLine_Click(object sender, RoutedEventArgs e)//update line station
         {
             if (lst.SelectedItem == null) { MessageBox.Show("בחר את הקו אשר ברצונך לעדכן את התחנה עבורו"); return; }
            
